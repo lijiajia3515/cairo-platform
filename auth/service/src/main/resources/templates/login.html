@@ -1,0 +1,425 @@
+<!doctype html>
+<!-- 登录页:卡片式布局,色板/顶栏/页脚来自 fragments.html(与 index/logout 统一,对齐 auth/web TDesign 主题)。
+     功能契约不可破坏:form POST @{/login}、username/password/remember-me 字段名、
+     authenticationException 错误消息字符串、/oauth2/authorization/* 三方链接(formLogin 流程依赖)。 -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments :: common-head('Cairo账号-登录')"></th:block>
+  <style>
+    /* tabs 贴卡片顶,卡片上内边距收窄 */
+    .card { padding-top: 8px; }
+
+    /* 登录方式 tabs */
+    .tabs {
+      display: flex;
+      gap: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tab {
+      position: relative;
+      padding: 18px 0 14px;
+      font-size: 16px;
+      color: var(--text-2);
+      cursor: pointer;
+      user-select: none;
+    }
+    .tab.active { color: var(--text-1); font-weight: 600; cursor: default; }
+    .tab.active::after {
+      content: "";
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      bottom: -1px;
+      width: 24px; height: 2px;
+      border-radius: 2px;
+      background: var(--brand);
+    }
+    .tab.disabled { color: var(--text-disabled); cursor: not-allowed; }
+
+    /* 错误提示 */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 8px 12px;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: 4px;
+      color: var(--error);
+      font-size: 13px;
+      line-height: 20px;
+      word-break: break-all;
+    }
+    .alert svg { flex: none; margin-top: 3px; }
+
+    /* 输入框 */
+    .field { position: relative; margin-top: 20px; }
+    .field .input-icon {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      color: var(--text-disabled);
+      pointer-events: none;
+      transition: color .2s;
+    }
+    .field input {
+      width: 100%;
+      height: 44px;
+      padding: 0 12px 0 40px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      font-size: 14px;
+      color: var(--text-1);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field input::placeholder { color: var(--text-disabled); }
+    .field input:hover { border-color: #c5c5c5; }
+    .field input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-ring);
+    }
+    .field input#password { padding-right: 44px; }
+    .field input:focus ~ .input-icon,
+    .field:focus-within .input-icon { color: var(--brand); }
+    .pwd-toggle {
+      position: absolute;
+      right: 4px; top: 50%;
+      transform: translateY(-50%);
+      width: 36px; height: 36px;
+      border: 0;
+      background: none;
+      color: var(--text-disabled);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pwd-toggle:hover { color: var(--text-2); }
+    .pwd-toggle svg { width: 18px; height: 18px; }
+    .pwd-toggle .icon-eye-off { display: none; }
+    .pwd-toggle.show .icon-eye { display: none; }
+    .pwd-toggle.show .icon-eye-off { display: block; }
+
+    /* 辅助行 */
+    .aux-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-2);
+    }
+    .remember { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .remember input { accent-color: var(--brand); width: 14px; height: 14px; cursor: pointer; }
+
+    /* 协议勾选行 */
+    .agree {
+      display: flex; align-items: flex-start; gap: 2px; flex-wrap: wrap;
+      margin-top: 12px; font-size: 12px; color: var(--text-2); cursor: pointer;
+    }
+    .agree input { accent-color: var(--brand); width: 14px; height: 14px; margin: 2px 4px 0 0; cursor: pointer; }
+    .agree .link { color: var(--brand); }
+
+    /* 协议确认弹窗 */
+    .agree-mask {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0, 0, 0, .45);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .agree-card {
+      width: 88%; max-width: 380px; border-radius: 12px; padding: 22px 20px 16px;
+      background: #fff; box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+      font-size: 13px; line-height: 1.8; color: var(--text-1);
+    }
+    .agree-card h3 { margin: 0 0 10px; font-size: 15px; }
+    .agree-card .agree-btns { display: flex; gap: 10px; margin-top: 16px; }
+    .agree-card button {
+      flex: 1; height: 36px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer;
+      background: #fff; color: var(--text-1); font-size: 13px;
+    }
+    .agree-card button.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .agree-card button.primary:hover { background: var(--brand-hover); }
+
+    /* 登录按钮 */
+    .submit {
+      margin-top: 24px;
+      height: 44px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-indent: 6px;
+    }
+    .submit:disabled { background: var(--brand-hover); }
+
+    /* 其他登录方式 */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 20px;
+      color: var(--text-3);
+      font-size: 12px;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .sns-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .sns-item {
+      width: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .sns-item a {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .sns-item a:hover {
+      transform: translateY(-2px);
+      border-color: #c5c5c5;
+      box-shadow: 0 4px 10px rgba(31, 35, 41, .08);
+    }
+    .sns-item a svg { width: 22px; height: 22px; }
+    .sns-item span { font-size: 11px; color: var(--text-3); }
+
+    /* 卡片底部 */
+    .card-foot {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .card-foot .link { color: var(--brand); }
+    .card-foot .link:hover { color: var(--brand-hover); }
+
+    @media (max-width: 480px) {
+      .card { padding-top: 4px; }
+      .tabs { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar" th:replace="fragments :: topbar"></header>
+
+<main class="main">
+  <div class="card">
+    <nav class="tabs">
+      <span class="tab active">账号登录</span>
+      <span class="tab disabled" aria-disabled="true" title="暂未开放">手机号登录</span>
+      <span class="tab disabled" aria-disabled="true" title="暂未开放">扫码登录</span>
+    </nav>
+
+    <form th:action="@{/login}" action="/login" method="post">
+      <!-- 登录失败提示(session 中 AUTHENTICATION_EXCEPTION,IndexController 注入消息字符串) -->
+      <div class="alert" role="alert" th:if="${authenticationException}">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13" stroke-linecap="round"/><circle cx="12" cy="16.5" r="0.5" fill="currentColor"/>
+        </svg>
+        <span th:text="${authenticationException}">登录失败</span>
+      </div>
+
+      <div class="field">
+        <input type="text" id="username" name="username"
+               placeholder="请输入手机号/邮箱/登录名"
+               title="支持中国大陆手机号、4位以上登录名或已绑定邮箱"
+               autocomplete="username" autofocus>
+        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.2-3.2 4.1-5 7.5-5s6.3 1.8 7.5 5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="field">
+        <input type="password" id="password" name="password"
+               placeholder="请输入密码"
+               autocomplete="current-password">
+        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="5" y="10.5" width="14" height="9" rx="2"/><path d="M8 10.5V8a4 4 0 1 1 8 0v2.5"/>
+        </svg>
+        <button type="button" class="pwd-toggle" id="pwd-toggle" aria-label="显示或隐藏密码">
+          <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="4" y1="4" x2="20" y2="20" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="aux-row">
+        <label class="remember">
+          <input type="checkbox" name="remember-me" value="true"> 自动登录
+        </label>
+        <a class="link" href="javascript:alert('别点了,没做');">忘记密码</a>
+      </div>
+
+      <label class="agree">
+        <input type="checkbox" id="agree"> 已阅读并同意
+        <a class="link" href="/static/agreement/user.html" target="_blank" rel="noopener noreferrer">《用户协议》</a>
+        <a class="link" href="/static/agreement/privacy.html" target="_blank" rel="noopener noreferrer">《隐私政策》</a>
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block submit" id="submit-btn">登录</button>
+
+      <div class="divider">其他登录方式</div>
+
+      <div class="sns-row">
+        <div class="sns-item">
+          <a th:href="@{/oauth2/authorization/wechat-web}" href="javascript:alert('wechat-web')"
+             title="微信登录(网站端)" aria-label="微信登录(网站端)">
+            <svg viewBox="0 0 24 24">
+              <ellipse cx="10" cy="9.8" rx="7" ry="5.6" fill="#07c160"/>
+              <circle cx="7.6" cy="9.4" r="1" fill="#fff"/>
+              <circle cx="12.4" cy="9.4" r="1" fill="#fff"/>
+              <ellipse cx="16.6" cy="15.4" rx="5.4" ry="4.4" fill="#06ad56"/>
+              <circle cx="14.9" cy="15.1" r="0.9" fill="#fff"/>
+              <circle cx="18.3" cy="15.1" r="0.9" fill="#fff"/>
+            </svg>
+          </a>
+          <span>微信</span>
+        </div>
+        <div class="sns-item">
+          <a th:href="@{/oauth2/authorization/wechat-open}" href="javascript:alert('wechat-open')"
+             title="微信登录(微信内浏览器)" aria-label="微信登录(微信内浏览器)">
+            <svg viewBox="0 0 24 24">
+              <ellipse cx="10" cy="9.8" rx="7" ry="5.6" fill="#07c160"/>
+              <circle cx="7.6" cy="9.4" r="1" fill="#fff"/>
+              <circle cx="12.4" cy="9.4" r="1" fill="#fff"/>
+              <ellipse cx="16.6" cy="15.4" rx="5.4" ry="4.4" fill="#06ad56"/>
+              <circle cx="14.9" cy="15.1" r="0.9" fill="#fff"/>
+              <circle cx="18.3" cy="15.1" r="0.9" fill="#fff"/>
+            </svg>
+          </a>
+          <span>微信内页</span>
+        </div>
+        <div class="sns-item">
+          <a th:href="@{/oauth2/authorization/dingding}" href="javascript:alert('dingding')"
+             title="钉钉登录" aria-label="钉钉登录">
+            <svg viewBox="0 0 24 24">
+              <text x="12" y="17.5" text-anchor="middle" font-size="15" font-weight="700"
+                    font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+                    fill="#0089ff">钉</text>
+            </svg>
+          </a>
+          <span>钉钉</span>
+        </div>
+        <div class="sns-item">
+          <a th:href="@{/oauth2/authorization/alipay}" href="javascript:alert('alipay')"
+             title="支付宝登录" aria-label="支付宝登录">
+            <svg viewBox="0 0 24 24">
+              <text x="12" y="17.5" text-anchor="middle" font-size="15" font-weight="700"
+                    font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+                    fill="#1677ff">支</text>
+            </svg>
+          </a>
+          <span>支付宝</span>
+        </div>
+        <div class="sns-item">
+          <a th:href="@{/oauth2/authorization/github}" href="javascript:alert('github')"
+             title="GitHub 登录" aria-label="GitHub 登录">
+            <svg viewBox="0 0 16 16">
+              <path fill="#24292f" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+          <span>GitHub</span>
+        </div>
+      </div>
+
+      <div class="card-foot">
+        还没有账号？<a class="link" href="javascript:alert('暂不开放公网用户注册');">立即注册</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer class="footer" th:replace="fragments :: footer"></footer>
+
+<script>
+  // 密码可见性切换
+  var pwdToggle = document.getElementById('pwd-toggle');
+  var pwdInput = document.getElementById('password');
+  if (pwdToggle && pwdInput) {
+    pwdToggle.addEventListener('click', function () {
+      var show = pwdInput.type === 'password';
+      pwdInput.type = show ? 'text' : 'password';
+      pwdToggle.classList.toggle('show', show);
+    });
+  }
+  // 提交防重复 + 协议门;返回导航(bfcache)时恢复按钮
+  var loginForm = document.querySelector('form');
+  var submitBtn = document.getElementById('submit-btn');
+  var agreeBox = document.getElementById('agree');
+  // 曾点过「同意并继续」:下次进入默认勾选,不再弹协议门
+  var AGREE_KEY = 'cairo_login_agree';
+  if (agreeBox && localStorage.getItem(AGREE_KEY) === 'true') {
+    agreeBox.checked = true;
+  }
+  function doSubmit() {
+    submitBtn.disabled = true;
+    submitBtn.textContent = '登录中…';
+    loginForm.submit();
+  }
+  if (loginForm && submitBtn) {
+    loginForm.addEventListener('submit', function (e) {
+      if (agreeBox && !agreeBox.checked) {
+        e.preventDefault();
+        openAgreement();
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = '登录中…';
+    });
+    window.addEventListener('pageshow', function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '登录';
+    });
+  }
+  // 协议确认弹窗:同意并继续 → 自动勾选并完成登录(大厂登录惯例)
+  function openAgreement() {
+    var mask = document.createElement('div');
+    mask.className = 'agree-mask';
+    mask.innerHTML =
+      '<div class="agree-card" role="dialog" aria-modal="true">' +
+      '<h3>服务协议及隐私保护</h3>' +
+      '<div>为了更好地保障您的合法权益，请阅读并同意' +
+      '<a class="link" href="/static/agreement/user.html" target="_blank" rel="noopener noreferrer">《用户协议》</a>与' +
+      '<a class="link" href="/static/agreement/privacy.html" target="_blank" rel="noopener noreferrer">《隐私政策》</a>。' +
+      '点击「同意并继续」视为您已阅读并同意上述协议。</div>' +
+      '<div class="agree-btns"><button type="button" data-act="reject">不同意</button>' +
+      '<button type="button" class="primary" data-act="agree">同意并继续</button></div></div>';
+    document.body.appendChild(mask);
+    mask.addEventListener('click', function (e) {
+      var act = e.target.getAttribute && e.target.getAttribute('data-act');
+      if (act === 'agree') {
+        mask.remove();
+        if (agreeBox) agreeBox.checked = true;
+        localStorage.setItem(AGREE_KEY, 'true');
+        doSubmit();
+      } else if (act === 'reject' || e.target === mask) {
+        mask.remove();
+      }
+    });
+  }
+</script>
+</body>
+</html>

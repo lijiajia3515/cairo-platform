@@ -1,0 +1,34 @@
+.empty {
+  width: 100%;
+  height: 20px;
+}
+
+.empty1 {
+  width: 100%;
+  height: 40px;
+}
+
+.empty2 {
+  width: 100%;
+  height: 40px;
+}
+
+
+.sl1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sl2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// 手指
+.pick {
+  cursor: pointer;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 登出确认页。色板/顶栏/页脚来自 fragments.html;契约:form POST @{/logout}。 -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments :: common-head('Cairo账号-登出')"></th:block>
+  <style>
+    .confirm { text-align: center; padding: 8px 0 4px; }
+    .confirm-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: var(--error-bg);
+      color: var(--error);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .confirm-icon svg { width: 26px; height: 26px; }
+    .confirm-title { font-size: 18px; font-weight: 600; }
+    .confirm-desc {
+      margin: 10px 0 28px;
+      font-size: 13px;
+      line-height: 20px;
+      color: var(--text-3);
+    }
+    .confirm .btn-block + .btn-block,
+    .confirm form { margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+<header class="topbar" th:replace="fragments :: topbar"></header>
+
+<main class="main">
+  <div class="card">
+    <div class="confirm">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3.5V11" stroke-linecap="round"/>
+          <path d="M7.2 6.4a7 7 0 1 0 9.6 0" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="confirm-title">退出登录</h1>
+      <p class="confirm-desc">退出后需要重新登录才能继续操作</p>
+
+      <form th:action="@{/logout}" action="/logout" method="post">
+        <button type="submit" class="btn btn-danger btn-block">退出登录</button>
+      </form>
+      <a class="btn btn-outline btn-block" href="/">返回首页</a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer" th:replace="fragments :: footer"></footer>
+
+</body>
+</html>

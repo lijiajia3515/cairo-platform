@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cairo_web",
+    "appId": "cairo",
+    "type": "web",
+    "scope": "app",
+    "adminAccountIds": [
+      "admin"
+    ],
+    "enabled": true,
+    "metadata": {
+      "createUserId": null,
+      "createTime": "2026-08-25T10:01:31.000Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T02:38:44.431Z"
+    },
+    "endpointId": "web",
+    "endpointName": "网页端",
+    "icon": "/icons/cairo/endpoint-icon/web.png",
+    "websiteUrl": "https://cairo.example.com"
+  },
+  {
+    "id": "2093642582310768640",
+    "appId": "demo",
+    "endpointId": "web",
+    "endpointName": "网页端",
+    "type": "web",
+    "scope": "tenant",
+    "adminAccountIds": null,
+    "autoRegister": null,
+    "icon": "",
+    "websiteUrl": null,
+    "enabled": true,
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T10:11:04.280Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T10:11:04.280Z"
+    }
+  }
+]

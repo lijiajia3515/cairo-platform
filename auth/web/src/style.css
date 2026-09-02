@@ -1,0 +1,160 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dt,dd,input,textarea,select{
+  padding: 0;
+  margin: 0;
+}
+
+body {
+
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left:0;
+  background: var(--td-bg-color-page);
+  overflow-y: auto;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+}
+
+
+:root[theme-mode="mystyle"] {
+  --td-brand-color:red;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #d2d2d2;
+}
+
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+
+
+
+
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-active {
+  transition: 1s ease;
+}
+
+
+
+
+
+.copyIcon {
+  margin-top:4px;
+  display: inline-block;
+  font-size: 20px;
+  color:#666;
+}
+.copyIcon:active {
+  color:#ccc;
+}
+
+/* 列表单元格:悬停复制列(工厂列 copyColumn/avatarCopyColumn 产出) */
+.copy-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.copy-cell .sl1 {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.copy-cell .copyIcon {
+  flex: none;
+  margin-top: 0;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.copy-cell:hover .copyIcon {
+  opacity: 1;
+}
+.avatar-copy-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* 列表单元格:头像+名称列(工厂列 userColumn 产出) */
+.user-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.user-cell .sl1 {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* 操作列(工厂列 opColumn 产出):紧凑文字按钮 */
+.op-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+
+
+/* 穿梭框 */
+.t-transfer__list {
+  width: 300px;
+}
+.t-transfer__list-content .t-checkbox-group .t-checkbox {
+  width: auto;
+}
+.t-transfer__list-content {
+  overflow: hidden!important;
+}

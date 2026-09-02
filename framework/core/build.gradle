@@ -1,0 +1,21 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  // spring data
+  api('org.springframework.data:spring-data-commons')
+
+  compileOnly('org.springframework:spring-web')
+  compileOnly('org.springframework:spring-context')
+  compileOnly('org.springframework.data:spring-data-redis')
+  compileOnly('jakarta.validation:jakarta.validation-api')
+  compileOnly('io.micrometer:micrometer-tracing-bridge-brave')
+
+  api('com.fasterxml.jackson.core:jackson-databind')
+  api('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+  api('cn.hutool:hutool-core')
+
+
+}

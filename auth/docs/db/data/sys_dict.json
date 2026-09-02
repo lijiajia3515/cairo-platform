@@ -1,0 +1,155 @@
+[
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "dictType": "system",
+    "dictName": "认证授权类型",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 38,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:28.458Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:40.158Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "dictType": "system",
+    "dictName": "终端类型",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 14,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:44.163Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:48.267Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "dictType": "system",
+    "dictName": "身份类型",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 14,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:48.591Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:52.796Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AppReleaseType",
+    "dictType": "system",
+    "dictName": "应用发行类型",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 8,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:53.136Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:55.366Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsType",
+    "dictType": "system",
+    "dictName": "第三方认证类型",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 8,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:55.701Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:58.103Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsPartner",
+    "dictType": "system",
+    "dictName": "第三方认证厂商",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 6,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:58.446Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:00.118Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "dictType": "system",
+    "dictName": "登录方式",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 12,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:00.454Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:03.819Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccountAuthType",
+    "dictType": "system",
+    "dictName": "账号认证方式",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 6,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:04.153Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:05.859Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccessScope",
+    "dictType": "system",
+    "dictName": "准入范围",
+    "icon": "",
+    "enabled": true,
+    "leftNo": 1,
+    "rightNo": 8,
+    "isCreateItem": true,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:06.183Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:08.188Z"
+    }
+  }
+]

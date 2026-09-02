@@ -1,0 +1,133 @@
+[
+  {
+    "id": "cairo_client_v1",
+    "clientAuthenticationMethods": [
+      "client_secret_basic",
+      "client_secret_post",
+      "client_secret_jwt"
+    ],
+    "tokenSettings": {
+      "accessTokenFormat": "reference",
+      "accessTokenTimeToLive": "PT2H",
+      "refreshTokenTimeToLive": "PT2H",
+      "reuseAccountRefreshTokens": false,
+      "accountAccessTokenFormat": null,
+      "accountAccessTokenTimeToLive": null,
+      "accountRefreshTokenTimeToLive": null,
+      "appUserAccessTokenFormat": null,
+      "appUserAccessTokenTimeToLive": null,
+      "appUserRefreshTokenTimeToLive": null,
+      "idTokenFormat": null,
+      "idTokenSignatureAlgorithm": null,
+      "idTokenTimeToLive": null,
+      "reuseAppUserRefreshTokens": null,
+      "reuseRefreshTokens": null,
+      "reuseTenantAppUserRefreshTokens": null,
+      "tenantAppUserAccessTokenFormat": null,
+      "tenantAppUserAccessTokenTimeToLive": null,
+      "tenantAppUserRefreshTokenTimeToLive": null
+    },
+    "redirectUris": [],
+    "enabled": true,
+    "appId": "cairo",
+    "authorizationGrantTypes": [
+      "client_credentials"
+    ],
+    "metadata": {
+      "createUserId": null,
+      "createTime": "2026-08-25T10:03:52.000Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T08:39:41.399Z"
+    },
+    "clientId": "cairo_client_v1",
+    "clientSecret": "{noop}cairo_client_v1",
+    "clientName": "开发平台服务端",
+    "scopes": [],
+    "clientSettings": {
+      "jwkSetUrl": null,
+      "requireAuthorizationConsent": null,
+      "requireProofKey": null,
+      "tokenEndpointAuthenticationSigningAlgorithm": null
+    },
+    "loginTime": "2026-08-28T03:07:32.516Z",
+    "endpointId": "web",
+    "accountSnsProviderIds": [],
+    "authenticationTypes": [
+      "client"
+    ]
+  },
+  {
+    "id": "cairo_web_v1",
+    "clientAuthenticationMethods": [
+      "client_secret_basic",
+      "client_secret_post",
+      "client_secret_jwt"
+    ],
+    "tokenSettings": {
+      "idTokenAccessTokenTimeToLive": "PT5M",
+      "idTokenFormat": "self-contained",
+      "accountAccessTokenFormat": "self-contained",
+      "accountAccessTokenTimeToLive": "PT2H",
+      "accountRefreshTokenTimeToLive": "PT24H",
+      "reuseAccountRefreshTokens": false,
+      "accessTokenFormat": null,
+      "accessTokenTimeToLive": null,
+      "appUserAccessTokenFormat": null,
+      "appUserAccessTokenTimeToLive": null,
+      "appUserRefreshTokenTimeToLive": null,
+      "idTokenSignatureAlgorithm": null,
+      "idTokenTimeToLive": null,
+      "refreshTokenTimeToLive": null,
+      "reuseAppUserRefreshTokens": null,
+      "reuseRefreshTokens": null,
+      "reuseTenantAppUserRefreshTokens": null,
+      "tenantAppUserAccessTokenFormat": null,
+      "tenantAppUserAccessTokenTimeToLive": null,
+      "tenantAppUserRefreshTokenTimeToLive": null
+    },
+    "redirectUris": [
+      "https://example.com"
+    ],
+    "enabled": true,
+    "appId": "cairo",
+    "authorizationGrantTypes": [
+      "password",
+      "authorization_code",
+      "refresh_token",
+      "account:password",
+      "account:verify_code",
+      "account:sns_code",
+      "account:account_refresh_token",
+      "app_user:password",
+      "app_user:verify_code",
+      "app_user:account_sns_code",
+      "app_user:account_access_token",
+      "app_user:app_user_refresh_token"
+    ],
+    "metadata": {
+      "createUserId": null,
+      "createTime": "2026-08-25T10:15:25.000Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T18:38:25.034Z"
+    },
+    "clientId": "cairo_web_v1",
+    "clientName": "开发者平台网页端v1",
+    "scopes": [
+      "openid"
+    ],
+    "clientSettings": {
+      "jwkSetUrl": null,
+      "requireAuthorizationConsent": null,
+      "requireProofKey": null,
+      "tokenEndpointAuthenticationSigningAlgorithm": null
+    },
+    "clientSecret": "{noop}cairo_web_v1",
+    "loginTime": "2026-08-29T18:38:24.982Z",
+    "endpointId": "web",
+    "accountSnsProviderIds": [],
+    "authenticationTypes": [
+      "account",
+      "app_user"
+    ]
+  }
+]

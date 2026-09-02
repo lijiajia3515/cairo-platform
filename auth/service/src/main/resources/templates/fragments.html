@@ -1,0 +1,127 @@
+<!doctype html>
+<!-- 服务端渲染页共享壳:head 公共部分 / 顶栏 / 页脚 / 通用样式。
+     色板对齐 auth/web 实际生效的 TDesign 默认主题(light):
+     品牌 #0052D9、页面底 #F2F3F5、文字/边框取 TDesign 灰阶。
+     改色只改这里的 :root 令牌,三个页面(login/index/logout)同步生效。 -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>fragments</title>
+</head>
+<body>
+
+<!-- 公共 head 内容(需传页面标题):<th:block th:replace="fragments :: common-head('xx')"/> -->
+<th:block th:fragment="common-head(title)">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <title th:text="${title}">Cairo</title>
+  <style>
+    :root {
+      /* 对齐 auth/web TDesign 默认主题 */
+      --brand: #0052d9;
+      --brand-hover: #266fe8;
+      --brand-active: #003abb;
+      --brand-light: #ecf2fe;
+      --brand-ring: rgba(0, 82, 217, .15);
+      --error: #d54941;
+      --error-hover: #e0544c;
+      --error-active: #b9372f;
+      --error-bg: #fcecea;
+      --error-border: #f6d4d1;
+      --text-1: rgba(0, 0, 0, .9);
+      --text-2: rgba(0, 0, 0, .6);
+      --text-3: rgba(0, 0, 0, .4);
+      --text-disabled: rgba(0, 0, 0, .26);
+      --border: #e7e7e7;
+      --line: #ededed;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text-1);
+      background: #f2f3f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar { height: 64px; padding: 0 32px; display: flex; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; }
+    .brand-mark {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-name small { font-weight: 400; color: var(--text-3); font-size: 12px; margin-left: 6px; }
+
+    .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+    .card {
+      width: 420px;
+      max-width: 100%;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(31, 35, 41, .05);
+      padding: 36px 40px 32px;
+    }
+
+    .link { color: var(--text-2); }
+    .link:hover { color: var(--brand); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 40px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-block { display: flex; width: 100%; }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-hover); }
+    .btn-primary:active { background: var(--brand-active); }
+    .btn-danger { background: var(--error); color: #fff; }
+    .btn-danger:hover { background: var(--error-hover); }
+    .btn-danger:active { background: var(--error-active); }
+    .btn-danger-outline { background: #fff; color: var(--error); border-color: var(--error); }
+    .btn-danger-outline:hover { background: var(--error); color: #fff; }
+    .btn-outline { background: #fff; color: var(--text-2); border-color: var(--border); }
+    .btn-outline:hover { color: var(--brand); border-color: var(--brand); }
+    .btn:disabled { cursor: not-allowed; opacity: .7; }
+
+    .footer { padding: 20px 16px 28px; text-align: center; font-size: 12px; color: var(--text-3); }
+
+    @media (max-width: 480px) {
+      .topbar { padding: 0 20px; }
+      .card { padding: 32px 24px 28px; }
+    }
+  </style>
+</th:block>
+
+<!-- 顶栏:<header class="topbar" th:replace="fragments :: topbar"></header> -->
+<header class="topbar" th:fragment="topbar">
+  <div class="brand">
+    <span class="brand-mark">C</span>
+    <span class="brand-name">Cairo<small>账号</small></span>
+  </div>
+</header>
+
+<!-- 页脚:<footer class="footer" th:replace="fragments :: footer"></footer> -->
+<footer class="footer" th:fragment="footer">© Cairo · 账号</footer>
+
+</body>
+</html>

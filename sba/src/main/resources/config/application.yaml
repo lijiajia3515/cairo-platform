@@ -1,0 +1,181 @@
+spring:
+  application:
+    name: cairo-sba
+    instance_id: ${spring.cloud.client.hostname:${spring.cloud.client.ip-address:${random.uuid}}}
+  lifecycle:
+    timeout-per-shutdown-phase: 3m
+  messages:
+    basename: i18n/messages
+  #  jackson:
+  #    date-format: yyyy-MM-dd HH:mm:ss
+  #    time-zone: GMT+8
+  #    locale: zh_CN
+  #    default-property-inclusion: NON_EMPTY
+  #    property-naming-strategy: UPPER_CAMEL_CASE
+  #    serialization:
+  #      WRITE_DATES_AS_TIMESTAMPS: false
+  #      WRITE_DATE_KEYS_AS_TIMESTAMPS: false
+  #      WRITE_DATES_WITH_ZONE_ID: false
+  #    deserialization:
+  #      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+  #    generator:
+  #      WRITE_NUMBERS_AS_STRINGS: true
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    locale: zh_CN
+    locale-resolver: accept_header
+  webflux:
+    format:
+      date: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: true
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 100MB
+      file-size-threshold: 1MB
+      resolve-lazily: true
+  security:
+    user:
+      name: cairo
+      password: ${CONSUL_PASSWORD:your-consul-password}
+  cloud:
+    consul:
+      discovery:
+        instance-zone: default
+        instance-group: cairo
+        tags:
+          - sba
+          - cairo
+          - service
+        metadata:
+          management_port: ${management.server.port:9000}
+        management-tags:
+          - cairo
+          - management
+        query-passing: false
+        prefer-ip-address: false
+        health-check-path: /actuator/health/liveness
+    loadbalancer:
+      health-check:
+        initial-delay: 1s
+        repeatHealthCheck: false
+        interval: 1s
+        refetch-instances: true
+        refetch-instances-interval: 1s
+      cache:
+        enabled: false
+  boot:
+    admin:
+      monitor:
+        default-timeout: 1m
+        default-retries: 1
+      ui:
+        title: 服务监控中心
+        login-icon: /static/img/yr-icon.jpg
+        favicon: /static/img/yr-icon.jpg
+        remember-me-enabled: true
+        favicon-danger: /static/img/yr-icon.jpg
+        brand: <img src="/static/img/yr-icon.jpg"/><span>服务监控中心</span>
+      notify:
+        dingtalk:
+          #message: #{instance.registration.name} #{instance.id} is #{event.statusInfo.status}
+          message: |
+            1⃣️instanceId:    #{instance.id}
+            2⃣️️serviceName:   #{instance.registration.name}
+            3⃣️serviceUrl:    #{instance.registration.serviceUrl}
+            4⃣️managementUrl: #{instance.registration.managementUrl}
+            5️⃣healthUrl:     #{instance.registration.healthUrl}
+            6️⃣status:        #{instance.statusInfo.status}
+server:
+  port: 80
+  http2:
+    enabled: true
+  max-http-header-size: 8KB
+  servlet:
+    encoding:
+      force: true
+    session:
+      cookie:
+        name: cairo
+        path: /
+        max-age: 360D
+        comment: cairo-session
+  tomcat:
+    max-http-form-post-size: 10MB
+  error:
+    include-binding-errors: always
+    include-message: always
+
+    include-stacktrace: always
+  shutdown: graceful
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    shutdown:
+      enabled: true
+    restart:
+      enabled: true
+    arthas:
+      enabled: true
+  info:
+    git:
+      mode: full
+  arthas:
+    enabled: false
+
+arthas:
+  app-name: ${spring.application.name}
+  agent-id: ${spring.application.name}-${spring.cloud.client.hostname:${random.uuid}}
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      # 默认配置
+      default:
+        # 最低调用次数
+        minimum-number-of-calls: 100
+        # 失败比率(超过30%断路器打开)
+        failure-rate-threshold: 30
+        # 断路器开启到半开时间（也就是保护服务时间）
+        wait-duration-in-open-state: 30s
+        # 半开允许调用次数
+        permitted-number-of-calls-in-half-open-state: 10
+        # 滑动窗口类型;计数器方式
+        sliding-window-type: count_based
+        # 开启到半开状态自动完成无需尝试触发调用次数
+        automatic-transition-from-open-to-half-open-enabled: true
+        # 记录事件缓存池大小
+        event-consumer-buffer-size: 100
+        # 注册到健康检查指标
+        register-health-indicator: true
+        # 是否将失败反馈到health健康指标中
+        allow-health-indicator-to-fail: false
+  timelimiter:
+    instances:
+      default:
+        timeout-duration: 1m
+
+logging:
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: "logs/%d{yyyy-MM}/app-%d{yyyy_MM_dd_HH_mm}-%i.log.gz"
+      max-file-size: 20MB
+      max-history: 30
+      clean-history-on-start: false
+  level:
+    root: warn

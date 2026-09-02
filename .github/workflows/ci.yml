@@ -1,0 +1,102 @@
+# 持续集成：后端 Gradle 全仓测试 + 前端构建 + lint
+#
+# 兼容性：标准 GitHub Actions 语法，Gitea Actions 可直接复用
+# （Gitea 仓库设置中开启 Actions + 部署 act_runner 即可，官方 actions/*
+#  需能访问 github.com，或在 Gitea 管理端配置默认 actions 镜像）。
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: 后端（Gradle 测试）
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: 全仓测试
+        run: ./gradlew test --console=plain
+
+      - name: 失败测试摘要（输出为注解）
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          import glob, re, xml.etree.ElementTree as ET
+          for f in glob.glob('**/build/test-results/test/*.xml', recursive=True):
+              try: root = ET.parse(f).getroot()
+              except Exception: continue
+              for tc in root.iter('testcase'):
+                  for bad in list(tc.findall('failure')) + list(tc.findall('error')):
+                      text = (bad.get('message') or '') + '\n' + (bad.text or '')
+                      head = text.strip().splitlines()[0][:200] if text.strip() else 'failed'
+                      caused = re.findall(r'^\s*Caused by:.*$', text, re.M)[:3]
+                      detail = ' | '.join([head] + [c.strip()[:200] for c in caused])
+                      print(f"::error file={tc.get('classname','?')}.java,line=1::{tc.get('classname')}#{tc.get('name')}: {detail}")
+          PY
+
+      - name: 上传测试报告（失败时）
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: '**/build/reports/tests/test/'
+          if-no-files-found: ignore
+
+      - name: 打包授权中心（bootJar）
+        run: ./gradlew :auth:service:bootJar --console=plain
+
+      - name: 上传 boot jar 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: auth-boot-jar
+          path: auth/service/build/libs/*-boot.jar
+          retention-days: 14
+          if-no-files-found: error
+
+  frontend:
+    name: 前端（构建）
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: auth/web
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: 启用 corepack（按 package.json 锁定 pnpm 11）
+        run: corepack enable
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 生产构建
+        run: pnpm build
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: 上传前端构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: auth/web/dist
+          retention-days: 14
+          if-no-files-found: error

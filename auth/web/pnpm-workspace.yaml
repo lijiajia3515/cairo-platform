@@ -1,0 +1,9 @@
+# 显式声明允许执行安装脚本的依赖，避免每次安装出现 ERR_PNPM_IGNORED_BUILDS
+allowBuilds:
+  # 原生二进制，必须构建
+  esbuild: true # vite 的打包内核
+  '@parcel/watcher': true # vite dev server 文件监听
+  # 仅为打印安装提示 / polyfill 注册，跳过不影响功能
+  core-js: false
+  es5-ext: false
+  vue-demi: false

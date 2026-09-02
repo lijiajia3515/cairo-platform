@@ -1,0 +1,25 @@
+plugins {
+  id 'cairo.java-platform'
+}
+
+dependencies {
+  constraints {
+    api(project(':framework:core'))
+
+    api(project(':framework:domain'))
+    api(project(':framework:mongodb'))
+    api(project(':framework:redis'))
+    api(project(':framework:rabbitmq'))
+    api(project(':framework:web'))
+    api(project(':framework:feignclient'))
+    api(project(':framework:loadbalancer'))
+
+    api(project(':starter:mongodb'))
+    api(project(':starter:redis'))
+    api(project(':starter:rabbitmq'))
+    api(project(':starter:web'))
+    api(project(':starter:xxljob'))
+
+  }
+
+}

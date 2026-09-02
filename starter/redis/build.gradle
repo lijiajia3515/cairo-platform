@@ -1,0 +1,10 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  api(project(':framework:redis'))
+  compileOnly('org.springframework.boot:spring-boot-autoconfigure')
+  compileOnly('org.springframework.data:spring-data-redis')
+}

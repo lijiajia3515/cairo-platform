@@ -1,0 +1,144 @@
+# 示例配置（已脱敏）：可直接以 example profile 启动，或复制为 application-local.yml 填入真实值（不入库）
+# application-local.yml 已被 .gitignore 排除，严禁提交任何真实凭证
+server:
+  port: 10010
+  shutdown: immediate
+
+management:
+  server:
+    port: 10011
+  zipkin:
+    tracing:
+      endpoint: https://your-zipkin-host/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1
+
+spring:
+  application:
+    name: cairo-auth
+  data:
+    redis:
+      host: your-redis-host
+      port: 6379
+      ssl:
+        enabled: true
+      username: default
+      password: ${REDIS_PASSWORD:your-redis-password}
+      database: 10
+      lettuce:
+        cluster:
+          refresh:
+            period: 10m
+
+
+  rabbitmq:
+    virtual-host: local
+    host: your-rabbitmq-host
+    port: 5672
+    ssl:
+      enabled: true
+    username: admin
+    password: ${RABBITMQ_PASSWORD:your-rabbitmq-password}
+
+logging:
+  level:
+    org.springframework.data.mongodb: debug
+    org.springframework.data.redis: debug
+    org.springframework.amqp: debug
+    io.github.lijiajia3515.cairo: debug
+
+mongodb:
+  sources:
+    master:
+      uri: mongodb://your-user:${MONGO_PASSWORD:your-password}@your-mongo-host:27017/cairo?authSource=admin&authMechanism=SCRAM-SHA-256&tls=true
+    read:
+      uri: mongodb://your-user:${MONGO_PASSWORD:your-password}@your-mongo-host:27017/cairo?authSource=admin&authMechanism=SCRAM-SHA-256&tls=true
+
+ip2region:
+  # 离线库下载：https://github.com/lionsoul2014/ip2region
+  db-path: "ip2region/ip2region.xdb"
+
+cairo:
+  rabbitmq:
+    exchange:
+      auth:
+        name: auth
+      system:
+        name: system
+      biz_log:
+        name: biz_log
+    route-key:
+      auth:
+        prefix: "auth."
+      system:
+        prefix: "system."
+      biz_log:
+        prefix: "biz_log."
+    queue:
+      prefix: "auth."
+  xxljob:
+    admin-address: https://your-xxljob-admin
+    access-token: ${XXLJOB_TOKEN:your-token}
+  auth:
+    oauth2:
+      issuer: http://cairo-auth-service
+      rsa-keys:
+        - id: auth_local
+          # 生成：openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -outform DER | base64
+          private-key: ${CAIRO_OAUTH2_RSA_PRIVATE_KEY:your-base64-private-key}
+          public-key: ${CAIRO_OAUTH2_RSA_PUBLIC_KEY:your-base64-public-key}
+    server-url: http://127.0.0.1:${server.port}
+    client:
+      client-id: ${CAIRO_CLIENT_ID:your-client-id}
+      client-secret: ${CAIRO_CLIENT_SECRET:your-client-secret}
+      client-name: cairo_auth_service
+    auto-register: true
+  sign:
+    debug: true
+  weboffice:
+    appid: ${WEBOFFICE_APPID:your-weboffice-appid}
+    app-secret: ${WEBOFFICE_APP_SECRET:your-weboffice-app-secret}
+
+minio:
+  config:
+    manage:
+      endpoint: https://your-minio-endpoint
+      region: your-region
+      username: ${MINIO_USERNAME:your-username}
+      password: ${MINIO_PASSWORD:your-password}
+    admin:
+      endpoint: https://your-minio-endpoint
+      region: your-region
+      username: ${MINIO_USERNAME:your-username}
+      password: ${MINIO_PASSWORD:your-password}
+
+imgproxy:
+  server: http://your-imgproxy-host
+  key: ${IMGPROXY_KEY:your-key}
+  slat: ${IMGPROXY_SALT:your-salt}
+
+aliyun:
+  dysms:
+    access-key: ${ALIYUN_DYSMS_ACCESS_KEY:your-access-key}
+    access-secret: ${ALIYUN_DYSMS_ACCESS_SECRET:your-access-secret}
+
+link:
+  short-url-prefix: https://your-short-link-host/
+
+sns-provider:
+  provider-types:
+    - id: wx_web
+      name: 微信网页端
+      enabled: true
+    - id: wx_mp
+      name: 微信公众号
+      enabled: true
+    - id: wx_ma
+      name: 微信小程序
+      enabled: false
+  provider-partners:
+    - id: wx
+      name: 微信
+      icon: https://example.com/icons/wx.png
+      enabled: true

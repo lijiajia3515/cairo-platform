@@ -1,0 +1,103 @@
+plugins {
+  id 'cairo.spring-boot-app'
+}
+
+dependencies {
+  // boot
+  implementation('org.springframework.boot:spring-boot-starter')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  implementation('org.springframework.boot:spring-boot-starter-actuator')
+  implementation('org.springframework.boot:spring-boot-starter-aop')
+  implementation('org.springframework.retry:spring-retry')
+  implementation(libs.arthas)
+
+
+  // data
+  implementation('org.springframework.boot:spring-boot-starter-cache')
+  implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
+  implementation('org.springframework.boot:spring-boot-starter-data-redis')
+  // implementation(libs.redisson)
+  implementation('org.apache.commons:commons-pool2')
+  implementation('com.github.ben-manes.caffeine:caffeine')
+
+  // web
+  implementation('org.springframework.boot:spring-boot-starter-validation')
+  implementation('org.springframework.boot:spring-boot-starter-web')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+  runtimeOnly('io.netty:netty-resolver-dns-native-macos::osx-aarch_64')
+
+  // session
+  implementation('org.springframework.session:spring-session-core')
+  implementation('org.springframework.session:spring-session-data-redis')
+
+  // security
+  implementation('org.springframework.boot:spring-boot-starter-security')
+  implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+  implementation('org.springframework.boot:spring-boot-starter-oauth2-resource-server')
+  implementation('org.springframework.security:spring-security-oauth2-authorization-server')
+  testImplementation('org.springframework.security:spring-security-test')
+
+  // 嵌入式 MongoDB 集成测试（无 Docker 依赖，二进制按需下载）
+  testImplementation(libs.flapdoodle.embed.mongo)
+
+  // micrometer zipkin
+  implementation('io.micrometer:micrometer-tracing-bridge-brave')
+  implementation('io.zipkin.reporter2:zipkin-reporter-brave')
+
+  implementation('org.springframework.boot:spring-boot-starter-amqp')
+  implementation('org.springframework.amqp:spring-amqp')
+  testImplementation('org.springframework.amqp:spring-rabbit-test')
+
+  implementation(project(':framework:loadbalancer'))
+  implementation('org.springframework.cloud:spring-cloud-starter-loadbalancer')
+  implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
+  implementation('io.github.openfeign:feign-okhttp')
+  implementation('io.github.openfeign:feign-httpclient')
+  implementation('org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j')
+  implementation(libs.redisson)
+  implementation(libs.lock4j.redisson)
+
+  implementation(project(':starter:mongodb'))
+  implementation(project(':starter:redis'))
+  implementation(project(':starter:rabbitmq'))
+
+  implementation(project(':starter:web'))
+  implementation(project(':starter:xxljob'))
+
+  implementation('org.apache.httpcomponents.client5:httpclient5')
+  implementation('org.apache.httpcomponents.client5:httpclient5-fluent')
+  implementation('cn.hutool:hutool-captcha')
+  implementation('cn.hutool:hutool-extra')
+  implementation('cn.hutool:hutool-http')
+
+  implementation(libs.weixin.mp)
+  implementation(libs.weixin.miniapp)
+
+  implementation(libs.ip2region)
+
+  // system 服务独有依赖
+  implementation(libs.minio)
+  implementation(libs.aliyun.dysmsapi)
+  implementation('cn.hutool:hutool-crypto')
+  implementation('io.github.jpush:jiguang-sdk:5.1.10')
+
+  implementation(project(':auth:domain:core'))
+  implementation(project(':auth:domain:open'))
+  implementation(project(':auth:domain:client'))
+  implementation(project(':auth:domain:account'))
+  implementation(project(':auth:domain:app'))
+  implementation(project(':auth:domain:tenant-app'))
+  implementation(project(':auth:domain:web'))
+
+
+}
+
+
+//sourcesJar {
+//  enabled = false
+//}
+//
+//javadocJar {
+//  enabled = false
+//}

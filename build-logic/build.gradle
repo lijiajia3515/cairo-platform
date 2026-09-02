@@ -1,0 +1,11 @@
+plugins {
+  id 'groovy-gradle-plugin'
+}
+
+dependencies {
+  // 以插件标记坐标引入外部插件，供约定插件在 build-logic 类路径上直接 apply
+  // 版本与 gradle/libs.versions.toml 保持一致
+  implementation 'io.freefair.lombok:io.freefair.lombok.gradle.plugin:8.6'
+  implementation 'com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.4.2'
+  implementation 'org.springframework.boot:org.springframework.boot.gradle.plugin:3.5.16'
+}

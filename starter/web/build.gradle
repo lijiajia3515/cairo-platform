@@ -1,0 +1,19 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+
+  compileOnly('org.springframework.security:spring-security-core')
+
+  compileOnly 'io.micrometer:micrometer-tracing-bridge-brave'
+  compileOnly 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+  // autoconfigure
+  compileOnly('org.springframework.boot:spring-boot-autoconfigure')
+  compileOnly('org.springframework.boot:spring-boot-starter-actuator')
+  compileOnly('org.springframework.boot:spring-boot-starter-web')
+  api(project(':framework:web'))
+}

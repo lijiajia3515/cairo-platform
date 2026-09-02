@@ -1,0 +1,17 @@
+plugins {
+  id 'cairo.java-platform'
+}
+
+dependencies {
+  constraints {
+    api(project(':framework:core'))
+    api(project(':framework:domain'))
+    api(project(':framework:web'))
+    api(project(':framework:feignclient'))
+    api(project(':framework:redis'))
+    api(project(':framework:mongodb'))
+    api(project(':framework:rabbitmq'))
+    api(project(':framework:loadbalancer'))
+  }
+
+}

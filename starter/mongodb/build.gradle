@@ -1,0 +1,16 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+  compileOnly('org.springframework.boot:spring-boot-autoconfigure')
+  compileOnly('org.springframework.data:spring-data-mongodb')
+
+  api(project(':framework:mongodb'))
+
+  api(libs.zstd.jni)
+  api(libs.snappy)
+
+}

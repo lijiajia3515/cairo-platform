@@ -1,0 +1,5 @@
+io.github.lijiajia3515.cairo.auth.autoconfigure.CairoAuditConfiguration
+io.github.lijiajia3515.cairo.auth.autoconfigure.CairoSecurityOAuth2Configuration
+io.github.lijiajia3515.cairo.auth.autoconfigure.CairoSecurityOAuth2Configuration.ResourceServerConfiguration
+io.github.lijiajia3515.cairo.auth.autoconfigure.CairoSecurityOAuth2Configuration.CairoOAuth2ResourceServerJwtConfiguration
+io.github.lijiajia3515.cairo.auth.autoconfigure.CairoSecurityOAuth2Configuration.CairoOAuth2ClientConfiguration

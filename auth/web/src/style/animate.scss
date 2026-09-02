@@ -1,0 +1,9 @@
+.icon-enter-active,
+.icon-leave-active {
+  transition: opacity 1s ease;
+}
+
+.icon-enter-from,
+.icon-leave-to {
+  opacity: 0;
+}

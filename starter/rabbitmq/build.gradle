@@ -1,0 +1,16 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+  // autoconfigure
+  compileOnly('org.springframework.boot:spring-boot-autoconfigure')
+
+  //compileOnly('org.springframework.boot:spring-boot-starter-amqp')
+  compileOnly('org.springframework.amqp:spring-amqp')
+
+  api(project(':framework:rabbitmq'))
+
+}

@@ -1,0 +1,12 @@
+plugins {
+  id 'cairo.java-library'
+}
+
+dependencies {
+  api(project(":auth:domain:client"))
+
+  api('org.springframework.cloud:spring-cloud-openfeign-core')
+  compileOnly('org.springframework.boot:spring-boot-starter-oauth2-client')
+  compileOnly('org.springframework.data:spring-data-mongodb')
+
+}

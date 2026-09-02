@@ -1,0 +1,290 @@
+spring:
+  application:
+    name: cairo-gateway
+    instance_id: ${spring.cloud.client.hostname:${spring.cloud.client.ip-address:${random.uuid}}}
+  lifecycle:
+    timeout-per-shutdown-phase: 3m
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+    default-property-inclusion: non_null
+    #property-naming-strategy: UPPER_CAMEL_CASE
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_KEYS_AS_TIMESTAMPS: false
+      WRITE_DATES_WITH_ZONE_ID: false
+    deserialization:
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+  messages:
+    basename: i18n/messages
+  web:
+    locale: zh_CN
+    locale-resolver: accept_header
+  webflux:
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: yyyy-MM-dd HH:mm:ss
+    multipart:
+      max-in-memory-size: 256MB
+      max-disk-usage-per-part: 1GB
+    static-path-pattern: /static/**
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 100MB
+      file-size-threshold: 1MB
+      resolve-lazily: true
+  codec:
+    max-in-memory-size: 128MB
+  cloud:
+    refresh:
+      enabled: true
+    loadbalancer:
+      enabled: true
+      cache:
+        enabled: true
+        ttl: 30s
+        capacity: 128
+        caffeine:
+          spec: initialCapacity=8, maximumSize=128, expireAfterWrite=30s
+      retry:
+        enabled: true
+        retry-on-all-operations: true
+        max-retries-on-same-service-instance: 0
+        max-retries-on-next-service-instance: 2
+        retryable-status-codes:
+          - 408
+          - 429
+          - 449
+          - 502
+          - 503
+          - 504
+          - 509
+          - 599
+        backoff:
+          enabled: true
+          min-backoff: 100ms
+          max-backoff: 10s
+          jitter: 0.5
+      clients:
+        default:
+          retry:
+            enabled: true
+            retry-on-all-operations: true
+            max-retries-on-same-service-instance: 0
+            max-retries-on-next-service-instance: 2
+            retryable-status-codes:
+              - 408
+              - 429
+              - 449
+              - 502
+              - 503
+              - 504
+              - 509
+              - 599
+            backoff:
+              enabled: true
+              min-backoff: 100ms
+              max-backoff: 10s
+              jitter: 2
+      configurations: default
+    consul:
+      config:
+        enabled: true
+        format: yaml
+        watch:
+          # 每隔15秒刷新一次配置文件
+          wait-time: 15
+      discovery:
+        instance-zone: default
+        instance-group: cairo
+        tags:
+          - cairo
+          - service
+        metadata:
+          management_port: ${management.server.port:9000}
+        management-tags:
+          - cairo
+          - management
+        management-port: ${management.server.port:9000}
+        query-passing: true
+        prefer-ip-address: true
+    gateway:
+      # 降低爆炸半径
+      fail-on-route-definition-error: false
+      metrics:
+        enabled: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns:
+              - '*'
+              #- http://*
+              #- https://*
+              #- chrome-extension://*
+            allowed-methods:
+              - '*'
+            exposed-headers:
+              - '*'
+            allowed-headers:
+              - '*'
+            allow-credentials: true
+            max-age: 1800
+      discovery:
+        locator:
+          enabled: false
+      httpclient:
+        compression: true
+        max-header-size: 1GB
+        connect-timeout: 3000
+        response-timeout: 2m
+        wiretap: true
+        pool:
+          metrics: true
+        ssl:
+          use-insecure-trust-manager: true
+      default-filters:
+        - name: CairoRequestRateLimiter
+          args:
+            key-resolver: "#{@urlKeyResolver}"
+            rate-limiter: "#{@redisRateLimiter1}"
+            redis-rate-limiter1.replenish-rate: 10
+            redis-rate-limiter1.burst-capacity: 50
+            redis-rate-limiter1.requestd-tokens: 1
+        - name: CairoPrincipalRequestRateLimiter
+          args:
+            key-resolver: "#{@principalKeyResolver}"
+            rate-limiter: "#{@redisRateLimiter2}"
+            redis-rate-limiter2.replenish-rate: 5
+            redis-rate-limiter2.burst-capacity: 50
+            redis-rate-limiter2.requestd-tokens: 1
+        - name: DedupeResponseHeader
+          args:
+            strategy: RETAIN_LAST
+            name: Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Expose-Headers Access-Control-Allow-Headers Access-Control-Allow-Credentials Access-Control-Max-Age X-Trace-Id
+        - name: CircuitBreaker
+          args:
+            status-codes:
+              - 502
+              - 503
+              - 504
+            fallback-uri: forward:/fallback
+            resume-without-error: false
+        - name: Retry
+          args:
+            retries: 3
+            series:
+              - SERVER_ERROR
+            statuses:
+              - REQUEST_TIMEOUT
+              - TOO_MANY_REQUESTS
+              - INTERNAL_SERVER_ERROR
+              - BAD_GATEWAY
+              - SERVICE_UNAVAILABLE
+              - GATEWAY_TIMEOUT
+              - BANDWIDTH_LIMIT_EXCEEDED
+            methods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+            exceptions:
+              - java.net.ConnectException
+              - java.io.IOException
+              - java.util.concurrent.TimeoutException
+              - org.springframework.cloud.gateway.support.NotFoundException
+            backoff:
+              first-backoff: 100ms
+              max-backoff: 10s
+              factor: 2
+      routes: ~
+
+server:
+  shutdown: graceful
+  port: 80
+  max-http-request-header-size: 1MB
+  http2:
+    enabled: true
+  servlet:
+    encoding:
+      force: true
+    session:
+      cookie:
+        name: cairo
+        path: /
+        max-age: 30M
+  tomcat:
+    max-http-form-post-size: 1GB
+  netty:
+    max-initial-line-length: 1MB
+  error:
+    include-exception: true
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+
+management:
+  info:
+    git:
+      mode: full
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  health:
+    circuitbreakers:
+      enabled: true
+    ratelimiters:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    arthas:
+      enabled: false
+    shutdown:
+      enabled: true
+    restart:
+      enabled: true
+
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
+
+logging:
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: "logs/%d{yyyy-MM}/app-%d{yyyy-MM-dd-HH-mm}.%i.log.gz"
+      max-file-size: 20MB
+      max-history: 30
+      clean-history-on-start: false
+  level:
+    root: info
+    com.yr: info
+
+arthas:
+  app-name: ${spring.application.name}
+  agent-id: ${spring.application.name}-${spring.cloud.client.hostname:${random.uuid}}
+
+
+redis:
+  key-prefix: "cairo:${spring.application.name:${random.uuid}}:"

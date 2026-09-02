@@ -1,0 +1,496 @@
+spring:
+  application:
+    name: cairo-auth-service
+    instance_id: ${spring.cloud.client.hostname:${spring.cloud.client.ip-address:${random.uuid}}}
+  lifecycle:
+    timeout-per-shutdown-phase: 3m
+  messages:
+    basename: i18n/messages
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+    default-property-inclusion: NON_EMPTY
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_KEYS_AS_TIMESTAMPS: false
+      WRITE_DATES_WITH_ZONE_ID: false
+    deserialization:
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+    generator:
+      WRITE_NUMBERS_AS_STRINGS: true
+  mvc:
+    static-path-pattern: /static/**
+    throw-exception-if-no-handler-found: true
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: yyyy-MM-dd HH:mm:ss
+    pathmatch:
+      matching-strategy: path_pattern_parser
+  web:
+    locale: zh_CN
+    locale-resolver: accept_header
+  webflux:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: true
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 100MB
+      file-size-threshold: 1MB
+      resolve-lazily: true
+  session:
+    timeout: 7D
+    redis:
+      save-mode: on_get_attribute
+      flush-mode: on_save
+      repository-type: INDEXED
+      namespace: '${cairo.redis.key-prefix}session'
+      cleanup-cron: 0 * * * * *
+  cache:
+    type: redis
+    redis:
+      key-prefix: "cairo:${spring.application.name:${random.uuid}}"
+      time-to-live: 2H
+      enable-statistics: true
+  task:
+    execution:
+      pool:
+        max-size: 100
+        queue-capacity: 1000
+      shutdown:
+        await-termination: true
+        await-termination-period: 10m
+    scheduling:
+      pool:
+        size: 10
+      shutdown:
+        await-termination: true
+        await-termination-period: 10m
+  security:
+    oauth2:
+      client:
+        registration:
+          cairo-auth-service:
+            provider: CAIRO
+            client-id: ${cairo.auth.client.client-id:default_client_id}
+            client-secret: ${cairo.auth.client.client-secret:default_client_secret}
+            client-authentication-method: client_secret_post
+            authorization-grant-type: client_credentials
+            client-name: ${cairo.auth.client.client-name:default-client}
+            scope:
+              - sms_message:send_message_by_phone_number
+              - sms_message:send_message_by_account
+              - sys_dict:read
+              - public_file:upload_file
+              - public_file:delete_file
+              - temporary_file:upload_file
+          wechat-web:
+            provider: WECHAT-WEB
+            client-name: 微信
+            client-id: ${CAIRO_SNS_WECHAT_WEB_CLIENT_ID:your-wechat-web-appid}
+            client-secret: ${CAIRO_SNS_WECHAT_WEB_CLIENT_SECRET:your-secret}
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - snsapi_login
+          wechat-open:
+            provider: WECHAT-OPEN
+            client-name: 微信
+            client-id: ${CAIRO_SNS_WECHAT_OPEN_CLIENT_ID:your-wechat-open-appid}
+            client-secret: ${CAIRO_SNS_WECHAT_OPEN_CLIENT_SECRET:your-secret}
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - snsapi_userinfo
+          github:
+            provider: GITHUB
+            client-id: ${CAIRO_SNS_GITHUB_CLIENT_ID:your-github-client-id}
+            client-secret: ${CAIRO_SNS_GITHUB_CLIENT_SECRET:your-secret}
+            client-name: Github
+          google:
+            provider: GOOGLE
+            client-id: ${CAIRO_SNS_GOOGLE_CLIENT_ID:your-google-client-id}
+            client-secret: ${CAIRO_SNS_GOOGLE_CLIENT_SECRET:your-secret}
+            client-name: Google
+        provider:
+          CAIRO:
+            authorization-uri: ${cairo.auth.server-url:http://cairo-auth-server}
+            token-uri: ${cairo.auth.server-url:http://cairo-auth-server}/oauth2/token
+            jwk-set-uri: ${cairo.auth.server-url:http://cairo-auth-server}/oauth2/jwks
+          WECHAT-WEB:
+            authorization-uri: https://open.weixin.qq.com/connect/qrconnect?appid=${CAIRO_SNS_WECHAT_WEB_CLIENT_ID:your-wechat-web-appid}
+            token-uri: https://api.weixin.qq.com/sns/oauth2/access_token
+            user-info-uri: https://api.weixin.qq.com/sns/userinfo
+            user-info-authentication-method: form
+            user-name-attribute: unionid
+          WECHAT-OPEN:
+            authorization-uri: https://open.weixin.qq.com/connect/oauth2/authorize?appid=${CAIRO_SNS_WECHAT_OPEN_CLIENT_ID:your-wechat-open-appid}
+            token-uri: https://api.weixin.qq.com/sns/oauth2/access_token
+            user-info-uri: https://api.weixin.qq.com/sns/userinfo
+            user-info-authentication-method: form
+            user-name-attribute: unionid
+
+  data:
+    redis:
+      database: 0
+      connect-timeout: 10s
+      timeout: 1m
+      lettuce:
+        shutdown-timeout: 1m
+        pool:
+          max-active: 5
+          max-idle: 5
+          min-idle: 1
+          max-wait: 1m
+          time-between-eviction-runs: 10m
+        cluster:
+          refresh:
+            adaptive: true
+            period: 15s
+  rabbitmq:
+    dynamic: true
+    publisher-confirm-type: correlated
+    listener:
+      type: direct
+      direct:
+        auto-startup: true
+        missing-queues-fatal: true
+        consumers-per-queue: 1
+        acknowledge-mode: manual
+        prefetch: 5
+        retry:
+          enabled: true
+          initial-interval: 2s
+          multiplier: 2
+          max-attempts: 3
+      simple:
+        auto-startup: true
+        missing-queues-fatal: true
+        consumer-batch-enabled: true
+        acknowledge-mode: manual
+        prefetch: 5
+        concurrency: 10
+        max-concurrency: 10
+        batch-size: 10
+        retry:
+          enabled: true
+          initial-interval: 2s
+          multiplier: 2
+          max-attempts: 3
+  cloud:
+    loadbalancer:
+      enabled: true
+      cache:
+        ttl: 30s
+        capacity: 128
+        caffeine:
+          spec: initialCapacity=128, maximumSize=1024, expireAfterWrite=30s
+      retry:
+        enabled: true
+        retry-on-all-operations: true
+        max-retries-on-same-service-instance: 1
+        max-retries-on-next-service-instance: 2
+        retryable-status-codes:
+          - 408
+          - 449
+          - 502
+          - 503
+          - 504
+          - 509
+          - 599
+        backoff:
+          enabled: true
+          min-backoff: 100
+          max-backoff: 10000
+          jitter: 2
+      clients:
+        default:
+          retry:
+            enabled: true
+            retry-on-all-operations: true
+            max-retries-on-same-service-instance: 0
+            max-retries-on-next-service-instance: 2
+            retryable-status-codes:
+              - 408
+              - 449
+              - 502
+              - 503
+              - 504
+              - 509
+              - 599
+            backoff:
+              enabled: true
+              min-backoff: 1s
+              max-backoff: 10s
+              jitter: 2
+      stats:
+        micrometer:
+          enabled: true
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        instance-zone: default
+        instance-group: cairo
+        tags:
+          - cairo
+          - service
+        metadata:
+          management_port: ${management.server.port:9000}
+        management-tags:
+          - cairo
+        query-passing: true
+        prefer-ip-address: true
+        health-check-path: /actuator/health/liveness
+    openfeign:
+      autoconfiguration:
+        jackson:
+          enabled: true
+      okhttp:
+        enabled: true
+      httpclient:
+        connection-timeout: 3000
+        ok-http:
+          read-timeout: 30s
+      compression:
+        request:
+          enabled: true
+          min-request-size: 204000
+        response:
+          enabled: true
+      client:
+        refresh-enabled: true
+        default-to-properties: true
+        default-config: default
+        config:
+          default:
+            logger-level: HEADERS
+            connect-timeout: 3000
+            read-timeout: 30000
+            follow-redirects: true
+            exception-propagation-policy: unwrap
+      circuitbreaker:
+        enabled: true
+        group:
+          enabled: true
+      micrometer:
+        enabled: true
+      oauth2:
+        enabled: false
+
+        clientRegistrationId: cairo-auth-service
+
+
+#mongodb:
+#  sources:
+#    master:
+#      field-naming-strategy: org.springframework.data.mapping.model.CamelCaseSplittingFieldNamingStrategy
+#    read:
+#      field-naming-strategy: org.springframework.data.mapping.model.CamelCaseSplittingFieldNamingStrategy
+
+
+server:
+  port: 80
+  http2:
+    enabled: true
+  max-http-request-header-size: 8KB
+  servlet:
+    encoding:
+      force: true
+    session:
+      cookie:
+        name: cairo
+        path: /
+        max-age: 30M
+  tomcat:
+    max-http-form-post-size: 10MB
+  error:
+    include-exception: true
+    include-binding-errors: always
+    include-message: always
+    include-stacktrace: on_param
+  shutdown: graceful
+
+management:
+  metrics:
+    mongo:
+      command:
+        enabled: false
+      connectionpool:
+        enabled: false
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
+arthas:
+  app-name: ${spring.application.name}
+  agent-id: ${spring.application.name}-${spring.cloud.client.hostname:${random.uuid}}
+
+logging:
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: "logs/%d{yyyy-MM}/app-%d{yyyy-MM-dd-HH-mm}.%i.log.gz"
+      max-file-size: 20MB
+      max-history: 30
+      clean-history-on-start: false
+
+  level:
+    root: info
+    org.springframework.data.mongodb: warn
+    org.springframework.data.redis: warn
+
+
+
+resilience4j:
+  # 限时策略
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 30s
+  # 限流策略
+  ratelimiter:
+    instances:
+      default:
+        register-health-indicator: true
+  # 重试策略
+  retry:
+    configs:
+      # 默认配置
+      default:
+        # 表示最大重试次数
+        max-attempts: 3
+        # 下一次重试等待时间，最小为100 ms
+        wait-duration: 100ms
+        # 重试事件缓冲区大小
+        event-consumer-buffer-size: 1
+        # 示下次重试的时间间隔是否随机， enableRandomizedWait 和 enableExponentialBackoff 默认为 false ，并且这两个不可以同时开启
+        enable-randomized-wait: false
+        # 时间间隔乘数
+        exponentialBackoffMultiplier: 2
+        # 需要重试的异常
+        retry-exceptions:
+          - java.io.IOException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+          - org.springframework.web.client.HttpServerErrorException
+          - io.github.lijiajia3515.cairo.feign.error.ErrorFeignException
+        ignore-exceptions:
+          - io.github.lijiajia3515.cairo.feign.error.RequestFeignException
+  # 熔断策略
+  circuitbreaker:
+    configs:
+      # 默认配置
+      default:
+        # 最低调用次数
+        minimum-number-of-calls: 100
+        # 失败比率(超过50%断路器打开)
+        failure-rate-threshold: 50
+        # 断路器开启到半开时间（也就是保护服务时间）
+        wait-duration-in-open-state: 30s
+        # 半开允许调用次数
+        permitted-number-of-calls-in-half-open-state: 10
+        # 滑动窗口类型;计数器方式
+        sliding-window-type: count_based
+        # 开启到半开状态自动完成无需尝试触发调用次数
+        automatic-transition-from-open-to-half-open-enabled: true
+        # 记录事件缓存池大小
+        event-consumer-buffer-size: 100
+        # 注册到健康检查指标
+        register-health-indicator: true
+        # 是否将失败反馈到health健康指标中
+        allow-health-indicator-to-fail: false
+        # 需要记录的异常
+        record-exceptions:
+          - java.lang.RuntimeException
+          - java.io.IOException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+          - org.springframework.web.client.HttpServerErrorException
+          - io.github.lijiajia3515.cairo.feign.error.ErrorFeignException
+        # 需要忽略的异常
+        ignore-exceptions:
+          - io.github.lijiajia3515.cairo.feign.error.RequestFeignException
+
+ip2region:
+  # 数据库下载链接 https://github.com/lionsoul2014/ip2region
+  db-path: "/cairo/auth/ip2region/ip2region.xdb"
+
+cairo:
+  auth:
+    oauth2:
+      issuer: http://cairo-auth
+      rsa-keys:
+        - id: default
+          private-key: ${CAIRO_OAUTH2_RSA_PRIVATE_KEY:your-base64-private-key}
+          public-key: ${CAIRO_OAUTH2_RSA_PUBLIC_KEY:your-base64-public-key}
+    auto-register: true
+    default-avatar-url: /avatar/default.png
+    client:
+      client-registration-id: cairo-auth-service
+  security:
+    cairo-app-id: cairo
+    portal-app-id: portal
+    manage-subapp-id: manage
+  redis:
+    key-prefix: "cairo:${spring.application.name:${random.uuid}}:"
+  rabbitmq:
+    exchange:
+      auth:
+        name: auth
+      biz_log:
+        name: biz_log
+    route-key:
+      auth:
+        prefix: "auth."
+      biz_log:
+        prefix: "biz_log."
+    queue:
+      prefix: "auth."
+  xxljob:
+    admin-address: http://xxljob
+    access-token: ""
+
+
+lock4j:
+  acquire-timeout: 3000 #默认值3s，可不设置
+  expire: 30000 #默认值30s，可不设置
+  primary-executor: com.baomidou.lock.executor.RedissonLockExecutor #默认redisson>redisTemplate>zookeeper，可不设置
+  lock-key-prefix: ${cairo.redis.key-prefix}lock4j #锁key前缀, 默认值lock4j，可不设置
+  primary-failure-strategy: io.github.lijiajia3515.cairo.auth.framework.lock4j.CairoLockFailureStrategy
+  primary-key-builder: com.baomidou.lock.DefaultLockKeyBuilder
+
+# --- 文件 / 短信 / 图像处理（原 system 服务并入） ---
+minio:
+  config:
+    manage:
+      endpoint: http://minio
+      username: minio
+      password: minio
+    admin:
+      endpoint: http://minio
+      username: minio
+      password: minio
+
+imgproxy:
+  server: http://imgproxy
+  key: ${IMGPROXY_KEY:your-key}
+  slat: ${IMGPROXY_SALT:your-salt}
+
+aliyun:
+  dysms:
+    access-key: ${ALIYUN_DYSMS_ACCESS_KEY:your-access-key}
+    access-secret: ${ALIYUN_DYSMS_ACCESS_SECRET:your-access-secret}
+    default-sign: "${ALIYUN_DYSMS_DEFAULT_SIGN:your-sign}"

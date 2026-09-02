@@ -1,0 +1,19 @@
+plugins {
+  id 'cairo.java-library'
+}
+
+dependencies {
+  api(project(':auth:core'))
+  api(project(':auth:sdk:core'))
+  api(project(':auth:sdk:client'))
+
+  compileOnly('org.springframework.security:spring-security-oauth2-jose')
+  compileOnly('org.springframework.security:spring-security-oauth2-resource-server')
+  compileOnly('org.springframework.boot:spring-boot-starter-oauth2-client')
+  compileOnly('org.springframework.security:spring-security-web')
+
+  compileOnly('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+  compileOnly('org.springframework.boot:spring-boot-starter-data-redis')
+
+}

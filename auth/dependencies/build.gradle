@@ -1,0 +1,22 @@
+plugins {
+  id 'cairo.java-platform'
+}
+
+dependencies {
+  constraints {
+
+    api(project(':auth:domain:core'))
+    api(project(':auth:domain:open'))
+    api(project(':auth:domain:client'))
+    api(project(':auth:domain:account'))
+    api(project(':auth:domain:app'))
+    api(project(':auth:domain:tenant-app'))
+
+    api(project(':auth:core'))
+    api(project(':auth:starter:service'))
+
+    api(project(':auth:sdk:core'))
+    api(project(':auth:sdk:client'))
+  }
+//  platformApiClasspath('io.github.lijiajia3515.cairo.auth:cairo-auth-feignclient')
+}

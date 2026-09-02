@@ -1,0 +1,13 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  api(project(":framework:domain"))
+
+  api('org.springframework:spring-webmvc')
+
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+

@@ -1,0 +1,336 @@
+<!-- 企业应用级业务日志 -->
+<script setup lang="jsx">
+import {
+  ref,
+  onMounted,
+  watch,
+} from 'vue';
+import { debounce } from 'lodash';
+import {
+  MessagePlugin
+} from 'tdesign-vue-next'
+
+import useState from '@/hooks/useState';
+
+import List from '@/components/list';
+import FilterBar from '@/components/filterBar';
+import FilterItem from '@/components/filterBar/item.vue';
+import {timeColumn, ellipsisColumn, avatarCopyColumn} from '@/utils/tableColumns';
+
+import {
+  getAppList_api,
+  getClientList_api,
+  getEndpointList_api,
+  // getAppUserList_api,
+  getTenantList_api,
+  getTenantAppBizLogPage_api
+} from '@/api';
+onMounted(() => {
+  getAppList();
+  getTenantList();
+});
+
+
+let page = ref(1);
+let size = ref(10);
+let total = ref(0);
+let list = ref([]);
+let loading = ref(false);
+const [configs] = useState({
+  data: list,
+  columns: [
+    timeColumn('startTime', '时间'),
+    avatarCopyColumn({colKey: 'user.nickname', title: '用户', iconKey: 'user.accountAvatarUrl', copyKey: 'userId', width: 200}),
+    { colKey: 'clientName', title: '客户端',width: '150' },
+    { colKey: 'ip', title: 'IP' },
+    ellipsisColumn('bizId', '业务ID', {width: 250}),
+    { colKey: 'scope', title: '范围' },
+    ellipsisColumn('params', '参数', {width: 400}),
+    { colKey: 'mills', title: '耗时(毫秒)' },
+    {
+      colKey: 'success', title: '结果', cell: (h, { row }) => {
+        return (
+          <span style={{ color: row['success'] ? '#2ba471' : '#d54941' }}>{row['success'] ? '成功' : row['errorMessage']}</span>
+        )
+      }
+    }
+  ],
+  loading: loading,
+  pagination: {
+    current: page,
+    pageSize: size,
+    total: total,
+  },
+  onPageChange: (pageInfo) => {
+    page.value = pageInfo.current;
+    size.value = pageInfo.pageSize;
+    getServiceLog();
+  }
+});
+
+const [search, setSearch] = useState({
+  keyword: null,
+  times: [],
+  success: null,
+  userId: null,
+});
+
+// 业务日志
+const getServiceLog = debounce(async () => {
+  loading.value = true;
+  try {
+    let params = {
+      page: page.value - 1,
+      size: size.value,
+      keyword: search.value.keyword,
+      success: search.value.success,
+      userId: search.value.userId,
+    };
+    if (search.value.times.length > 0) {
+      params.startTime = search.value.times[0];
+      params.endTime = search.value.times[1];
+    }
+    let headers = {
+      'app-id': headerData.value.appId || '',
+      'tenant-id': headerData.value.tenantId || '',
+    };
+    headers['client-id'] = headerData.value.clientId || '';
+    headers['endpoint-id'] = headerData.value.endpointId || '';
+    let res = await getTenantAppBizLogPage_api(params, headers);
+    if (res.code == 'Success') {
+      list.value = res?.data?.contents || [];
+      total.value = Number(res?.data?.total) || 0;
+    }
+  } catch (err) {
+    console.log(err)
+  }
+  finally {
+    loading.value = false;
+  }
+})
+
+const onSearch = () => {
+  if (!headerData.value.tenantId) {
+    MessagePlugin.error('请选择企业');
+    return;
+  }
+  if (!headerData.value.appId) {
+    MessagePlugin.error('请选择应用');
+    return;
+  }
+  page.value = 1;
+  getServiceLog();
+}
+const onReset = () => {
+  page.value = 1;
+  setSearch({
+    keyword: null,
+    times: [],
+    success: null,
+    userId: null,
+  });
+  setHeaderData({
+    appId: null,
+    clientId: null,
+    endpointId: null,
+    tenantId: null,
+  });
+  if (!headerData.value.tenantId) {
+    MessagePlugin.error('请选择企业');
+    list.value = [];
+    return;
+  }
+  if (!headerData.value.appId) {
+    MessagePlugin.error('请选择应用');
+    list.value = [];
+    return;
+  }
+  getServiceLog();
+}
+
+
+
+const [headerData, setHeaderData] = useState({
+  appId: null,
+  clientId: null,
+  endpointId: null,
+  tenantId: null,
+});
+// 应用列表
+const [appList, setAppList] = useState([]);
+const getAppList = async () => {
+  let params = {
+    scopes: ["tenant"]
+  };
+  let res = await getAppList_api(params);
+  if (res.code == 'Success') {
+    setAppList(res?.data || []);
+  }
+}
+watch(() => headerData.value.appId, () => {
+  if (headerData.value.appId) {
+    setHeaderData({
+      ...headerData.value,
+      clientId: null,
+      endpointId: null
+    })
+    getClientList();
+    getEndpointList();
+  }
+});
+
+// 终端列表 依赖应用
+const [endpointList, setEndpointList] = useState([]);
+const getEndpointList = async () => {
+  let params = {
+    appId: headerData.value.appId,
+    scopeIds: ["tenant"]
+  };
+  let res = await getEndpointList_api(params);
+  if (res.code == 'Success') {
+    setEndpointList(res?.data || []);
+  }
+}
+
+
+// 客户端列表
+const [clientList, setClientList] = useState([]);
+const getClientList = async () => {
+  let params = {
+    appId: headerData.value.appId,
+    authenticationTypes: ['tenant_user']
+  };
+  let res = await getClientList_api(params);
+  if (res.code == 'Success') {
+    setClientList(res?.data || []);
+  }
+}
+
+// 用户列表
+// const [userList, setUserList] = useState([]);
+// const getUserList = debounce(async () => {
+//   let params = {};
+//   let headers = {
+//     'app-id': headerData.value.appId,
+//     'tenant-id': headerData.value.tenantId,
+//   };
+//   let res = await getAppUserList_api(params, headers);
+//   if (res.code == 'Success') {
+//     setUserList(res?.data || []);
+//   }
+// })
+
+
+
+// 企业列表
+const [tenantList, setTenantList] = useState([]);
+const getTenantList = async () => {
+  let params = {};
+  let res = await getTenantList_api(params);
+  if (res.code == 'Success') {
+    setTenantList(res?.data || []);
+  }
+}
+
+
+// watch(headerData, () => {
+//   if (headerData.value.appId && headerData.value.tenantId) {
+//     getServiceLog();
+//   }
+// }, {
+//   deep: true
+// });
+
+watch(() => [headerData.value.appId, headerData.value.tenantId], () => {
+  if (headerData.value.appId && headerData.value.tenantId) {
+    // getUserList();
+  }
+})
+</script>
+<template>
+  <div class="tenantUserComponent">
+    <div class="empty"></div>
+    <FilterBar @search="onSearch" @reset="onReset">
+      <FilterItem label="*企业">
+        <t-select :scroll="{ type: 'virtual' }" filterable v-model="headerData.tenantId" placeholder="企业">
+          <t-option v-for="(item, index) in tenantList" :key="index" :value="item.tenantId"
+            :label="item.tenantName" :style="{ height: '40px', width: '100%' }">
+            <div style="display: flex;align-items: center;width: 100%;">
+              <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
+              <span style="display: inline-block;marginLeft:10px;">{{ item.tenantName }}</span>
+            </div>
+          </t-option>
+          <template #valueDisplay="{ value }">
+            <template v-if="value">
+              <t-space>
+                <t-avatar :imageProps="{ lazy: true }" size="20px"
+                  :image="tenantList.filter(item => item.tenantId == value)[0]?.icon" shape="round"></t-avatar>
+                {{ tenantList.filter(item => item.tenantId == value)[0]?.tenantName }}
+              </t-space>
+            </template>
+          </template>
+        </t-select>
+      </FilterItem>
+      <FilterItem label="*应用">
+        <t-select :scroll="{ type: 'virtual' }" filterable v-model="headerData.appId" placeholder="应用">
+          <t-option v-for="(item, index) in appList" :key="index" :value="item.appId" :label="item.appName"
+            :style="{ height: '40px', width: '100%' }">
+            <div style="display: flex;align-items: center;width: 100%;">
+              <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
+              <span style="display: inline-block;marginLeft:10px;">{{ item.appName }}</span>
+            </div>
+          </t-option>
+          <template #valueDisplay="{ value }">
+            <template v-if="value">
+              <t-space>
+                <t-avatar :imageProps="{ lazy: true }" size="20px"
+                  :image="appList.filter(item => item.appId == value)[0]?.icon" shape="round"></t-avatar>
+                {{ appList.filter(item => item.appId == value)[0]?.appName }}
+              </t-space>
+            </template>
+          </template>
+        </t-select>
+      </FilterItem>
+      <FilterItem label="终端">
+        <t-select :scroll="{ type: 'virtual' }" filterable clearable v-model="headerData.endpointId"
+          placeholder="终端">
+          <t-option v-for="(item, index) in endpointList" :key="index" :value="item.endpointId"
+            :label="item.endpointName" :style="{ height: '40px', width: '100%' }">
+            <div style="display: flex;align-items: center;width: 100%;">
+              <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
+              <span style="display: inline-block;marginLeft:10px;">{{ item.endpointName }}</span>
+            </div>
+          </t-option>
+        </t-select>
+      </FilterItem>
+      <FilterItem label="客户端">
+        <t-select filterable clearable v-model="headerData.clientId" placeholder="客户端">
+          <t-option v-for="(item, index) in clientList" :key="index" :value="item.clientId"
+            :label="item.clientName"></t-option>
+        </t-select>
+      </FilterItem>
+      <FilterItem label="时间" wide>
+        <t-date-range-picker v-model="search.times" enable-time-picker allow-input clearable />
+      </FilterItem>
+      <FilterItem label="关键字">
+        <t-input clearable v-model="search.keyword" placeholder="请输入关键字"></t-input>
+      </FilterItem>
+      <FilterItem label="用户ID">
+        <t-input clearable v-model="search.userId" placeholder="请输入用户ID"></t-input>
+      </FilterItem>
+      <FilterItem label="结果">
+        <t-select clearable v-model="search.success" placeholder="请选择结果">
+          <t-option label="成功" :value="true"></t-option>
+          <t-option label="失败" :value="false"></t-option>
+        </t-select>
+      </FilterItem>
+    </FilterBar>
+    <div class="empty"></div>
+    <List @page-change="configs.onPageChange" :configs="configs" />
+  </div>
+</template>
+<style lang="scss" scoped>
+.tenantUserComponent {
+  width: 100%;
+}
+</style>

@@ -1,0 +1,51 @@
+package io.github.lijiajia3515.cairo.auth.domain.message.app_user;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+import lombok.experimental.SuperBuilder;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * 已注销应用用户消息
+ */
+@Data
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder(toBuilder = true)
+public class LogoffSuccessAppUserMessage implements Serializable {
+
+	/**
+	 * 应用ID
+	 */
+	private String appId;
+
+	/**
+	 * 用户ID
+	 */
+	private String userId;
+
+	/**
+	 * 用户昵称
+	 */
+	private String nickname;
+
+	/**
+	 * 账号ID
+	 */
+	private String accountId;
+
+	/**
+	 * 事件用户ID
+	 */
+	private String eventAppUserId;
+
+	/**
+	 * 事件时间
+	 */
+	private LocalDateTime eventTime;
+}

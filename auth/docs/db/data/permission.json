@@ -1,0 +1,4753 @@
+[
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403589895749632",
+    "permissionId": "home",
+    "permissionName": "首页",
+    "authorities": [],
+    "type": null,
+    "defaultPermission": true,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/home.svg",
+    "sort": {
+      "high": 398424691,
+      "low": -2098139136,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:25.765Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:25.765Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.find",
+    "permissionName": "查询",
+    "authorities": [
+      "account:read",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 16,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:29.689Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:29.689Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.create",
+    "permissionName": "创建账号",
+    "authorities": [
+      "account:create_account"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 17,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:30.477Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:30.477Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.modify",
+    "permissionName": "修改账号信息",
+    "authorities": [
+      "account:modify_account_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 18,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:31.202Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:31.202Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.modify_status",
+    "permissionName": "启用/禁用账号",
+    "authorities": [
+      "account:modify_account_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 19,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:31.879Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:31.879Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.delete",
+    "permissionName": "删除账号",
+    "authorities": [
+      "account:delete_account"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 420613840,
+      "low": -1277624320,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:32.657Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:32.657Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.logoff_account",
+    "permissionName": "注销账号",
+    "authorities": [
+      "account:logoff_account"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/people-delete.svg",
+    "sort": {
+      "high": 399120542,
+      "low": 574140416,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:33.360Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:33.360Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.reset_account_password",
+    "permissionName": "重置密码",
+    "authorities": [
+      "account:reset_account_password"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/key.svg",
+    "sort": {
+      "high": 0,
+      "low": 21,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:34.150Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:34.150Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.modify_lock_status",
+    "permissionName": "解锁/锁定账号",
+    "authorities": [
+      "account:modify_account_lock_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/lock.svg",
+    "sort": {
+      "high": 0,
+      "low": 20,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:34.872Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:34.872Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403607604101120",
+    "permissionId": "account.unlogoff_account",
+    "permissionName": "取消注销账号",
+    "authorities": [
+      "account:unlogoff_account"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 401976454,
+      "low": -924241920,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:35.552Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:35.552Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677361798303744",
+    "permissionId": "account_authorization.read",
+    "permissionName": "查询",
+    "authorities": [
+      "account:read",
+      "account_authorization:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487472248,
+      "low": -16527360,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:17.629Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:17.629Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677361798303744",
+    "permissionId": "account_authorization.offline",
+    "permissionName": "下线",
+    "authorities": [
+      "account_authorization:offline"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/logout.svg",
+    "sort": {
+      "high": 487472249,
+      "low": -1228681216,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:18.364Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:18.364Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.find",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "tenant:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 22,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:39.504Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:39.504Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.create",
+    "permissionName": "添加",
+    "authorities": [
+      "account:read",
+      "tenant:create_tenant",
+      "tenant:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 23,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:40.208Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:40.208Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "account:read",
+      "tenant:modify_tenant_info",
+      "tenant:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 24,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:40.987Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:40.987Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "tenant:read",
+      "tenant:modify_tenant_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 25,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:41.684Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:41.684Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.delete",
+    "permissionName": "删除企业",
+    "authorities": [
+      "tenant:delete_tenant",
+      "tenant:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 399196501,
+      "low": 1903226880,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:42.361Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:42.361Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403648972521472",
+    "permissionId": "tenant.modify_tenant_owner",
+    "permissionName": "转移企业",
+    "authorities": [
+      "account:read",
+      "tenant:modify_tenant_owner"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 26,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:43.147Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:43.147Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403673546948608",
+    "permissionId": "tenant_app.create",
+    "permissionName": "添加",
+    "authorities": [
+      "account:read",
+      "endpoint:read",
+      "tenant:read",
+      "app:read",
+      "tenant_app:create_tenant_app"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 55,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:45.391Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:45.391Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403673546948608",
+    "permissionId": "tenant_app.modify_tenant_app_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "account:read",
+      "endpoint:read",
+      "tenant_app:modify_tenant_app_info",
+      "tenant:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 56,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:46.071Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:46.071Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403673546948608",
+    "permissionId": "tenant_app.modify_tenant_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "tenant_app:modify_tenant_app_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 57,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:46.839Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:46.839Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403673546948608",
+    "permissionId": "tenant_app.delete_tenant_app",
+    "permissionName": "删除",
+    "authorities": [
+      "tenant_app:delete_tenant_app"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 0,
+      "low": 58,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:47.525Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:47.525Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403673546948608",
+    "permissionId": "tenant_app.read",
+    "permissionName": "查询",
+    "authorities": [
+      "tenant:read",
+      "app:read",
+      "tenant_app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 54,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:48.302Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:48.302Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403695193751552",
+    "permissionId": "tenant_endpoint.read",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "tenant_endpoint:read",
+      "tenant:read",
+      "app:read",
+      "tenant_app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401986181,
+      "low": -1965490176,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:50.779Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:50.779Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403695193751552",
+    "permissionId": "tenant_endpoint.create",
+    "permissionName": "添加",
+    "authorities": [
+      "endpoint:read",
+      "tenant_endpoint:read",
+      "tenant:read",
+      "tenant_endpoint:create_tenant_endpoint",
+      "tenant_app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 401986285,
+      "low": -291962880,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:51.530Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:51.530Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403695193751552",
+    "permissionId": "tenant_endpoint.modify_tenant_endpoint_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "tenant_endpoint:modify_tenant_endpoint_status",
+      "tenant_endpoint:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 401986368,
+      "low": 1138294784,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:52.500Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:52.500Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403695193751552",
+    "permissionId": "tenant_endpoint.delete_tenant_endpoint",
+    "permissionName": "删除",
+    "authorities": [
+      "tenant_endpoint:delete_tenant_endpoint",
+      "tenant_endpoint:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 401986450,
+      "low": 211353600,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:53.193Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:53.193Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639267363573760",
+    "permissionId": "tenant_subapp.read",
+    "permissionName": "查询",
+    "authorities": [
+      "tenant_subapp:read",
+      "tenant:read",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487463379,
+      "low": 1984155648,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:55.226Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:55.226Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639267363573760",
+    "permissionId": "tenant_subapp.create",
+    "permissionName": "创建",
+    "authorities": [
+      "tenant_subapp:read",
+      "tenant_subapp:create_tenant_subapp"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 487463380,
+      "low": 826527744,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:55.974Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:55.974Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639267363573760",
+    "permissionId": "tenant_subapp.modify_tenant_subapp_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "tenant_subapp:modify_tenant_subapp_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 487463380,
+      "low": -704393216,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:56.633Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:56.633Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639267363573760",
+    "permissionId": "tenant_subapp.delete_tenant_subapp",
+    "permissionName": "删除",
+    "authorities": [
+      "tenant_subapp:delete_tenant_subapp"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487463381,
+      "low": 1958989824,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:57.268Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:57.268Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403743306612736",
+    "permissionId": "app.find",
+    "permissionName": "查询",
+    "authorities": [
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 27,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:01.994Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:01.994Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403743306612736",
+    "permissionId": "app.create",
+    "permissionName": "创建",
+    "authorities": [
+      "account:read",
+      "app:create_app",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 28,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:02.985Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:02.985Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403743306612736",
+    "permissionId": "app.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "account:read",
+      "app:modify_app_info",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 29,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:03.683Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:03.683Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403743306612736",
+    "permissionId": "app.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "app:delete_app",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 0,
+      "low": 31,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:04.417Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:04.417Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403743306612736",
+    "permissionId": "app.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "app:modify_app_status",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 30,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:05.163Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:05.163Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403765767110656",
+    "permissionId": "endpoint.find",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 32,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:07.351Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:07.351Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403765767110656",
+    "permissionId": "endpoint.create",
+    "permissionName": "创建",
+    "authorities": [
+      "endpoint:read",
+      "endpoint:create_endpoint"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 33,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:08.043Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:08.043Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403765767110656",
+    "permissionId": "endpoint.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "endpoint:read",
+      "endpoint:modify_endpoint_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 34,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:08.806Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:08.806Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403765767110656",
+    "permissionId": "endpoint.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "endpoint:modify_endpoint_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 35,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:09.475Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:09.475Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403765767110656",
+    "permissionId": "endpoint.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "endpoint:delete_endpoint"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 0,
+      "low": 36,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:10.176Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:10.176Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.read",
+    "permissionName": "查询",
+    "authorities": [
+      "sys_dict:read",
+      "app:read",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487463364,
+      "low": 214159360,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:39.446Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:39.446Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.create",
+    "permissionName": "创建",
+    "authorities": [
+      "subapp:create_subapp",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 487463364,
+      "low": -809250816,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:40.224Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:40.224Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.modify_subapp_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "subapp:modify_subapp_info",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 487463365,
+      "low": 1984155648,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:40.890Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:40.890Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.modify_subapp_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "subapp:modify_subapp_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 487463366,
+      "low": 453234688,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:41.549Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:41.549Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.move_subapp",
+    "permissionName": "移动",
+    "authorities": [
+      "subapp:move_subapp",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "sort": {
+      "high": 487463366,
+      "low": -633090048,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:42.314Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:42.314Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639201177456640",
+    "permissionId": "subapp.delete_subapp",
+    "permissionName": "删除",
+    "authorities": [
+      "subapp:delete_subapp"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487463367,
+      "low": -2143039488,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:42.978Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:42.978Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.read",
+    "permissionName": "查询",
+    "authorities": [
+      "subapp_version:read",
+      "subapp:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487463370,
+      "low": -1253847040,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:46.262Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:46.262Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.create",
+    "permissionName": "创建",
+    "authorities": [
+      "subapp_version:create_subapp_version",
+      "subapp_version:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 487463371,
+      "low": 1887686656,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:47.011Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:47.011Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.modify_subapp_version_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "subapp_version:read",
+      "subapp_version:modify_subapp_version_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 487463372,
+      "low": 344182784,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:47.667Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:47.667Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.modify_subapp_version_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "subapp_version:modify_subapp_version_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 487463372,
+      "low": -1174155264,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:48.329Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:48.329Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.sync_subapp_version",
+    "permissionName": "同步",
+    "authorities": [
+      "subapp_version:read",
+      "subapp_version:sync_subapp_version"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 487463373,
+      "low": -1719414784,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:49.223Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:49.223Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093639229866496000",
+    "permissionId": "subapp_version.delete_subapp_version",
+    "permissionName": "删除",
+    "authorities": [
+      "subapp_version:delete_subapp_version"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487463374,
+      "low": -1899769856,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T09:57:50.204Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:57:50.204Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403818355294208",
+    "permissionId": "menu.read",
+    "permissionName": "读",
+    "authorities": [
+      "endpoint:read",
+      "menu:read",
+      "permission:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401986856,
+      "low": 253296640,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:19.894Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:19.894Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403818355294208",
+    "permissionId": "menu.write",
+    "permissionName": "写",
+    "authorities": [
+      "menu:write"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 401986885,
+      "low": 1679360000,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:20.567Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:20.567Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.find",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "client:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 37,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:13.252Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:13.252Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.create",
+    "permissionName": "创建",
+    "authorities": [
+      "client:create_client",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 38,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:14.020Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:14.020Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "client:modify_client_info",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 39,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:14.713Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:14.713Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "client:modify_client_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 40,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:15.424Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:15.424Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "client:delete_client"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 402049328,
+      "low": -1780940800,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:16.206Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:16.206Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.modify_client_secret",
+    "permissionName": "修改密钥",
+    "authorities": [
+      "client:modify_client_secret"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/key.svg",
+    "sort": {
+      "high": 0,
+      "low": 41,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:16.878Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:16.878Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403788500238336",
+    "permissionId": "client.sync_client",
+    "permissionName": "同步",
+    "authorities": [
+      "endpoint:read",
+      "client:sync_client",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 399199136,
+      "low": 1114697728,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:17.573Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:17.573Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403830871097344",
+    "permissionId": "permission.read",
+    "permissionName": "读",
+    "authorities": [
+      "endpoint:read",
+      "menu:read",
+      "permission:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401987190,
+      "low": -1772552192,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:23.074Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:23.074Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403830871097344",
+    "permissionId": "permission.write",
+    "permissionName": "写",
+    "authorities": [
+      "permission:move",
+      "permission:write"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 401987276,
+      "low": 1725497344,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:23.746Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:23.746Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403722020519936",
+    "permissionId": "sns_provider.create",
+    "permissionName": "创建",
+    "authorities": [
+      "sns_provider:create_sns_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 420945472,
+      "low": 42586112,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:56.921Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:56.921Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403722020519936",
+    "permissionId": "sns_provider.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "sns_provider:modify_sns_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 420945509,
+      "low": -607531008,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:57.610Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:57.610Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403722020519936",
+    "permissionId": "sns_provider.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "sns_provider:delete_sns_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 420945558,
+      "low": -708194304,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:58.376Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:58.376Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403722020519936",
+    "permissionId": "sns_provider.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "sns_provider:modify_sns_provider_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 420945588,
+      "low": 868864000,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:59.047Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:59.047Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403722020519936",
+    "permissionId": "sns_provider.find",
+    "permissionName": "查询",
+    "authorities": [
+      "sns_provider:read",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 420945345,
+      "low": 638177280,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:21:59.713Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:21:59.713Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403844083154944",
+    "permissionId": "app_release.modify",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "endpoint:read",
+      "app_release:modify_app_release_info",
+      "app_release:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 52,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:25.960Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:25.960Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403844083154944",
+    "permissionId": "app_release.set_latest_version",
+    "permissionName": "设置成最新版本",
+    "authorities": [
+      "app_release:set_app_relase_latest_version"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 0,
+      "low": 53,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:26.714Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:26.714Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403844083154944",
+    "permissionId": "app_release.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "app_release:delete_app_release"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 398526484,
+      "low": 1311830016,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:27.385Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:27.385Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403844083154944",
+    "permissionId": "app_release.read",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "app_release:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 50,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:28.379Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:28.379Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403844083154944",
+    "permissionId": "app_release.create",
+    "permissionName": "创建",
+    "authorities": [
+      "endpoint:read",
+      "app_release:create_app_release",
+      "app_release:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 51,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:29.076Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:29.076Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.read",
+    "permissionName": "查询",
+    "authorities": [
+      "area:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 427638572,
+      "low": 1879052288,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:31.349Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:31.349Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.create_area",
+    "permissionName": "创建",
+    "authorities": [
+      "area:create_area"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 427638647,
+      "low": 1010831360,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:32.344Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:32.344Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.modify_area_info",
+    "permissionName": "修改信息",
+    "authorities": [
+      "area:modify_area_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 427638702,
+      "low": 1379930112,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:33.041Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:33.041Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.modify_area_hot",
+    "permissionName": "是否热门",
+    "authorities": [
+      "area:modify_area_hot"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/star.svg",
+    "sort": {
+      "high": 427638736,
+      "low": -251654144,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:33.732Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:33.732Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.modify_area_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "area:modify_area_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 427638763,
+      "low": 1933578240,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:34.502Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:34.502Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.move_area",
+    "permissionName": "移动",
+    "authorities": [
+      "area:move_area"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "sort": {
+      "high": 427638783,
+      "low": -192933888,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:35.191Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:35.191Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.delete_area",
+    "permissionName": "删除",
+    "authorities": [
+      "area:delete_area"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 427639380,
+      "low": -884994048,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:35.860Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:35.860Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403866417823744",
+    "permissionId": "area.area_detail",
+    "permissionName": "详情",
+    "authorities": [
+      "area:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 427638607,
+      "low": 356519936,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:36.623Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:36.623Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403897707331584",
+    "permissionId": "link.read",
+    "permissionName": "查询",
+    "authorities": [
+      "link:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 427638850,
+      "low": -968880128,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:38.809Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:38.809Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403897707331584",
+    "permissionId": "link.create_link",
+    "permissionName": "创建",
+    "authorities": [
+      "link:create_link"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 427638878,
+      "low": -1707077632,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:39.506Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:39.506Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403897707331584",
+    "permissionId": "link.modify_link_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "link:modify_link_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 427638921,
+      "low": 1002442752,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:40.270Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:40.270Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403897707331584",
+    "permissionId": "link.delete_link",
+    "permissionName": "删除",
+    "authorities": [
+      "link:delete_link"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 427638955,
+      "low": -385871872,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:40.959Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:40.959Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.create",
+    "permissionName": "创建",
+    "authorities": [
+      "sys_dict:create_sys_dict",
+      "sys_dict:put_sys_dict_item",
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 399708238,
+      "low": 376500224,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:43.640Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:43.640Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.modify",
+    "permissionName": "编辑",
+    "authorities": [
+      "sys_dict:modify_dict_info",
+      "sys_dict:modify_sys_dict_item_info",
+      "sys_dict:move_sys_dict_item",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 399708342,
+      "low": -1393496064,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:44.429Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:44.429Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "sys_dict:delete_sys_dict_item",
+      "sys_dict:delete_sys_dict",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 399709103,
+      "low": -1225723904,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:45.089Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:45.089Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.sync",
+    "permissionName": "同步",
+    "authorities": [
+      "sys_dict:sync_sys_dict",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 399708606,
+      "low": 1001451520,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:45.768Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:45.768Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "sys_dict:modify_sys_dict_item_status",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 399708493,
+      "low": 657518592,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:46.527Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:46.527Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.find",
+    "permissionName": "查询",
+    "authorities": [
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 399707982,
+      "low": 942731264,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:47.218Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:47.218Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.move_sys_dict_item",
+    "permissionName": "移动字典项",
+    "authorities": [
+      "sys_dict:move_sys_dict_item"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "sort": {
+      "high": 417603946,
+      "low": -1488334848,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:47.911Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:47.911Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.copy_by_app",
+    "permissionName": "从应用导入",
+    "authorities": [
+      "sys_dict:copy_by_app"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 420887863,
+      "low": 10027008,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:48.676Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:48.676Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403916162269184",
+    "permissionId": "sys_dict.copy_by_dict",
+    "permissionName": "拷贝",
+    "authorities": [
+      "sys_dict:copy_by_dict"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 420887908,
+      "low": 127467520,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:49.369Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:49.369Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict.find",
+    "permissionName": "查询",
+    "authorities": [
+      "biz_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 399709140,
+      "low": 2133913600,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:51.792Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:51.792Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict_item.create",
+    "permissionName": "添加字典项",
+    "authorities": [
+      "biz_dict:put_biz_dict_item",
+      "biz_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 399709623,
+      "low": 1710288896,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:52.692Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:52.692Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict_item.modify",
+    "permissionName": "编辑字典项",
+    "authorities": [
+      "biz_dict:modify_biz_dict_item_info",
+      "biz_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 399709695,
+      "low": -2035224576,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:53.452Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:53.452Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict_item.delete",
+    "permissionName": "删除字典项",
+    "authorities": [
+      "biz_dict:delete_biz_dict_item",
+      "biz_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 399709893,
+      "low": 1353773056,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:54.131Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:54.131Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "biz_dict:read",
+      "biz_dict:modify_biz_dict_item_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 399710089,
+      "low": -747573248,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:54.942Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:54.942Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403951574777856",
+    "permissionId": "biz_dict.restore",
+    "permissionName": "恢复",
+    "authorities": [
+      "biz_dict:restore_biz_dict",
+      "biz_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 399710145,
+      "low": -1674514432,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:55.602Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:55.602Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403977734651904",
+    "permissionId": "login_log.account_login_log",
+    "permissionName": "账号",
+    "authorities": [
+      "account:read",
+      "account_login_log:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401123771,
+      "low": -1026453504,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:57.832Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:57.832Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403977734651904",
+    "permissionId": "login_log.client_login_log",
+    "permissionName": "客户端",
+    "authorities": [
+      "endpoint:read",
+      "sys_dict:read",
+      "client_login_log:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407959312,
+      "low": 1659449344,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:58.626Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:22:58.626Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403977734651904",
+    "permissionId": "login_log.app_user_login_log",
+    "permissionName": "应用",
+    "authorities": [
+      "endpoint:read",
+      "app_user_login_log:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401124014,
+      "low": -1332637696,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:59.327Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:58:17.399Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403977734651904",
+    "permissionId": "login_log.tenant_app_user_login_log",
+    "permissionName": "企业应用",
+    "authorities": [
+      "tenant_app_user_login_log:read",
+      "tenant:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407959164,
+      "low": -1104596992,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:22:59.996Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:58:18.106Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.open_biz_log",
+    "permissionName": "开放级",
+    "authorities": [
+      "open_biz_log:read",
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401124545,
+      "low": -15626240,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:02.425Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:02.425Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.account_biz_log",
+    "permissionName": "账号级",
+    "authorities": [
+      "account:read",
+      "account_biz_log:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401124614,
+      "low": 1297190912,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:03.094Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:03.094Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.client_biz_log",
+    "permissionName": "客户端级",
+    "authorities": [
+      "client_biz_log:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401124792,
+      "low": -208564224,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:04.011Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:04.011Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.app_biz_log",
+    "permissionName": "应用",
+    "authorities": [
+      "endpoint:read",
+      "app_biz_log:read",
+      "sys_dict:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407974028,
+      "low": 1992298512,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:04.700Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:04.700Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.subapp_biz_log",
+    "permissionName": "子应用",
+    "authorities": [
+      "endpoint:read",
+      "sys_dict:read",
+      "subapp_biz_log:read",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407974028,
+      "low": 1992298512,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:05.439Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:58:18.780Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.tenant_app_biz_log",
+    "permissionName": "企业应用",
+    "authorities": [
+      "endpoint:read",
+      "tenant_app_biz_log:read",
+      "tenant:read",
+      "sys_dict:read",
+      "client:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407974118,
+      "low": -2038427624,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:06.119Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:06.119Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093403996143452160",
+    "permissionId": "biz_log.tenant_subapp_biz_log",
+    "permissionName": "企业子应用",
+    "authorities": [
+      "endpoint:read",
+      "tenant_subapp_biz_log:read",
+      "tenant:read",
+      "sys_dict:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 407974118,
+      "low": -2038427624,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:06.799Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T09:58:19.519Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404030847123456",
+    "permissionId": "sms_template.read",
+    "permissionName": "查询",
+    "authorities": [
+      "sms_template:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401125076,
+      "low": 1708232704,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:10.751Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:10.751Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404030847123456",
+    "permissionId": "sms_template.create",
+    "permissionName": "添加",
+    "authorities": [
+      "sms_template:create_sms_template",
+      "sms_template:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 401125134,
+      "low": 1154584576,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:11.423Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:11.423Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404030847123456",
+    "permissionId": "sms_template.modify",
+    "permissionName": "修改",
+    "authorities": [
+      "sms_template:modify_sms_template_info",
+      "sms_template:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 401125236,
+      "low": -661549056,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:12.089Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:12.089Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404030847123456",
+    "permissionId": "sms_template.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "sms_template:read",
+      "sms_template:modify_sms_template_status",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 401125297,
+      "low": -65957888,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:12.821Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:12.821Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404030847123456",
+    "permissionId": "sms_template.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "sms_template:read",
+      "sms_template:delete_sms_template",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 401125356,
+      "low": 944869376,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:13.788Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:13.788Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404053710274560",
+    "permissionId": "sms_msg.read",
+    "permissionName": "查询",
+    "authorities": [
+      "sms_template:read",
+      "sms_msg:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 401126022,
+      "low": 160534528,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:16.019Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:16.019Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404053710274560",
+    "permissionId": "sms_msg.retry_sms_msg",
+    "permissionName": "重试",
+    "authorities": [
+      "sms_msg:retry_sms_msg"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 402812567,
+      "low": 1324920832,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:16.691Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:16.691Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404072433647616",
+    "permissionId": "wxmp_provider.find",
+    "permissionName": "查询",
+    "authorities": [
+      "sns_provider:read",
+      "wxmp_provider:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 420963383,
+      "low": 1783222272,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:20.365Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:20.365Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404072433647616",
+    "permissionId": "wxmp_provider.create",
+    "permissionName": "添加",
+    "authorities": [
+      "wxmp_provider:create_wxmp_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 420963424,
+      "low": -515256320,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:21.126Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:21.126Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404072433647616",
+    "permissionId": "wxmp_provider.modify",
+    "permissionName": "修改",
+    "authorities": [
+      "wxmp_provider:modify_wxmp_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 420963472,
+      "low": 470405120,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:21.823Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:21.823Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404072433647616",
+    "permissionId": "wxmp_provider.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "wxmp_provider:modify_wxmp_provider_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 420963510,
+      "low": -1261842432,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:22.520Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:22.520Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404072433647616",
+    "permissionId": "wxmp_provider.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "wxmp_provider:delete_wxmp_provider"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 420963541,
+      "low": 533319680,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:23.279Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:23.279Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404093681991680",
+    "permissionId": "wxmp_template_msg.find",
+    "permissionName": "查询",
+    "authorities": [
+      "wxmp_template_msg:read",
+      "wxmp_provider:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 420949360,
+      "low": -1685467136,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:25.560Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:25.560Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404093681991680",
+    "permissionId": "wxmp_template_msg.create",
+    "permissionName": "添加",
+    "authorities": [
+      "wxmp_template_msg:create_wxmp_template_msg"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 420949434,
+      "low": -460730368,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:26.343Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:26.343Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404093681991680",
+    "permissionId": "wxmp_template_msg.modify",
+    "permissionName": "修改",
+    "authorities": [
+      "wxmp_template_msg:modify_wxmp_template_msg_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 420949545,
+      "low": -1559638016,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:27.033Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:27.033Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404093681991680",
+    "permissionId": "wxmp_template_msg.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "wxmp_template_msg:modify_wxmp_template_msg_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 420949616,
+      "low": 1523175424,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:28.206Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:28.206Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404093681991680",
+    "permissionId": "wxmp_template_msg.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "wxmp_template_msg:delete_wxmp_template_msg"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 420949715,
+      "low": -1807101952,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:28.995Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:28.995Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404118344499200",
+    "permissionId": "wxmp_template_msg_record.find",
+    "permissionName": "查询",
+    "authorities": [
+      "wxmp_template_msg:read",
+      "wxmp_template_msg_record:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 420949764,
+      "low": 1166659584,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:31.618Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:31.618Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404118344499200",
+    "permissionId": "wxmp_template_msg_record.retry",
+    "permissionName": "重试",
+    "authorities": [
+      "wxmp_template_msg_record:retry_wxmp_template_msg_record"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 420949803,
+      "low": -1760964608,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:32.306Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:32.306Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677389270994944",
+    "permissionId": "notify_category.read",
+    "permissionName": "查询",
+    "authorities": [
+      "notify_category:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487472255,
+      "low": -1501310976,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:24.443Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:24.443Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677389270994944",
+    "permissionId": "notify_category.create",
+    "permissionName": "创建",
+    "authorities": [
+      "notify_category:create"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 487472256,
+      "low": 1690554368,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:25.204Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:25.204Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677389270994944",
+    "permissionId": "notify_category.modify_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "notify_category:modify_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 487472257,
+      "low": 885248000,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:26.036Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:26.036Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677389270994944",
+    "permissionId": "notify_category.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "notify_category:modify_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 487472257,
+      "low": -284962816,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:26.781Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:26.781Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677389270994944",
+    "permissionId": "notify_category.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "notify_category:delete"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487472258,
+      "low": -1664888832,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:27.476Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:27.476Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677412746514432",
+    "permissionId": "notify_template.read",
+    "permissionName": "查询",
+    "authorities": [
+      "notify_template:read",
+      "notify_category:read",
+      "app:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487472260,
+      "low": -733753344,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:29.746Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:29.746Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677412746514432",
+    "permissionId": "notify_template.create",
+    "permissionName": "创建",
+    "authorities": [
+      "notify_template:create_notify_template"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 487472261,
+      "low": -977022976,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:30.712Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:30.712Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677412746514432",
+    "permissionId": "notify_template.modify_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "notify_template:read",
+      "notify_template:modify_notify_template_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 487472262,
+      "low": -1962684416,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:31.501Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:31.501Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677412746514432",
+    "permissionId": "notify_template.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "notify_template:modify_notify_template_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 487472263,
+      "low": 956551168,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:32.197Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:32.197Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677412746514432",
+    "permissionId": "notify_template.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "notify_template:delete_notify_template"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487472264,
+      "low": 453234688,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:33.101Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:33.101Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.create",
+    "permissionName": "添加",
+    "authorities": [
+      "account:read",
+      "app_user_tag:read",
+      "app_user:create_app_user",
+      "app_role:read",
+      "app_department:read",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 3,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:35.980Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:35.980Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.modify_info",
+    "permissionName": "编辑信息",
+    "authorities": [
+      "app_user_tag:read",
+      "app_role:read",
+      "app_user:read",
+      "department:read",
+      "app_user:modify_app_user_info",
+      "app_department:read",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 4,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:36.644Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:36.644Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "app_user:read",
+      "app_user:modify_app_user_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 5,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:37.411Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:37.411Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.delete",
+    "permissionName": "删除用户",
+    "authorities": [
+      "app_user:delete_app_user"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 420614069,
+      "low": -1600585728,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:38.094Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:38.094Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.find",
+    "permissionName": "查询",
+    "authorities": [
+      "app_user_tag:read",
+      "app_role:read",
+      "app_user:read",
+      "department:read",
+      "app_department:read",
+      "sys_dict:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 2,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:38.779Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:38.779Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.logoff_user",
+    "permissionName": "注销用户",
+    "authorities": [
+      "app_user:logoff_app_user"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/people-delete.svg",
+    "sort": {
+      "high": 399197256,
+      "low": -2135887872,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:39.596Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:39.596Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.transfer_user_to_other_account",
+    "permissionName": "转至其他账号",
+    "authorities": [
+      "account:read",
+      "app_user:transfer_app_user_to_other_account"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 10,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:40.258Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:40.258Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404137470525440",
+    "permissionId": "user.unlogoff_user",
+    "permissionName": "取消注销用户",
+    "authorities": [
+      "app_user:unlogoff_user"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "sort": {
+      "high": 403586365,
+      "low": -1440141312,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:40.922Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:40.922Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404167770177536",
+    "permissionId": "department.find",
+    "permissionName": "查询",
+    "authorities": [
+      "app_department:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 12,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:43.369Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:43.369Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404167770177536",
+    "permissionId": "department.create",
+    "permissionName": "添加",
+    "authorities": [
+      "app_department:create_app_department"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 13,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:44.042Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:44.042Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404167770177536",
+    "permissionId": "department.modify",
+    "permissionName": "编辑",
+    "authorities": [
+      "app_department:modify_app_department_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 14,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:44.800Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:44.800Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404167770177536",
+    "permissionId": "department.delete",
+    "permissionName": "删除",
+    "authorities": [
+      "app_department:delete_app_department"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 0,
+      "low": 15,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:45.475Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:45.475Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404186854260736",
+    "permissionId": "user_tag.read",
+    "permissionName": "查询",
+    "authorities": [
+      "app_user_tag:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 59,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:47.976Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:47.976Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404186854260736",
+    "permissionId": "user_tag.create_user_tag",
+    "permissionName": "创建",
+    "authorities": [
+      "app_user_tag:create_app_user_tag"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 60,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:48.682Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:48.682Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404186854260736",
+    "permissionId": "user_tag.modify_user_tag_info",
+    "permissionName": "编辑",
+    "authorities": [
+      "app_user_tag:modify_app_user_tag_info"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 61,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:49.441Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:49.441Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404186854260736",
+    "permissionId": "user_tag.modify_user_tag_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "app_user_tag:modify_app_user_tag_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 0,
+      "low": 62,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:50.465Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:50.465Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404186854260736",
+    "permissionId": "user_tag.delete_user_tag",
+    "permissionName": "删除",
+    "authorities": [
+      "app_user_tag:delete_app_user_tag"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 0,
+      "low": 63,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:51.122Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:51.122Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.create",
+    "permissionName": "创建",
+    "authorities": [
+      "app_role:read",
+      "app_role:create_app_role"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "sort": {
+      "high": 0,
+      "low": 7,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:56.400Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:56.400Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.modify_info",
+    "permissionName": "编辑",
+    "authorities": [
+      "app_role:modify_app_role_info",
+      "app_role:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 8,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:57.090Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:57.090Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.modify_permission",
+    "permissionName": "修改权限",
+    "authorities": [
+      "app_role:read",
+      "app_role:modify_app_role_permission"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "sort": {
+      "high": 0,
+      "low": 9,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:57.829Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:57.829Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.delete",
+    "permissionName": "删除角色",
+    "authorities": [
+      "app_role:delete_app_role"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 399195500,
+      "low": -1615286272,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:58.545Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:58.545Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.modify_status",
+    "permissionName": "启用/禁用",
+    "authorities": [
+      "app_role:read",
+      "app_role:modify_app_role_status"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/power.svg",
+    "sort": {
+      "high": 398529636,
+      "low": -919539712,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:23:59.524Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:23:59.524Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.read",
+    "permissionName": "查询",
+    "authorities": [
+      "app_role:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 0,
+      "low": 6,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:24:00.224Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:24:00.224Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404223139184640",
+    "permissionId": "role.delete_permission",
+    "permissionName": "删除",
+    "authorities": [
+      "app_role:delete_app_role_permission"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "sort": {
+      "high": 487472253,
+      "low": 1526976512,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:22.094Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:22.094Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677374507044864",
+    "permissionId": "app_user_authorization.read",
+    "permissionName": "查询",
+    "authorities": [
+      "endpoint:read",
+      "app_user:read",
+      "app_user_authorization:get_app_user_authorization",
+      "app:read",
+      "client:read"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/search.svg",
+    "sort": {
+      "high": 487472251,
+      "low": -175910912,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:20.663Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:20.663Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093677374507044864",
+    "permissionId": "app_user_authorization.offline",
+    "permissionName": "下线",
+    "authorities": [
+      "app_user_authorization:offline",
+      "app_user_authorization:offline_all"
+    ],
+    "type": null,
+    "defaultPermission": false,
+    "hiddenPermission": false,
+    "icon": "/icons/cairo/permission-icon/logout.svg",
+    "sort": {
+      "high": 487472252,
+      "low": -1551642624,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T12:29:21.359Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T12:29:21.359Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404248867045376",
+    "permissionId": "app_file.readwrite",
+    "permissionName": "应用文件组件",
+    "authorities": [
+      "app_file:upload_file",
+      "app_file:access_file",
+      "app_file:get_file_stat"
+    ],
+    "type": null,
+    "defaultPermission": true,
+    "hiddenPermission": true,
+    "icon": "/icons/cairo/permission-icon/application-menu.svg",
+    "sort": {
+      "high": 420867780,
+      "low": 1201209344,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:24:02.606Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:24:02.606Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappVersion": "v1",
+    "menuId": "2093404248867045376",
+    "permissionId": "public_file.readwrite",
+    "permissionName": "公共文件组件",
+    "authorities": [
+      "public_file:access_file",
+      "public_file:get_file_stat",
+      "public_file:upload_file"
+    ],
+    "type": null,
+    "defaultPermission": true,
+    "hiddenPermission": true,
+    "icon": "/icons/cairo/permission-icon/application-menu.svg",
+    "sort": {
+      "high": 422651121,
+      "low": -1281818624,
+      "unsigned": false
+    },
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-28T18:24:03.330Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-28T18:24:03.330Z"
+    }
+  }
+]

@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+out/
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Node
+node_modules/
+dist/
+dev-dist/
+*.local
+
+# 日志与临时文件
+*.log
+*.log.*
+HELP.md
+ip2region/ip2region.xdb
+
+# 本地环境配置（真实凭证，只留 .example 模板）
+**/src/main/resources/config/application-local.y*ml
+auth/web/.env.local
+
+# OAuth2 JWK 密钥对（本地生成，只有说明文件入库）
+auth/service/src/main/resources/config/oauth-jwk/*
+!auth/service/src/main/resources/config/oauth-jwk/README.md
+
+# Claude Code 会话目录
+.claude/

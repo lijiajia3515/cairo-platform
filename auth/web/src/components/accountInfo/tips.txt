@@ -1,0 +1,38 @@
+ <!-- 账号详情 -->
+  <AccountInfo :data="accountDetail" ref="accountInfoRef" @close="onCloseAccountInfo"></AccountInfo>
+
+
+
+import AccountInfo from '@/components/accountInfo';
+
+
+let accountInfoRef = ref(null); // 账号详情
+const [accountDetail, setAccountDetail] = useState({});
+const onWatchAccountInfo = (data) => {
+  accountInfoRef.value.open();
+  setAccountDetail(data)
+}
+const onCloseAccountInfo = () => {
+  setAccountDetail({});
+}
+
+
+
+
+
+
+
+    {
+      colKey: 'Account.Nickname', title: '账号', cell: (h, { row }) => {
+        return (
+          <t-space size="small">
+            {
+              row?.Account?.AvatarUrl ? <t-avatar imageProps={{ lazy: true }} class="pick" onClick={() => onWatchUserInfo(row)} hideOnLoadFailed={true} alt={row?.Account?.Nickname?.slice(0, 2)} size="medium" image={row?.Account?.AvatarUrl} /> : (
+                row?.Account?.Nickname ? <t-avatar imageProps={{ lazy: true }} class="pick" onClick={() => onWatchUserInfo(row)} size="medium" >{row?.Account?.Nickname?.slice(0, 2)}</t-avatar> : null
+              )
+            }
+            <div class="pick" onClick={() => onWatchAccountInfo(row?.Account || {})} style={{ height: '100%', display: 'flex', alignItems: 'center' }}>{row?.Account?.Nickname || null}</div>
+          </t-space>
+        )
+      }
+    },

@@ -1,0 +1,8 @@
+// Java Platform(BOM) 模块约定，附带发布能力
+// 约束一律使用 api(project(':模块')) 声明——project 依赖天然携带
+// group:name:version，发布 pom 时无需额外解析（现代 Gradle 原生行为，
+// 旧方案的自定义 platformApiClasspath 配置 + versionMapping 已不再需要）
+plugins {
+  id 'java-platform'
+  id 'cairo.maven-publish'
+}

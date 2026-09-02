@@ -1,0 +1,16 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  api(project(":framework:core"))
+
+
+  compileOnly('org.springframework:spring-webmvc')
+
+  compileOnly('org.springframework.retry:spring-retry')
+
+  compileOnly('org.springframework.cloud:spring-cloud-starter-loadbalancer')
+
+}

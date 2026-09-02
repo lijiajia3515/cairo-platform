@@ -1,0 +1,24 @@
+// 全仓公共配置：统一版本与 group 分配
+// 插件与依赖约定见 build-logic/（cairo.java-library / cairo.spring-boot-app /
+// cairo.java-platform / cairo.maven-publish），版本见 gradle/libs.versions.toml
+
+allprojects {
+  // 版本统一由 gradle.properties 的 version 声明：
+  //   开发期 2.2.0-SNAPSHOT（Maven 标准，仓库端自动生成时间戳副本）
+  //   发布时去掉 -SNAPSHOT（或 CI 上 -Pversion=2.2.0 覆盖）
+  version = project.property('version')
+}
+
+subprojects {
+  // 按路径前缀分配 group；容器模块(domain/sdk/starter)在自己的 build.gradle 中覆盖子模块 group
+  if (project.path.startsWith(':framework')) {
+    group = 'io.github.lijiajia3515.cairo.framework'
+  } else if (project.path.startsWith(':starter')) {
+    group = 'io.github.lijiajia3515.cairo.starter'
+  } else if (project.path.startsWith(':auth')) {
+    group = 'io.github.lijiajia3515.cairo.auth'
+  } else {
+    group = 'io.github.lijiajia3515.cairo'
+  }
+  description = 'Cairo Platform'
+}

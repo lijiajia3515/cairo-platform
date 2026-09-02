@@ -1,0 +1,41 @@
+# 示例配置（已脱敏）：可直接以 example profile 启动，或复制为 application-local.yml 填入真实值（不入库）
+# application-local.yml 已被 .gitignore 排除，严禁提交任何真实凭证
+server:
+  port: 9000
+
+management:
+  server:
+    port: ${server.port}
+
+
+arthas:
+  tunnel-server: ws://your-arthas-tunnel:7777/ws
+
+consul:
+  host: your-consul-host
+  port: 80
+
+spring:
+  arthas:
+    enabled: false
+  boot:
+    admin:
+      notify:
+        dingtalk:
+          secret: ${DINGTALK_SECRET:your-dingtalk-secret}
+          webhook-url: ${DINGTALK_WEBHOOK_URL:https://oapi.dingtalk.com/robot/send?access_token=your-token}
+          message: |
+            ====== TEST ======
+            1⃣️instanceId:    #{instance.id}
+            2⃣️️serviceName:   #{instance.registration.name}
+            3⃣️serviceUrl:    #{instance.registration.serviceUrl}
+            4⃣️managementUrl: #{instance.registration.managementUrl}
+            5️⃣healthUrl:     #{instance.registration.healthUrl}
+            6️⃣status:        #{instance.statusInfo.status}
+      discovery:
+        ignored-services:
+          - consul
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 192.168.*

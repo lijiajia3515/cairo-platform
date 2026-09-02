@@ -1,0 +1,58 @@
+import static io.github.lijiajia3515.cairo.build.CairoArtifacts.artifactId
+
+// Java 库模块约定：java-library + lombok + toolchain + BOM 平台
+plugins {
+  id 'java-library'
+  id 'io.freefair.lombok'
+  id 'com.gorylenko.gradle-git-properties'
+}
+
+// jar 文件名与发布 artifactId 保持一致（短模块名下避免不同子树同名模块的 jar 冲突）
+base {
+  archivesName = artifactId(project.path)
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+  }
+  withJavadocJar()
+  withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc).configureEach {
+  options.addStringOption('Xdoclint:none', '-quiet')
+  options.addStringOption('encoding', 'UTF-8')
+  options.addStringOption('charSet', 'UTF-8')
+  if (JavaVersion.current().isJava9Compatible()) {
+    options.addBooleanOption('html5', true)
+  }
+}
+
+test {
+  useJUnitPlatform()
+}
+
+gitProperties {
+  dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
+  dateFormatTimeZone = "GMT+8"
+}
+
+// 原生 BOM 平台替代 io.spring.dependency-management：
+// 约束随 api 传导到实现、测试与下游消费方
+dependencies {
+  api platform(libs.spring.boot.bom)
+  api platform(libs.spring.cloud.bom)
+  api platform(libs.hutool.bom)
+
+  // JUnit 5 聚合依赖（api+params+engine），版本由 BOM 管理
+  testImplementation 'org.assertj:assertj-core'
+  testImplementation 'org.junit.jupiter:junit-jupiter'
+  // JUnit Platform launcher：Gradle 内置版本(1.8.x)与 JUnit 5.12(Platform 1.12)不兼容，
+  // 必须显式声明以对齐版本（Spring Boot BOM 管理）
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

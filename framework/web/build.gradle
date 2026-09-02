@@ -1,0 +1,18 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  api(project(":framework:domain"))
+  api(project(":framework:jackson"))
+
+  api('org.springframework:spring-webmvc')
+
+  // runtime
+  compileOnly('org.apache.tomcat.embed:tomcat-embed-core')
+
+  // micrometer
+  compileOnly 'io.micrometer:micrometer-tracing-bridge-brave'
+  compileOnly 'io.zipkin.reporter2:zipkin-reporter-brave'
+}

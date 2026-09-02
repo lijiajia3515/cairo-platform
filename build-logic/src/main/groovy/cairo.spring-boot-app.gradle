@@ -1,0 +1,19 @@
+// Spring Boot 应用/服务模块约定
+plugins {
+  id 'cairo.java-library'
+  id 'org.springframework.boot'
+}
+
+dependencies {
+  // annotationProcessor / developmentOnly 独立解析，需单独挂 BOM 约束
+  annotationProcessor platform(libs.spring.boot.bom)
+  developmentOnly platform(libs.spring.boot.bom)
+
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+  // developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+  archiveClassifier = 'boot'
+}

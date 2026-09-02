@@ -1,0 +1,13 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+  // autoconfigure
+  compileOnly(group: 'org.springframework.boot', name: 'spring-boot-autoconfigure')
+  compileOnly(group: 'org.springframework.cloud', name: 'spring-cloud-commons')
+
+  api(libs.xxl.job)
+}

@@ -1,0 +1,67 @@
+pluginManagement {
+  repositories {
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    gradlePluginPortal()
+  }
+}
+
+dependencyResolutionManagement {
+  // 仓库统一在此声明，模块中不允许再配置 repositories
+  repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+  repositories {
+    // 国内镜像优先：阿里云 public 聚合了 central，spring 仓库提供 Spring 全家桶
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/spring' }
+    mavenCentral()
+  }
+}
+
+rootProject.name = 'cairo-platform'
+
+// 构建逻辑（约定插件），见 build-logic/
+includeBuild 'build-logic'
+
+// ---------------------------------------------------------------------------
+// 模块注册（Spring 风格）：目录名即模块名，发布 artifactId 由路径推导
+// （如 :auth:domain:core -> cairo-auth-domain-core，见 build-logic 发布约定）。
+// ---------------------------------------------------------------------------
+
+// 框架核心
+include 'framework:core',
+  'framework:domain',
+  'framework:mongodb',
+  'framework:jackson',
+  'framework:redis',
+  'framework:web',
+  'framework:rabbitmq',
+  'framework:feignclient',
+  'framework:loadbalancer',
+  'framework:dependencies'
+
+// starter 集合
+include 'starter:mongodb',
+  'starter:web',
+  'starter:redis',
+  'starter:rabbitmq',
+  'starter:xxljob',
+  'starter:dependencies',
+  'starter:example'
+
+// 授权中心
+include 'auth:core',
+  'auth:dependencies',
+  'auth:service',
+  'auth:domain:core',
+  'auth:domain:open',
+  'auth:domain:client',
+  'auth:domain:account',
+  'auth:domain:app',
+  'auth:domain:tenant-app',
+  'auth:domain:web',
+  'auth:sdk:core',
+  'auth:sdk:client',
+  'auth:starter:service'
+
+// 独立服务
+include 'gateway',
+  'sba'

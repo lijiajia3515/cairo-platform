@@ -1,0 +1,44 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+  api(project(':framework:mongodb'))
+  api(project(':framework:web'))
+  api(project(':framework:feignclient'))
+
+  api(project(':framework:rabbitmq'))
+
+
+  api('cn.hutool:hutool-extra')
+  api('cn.hutool:hutool-captcha')
+  api('cn.hutool:hutool-crypto')
+
+
+  compileOnly('jakarta.validation:jakarta.validation-api')
+  compileOnly('org.springframework.data:spring-data-mongodb')
+
+  compileOnly( 'org.aspectj:aspectjweaver')
+  // compileOnly('org.springframework:spring-aop')
+  compileOnly('org.springframework.security:spring-security-oauth2-jose')
+  compileOnly('org.springframework.security:spring-security-oauth2-resource-server')
+  compileOnly('org.springframework.boot:spring-boot-starter-oauth2-client')
+  compileOnly('org.springframework.security:spring-security-web')
+
+  compileOnly('org.springframework.boot:spring-boot-starter-data-redis')
+  compileOnly('io.micrometer:micrometer-tracing-bridge-brave')
+
+  compileOnly('org.springframework.amqp:spring-rabbit')
+
+  // runtime
+  compileOnly('org.apache.tomcat.embed:tomcat-embed-core')
+
+  // lock4j
+  compileOnly(libs.lock4j.core)
+}
+
+test {
+  enabled = false;
+}

@@ -1,0 +1,24 @@
+pluginManagement {
+  repositories {
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    gradlePluginPortal()
+  }
+}
+
+dependencyResolutionManagement {
+  repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    gradlePluginPortal()
+    mavenCentral()
+  }
+
+  // 与主构建共用同一份版本目录
+  versionCatalogs {
+    libs {
+      from(files("../gradle/libs.versions.toml"))
+    }
+  }
+}
+
+rootProject.name = 'build-logic'

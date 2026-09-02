@@ -1,0 +1,142 @@
+// Maven 发布约定：artifactId 由模块路径推导并统一补 cairo- 前缀
+//   :framework:core    -> cairo-framework-core
+//   :auth:domain:core  -> cairo-auth-domain-core
+//   :starter:web       -> cairo-starter-web
+// 同时适配 java-library（jar）与 java-platform（pom）两种组件。
+// 发布仓库与签名凭证不入库，配置在 ~/.gradle/gradle.properties：
+//   publishRepository=release|snapshot|central|central-snapshot
+//   repository.release.url / repository.release.username / ... 等
+
+import static io.github.lijiajia3515.cairo.build.CairoArtifacts.artifactId
+
+plugins {
+  id 'maven-publish'
+  id 'signing'
+}
+
+def cairoArtifactId = artifactId(project.path)
+
+def isPlatform = pluginManager.hasPlugin('java-platform')
+
+// pom 公共元数据（license / developer / scm）
+def configurePom = { MavenPom pom ->
+  pom.name = cairoArtifactId
+  pom.url = 'https://github.com/lijiajia3515/cairo-platform'
+  pom.description = 'Cairo Platform'
+  pom.licenses {
+    it.license {
+      it.name = 'Apache License, Version 2.0'
+      it.url = 'https://www.apache.org/licenses/LICENSE-2.0'
+      it.distribution = 'repo'
+    }
+  }
+  pom.developers {
+    it.developer {
+      it.id = 'lijiajia'
+      it.name = 'lijiajia'
+      it.email = 'lijiajia3515@aliyun.com'
+    }
+  }
+  pom.scm {
+    it.url = 'https://github.com/lijiajia3515/cairo-platform'
+    it.connection = 'scm:git:git@github.com:lijiajia3515/cairo-platform.git'
+    it.developerConnection = 'scm:git:git@github.com:lijiajia3515/cairo-platform.git'
+  }
+}
+
+publishing {
+  publications {
+    if (isPlatform) {
+      create('mavenPom', MavenPublication) {
+        from components.javaPlatform
+        artifactId = cairoArtifactId
+        configurePom(pom)
+      }
+    } else {
+      create('mavenJava', MavenPublication) {
+        from components.java
+        artifactId = cairoArtifactId
+        configurePom(pom)
+        versionMapping {
+          usage('java-api') {
+            fromResolutionOf('runtimeClasspath')
+          }
+          usage('java-runtime') {
+            fromResolutionResult()
+          }
+        }
+      }
+    }
+  }
+
+  repositories {
+    if (project.hasProperty('publishRepository')) {
+      def target = project.property('publishRepository').toString()
+      if (target == 'release' && project.hasProperty('repository.release.url')) {
+        maven {
+          url project.property('repository.release.url')
+          if (project.hasProperty('repository.release.username')) {
+            credentials {
+              username project.property('repository.release.username').toString()
+              password project.property('repository.release.password').toString()
+            }
+          }
+        }
+      }
+      if (target == 'snapshot' && project.hasProperty('repository.snapshot.url')) {
+        maven {
+          url project.property('repository.snapshot.url')
+          if (project.hasProperty('repository.snapshot.username')) {
+            credentials {
+              username project.property('repository.snapshot.username').toString()
+              password project.property('repository.snapshot.password').toString()
+            }
+          }
+        }
+      }
+      if (target == 'central') {
+        maven {
+          url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+          credentials {
+            username project.property('repository.central.username').toString()
+            password project.property('repository.central.password').toString()
+          }
+        }
+      }
+      if (target == 'central-snapshot') {
+        maven {
+          url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+          credentials {
+            username project.property('repository.central.username').toString()
+            password project.property('repository.central.password').toString()
+          }
+        }
+      }
+    }
+  }
+}
+
+signing {
+  if (project.hasProperty('publishRepository') &&
+    'central' == project.property('publishRepository').toString()) {
+    sign publishing.publications
+  }
+}
+
+// platform 组件生成的 pom 中可能出现空的 dependencyManagement 块，发布前移除
+if (isPlatform) {
+  tasks.withType(GenerateMavenPom).configureEach {
+    doLast {
+      File file = new File("$buildDir/publications/mavenPom/pom-default.xml")
+      if (file.exists()) {
+        def text = file.text
+        def pattern = "  <dependencyManagement>\n" +
+          "    <dependencies/>\n" +
+          "  </dependencyManagement>\n"
+        if (text =~ pattern) {
+          file.write(text.replaceFirst(pattern, ""))
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+# 示例配置（已脱敏）：可直接以 example profile 启动，或复制为 application-local.yml 填入真实值（不入库）
+# application-local.yml 已被 .gitignore 排除，严禁提交任何真实凭证
+server:
+  port: 7822
+
+management:
+  server:
+    port: 7823
+  zipkin:
+    tracing:
+      endpoint: https://your-zipkin-host/api/v2/spans
+
+spring:
+  application:
+    name: cairo-gateway-local
+  devtools:
+    livereload:
+      port: 17822
+      enabled: false
+  data:
+    redis:
+      database: 0
+      host: your-redis-host
+      port: 6379
+      username: default
+      password: ${REDIS_PASSWORD:your-redis-password}
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 192.168.*
+    consul:
+      host: your-consul-host
+      port: 80
+      discovery:
+        enabled: true
+        instance-zone: default
+        instance-group: cairo
+    discovery:
+      enabled: true
+      client:
+        simple:
+          instances:
+            zipkin:
+              - instance-id: zipkin
+                serviceId: zipkin
+                uri: http://your-zipkin-host
+          order: -100
+    gateway:
+      routes: []
+
+arthas:
+  tunnel-server: ws://your-arthas-tunnel:7777/ws
+
+logging:
+  config:
+    root: debug

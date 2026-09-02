@@ -1,0 +1,3 @@
+  io.github.lijiajia3515.cairo.autoconfigure.web.CairoRestControllerAdvice
+  io.github.lijiajia3515.cairo.autoconfigure.web.SpringWebAutoConfiguration
+  io.github.lijiajia3515.cairo.autoconfigure.web.CairoWebConfiguration

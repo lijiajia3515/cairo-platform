@@ -1,0 +1,9 @@
+# 构建产物
+dist
+dev-dist
+node_modules
+
+# 锁文件与静态资源交由各自工具管理
+pnpm-lock.yaml
+package-lock.json
+public

@@ -1,0 +1,19 @@
+
+
+<Dialog :visible="visible" @confirm="onConfirm" @close="onClose" title="标题">
+    13141
+</Dialog>
+
+
+const [visible, setVisible] = useState(false);
+const onCreate = () => {
+  setVisible(true);
+}
+const onConfirm = () => {
+  setVisible(false);
+}
+const onClose = () => {
+  setVisible(false);
+}
+
+

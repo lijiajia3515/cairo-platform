@@ -1,0 +1,115 @@
+spring:
+  application:
+    name: example
+  profiles:
+    active:
+      - local
+
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+    default-property-inclusion: ALWAYS
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DATE_KEYS_AS_TIMESTAMPS: false
+      WRITE_DATES_WITH_ZONE_ID: false
+    deserialization:
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+    generator:
+      WRITE_NUMBERS_AS_STRINGS: true
+  mvc:
+    static-path-pattern: /**
+  webflux:
+    format:
+      date: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: true
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 100MB
+      file-size-threshold: 1MB
+      resolve-lazily: true
+  data:
+    redis:
+      database: 0
+      connect-timeout: 10s
+      timeout: 1m
+      lettuce:
+        shutdown-timeout: 1m
+        pool:
+          max-active: 5
+          max-idle: 5
+          min-idle: 1
+          max-wait: 1m
+          time-between-eviction-runs: 10m
+        cluster:
+          refresh:
+            adaptive: true
+            period: 15s
+
+server:
+  port: 80
+  http2:
+    enabled: true
+  max-http-request-header-size: 8KB
+  servlet:
+    encoding:
+      force: true
+    session:
+      cookie:
+        name: cairo
+        path: /
+        max-age: 30M
+  tomcat:
+    max-http-form-post-size: 10MB
+  error:
+    include-binding-errors: always
+    include-message: always
+  shutdown: graceful
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    arthas:
+      enabled: true
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1
+  zipkin:
+    tracing:
+      endpoint: https://zipkin.example.com
+  info:
+    git:
+      mode: full
+
+logging:
+  file:
+    path: logs
+  logback:
+    rollingpolicy:
+      max-history: 30
+      max-file-size: 1GB
+      total-size-cap: 10GB
+      clean-history-on-start: false
+  level:
+    root: warn
+    org.springframework.data.mongodb: debug
+    org.springframework.data.redis: debug
+    com.hf: debug
+
+cairo:
+  redis:
+    key-prefix: cairo:${spring.application.name:${random.uuid}}
+

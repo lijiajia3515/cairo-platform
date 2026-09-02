@@ -1,0 +1,962 @@
+[
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "authorization_code",
+    "itemName": "授权码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:29.090Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:29.090Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "client_credentials",
+    "itemName": "客户端模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:29.730Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:29.730Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "refresh_token",
+    "itemName": "刷新令牌",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:30.443Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:30.443Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "implicit",
+    "itemName": "简化模式(废弃)",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 8,
+    "rightNo": 9,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:31.071Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:31.071Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "account:password",
+    "itemName": "账号-密码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 10,
+    "rightNo": 11,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:31.692Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:31.692Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "account:verify_code",
+    "itemName": "账号-验证码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 12,
+    "rightNo": 13,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:32.324Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:32.324Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "account:sns_code",
+    "itemName": "账号-第三方登录(授权码)",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 14,
+    "rightNo": 15,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:32.942Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:32.942Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "account:account_refresh_token",
+    "itemName": "账号-账号刷新令牌模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 16,
+    "rightNo": 17,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:33.643Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:33.643Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "app_user:password",
+    "itemName": "应用用户-密码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 18,
+    "rightNo": 19,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:34.244Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:34.244Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "app_user:verify_code",
+    "itemName": "应用用户-验证码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 20,
+    "rightNo": 21,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:34.863Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:34.863Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "app_user:account_sns_code",
+    "itemName": "应用用户-账号第三方登录(授权码)模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 22,
+    "rightNo": 23,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:35.473Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:35.473Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "app_user:account_access_token",
+    "itemName": "应用用户-账号授权模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 24,
+    "rightNo": 25,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:36.183Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:36.183Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "app_user:app_user_refresh_token",
+    "itemName": "应用用户-应用用户刷新令牌模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 26,
+    "rightNo": 27,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:36.811Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:36.811Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user:password",
+    "itemName": "企业应用用户-密码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 28,
+    "rightNo": 29,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:37.447Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:37.447Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user:verify_code",
+    "itemName": "企业应用用户-验证码模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 30,
+    "rightNo": 31,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:38.067Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:38.067Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user:account_sns_code",
+    "itemName": "企业应用用户-账号第三方登录(授权码)模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 32,
+    "rightNo": 33,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:38.670Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:38.670Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user:account_access_token",
+    "itemName": "企业应用用户-账号授权模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 34,
+    "rightNo": 35,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:39.378Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:39.378Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthorizationGrantType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user:tenant_app_user_refresh_token",
+    "itemName": "企业应用用户-企业应用用户刷新令牌模式",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 36,
+    "rightNo": 37,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:40.004Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:40.004Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "web",
+    "itemName": "网页",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:44.786Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:44.786Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "universal_app",
+    "itemName": "通用手机应用",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:45.649Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:45.649Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "android",
+    "itemName": "安卓",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:46.271Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:46.271Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "ios",
+    "itemName": "IOS",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 8,
+    "rightNo": 9,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:46.885Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:46.885Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "mini_app",
+    "itemName": "小程序",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 10,
+    "rightNo": 11,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:47.492Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:47.492Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "EndpointType",
+    "parentItemId": "0",
+    "itemId": "biz",
+    "itemName": "h5端",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 12,
+    "rightNo": 13,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:48.111Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:48.111Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "account",
+    "itemName": "账号",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:49.316Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:49.316Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "client",
+    "itemName": "客户端",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:50.078Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:50.078Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "app_user",
+    "itemName": "应用用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:50.695Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:50.695Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "subapp_user",
+    "itemName": "子应用用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 8,
+    "rightNo": 9,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:51.386Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:51.386Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "tenant_app_user",
+    "itemName": "企业应用用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 10,
+    "rightNo": 11,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:52.017Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:52.017Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AuthenticationType",
+    "parentItemId": "0",
+    "itemId": "tenant_subapp_user",
+    "itemName": "企业子应用用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 12,
+    "rightNo": 13,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:52.641Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:52.641Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AppReleaseType",
+    "parentItemId": "0",
+    "itemId": "web",
+    "itemName": "web端",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:53.753Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:53.753Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AppReleaseType",
+    "parentItemId": "0",
+    "itemId": "android",
+    "itemName": "安卓",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:54.608Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:54.608Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AppReleaseType",
+    "parentItemId": "0",
+    "itemId": "ios",
+    "itemName": "ios",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:55.209Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:55.209Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsType",
+    "parentItemId": "0",
+    "itemId": "wx_web",
+    "itemName": "微信开放用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:56.353Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:56.353Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsType",
+    "parentItemId": "0",
+    "itemId": "wx_mp",
+    "itemName": "微信公众用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:56.982Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:56.982Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsType",
+    "parentItemId": "0",
+    "itemId": "wx_ma",
+    "itemName": "微信小程序用户",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:57.947Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:57.947Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsPartner",
+    "parentItemId": "0",
+    "itemId": "default",
+    "itemName": "默认",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:59.094Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:59.094Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "SnsPartner",
+    "parentItemId": "0",
+    "itemId": "wx",
+    "itemName": "微信",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:00:59.962Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:00:59.962Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "parentItemId": "0",
+    "itemId": "password",
+    "itemName": "密码登录",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:01.112Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:01.112Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "parentItemId": "0",
+    "itemId": "verify_code",
+    "itemName": "验证码登录",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:01.736Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:01.736Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "parentItemId": "0",
+    "itemId": "sns",
+    "itemName": "第三方登录",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:02.421Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:02.421Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "parentItemId": "0",
+    "itemId": "account",
+    "itemName": "账号登录",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 8,
+    "rightNo": 9,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:03.029Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:03.029Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "LoginType",
+    "parentItemId": "0",
+    "itemId": "unknown",
+    "itemName": "未知",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 10,
+    "rightNo": 11,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:03.663Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:03.663Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccountAuthType",
+    "parentItemId": "0",
+    "itemId": "sso",
+    "itemName": "单点登录",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:04.789Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:04.789Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccountAuthType",
+    "parentItemId": "0",
+    "itemId": "oauth2",
+    "itemName": "OAuth2",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:05.702Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:05.702Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccessScope",
+    "parentItemId": "0",
+    "itemId": "public",
+    "itemName": "开放",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 2,
+    "rightNo": 3,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:06.803Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:06.803Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccessScope",
+    "parentItemId": "0",
+    "itemId": "tenant",
+    "itemName": "企业",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 6,
+    "rightNo": 7,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T02:01:08.032Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T02:01:08.032Z"
+    }
+  },
+  {
+    "appId": "cairo",
+    "dictId": "AccessScope",
+    "parentItemId": "0",
+    "itemId": "app",
+    "itemName": "平台",
+    "remark": null,
+    "icon": null,
+    "editable": true,
+    "enabled": true,
+    "depth": 1,
+    "leftNo": 4,
+    "rightNo": 5,
+    "metadata": {
+      "createAccountId": "1",
+      "createTime": "2026-08-29T19:18:20.859Z",
+      "updateAccountId": "1",
+      "updateTime": "2026-08-29T19:18:20.859Z"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+# 全仓依赖版本目录（Gradle 官方 Version Catalog）
+# 所有版本与第三方坐标统一在此声明，模块构建文件通过 libs.* 访问器引用
+
+[versions]
+java = "17"
+spring-boot = "3.5.16"
+spring-cloud = "2025.0.3"
+spring-boot-admin = "3.5.9"
+hutool = "5.8.38"
+# gradle 插件（供 build-logic 使用）
+lombok-plugin = "8.6"
+git-properties-plugin = "2.4.2"
+
+[libraries]
+# BOM
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spring-boot-admin-bom = { module = "de.codecentric:spring-boot-admin-dependencies", version.ref = "spring-boot-admin" }
+hutool-bom = { module = "cn.hutool:hutool-bom", version.ref = "hutool" }
+
+# 第三方（无 BOM 管理的构件）
+arthas = { module = "com.taobao.arthas:arthas-spring-boot-starter", version = "3.6.3" }
+redisson = { module = "org.redisson:redisson-spring-boot-starter", version = "3.37.0" }
+lock4j-core = { module = "com.baomidou:lock4j-core", version = "2.2.7" }
+lock4j-redisson = { module = "com.baomidou:lock4j-redisson-spring-boot-starter", version = "2.2.7" }
+ip2region = { module = "org.lionsoul:ip2region", version = "2.7.0" }
+minio = { module = "io.minio:minio", version = "8.5.9" }
+aliyun-dysmsapi = { module = "com.aliyun:alibabacloud-dysmsapi20170525", version = "2.0.22" }
+weixin-mp-starter = { module = "com.github.binarywang:wx-java-mp-spring-boot-starter", version = "4.6.0" }
+weixin-mp = { module = "com.github.binarywang:weixin-java-mp", version = "4.6.0" }
+weixin-cp = { module = "com.github.binarywang:weixin-java-cp", version = "4.6.0" }
+weixin-miniapp = { module = "com.github.binarywang:weixin-java-miniapp", version = "4.6.0" }
+zstd-jni = { module = "com.github.luben:zstd-jni", version = "1.5.7-3" }
+snappy = { module = "org.xerial.snappy:snappy-java", version = "1.1.9.1" }
+xxl-job = { module = "com.xuxueli:xxl-job-core", version = "3.1.0" }
+
+# 测试
+# 嵌入式 MongoDB（无 Docker 环境的集成测试，二进制从 fastdl.mongodb.org 按需下载）
+flapdoodle-embed-mongo = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version = "4.20.0" }

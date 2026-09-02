@@ -1,0 +1,36 @@
+[
+  {
+    "id": "manage",
+    "appId": "cairo",
+    "endpointId": "web",
+    "subappId": "manage",
+    "subappName": "管理中心",
+    "subappIcon": "",
+    "enabled": true,
+    "sort": 1,
+    "metadata": {
+      "createUserId": null,
+      "createTime": "2026-08-28T17:35:00.960Z",
+      "updateUserId": null,
+      "updateTime": "2026-08-28T17:35:00.960Z"
+    },
+    "scope": "app"
+  },
+  {
+    "id": "2093642672127594496",
+    "appId": "demo",
+    "endpointId": "web",
+    "subappId": "demo",
+    "subappName": "演示应用",
+    "subappIcon": "",
+    "enabled": true,
+    "sort": 1787998285,
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T10:11:25.693Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T10:11:25.693Z"
+    },
+    "scope": "tenant"
+  }
+]

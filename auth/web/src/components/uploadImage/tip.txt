@@ -1,0 +1,24 @@
+
+文件名格式：
+https://thoughts.aliyun.com/workspaces/65016de75cd066001b40bdb4/docs/652613064c6050000199c726#652615f994cb5f65cda23b13
+
+
+ <UploadImage @change="onChangeFiles" :limit="10" :fileList="editFileList"></UploadImage>
+
+import UploadImage from '@/components/uploadImage';
+
+ const [fileList, setFileList] = useState([]);
+
+const [editFileList, setEditFileList] = useState([
+  {
+    name: 'demo-image-1.png', url: 'https://tdesign.gtimg.com/demo/demo-image-1.png'
+  }
+]); // 编辑 过去显示
+
+const onChangeFiles = (files) => {
+  setFileList(files)
+}
+
+// 编辑的时候直接设置  editFileList  
+// 参数 url  
+// 参数 name: row.AvatarUrl.split('/')[row.AvatarUrl.split('/').length - 1]

@@ -1,0 +1,9 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+  api(project(":framework:domain"))
+  compileOnly('org.springframework.amqp:spring-amqp')
+}

@@ -1,0 +1,37 @@
+
+  <!-- 用户信息 userDetail -->
+  <UserInfo @close="onCloseUserDetail" :UserId="userDetail.UserId" :Nickname="userDetail.Nickname" :AccountAvatarUrl="userDetail.AccountAvatarUrl"
+    :JoinTime="userDetail.JoinTime" ref="userInfoRef"></UserInfo>
+
+
+import UserInfo from '@/components/userInfo';
+
+    {
+      colKey: 'Metadata.UpdateUser.Nickname', title: '更新人', cell: (h, { row }) => {
+        return (
+          <t-space size="small">
+            {
+              row?.Metadata?.UpdateUser?.AccountAvatarUrl ? <t-avatar class="pick" onClick={() => onWatchUserInfo(row)} hideOnLoadFailed={true} alt={row?.Metadata?.UpdateUser?.Nickname?.slice(0, 2)} size="medium" image={row?.Metadata?.UpdateUser?.AccountAvatarUrl} /> : (
+                row?.Metadata?.UpdateUser?.Nickname ? <t-avatar class="pick" onClick={() => onWatchUserInfo(row)} size="medium" >{row?.Metadata?.UpdateUser?.Nickname?.slice(0, 2)}</t-avatar> : null
+              )
+            }
+            <div class="pick" onClick={() => onWatchUserInfo(row)} style={{ height: '100%', display: 'flex', alignItems: 'center' }}>{row?.Metadata?.UpdateUser?.Nickname || null}</div>
+          </t-space>
+        )
+      }
+    },
+    { colKey: 'Metadata.UpdateTime', title: '更新时间' },
+
+
+/**
+ **************************************************** 用户详情
+ */
+ let userInfoRef = ref(null);
+const [userDetail, setUserDetail] = useState({});
+const onWatchUserInfo = (row) => {
+  userInfoRef.value.open();
+  setUserDetail(row.Metadata.UpdateUser)
+}
+const onCloseUserDetail = () => {
+  setUserDetail({});
+}

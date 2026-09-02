@@ -1,0 +1,40 @@
+plugins {
+  id 'cairo.spring-boot-app'
+}
+
+dependencies {
+  // boot
+  annotationProcessor(group: 'org.springframework.boot', name: 'spring-boot-configuration-processor')
+
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-actuator')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-aop')
+  implementation(group: 'org.springframework.retry', name: 'spring-retry')
+  implementation(libs.arthas)
+
+  implementation(group: 'org.apache.commons', name: 'commons-pool2')
+  implementation(group: 'com.github.ben-manes.caffeine', name: 'caffeine')
+
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-webflux')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis-reactive')
+  testImplementation(group: 'io.projectreactor', name: 'reactor-test')
+
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway')
+
+  // discovery
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-consul-discovery')
+
+  // config
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap')
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-consul-config')
+
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-circuitbreaker-resilience4j')
+  implementation(group: 'io.github.resilience4j', name: 'resilience4j-reactor')
+
+  // micrometer zipkin
+  implementation(group: 'io.micrometer', name: 'micrometer-tracing-bridge-brave')
+  implementation(group: 'io.zipkin.reporter2', name: 'zipkin-reporter-brave')
+
+  implementation(project(':framework:domain'))
+}
+

@@ -1,0 +1,33 @@
+plugins {
+  id 'cairo.spring-boot-app'
+}
+
+dependencies {
+  // boot
+  implementation('org.springframework.boot:spring-boot-starter')
+  implementation('org.springframework.boot:spring-boot-starter-actuator')
+  implementation('org.springframework.boot:spring-boot-starter-aop')
+  implementation('org.springframework.retry:spring-retry')
+
+  implementation('org.springframework.boot:spring-boot-starter-web')
+  implementation('org.springframework.boot:spring-boot-starter-security')
+
+  implementation('io.micrometer:micrometer-tracing-bridge-brave')
+  implementation('io.zipkin.reporter2:zipkin-reporter-brave')
+
+  // data
+//  implementation('org.springframework.boot:spring-boot-starter-data-redis')
+  implementation('org.apache.commons:commons-pool2')
+  implementation('com.github.ben-manes.caffeine:caffeine')
+//  implementation(project(':starter:redis'))
+  implementation(project(':starter:web'))
+
+
+}
+
+
+//bootJar {
+//  // classifier('boot')
+//}
+
+

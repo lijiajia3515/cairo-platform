@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cairo-sba
+  cloud:
+    consul:
+      host: ${consul.host:consul}
+      port: ${consul.port:8500}
+      scheme: http
+      config:
+        enabled: false
+        format: yaml
+        profile-separator: ','

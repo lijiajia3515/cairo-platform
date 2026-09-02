@@ -1,0 +1,24 @@
+plugins {
+  id 'cairo.java-library'
+  id 'cairo.maven-publish'
+}
+
+dependencies {
+
+  api(project(":framework:core"))
+
+  // feign
+  api('io.github.openfeign:feign-core')
+  api('io.github.openfeign:feign-okhttp')
+  api('org.springframework.cloud:spring-cloud-openfeign-core')
+
+
+  // oauth2
+  compileOnly('org.springframework.security:spring-security-oauth2-client')
+
+  // web
+  compileOnly('org.apache.tomcat.embed:tomcat-embed-core')
+  compileOnly('org.springframework:spring-webmvc')
+
+
+}

@@ -1,0 +1,29 @@
+@media screen and (min-width: 0px) and (max-width: 750px) {
+  .t-input--auto-width {
+    max-width: 105px !important;
+  }
+
+  .t-dialog--default {
+    padding: 10px 2px !important;
+  }
+}
+
+
+
+.t-cascader__menu {
+  width: 250px !important;
+}
+
+.t-cascader__item--leaf .t-checkbox {
+  width: auto !important;
+}
+
+
+
+// 穿梭框图标
+.t-transfer__operations .t-icon {
+  display: none!important;
+}
+.t-button .t-icon+.t-button__text:not(:empty) {
+  margin-left: 0!important;
+}

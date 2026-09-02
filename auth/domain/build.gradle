@@ -1,0 +1,14 @@
+plugins {
+  id 'cairo.java-library' apply false
+  id 'cairo.maven-publish' apply false
+}
+
+subprojects {
+  group = 'io.github.lijiajia3515.cairo.auth.domain'
+  pluginManager.apply('cairo.java-library')
+  // web 模块仅内部使用，不发布
+  if (project.name != 'web') {
+    pluginManager.apply('cairo.maven-publish')
+  }
+}
+

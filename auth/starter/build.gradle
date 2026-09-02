@@ -1,0 +1,10 @@
+plugins {
+  id 'cairo.java-library' apply false
+  id 'cairo.maven-publish' apply false
+}
+
+subprojects {
+  group = 'io.github.lijiajia3515.cairo.auth.starter'
+  pluginManager.apply('cairo.java-library')
+  pluginManager.apply('cairo.maven-publish')
+}

@@ -1,0 +1,71 @@
+package io.github.lijiajia3515.cairo.auth.framework.security.tenant_app_user;
+
+import io.github.lijiajia3515.cairo.auth.framework.security.core.LoginType;
+import lombok.Getter;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.util.Assert;
+
+
+@Getter
+public class CairoTenantAppUserAccountAuthenticationToken extends AbstractAuthenticationToken {
+	/**
+	 * 租户ID
+	 */
+	private final String tenantId;
+
+	/**
+	 * 应用ID
+	 */
+	private final String appId;
+
+	/**
+	 * 终端ID
+	 */
+	private final String endpointId;
+
+	/**
+	 * 客户端ID
+	 */
+	private final String clientId;
+
+	/**
+	 * 账号ID
+	 */
+	private final String accountId;
+
+	/**
+	 * 登录方式
+	 */
+	private final LoginType loginType;
+
+	/**
+	 * Creates a token
+	 */
+	public CairoTenantAppUserAccountAuthenticationToken(String tenantId, String appId, String endpointId, String clientId, String accountId, LoginType loginType) {
+		super(null);
+
+		Assert.notNull(tenantId, "tenantId not null");
+		Assert.notNull(appId, "appId not null");
+		Assert.notNull(endpointId, "endpointId not null");
+		Assert.notNull(clientId, "clientId not null");
+		Assert.notNull(accountId, "accountId not null");
+
+		this.tenantId = tenantId;
+		this.appId = appId;
+		this.endpointId = endpointId;
+		this.clientId = clientId;
+		this.accountId = accountId;
+		this.loginType = loginType;
+	}
+
+	@Override
+	public String getCredentials() {
+		return null;
+	}
+
+	@Override
+	public String getPrincipal() {
+		return String.format("endpoint_user_account_%s_%s_%s_%s_%s", tenantId, appId, endpointId, clientId, accountId);
+	}
+
+}

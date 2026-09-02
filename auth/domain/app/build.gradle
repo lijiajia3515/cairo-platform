@@ -1,0 +1,12 @@
+plugins {
+  id 'cairo.java-library'
+}
+
+dependencies {
+  api(project(':auth:core'))
+  compileOnly(project(':auth:domain:core'))
+  compileOnly('jakarta.validation:jakarta.validation-api')
+  compileOnly('org.hibernate.validator:hibernate-validator')
+  compileOnly(project(':framework:rabbitmq'))
+  compileOnly('org.springframework.data:spring-data-mongodb')
+}

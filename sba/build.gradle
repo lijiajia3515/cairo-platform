@@ -1,0 +1,35 @@
+plugins {
+  id 'cairo.spring-boot-app'
+}
+
+dependencies {
+  implementation platform(libs.spring.boot.admin.bom)
+  // boot
+  annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+  implementation('org.springframework.boot:spring-boot-starter')
+  implementation('org.springframework.boot:spring-boot-starter-actuator')
+  implementation('org.springframework.boot:spring-boot-starter-aop')
+  implementation('org.springframework.retry:spring-retry')
+  implementation(libs.arthas)
+
+  // template
+  implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+  implementation('org.springframework.boot:spring-boot-starter-web')
+
+  // security
+  implementation('org.springframework.boot:spring-boot-starter-security')
+
+  implementation('org.apache.commons:commons-pool2')
+  implementation('com.github.ben-manes.caffeine:caffeine')
+
+  // config
+  implementation('org.springframework.cloud:spring-cloud-starter-bootstrap')
+  implementation('org.springframework.cloud:spring-cloud-starter-consul-config')
+
+  // discovery
+  implementation('org.springframework.cloud:spring-cloud-starter-consul-discovery')
+
+  // admin
+  implementation('de.codecentric:spring-boot-admin-starter-server')
+}
+

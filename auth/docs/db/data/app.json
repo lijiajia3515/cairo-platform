@@ -1,0 +1,44 @@
+[
+  {
+    "appId": "cairo",
+    "appName": "运营平台",
+    "privateApp": true,
+    "enabled": true,
+    "metadata": {
+      "createUserId": null,
+      "createTime": "2026-08-25T10:00:47.000Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T08:50:16.511Z"
+    },
+    "adminAccountIds": [
+      "1"
+    ],
+    "autoRegister": true,
+    "icon": "/icons/app-icon/cairo.png",
+    "scopes": [
+      "app"
+    ]
+  },
+  {
+    "appId": "demo",
+    "appName": "演示应用",
+    "scopes": [
+      "app",
+      "tenant"
+    ],
+    "privateApp": false,
+    "icon": "",
+    "enabled": false,
+    "adminAccountIds": [
+      "1"
+    ],
+    "autoRegister": true,
+    "tenantAppDepartmentTemplateStatus": null,
+    "metadata": {
+      "createUserId": "0",
+      "createTime": "2026-08-29T10:10:23.869Z",
+      "updateUserId": "0",
+      "updateTime": "2026-08-29T18:19:41.828Z"
+    }
+  }
+]

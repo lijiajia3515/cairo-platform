@@ -1,0 +1,56 @@
+
+
+
+ <List @page-change="configs.onPageChange" :configs="configs" />
+
+import { useWindowSize } from '@vueuse/core';
+
+import List from '@/components/list';
+
+const { width } = useWindowSize(); // 监听窗口大小
+let Page = ref(1);
+let Size = ref(10);
+let Total = ref(0);
+let list = ref([]);
+const [configs, setConfigs] = useState({
+  data: [
+    { xm: '小明', year: 11, Id: '1' },
+    { xm: '小明', year: 11, Id: '1' },
+    { xm: '小明', year: 11, Id: '1' },
+  ],
+  columns: [
+    { colKey: 'xm', title: '姓名' },
+    { colKey: 'year', title: '年龄' },
+    {
+      colKey: 'operation', title: '操作', cell: (h, { row }) => {
+        return (
+          <t-space>
+            <t-button variant="outline" theme="primary" size="small">编辑</t-button>
+            <t-button variant="outline" theme="danger" size="small">删除</t-button>
+          </t-space>
+        )
+      }
+    }
+  ],
+  loading: false,
+  pagination: {
+    current: Page,
+    pageSize: Size,
+    defaultCurrent: Page,
+    defaultPageSize: Size,
+    total: Total,
+    showPageSize: true
+    // showPageSize: width.value < 750 ? false : true
+  },
+  onPageChange: (pageInfo) => {
+    Page.value = pageInfo.current;
+    Size.value = pageInfo.pageSize;
+    getAccountPage();
+  }
+});
+
+
+// 删除的时候判断
+if (list.value && list.value.length == 1 && Page.value > 1) {
+  Page.value = Page.value - 1;
+}
