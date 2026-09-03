@@ -195,7 +195,7 @@ public class AppUserOpenApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -259,7 +259,7 @@ public class AppUserOpenApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 		log.debug("[app_user][registerAppUser] result -> {} ", user);
@@ -356,7 +356,7 @@ public class AppUserOpenApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 

@@ -297,7 +297,7 @@ public class TemporaryFileClientApiService {
 			MultipartFile file = files.get(i);
 			String contentType = file.getContentType();
 			String originalFilename = Optional.ofNullable(file.getOriginalFilename()).filter(x -> !x.isBlank()).map(x -> FilesUtil.getFilename(x, 50)).orElse(null);
-			String filename = Optional.ofNullable(originalFilename).orElse(CoreConstants.SNOWFLAKE.nextIdStr());
+			String filename = Optional.ofNullable(originalFilename).orElse(CoreConstants.nextIdStr());
 
 			try (InputStream in = file.getInputStream()) {
 				String realPath = appPathPrefix.concat("/").concat(filename);
@@ -340,7 +340,7 @@ public class TemporaryFileClientApiService {
 		String appPathPrefix = APP_PATH_STRING.replace(VAR_APP_ID_NAME, appId).replace(VAR_KEY_NAME, pathPrefix);
 
 		return IntStream.range(0, size).parallel().mapToObj(x -> {
-			String path = appPathPrefix + "/" + CoreConstants.SNOWFLAKE.nextIdStr();
+			String path = appPathPrefix + "/" + CoreConstants.nextIdStr();
 			String s3Path = encodeS3Url(TEMPORARY_BUCKET_NAME, path);
 			try {
 				String presignedObjectUrl = adminMinioClient.getPresignedObjectUrl(

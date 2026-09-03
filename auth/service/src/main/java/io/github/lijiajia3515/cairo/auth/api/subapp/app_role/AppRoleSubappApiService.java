@@ -279,11 +279,11 @@ public class AppRoleSubappApiService {
 			try {
 				AppRoleMongodb app_role = AppRoleMongodb.builder()
 					.appId(appId)
-					.roleId(Optional.ofNullable(args.getRoleId()).filter(x -> !x.isBlank()).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+					.roleId(Optional.ofNullable(args.getRoleId()).filter(x -> !x.isBlank()).orElse(CoreConstants.nextIdStr()))
 					.roleName(args.getRoleName())
 					.remark(args.getRemark())
 					.enabled(true)
-					.sort(CoreConstants.SNOWFLAKE.nextId())
+					.sort(System.currentTimeMillis())
 					.metadata(AppUserMetadataMongodb.builder()
 						.createUserId(CairoSecurityContextHolder.getSubappUserId())
 						.updateUserId(CairoSecurityContextHolder.getSubappUserId())

@@ -135,7 +135,7 @@ public class CopySysDictByDictIdQueueHandler {
 					String icon = null;
 					try {
 						if (sdCopyMongodb.getIcon() != null && !sdCopyMongodb.getIcon().isBlank()) {
-							String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+							String fileName = CoreConstants.nextIdStr();
 							MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdCopyMongodb.getIcon(),
 								fileName.concat(FilesUtil.getType(sdCopyMongodb.getIcon())));
 							if (multipartFile != null) {
@@ -173,7 +173,7 @@ public class CopySysDictByDictIdQueueHandler {
 						String sdiIcon = null;
 						try {
 							if (sdi.getIcon() != null && !sdi.getIcon().isBlank()) {
-								String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+								String fileName = CoreConstants.nextIdStr();
 								MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdi.getIcon(),
 									fileName.concat(FilesUtil.getType(sdi.getIcon())));
 								if (multipartFile != null) {
@@ -229,7 +229,7 @@ public class CopySysDictByDictIdQueueHandler {
 									.dictId(deleteSdMongodb.getDictId())
 									.build()
 								),
-								new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+								new CorrelationData(CoreConstants.nextIdStr())
 							);
 						}
 					} catch (JsonProcessingException e) {

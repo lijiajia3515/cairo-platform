@@ -127,7 +127,7 @@ public class CairoAuthTenantSubappUserService {
 		}
 
 		CairoAuthTenantSubappUser endpointUser = getAuthTenantSubappUser(tenantId, appId, endpointId, subappId, subappVersion, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		return endpointUser;
 	}
 

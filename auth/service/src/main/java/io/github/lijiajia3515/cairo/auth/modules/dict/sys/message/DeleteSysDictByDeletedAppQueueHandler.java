@@ -135,7 +135,7 @@ public class DeleteSysDictByDeletedAppQueueHandler {
 								.dictId(sd.getDictId())
 								.build()
 							),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 					} catch (JsonProcessingException e) {
 						log.error("e",e);

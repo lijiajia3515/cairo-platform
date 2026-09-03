@@ -19,7 +19,7 @@ public class SendPhoneNumberSmsMsgArgs {
 	 * 消息ID，每次发送不重复
 	 */
 	@Builder.Default
-	private String msgId = CoreConstants.SNOWFLAKE.nextIdStr();
+	private String msgId = CoreConstants.nextIdStr();
 
 	/**
 	 * 时间

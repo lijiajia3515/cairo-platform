@@ -57,7 +57,7 @@ public class TenantAppUserCommonService {
 			return String.valueOf(serialService.nextStr(SERIAL_NAMESPACE, SERIAL_KEY,1,2001));
 		} catch (Exception e) {
 			log.warn("getNewUserId: ", e);
-			return CoreConstants.SNOWFLAKE.nextIdStr();
+			return CoreConstants.nextIdStr();
 		}
 	}
 

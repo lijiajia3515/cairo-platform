@@ -67,7 +67,7 @@ public class CairoAppUserAccountSnsCodeAuthenticationToken extends AbstractAuthe
 
 	@Override
 	public String getPrincipal() {
-		return String.format("%s-%s-%s-%s-%s-%s", appId, endpointId, clientId, snsType, snsProviderId, snsCode);
+		return String.format("app_user:%s:%s:%s:sns_code:%s_%s_%s", appId, endpointId, clientId, snsType, snsProviderId, snsCode);
 	}
 
 

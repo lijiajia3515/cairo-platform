@@ -126,7 +126,7 @@ public class CairoAuthCommonService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 
 			return CairoAuthAccount.builder()
@@ -177,7 +177,7 @@ public class CairoAuthCommonService {
 						.metadata(AccountMetadataMongodb.builder().createAccountId(accountId).updateAccountId(accountId).build())
 						.build();
 					AccountSnsMongodb newAccountSnsMongodb = AccountSnsMongodb.builder()
-						.recordId(CoreConstants.SNOWFLAKE.nextIdStr())
+						.recordId(CoreConstants.nextIdStr())
 						.accountId(accountId)
 						.snsPartnerId(snsInfo.getPartnerId())
 						.snsPartnerOpenId(snsInfo.getPartnerOpenId())
@@ -212,7 +212,7 @@ public class CairoAuthCommonService {
 							.eventTime(LocalDateTime.now())
 							.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 			}
 			return CairoAuthAccount.builder()
@@ -288,7 +288,7 @@ public class CairoAuthCommonService {
 							.eventTime(LocalDateTime.now())
 							.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 				return user;
 			}
@@ -348,7 +348,7 @@ public class CairoAuthCommonService {
 							.eventTime(LocalDateTime.now())
 							.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 				return user;
 			}

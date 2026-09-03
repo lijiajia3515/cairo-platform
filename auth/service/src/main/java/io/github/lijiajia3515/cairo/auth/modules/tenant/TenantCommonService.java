@@ -32,7 +32,7 @@ public class TenantCommonService {
 	}
 
 	public static String getNewTenantId() {
-		return "t" + CoreConstants.SNOWFLAKE.nextIdStr();
+		return "t" + CoreConstants.nextIdStr();
 	}
 
 	/**

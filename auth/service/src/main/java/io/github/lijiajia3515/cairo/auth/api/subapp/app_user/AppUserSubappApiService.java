@@ -325,7 +325,7 @@ public class AppUserSubappApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -436,7 +436,7 @@ public class AppUserSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		} else {
 			// 获取账号
@@ -515,7 +515,7 @@ public class AppUserSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -775,7 +775,7 @@ public class AppUserSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 		// 清理缓存
@@ -858,7 +858,7 @@ public class AppUserSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -941,7 +941,7 @@ public class AppUserSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}

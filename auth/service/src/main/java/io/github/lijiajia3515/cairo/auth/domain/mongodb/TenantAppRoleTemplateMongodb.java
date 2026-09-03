@@ -1,7 +1,6 @@
 package io.github.lijiajia3515.cairo.auth.domain.mongodb;
 
 import io.github.lijiajia3515.cairo.auth.domain.mongodb.field.AbstractAppUserMetadataMongodbField;
-import io.github.lijiajia3515.cairo.core.CoreConstants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -73,7 +72,7 @@ public class TenantAppRoleTemplateMongodb implements Serializable {
 	 */
 	@Builder.Default
 	@Field(write = Field.Write.ALWAYS)
-	private Long sort = CoreConstants.SNOWFLAKE.nextId();
+	private Long sort = System.currentTimeMillis();
 
 
 	/**

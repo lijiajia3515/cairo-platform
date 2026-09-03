@@ -66,7 +66,7 @@ public class CairoTenantAppUserVerifyCodeAuthenticationToken extends AbstractAut
 
     @Override
     public String getPrincipal() {
-        return String.format("endpoint_user_verify_code_%s_%s_%s_%s_%s", tenantId, appId, endpointId, clientId, phoneNumber);
+        return String.format("tenant_app_user:%s:%s:%s:%s:verify_code:%s", tenantId, appId, endpointId, clientId, phoneNumber);
     }
 
 }

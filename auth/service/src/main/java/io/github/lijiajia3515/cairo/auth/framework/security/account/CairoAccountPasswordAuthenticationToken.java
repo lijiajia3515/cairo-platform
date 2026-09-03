@@ -35,6 +35,6 @@ public class CairoAccountPasswordAuthenticationToken extends AbstractAuthenticat
 
 	@Override
 	public Object getPrincipal() {
-		return String.format("account_password_%s", username);
+		return String.format("account:password:%s", username);
 	}
 }

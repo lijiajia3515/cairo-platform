@@ -11,7 +11,7 @@ import java.time.ZoneOffset;
  */
 public class SignSdkTools {
 	public static SignResp sign() {
-		String nonce = CoreConstants.SNOWFLAKE.nextIdStr();
+		String nonce = CoreConstants.nextIdStr();
 		String timestamp = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(8)) + "";
 		String encodeKey = "cairo:v1:" + SecureUtil.sha256(String.format("%s_%s", timestamp, nonce));
 		return SignResp.builder()

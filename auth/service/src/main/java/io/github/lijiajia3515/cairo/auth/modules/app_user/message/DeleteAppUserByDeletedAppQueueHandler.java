@@ -96,7 +96,7 @@ public class DeleteAppUserByDeletedAppQueueHandler {
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_APP_USER,  deletedAppUserMessage.getAppId()),
 							objectMapper.writeValueAsString(deletedAppUserMessage),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 
 					}

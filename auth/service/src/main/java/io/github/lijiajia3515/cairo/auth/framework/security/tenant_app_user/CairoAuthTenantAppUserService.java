@@ -145,7 +145,7 @@ public class CairoAuthTenantAppUserService {
 			}
 		}
 		CairoAuthTenantAppUser tenantAppUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		tenantAppUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		tenantAppUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		tenantAppUser.setLoginType(loginType);
 
 		String encodePassword = getEncodePassword(account.getAccountId());
@@ -210,7 +210,7 @@ public class CairoAuthTenantAppUserService {
 		}
 
 		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		endpointUser.setLoginType(loginType);
 		return endpointUser;
 	}
@@ -269,7 +269,7 @@ public class CairoAuthTenantAppUserService {
 		}
 
 		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		endpointUser.setLoginType(loginType);
 		return endpointUser;
 	}
@@ -311,7 +311,7 @@ public class CairoAuthTenantAppUserService {
 		}
 
 		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		endpointUser.setLoginType(loginType);
 		return endpointUser;
 	}

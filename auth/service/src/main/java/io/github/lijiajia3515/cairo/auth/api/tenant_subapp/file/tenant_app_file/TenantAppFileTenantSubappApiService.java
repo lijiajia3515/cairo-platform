@@ -597,7 +597,7 @@ public class TenantAppFileTenantSubappApiService {
 			.map(file -> {
 				String contentType = file.getContentType();
 				String originalFilename = Optional.ofNullable(file.getOriginalFilename()).filter(x -> !x.isBlank()).map(x -> FilesUtil.getFilename(x, 50)).orElse(null);
-				String filename = Optional.ofNullable(originalFilename).orElse(CoreConstants.SNOWFLAKE.nextIdStr());
+				String filename = Optional.ofNullable(originalFilename).orElse(CoreConstants.nextIdStr());
 
 				try (InputStream in = file.getInputStream()) {
 					String realPath = appPathPrefix.concat("/").concat(filename);

@@ -162,7 +162,7 @@ public class AuthSuccessLoginLogHandler {
 
 		@Async
 		void updateAuthentication(String ip, String userAgent, LocalDateTime loginTime, UsernamePasswordAuthenticationToken token) {
-			String logId = CoreConstants.SNOWFLAKE.nextIdStr();
+			String logId = CoreConstants.nextIdStr();
 			if (token.getPrincipal() instanceof CairoAuthAccount) {
 				CairoAuthAccount account = (CairoAuthAccount) token.getPrincipal();
 				String accountId = account.getAccountId();
@@ -210,7 +210,7 @@ public class AuthSuccessLoginLogHandler {
 			String tokenValue = token.getAccessToken().getTokenValue();
 			Jwt jwtToken = jwtDecoder.decode(tokenValue);
 			String authType = jwtToken.getClaimAsString(CairoOAuthParameterNames.AUTH_TYPE);
-			String logId = CoreConstants.SNOWFLAKE.nextIdStr();
+			String logId = CoreConstants.nextIdStr();
 			try {
 				// 端认证
 				if (CLIENT.getValue().equals(authType)) {
@@ -260,7 +260,7 @@ public class AuthSuccessLoginLogHandler {
 		void updateOAuthReferenceAccessToken(String ip, String userAgent, LocalDateTime loginTime, OAuth2AccessTokenAuthenticationToken token) {
 			String tokenValue = token.getAccessToken().getTokenValue();
 			OAuth2AccessToken accessToken = token.getAccessToken();
-			String logId = CoreConstants.SNOWFLAKE.nextIdStr();
+			String logId = CoreConstants.nextIdStr();
 			try {
 /*				// 端认证
 				if (CLIENT.getValue().equals(authType)) {
@@ -353,7 +353,7 @@ public class AuthSuccessLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			ClientLoginLogMongodb clientLoginLogMongodb = ClientLoginLogMongodb.builder()
-				.logId(Optional.ofNullable(logId).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+				.logId(Optional.ofNullable(logId).orElse(CoreConstants.nextIdStr()))
 				.appId(appId)
 				.endpointId(endpointId)
 				.clientId(clientId)
@@ -400,7 +400,7 @@ public class AuthSuccessLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			AccountLoginLogMongodb accountLoginLogMongodb = AccountLoginLogMongodb.builder()
-				.logId(Optional.ofNullable(logId).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+				.logId(Optional.ofNullable(logId).orElse(CoreConstants.nextIdStr()))
 				.loginTime(loginTime)
 				.accountId(accountId)
 				.accountTokenId(accountTokenId)
@@ -464,7 +464,7 @@ public class AuthSuccessLoginLogHandler {
 			mongoTemplate.updateFirst(Query.query(criteria), update, AccountAuthorizationMongodb.class, MongodbConstants.Collection.ACCOUNT_AUTHORIZATION);
 
 			AccountLoginLogMongodb accountLoginLogMongodb = AccountLoginLogMongodb.builder()
-				.logId(Optional.ofNullable(logId).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+				.logId(Optional.ofNullable(logId).orElse(CoreConstants.nextIdStr()))
 				.loginTime(loginTime)
 				.accountId(accountId)
 				.accountTokenId(tokenId)
@@ -510,7 +510,7 @@ public class AuthSuccessLoginLogHandler {
 
 
 			AppUserLoginLogMongodb appUserLoginLogMongodb = AppUserLoginLogMongodb.builder()
-				.logId(Optional.ofNullable(logId).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+				.logId(Optional.ofNullable(logId).orElse(CoreConstants.nextIdStr()))
 				.appId(appId)
 				.endpointId(endpointId)
 				.clientId(clientId)
@@ -556,7 +556,7 @@ public class AuthSuccessLoginLogHandler {
 			mongoTemplate.updateFirst(Query.query(criteria), update, TenantAppUserAuthorizationMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_AUTHORIZATION);
 
 			TenantAppUserLoginLogMongodb tenantAppUserLoginLogMongodb = TenantAppUserLoginLogMongodb.builder()
-				.logId(Optional.ofNullable(logId).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+				.logId(Optional.ofNullable(logId).orElse(CoreConstants.nextIdStr()))
 				.tenantId(tenantId)
 				.appId(appId)
 				.endpointId(endpointId)

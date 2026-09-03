@@ -67,7 +67,7 @@ public class CairoTenantAppUserTenantAppUserAuthenticationToken extends Abstract
 
 	@Override
 	public String getPrincipal() {
-		return String.format("endpoint_user_user_%s_%s_%s_%s_%s", tenantId, appId, endpointId, clientId, userId);
+		return String.format("tenant_app_user:%s:%s:%s:%s:user:%s", tenantId, appId, endpointId, clientId, userId);
 	}
 
 }

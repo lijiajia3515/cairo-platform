@@ -95,7 +95,7 @@ public class CairoAuthAccountService implements UserDetailsService {
 
 
 		return CairoAuthAccount.builder()
-			.id(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr())
+			.id(TOKEN_ID_PREFIX + CoreConstants.nextIdStr())
 			.loginType(LoginType.PASSWORD)
 			.accountId(accountMongodb.getAccountId())
 			.loginname(accountMongodb.getUsername())
@@ -133,7 +133,7 @@ public class CairoAuthAccountService implements UserDetailsService {
 		}
 
 		return CairoAuthAccount.builder()
-			.id(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr())
+			.id(TOKEN_ID_PREFIX + CoreConstants.nextIdStr())
 			.loginType(loginType)
 			.accountId(accountMongodb.getAccountId())
 			.loginname(accountMongodb.getUsername())
@@ -183,7 +183,7 @@ public class CairoAuthAccountService implements UserDetailsService {
 
 		if (account != null) {
 			return CairoAuthAccount.builder()
-				.id(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr())
+				.id(TOKEN_ID_PREFIX + CoreConstants.nextIdStr())
 				.loginType(LoginType.SNS)
 				.snsType(snsType)
 				.accountId(account.getAccountId())
@@ -217,7 +217,7 @@ public class CairoAuthAccountService implements UserDetailsService {
 		}
 
 		return CairoAuthAccount.builder()
-			.id(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr())
+			.id(TOKEN_ID_PREFIX + CoreConstants.nextIdStr())
 			.loginType(loginType)
 			.accountId(account.getAccountId())
 			.loginname(account.getUsername())

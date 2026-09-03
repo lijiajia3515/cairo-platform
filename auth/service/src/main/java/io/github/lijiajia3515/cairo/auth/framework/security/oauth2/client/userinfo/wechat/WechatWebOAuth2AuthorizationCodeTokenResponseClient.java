@@ -64,9 +64,9 @@ public class WechatWebOAuth2AuthorizationCodeTokenResponseClient implements OAut
 //			ResponseEntity<Map<String, Object>> exchange = restOperations.exchange(request, new ParameterizedTypeReference<>() {
 //			});
 //			Map<String, Object> body = Optional.ofNullable(exchange.getBody()).orElse(Collections.emptyMap());
-//			return OAuth2AccessTokenResponse.withToken(body.getOrDefault("access_token", Constants.SNOWFLAKE.nextIdStr()).toString())
+//			return OAuth2AccessTokenResponse.withToken(body.getOrDefault("access_token", CoreConstants.nextIdStr()).toString())
 //				.tokenType(OAuth2AccessToken.TokenType.BEARER)
-//				.refreshToken(body.getOrDefault("refresh_token", Constants.SNOWFLAKE.nextIdStr()).toString())
+//				.refreshToken(body.getOrDefault("refresh_token", CoreConstants.nextIdStr()).toString())
 //				.expiresIn(Long.parseLong(body.getOrDefault("expires_in", "0").toString()))
 //				.scopes(Collections.singleton(body.getOrDefault("scope", "snsapi_login").toString()))
 //				.additionalParameters(body)

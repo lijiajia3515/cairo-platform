@@ -80,6 +80,30 @@ grant 常量定义在 `core` 的 `framework/security/oauth2/core/OAuth*Authoriza
 
 此外 Spring Security 标准 grant：`authorization_code`、`client_credentials`、`refresh_token`。
 
+### 凭证与标识规范
+
+**不透明凭证值前缀**（`TokenKeyGenerator`，前缀见名知意，日志/Redis 键中一眼可辨归属域）：
+
+| 凭证 | 前缀 | 说明 |
+|---|---|---|
+| 应用用户 AccessToken / RefreshToken | `app_user_at_` / `app_user_rt_` | REFERENCE 格式 |
+| 租户应用用户 AccessToken / RefreshToken | `tenant_app_user_at_` / `tenant_app_user_rt_` | REFERENCE 格式 |
+| 账号 AccessToken / RefreshToken | `account_at_` / `account_rt_` | REFERENCE 格式 |
+| 授权码 / 验证码凭证 | `auth_code_` / `captcha_` | 一次性凭证 |
+
+JWT（SELF_CONTAINED 格式）为标准 JWS 三段式；`sub` claim = 授权记录 id，主体身份走 `user_id`/`account_id` 等自定义 claim。
+
+**principal 四段式**（前置未认证 token 的 `getPrincipal()`，`认证主体:scope:认证方式:唯一标识`）：
+
+- 主体：`account`（无 scope 段）/ `app_user` / `tenant_app_user`
+- scope：应用用户带 `appId:endpointId:clientId`，租户应用用户再加 `tenantId` 前置
+- 方式：`password` / `verify_code` / `sns_code` / `account` / `user`
+- 标识取真唯一值：username / phoneNumber / accountId / userId；SNS 流程认证前无用户标识，用 `snsType_snsProviderId_snsCode` 复合
+
+**ID 生成**：实体主键统一 `CoreConstants.nextIdStr()`（`framework/core`）= RFC 9562 **UUIDv7**（JUG 库 `timeBasedEpochGenerator`，毫秒时间戳前缀、同毫秒单调递增、免协调），字符串排序即创建时间序。角色/权限等 `sort` 字段默认值为毫秒时间戳（Long）。
+
+**会话标识**：一次登录 = 一条授权记录，其 id（授权记录主键，即 JWT `sub`）即会话唯一标识；账号密码表单登录链路的会话标识为 `CairoAuthAccount.id`（`account_` + UUIDv7）。会话管理页展示与下线均以此为准。
+
 ## core 框架组件
 
 `core` 的 `framework/` 下除安全链外还提供：
@@ -98,7 +122,7 @@ grant 常量定义在 `core` 的 `framework/security/oauth2/core/OAuth*Authoriza
 
 ## API 层
 
-Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 租户应用用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 164 控制器 / 698 端点见 [api-surface.md](docs/api-surface.md)）：
+Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 租户应用用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 164 控制器 / 698 端点见 [api-surface.md](../docs/auth/api-surface.md)）：
 
 | URL 前缀（主体面）         | 控制器 | 调用方                                               |
 |----------------------------|-------:|------------------------------------------------------|
@@ -151,7 +175,7 @@ auth/
 
 ## 数据模型
 
-MongoDB 集合 71 个，统一 `auth_` 前缀（初始化脚本见 `auth/docs/db/`），按主体与域组织：`auth_account*`、`auth_client*`、`auth_app*`、`auth_endpoint`、`auth_subapp*`、`auth_tenant_app*`、`auth_tenant_endpoint`、`auth_menu`、`auth_permission`、`auth_sys_dict`、`auth_sms_*`、`auth_biz_log_*`、`auth_wxmp_*` 等。
+MongoDB 集合 71 个，统一 `auth_` 前缀（初始化脚本见 `docs/auth/db/`），按主体与域组织：`auth_account*`、`auth_client*`、`auth_app*`、`auth_endpoint`、`auth_subapp*`、`auth_tenant_app*`、`auth_tenant_endpoint`、`auth_menu`、`auth_permission`、`auth_sys_dict`、`auth_sms_*`、`auth_biz_log_*`、`auth_wxmp_*` 等。
 
 ### 标识与唯一性（短值 + 复合键）
 
@@ -183,12 +207,12 @@ MongoDB 集合 71 个，统一 `auth_` 前缀（初始化脚本见 `auth/docs/db
 ### 系统字典规范
 
 - DictId 与实体命名一致（`EndpointType`/`EndpointScope`/`EndpointTag`/`SubappTag`…），前端 `useDict(id)` 直接引用
-- **字典项值以代码枚举为权威源**（如 `EndpointType` 枚举 6 值）；基线快照见 `auth/docs/db/data/sys_dict*.json`
+- **字典项值以代码枚举为权威源**（如 `EndpointType` 枚举 6 值）；基线快照见 `docs/auth/db/data/sys_dict*.json`
 - 废弃字典直接从基线快照移除
 
 ### 基线数据
 
-`auth/docs/db/data/` 为测试库核心集合的数据快照（endpoint / subapp / subapp_version / menu / permission / sys_dict(_item)），可读版见 `auth/docs/menus.md` 与 `auth/docs/dict.md`。菜单/权限注入走 manage API（服务端计算嵌套集左右值）。
+`docs/auth/db/data/` 为测试库核心集合的数据快照（endpoint / subapp / subapp_version / menu / permission / sys_dict(_item)），可读版见 `docs/auth/menus.md` 与 `docs/auth/dict.md`。菜单/权限注入走 manage API（服务端计算嵌套集左右值）。
 
 ## 消息拓扑（RabbitMQ）
 
@@ -244,8 +268,8 @@ cairo:
 | 文档                                             | 内容                                     |
 |--------------------------------------------------|------------------------------------------|
 | [平台总览](../README.md)                         | 架构、快速开始、技术栈、开发规范、文档导航 |
-| [文档与运维脚本](docs/README.md)                 | db/ 权威源、初始化 / 导入脚本、基线数据、迁移记录 |
-| [API 面基线](docs/api-surface.md)                | 8 主体面 + 2 特例面全量端点清单 + 防护模型 |
-| [菜单与权限快照](docs/menus.md)                  | 45 菜单 / 169 权限点可读版                |
-| [错误码清单](docs/error-codes.md)                | 17 枚举 74 码值 + 前端分发处理            |
+| [文档与运维脚本](../docs/auth/README.md)                 | db/ 权威源、初始化 / 导入脚本、基线数据、迁移记录 |
+| [API 面基线](../docs/auth/api-surface.md)                | 8 主体面 + 2 特例面全量端点清单 + 防护模型 |
+| [菜单与权限快照](../docs/auth/menus.md)                  | 45 菜单 / 169 权限点可读版                |
+| [错误码清单](../docs/auth/error-codes.md)                | 17 枚举 74 码值 + 前端分发处理            |
 | [运营平台前端](web/README.md)                     | 运营平台前端环境、命令、API 层结构      |

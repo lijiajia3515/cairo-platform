@@ -70,7 +70,7 @@ public class CaptchaOpenApiService {
 		}
 	)
 	public GetCaptchaResponse getCaptchaCode(@Validated GetCaptchaArgs args, @Valid @NotNull String ip) {
-		String captchaKey = CoreConstants.SNOWFLAKE.nextIdStr();
+		String captchaKey = CoreConstants.nextIdStr();
 		Duration expireTime = Duration.ofMinutes(5);
 		String captchaCode;
 		String imageUrl;
@@ -99,7 +99,7 @@ public class CaptchaOpenApiService {
 			byteArrayOutputStream.close();
 
 			CairoMultipartFile file;
-			String id = CoreConstants.SNOWFLAKE.nextIdStr();
+			String id = CoreConstants.nextIdStr();
 			if (isGif) {
 				file = new CairoMultipartFile(id + ".gif", id + ".gif", MediaType.IMAGE_GIF_VALUE, byteArrayOutputStream.toByteArray());
 			} else {
@@ -160,7 +160,7 @@ public class CaptchaOpenApiService {
 
 	public final String newTempFilepath() {
 		String filePrefix = Optional.ofNullable(serverProperties.getTomcat().getBasedir()).map(File::getPath).orElse("/tmp/");
-		return filePrefix.concat("captcha/" + CoreConstants.SNOWFLAKE.nextIdStr());
+		return filePrefix.concat("captcha/" + CoreConstants.nextIdStr());
 	}
 
 

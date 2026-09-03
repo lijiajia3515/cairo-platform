@@ -108,7 +108,7 @@ public class BizLogAspect {
 
 	protected OpenBizLog openBizLog(BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		return OpenBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.appId(bizLogService.getAppId())
 			.bizId(bizLog.bizId())
 			.scope(bizLog.scope())
@@ -125,7 +125,7 @@ public class BizLogAspect {
 	protected ClientBizLog clientBizLog(CairoOAuthClientAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthClientPrincipal principal = token.getPrincipal();
 		return ClientBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.appId(principal.getAppId())
 			.clientId(principal.getClientId())
 			.clientTokenId(principal.getId())
@@ -144,7 +144,7 @@ public class BizLogAspect {
 	protected AccountBizLog accountBizLog(CairoOAuthAccountAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthAccountPrincipal principal = token.getPrincipal();
 		return AccountBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.clientId(principal.getClientId())
 			.appId(principal.getAppId())
 			.clientId(principal.getClientId())
@@ -165,7 +165,7 @@ public class BizLogAspect {
 	protected AppBizLog endpointBizLog(CairoOAuthAppUserAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthAppUserPrincipal principal = token.getPrincipal();
 		return AppBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.appId(principal.getAppId())
 			.endpointId(principal.getEndpointId())
 			.clientId(principal.getClientId())
@@ -186,7 +186,7 @@ public class BizLogAspect {
 	protected SubappBizLog subappBizLog(CairoOAuthSubappUserAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthSubappUserPrincipal principal = token.getPrincipal();
 		return SubappBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.appId(principal.getAppId())
 			.endpointId(principal.getEndpointId())
 			.subappId(principal.getSubappId())
@@ -209,7 +209,7 @@ public class BizLogAspect {
 	protected TenantAppBizLog tenantAppBizLog(CairoOAuthTenantAppUserAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthTenantAppUserPrincipal principal = token.getPrincipal();
 		return TenantAppBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.tenantId(principal.getTenantId())
 			.appId(principal.getAppId())
 			.endpointId(principal.getEndpointId())
@@ -231,7 +231,7 @@ public class BizLogAspect {
 	protected TenantSubappBizLog tenantSubappBizLog(CairoOAuthTenantSubappUserAuthenticationToken token, BizLog bizLog, String params, String errorMessage, String ip, LocalDateTime startTime, LocalDateTime endTime, long mills) {
 		CairoOAuthTenantSubappUserPrincipal principal = token.getPrincipal();
 		return TenantSubappBizLog.builder()
-			.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+			.logId(CoreConstants.nextIdStr())
 			.tenantId(principal.getTenantId())
 			.appId(principal.getAppId())
 			.endpointId(principal.getEndpointId())

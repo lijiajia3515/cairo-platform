@@ -141,7 +141,7 @@ public class CairoAuthAppUserService {
 			}
 		}
 		CairoAuthAppUser appUser = getAuthAppUser(appId, endpointId, clientId, user.getUserId());
-		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		appUser.setLoginType(loginType);
 
 		String encodePassword = getEncodePassword(account.getAccountId());
@@ -206,7 +206,7 @@ public class CairoAuthAppUserService {
 		}
 
 		CairoAuthAppUser appUser = getAuthAppUser(appId, endpointId, clientId, user.getUserId());
-		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		appUser.setLoginType(loginType);
 		return appUser;
 	}
@@ -271,7 +271,7 @@ public class CairoAuthAppUserService {
 		}
 
 		CairoAuthAppUser user = getAuthAppUser(appId, endpointId, clientId, appUser.getUserId());
-		user.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		user.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		user.setLoginType(LoginType.SNS);
 		user.setSnsType(snsType);
 		return user;
@@ -331,7 +331,7 @@ public class CairoAuthAppUserService {
 		}
 
 		CairoAuthAppUser appUser = getAuthAppUser(appId, endpointId, clientId, user.getUserId());
-		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		appUser.setLoginType(loginType);
 		return appUser;
 	}
@@ -371,7 +371,7 @@ public class CairoAuthAppUserService {
 		}
 
 		CairoAuthAppUser appUser = getAuthAppUser(appId, endpointId, clientId, user.getUserId());
-		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr());
+		appUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
 		appUser.setLoginType(loginType);
 		return appUser;
 	}

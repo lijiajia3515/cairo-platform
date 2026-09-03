@@ -5,9 +5,9 @@ import io.github.lijiajia3515.cairo.auth.framework.auth_code.AuthCodeVerifyServi
 import io.github.lijiajia3515.cairo.auth.framework.auth_code.AuthCodeVerifyStat;
 import io.github.lijiajia3515.cairo.auth.framework.auth_code.NewAuthCodeArgs;
 import io.github.lijiajia3515.cairo.auth.framework.auth_code.VerifyAuthCodeArgs;
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.authorization.token.TokenKeyGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.crypto.keygen.Base64StringKeyGenerator;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +29,7 @@ public class RedisAuthCodeServiceImpl implements AuthCodeStoreService, AuthCodeV
 	/**
 	 * token 生成器
 	 */
-	private final StringKeyGenerator TOKEN_GENERATOR = new Base64StringKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32);
+	private final StringKeyGenerator TOKEN_GENERATOR = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "auth_code_");
 
 	/**
 	 * 验证token 过期时间
@@ -101,6 +101,6 @@ public class RedisAuthCodeServiceImpl implements AuthCodeStoreService, AuthCodeV
 
 
 	public String redisKey(String accountId, String token) {
-		return String.format("%s:%s:%S", REDIS_KEY, accountId, token);
+		return String.format("%s:%s:%s", REDIS_KEY, accountId, token);
 	}
 }

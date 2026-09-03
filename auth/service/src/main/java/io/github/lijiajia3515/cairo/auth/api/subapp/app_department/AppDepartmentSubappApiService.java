@@ -365,7 +365,7 @@ public class AppDepartmentSubappApiService {
 					.appId(appId)
 					.parentId(parentAppDepartment.getDepartmentId())
 					.root(false)
-					.departmentId(CoreConstants.SNOWFLAKE.nextIdStr())
+					.departmentId(CoreConstants.nextIdStr())
 					.departmentName(args.getDepartmentName())
 					.remark(args.getRemark())
 					.leftNo(left)

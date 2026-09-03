@@ -206,7 +206,7 @@ public class SubappCairoWebManageApiService {
 				appCommonService.checkAppScope(mongoTemplate, appId, scope.getScopeValue());
 
 				SubappMongodb newSubappMongodb = SubappMongodb.builder()
-					.id(CoreConstants.SNOWFLAKE.nextIdStr())
+					.id(CoreConstants.nextIdStr())
 					.appId(appId)
 					.endpointId(endpointId)
 					.subappId(args.getSubappId())
@@ -250,7 +250,7 @@ public class SubappCairoWebManageApiService {
 					.eventTime(subappMongodb.getMetadata().getCreateTime())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -344,7 +344,7 @@ public class SubappCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 
 	}
@@ -405,7 +405,7 @@ public class SubappCairoWebManageApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.MODIFIED_SUBAPP_STATUS, message.getAppId()),
 				objectMapper.writeValueAsString(message),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -538,7 +538,7 @@ public class SubappCairoWebManageApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_SUBAPP, deletedSubappMessage.getAppId()),
 				objectMapper.writeValueAsString(deletedSubappMessage),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 

@@ -12,6 +12,6 @@ public class AppUserAuthKeyBuilder implements LockKeyBuilder {
 	@Override
 	public String buildKey(MethodInvocation invocation, String[] definitionKeys) {
 		Optional<CairoOAuthAppUserPrincipal> appUser = CairoSecurityContextHolder.getAppUser();
-		return appUser.map(x -> x.getAppId() + "_" + x.getUserId()).orElse(CoreConstants.SNOWFLAKE.nextIdStr());
+		return appUser.map(x -> x.getAppId() + "_" + x.getUserId()).orElse(CoreConstants.nextIdStr());
 	}
 }

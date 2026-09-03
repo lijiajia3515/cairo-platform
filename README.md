@@ -16,7 +16,7 @@
 - **前后端分离 + 微服务**：后端 Java 17 / Spring Boot 3.5 / Spring Cloud 2025，前端 Vue 3.5 / Vite 7 / TDesign。
 - **认证授权一体化**：账号服务既是 OAuth2 授权服务器（Spring Authorization Server + JWT），也内置文件、短信、通知、字典、业务日志等系统功能，单服务部署（`cairo-auth`）。
 - **多租户层级模型**：`Tenant -订阅-> App -> Endpoint -> Subapp`，围绕 6 类认证主体组织认证与授权。
-- **MongoDB 核心存储**：71 个集合的结构与基线数据全部脚本化管理（`auth/docs/db/` 唯一权威源）。
+- **MongoDB 核心存储**：71 个集合的结构与基线数据全部脚本化管理（`docs/auth/db/` 唯一权威源）。
 - **工程化优先**：32 个 Gradle 子应用共享一套约定插件，子应用 `build.gradle` 通常只有 `plugins {}` + `dependencies {}` 两段；CI 全仓测试并产出 boot jar 与前端 dist。
 
 ## 架构总览
@@ -58,7 +58,7 @@ flowchart LR
 | [双层权限模型](auth/README.md#权限模型双层) | `permissionId`（`资源.动作`，前端 `v-allow` 指令绑定）+ `authorities`（`资源:动作`，`@PreAuthorize` 校验），两层值 1:1 |
 | [多租户 RBAC](auth/README.md#子应用结构) | 租户 / 应用两级角色、部门、用户标签、角色模板——service 层 45 个业务子应用 |
 | [数据模型](auth/README.md#数据模型) | MongoDB 71 集合统一 `auth_` 前缀；短值标识 + 复合唯一索引 |
-| [8 主体面 API](auth/README.md#api-层) | 同一资源按调用方视角拆分 Controller（`/open_api`、`/client_api`、`/cairo_web_manage_api` 等 8 个主体面前缀 + weboffice 特例面，164 控制器 / 698 端点），全量清单见 [api-surface.md](auth/docs/api-surface.md) |
+| [8 主体面 API](auth/README.md#api-层) | 同一资源按调用方视角拆分 Controller（`/open_api`、`/client_api`、`/cairo_web_manage_api` 等 8 个主体面前缀 + weboffice 特例面，164 控制器 / 698 端点），全量清单见 [api-surface.md](docs/auth/api-surface.md) |
 | [消息拓扑](auth/README.md#消息拓扑rabbitmq) | Topic 交换机 + 各子应用「业务队列 + 绑定」两件套声明 |
 | [对外输出](auth/README.md#对外输出) | domain（DTO）/ sdk（Feign）/ starter / BOM 四形态 Maven 坐标，供其他微服务集成 |
 
@@ -109,13 +109,13 @@ docker run -d --name consul -p 8500:8500 hashicorp/consul:latest agent -dev -cli
 
 ```bash
 # 从零重建全部集合（71 个：验证器 + 索引）
-cd auth/docs && mongosh <uri> --file db/init.js
+cd docs/auth && mongosh <uri> --file db/init.js
 
 # 导入菜单/权限基线（需账号服务已启动 + admin 账号）
 node import-menus.cjs
 ```
 
-菜单 / 权限 / 应用图标与默认头像内置于 `auth/web/public/`（`icons/`、`avatar/`）；DB 基线中的图标 URL 为根相对路径（`/icons/...`），由前端静态服务提供，后端不存储图标文件。基线数据构成与常用运维操作见 [auth/docs/README.md](auth/docs/README.md)。
+菜单 / 权限 / 应用图标与默认头像内置于 `auth/web/public/`（`icons/`、`avatar/`）；DB 基线中的图标 URL 为根相对路径（`/icons/...`），由前端静态服务提供，后端不存储图标文件。基线数据构成与常用运维操作见 [docs/auth/README.md](docs/auth/README.md)。
 
 ### 配置
 
@@ -149,13 +149,14 @@ pnpm dev                               # 开发服务器（5173）
 | 分类         | 文档                                                                 | 内容                                                                                     |
 |--------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | 平台总览     | [README.md](README.md)（本页）                                       | 架构、快速开始、构建约定、开发规范                                                       |
+| 文档索引     | [docs/README.md](docs/README.md)                                    | 全部文档的地图：按服务域组织（auth / gateway / sba…），新增文档先看这里                  |
 | **账号** | **[auth/README.md](auth/README.md)**                                 | 主体模型、认证体系、core 组件、API 层、子应用结构、数据模型、消息拓扑、配置、对外输出     |
-| 数据库与运维 | [auth/docs/README.md](auth/docs/README.md)                           | db/ 权威源、初始化 / 导入脚本、基线数据构成                                               |
-| API 面       | [auth/docs/api-surface.md](auth/docs/api-surface.md)                 | 8 主体面 + 2 特例面全量端点清单 + 三层防护模型                                            |
-| API 收敛计划 | [auth/docs/api-convergence-plan.md](auth/docs/api-convergence-plan.md) | API 面下沉分批计划（未实施）                                                            |
-| 菜单与权限   | [auth/docs/menus.md](auth/docs/menus.md)                             | 菜单权限树可读快照（45 菜单 / 169 权限点）                                               |
-| 系统字典     | [auth/docs/dict.md](auth/docs/dict.md)                               | 系统字典清单快照（9 字典 / 48 项）                                                       |
-| 错误码       | [auth/docs/error-codes.md](auth/docs/error-codes.md)                 | 17 枚举类 74 码值 + 前端分发处理                                                         |
+| 数据库与运维 | [docs/auth/README.md](docs/auth/README.md)                           | db/ 权威源、初始化 / 导入脚本、基线数据构成                                               |
+| API 面       | [docs/auth/api-surface.md](docs/auth/api-surface.md)                 | 8 主体面 + 2 特例面全量端点清单 + 三层防护模型                                            |
+| API 收敛计划 | [docs/auth/api-convergence-plan.md](docs/auth/api-convergence-plan.md) | API 面下沉分批计划（未实施）                                                            |
+| 菜单与权限   | [docs/auth/menus.md](docs/auth/menus.md)                             | 菜单权限树可读快照（45 菜单 / 169 权限点）                                               |
+| 系统字典     | [docs/auth/dict.md](docs/auth/dict.md)                               | 系统字典清单快照（9 字典 / 48 项）                                                       |
+| 错误码       | [docs/auth/error-codes.md](docs/auth/error-codes.md)                 | 17 枚举类 74 码值 + 前端分发处理                                                         |
 | 运营平台      | [auth/web/README.md](auth/web/README.md)                             | 环境要求、常用命令、运行时配置、API 层结构                                               |
 | 网关         | [gateway/README.md](gateway/README.md)                               | 网关能力与运行配置                                                                       |
 | 监控中心     | [sba/README.md](sba/README.md)                                       | Spring Boot Admin 接入说明                                                               |
@@ -213,13 +214,13 @@ cairo-platform/
 
 **命名**：实体名与代码/集合/字典 ID 一致——`endpoint`、`subapp`、`permission`；中文术语统一「终端」「子应用」。改名必须走全链路（Java/集合/URL/队列/authority/前端/种子数据/文档）。
 
-**业务标识**：短值 + 复合唯一。`endpointId=web`、`subappId=manage` 依赖 `(appId, endpointId, subappId[, subappVersion])` 复合唯一索引，不做全局唯一；前提是子标识处处与上层标识共存、代码零单独查询。雪花类数值（Sort/MenuId）在 JSON 传输中一律走字符串防精度丢失。
+**业务标识**：短值 + 复合唯一。`endpointId=web`、`subappId=manage` 依赖 `(appId, endpointId, subappId[, subappVersion])` 复合唯一索引，不做全局唯一；前提是子标识处处与上层标识共存、代码零单独查询。实体主键（accountId/userId/集合文档 id 等）统一由 `CoreConstants.nextIdStr()` 生成 **UUIDv7**（RFC 9562，JUG 库实现：毫秒时间戳前缀、时间有序、免协调、无时钟回拨风险；雪花算法已全量移除）；角色/权限等 `sort` 默认值为毫秒时间戳（Long，仅取排序语义）。
 
 **权限模型**：双层——`permissionId`（`资源.动作`，前端 `v-allow` 直接绑定）+ `authorities`（`资源:动作`，`@PreAuthorize` 校验）；新增管理功能需同时补菜单权限点与后端 authority，两层值 1:1。
 
-**字典**：值以代码枚举为权威源；DictId 与实体名一致；基线快照在 `auth/docs/db/data/`。
+**字典**：值以代码枚举为权威源；DictId 与实体名一致；基线快照在 `docs/auth/db/data/`。
 
-**DB 变更**：`auth/docs/db/` 为唯一权威源；索引名统一 `ix_{字段按 keys 声明序}[_unique]`（点分字段取叶子名）；测试库账号无 `collMod`，验证器变更走「备份 → drop+重建 → 回填」；嵌套集数据（菜单/字典项）必须走 API 注入由服务端计算左右值，禁止直插。
+**DB 变更**：`docs/auth/db/` 为唯一权威源；索引名统一 `ix_{字段按 keys 声明序}[_unique]`（点分字段取叶子名）；测试库账号无 `collMod`，验证器变更走「备份 → drop+重建 → 回填」；嵌套集数据（菜单/字典项）必须走 API 注入由服务端计算左右值，禁止直插。
 
 **前端**（`auth/web/`）：Node 24 LTS + pnpm 11（corepack）；axios 实例不设默认 `Content-Type`（FormData 会被 JSON 化）；MinIO 直传不携带 `withCredentials`；敏感配置仅在运行时 `page.config.js`。
 
@@ -233,6 +234,8 @@ cairo-platform/
 ├── gradle/
 │   ├── libs.versions.toml     # 版本目录：所有第三方版本与 BOM 坐标
 │   └── wrapper/               # Gradle 8.14.5 wrapper（全仓唯一）
+├── docs/                      # 文档中心（按服务域组织，见 docs/README.md）
+│   └── auth/                  # 账号服务：API 面 / 菜单 / 字典 / 错误码 / db 权威源
 └── build-logic/               # 构建逻辑（included build，编译为插件）
     └── src/main/groovy/
         ├── cairo.java-library.gradle      # Java 库约定

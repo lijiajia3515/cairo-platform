@@ -59,7 +59,7 @@ public class CairoAppUserVerifyCodeAuthenticationToken extends AbstractAuthentic
 
 	@Override
 	public String getPrincipal() {
-		return String.format("endpoint_user_verify_code_%s_%s_%s_%s", appId, endpointId, clientId, phoneNumber);
+		return String.format("app_user:%s:%s:%s:verify_code:%s", appId, endpointId, clientId, phoneNumber);
 	}
 
 }

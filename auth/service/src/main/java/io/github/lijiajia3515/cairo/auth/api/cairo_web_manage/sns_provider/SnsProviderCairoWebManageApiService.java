@@ -297,7 +297,7 @@ public class SnsProviderCairoWebManageApiService {
 				// 插入第三方认证提供方
 				SnsProviderMongodb snsProvider = SnsProviderMongodb.builder()
 					.appId(args.getAppId())
-					.snsProviderId(Optional.ofNullable(args.getSnsProviderId()).orElse((CoreConstants.SNOWFLAKE.nextIdStr())))
+					.snsProviderId(Optional.ofNullable(args.getSnsProviderId()).orElse((CoreConstants.nextIdStr())))
 					.snsProviderName(args.getSnsProviderName())
 					.snsProviderPartner(partner.getPartnerId())
 					.snsProviderType(type.getTypeValue())

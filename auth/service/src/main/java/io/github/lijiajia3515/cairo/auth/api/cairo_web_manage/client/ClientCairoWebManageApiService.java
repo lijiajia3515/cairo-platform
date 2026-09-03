@@ -215,7 +215,7 @@ public class ClientCairoWebManageApiService {
 
 
 				ClientMongodb insertClient = ClientMongodb.builder()
-					.id(CoreConstants.SNOWFLAKE.nextIdStr())
+					.id(CoreConstants.nextIdStr())
 					.appId(args.getAppId())
 					.endpointId(args.getEndpointId())
 					.clientId(args.getClientId())
@@ -295,7 +295,7 @@ public class ClientCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -430,7 +430,7 @@ public class ClientCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -495,7 +495,7 @@ public class ClientCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -560,7 +560,7 @@ public class ClientCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -624,7 +624,7 @@ public class ClientCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}

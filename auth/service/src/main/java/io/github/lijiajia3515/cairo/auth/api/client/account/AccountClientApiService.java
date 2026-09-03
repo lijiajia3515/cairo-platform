@@ -390,7 +390,7 @@ public class AccountClientApiService {
 		//图片
 		String avatarUrl;
 		if (args.getAvatarUrl() != null && !args.getAvatarUrl().isBlank()) {
-			String fileName = FileKeyPrefixConstants.AVATAR_PREFIX + CoreConstants.SNOWFLAKE.nextIdStr();
+			String fileName = FileKeyPrefixConstants.AVATAR_PREFIX + CoreConstants.nextIdStr();
 			CairoMultipartFile cairoMultipartFile = FilesUtil.urlConvertCairoMultipart(args.getAvatarUrl(),
 				fileName.concat(FilesUtil.getType(args.getAvatarUrl())));
 			List<String> avatarUrls = publicFileClientApiService.uploadFile(fileName, cairoMultipartFile);
@@ -463,7 +463,7 @@ public class AccountClientApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getKey(CairoAuthRabbitmqRouteKey.CREATED_ACCOUNT),
 				objectMapper.writeValueAsString(createdAccountMessage),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -698,7 +698,7 @@ public class AccountClientApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 		return Optional.empty();
 	}

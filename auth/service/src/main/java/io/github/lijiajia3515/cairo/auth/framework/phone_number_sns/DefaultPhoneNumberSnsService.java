@@ -18,7 +18,7 @@ public class DefaultPhoneNumberSnsService implements PhoneNumberSnsService {
 
 	@Override
 	public PhoneNumberSnsInfo getPhoneNumberInfo(String snsProviderId, String snsCode) throws Exception {
-		WxMaPhoneNumberInfo phoneNumberInfo = wxMaService.switchoverTo(snsProviderId).getUserService().getNewPhoneNoInfo(snsCode);
+		WxMaPhoneNumberInfo phoneNumberInfo = wxMaService.switchoverTo(snsProviderId).getUserService().getPhoneNumber(snsCode);
 
 		log.info("phoneNumberInfo: {}", phoneNumberInfo);
 

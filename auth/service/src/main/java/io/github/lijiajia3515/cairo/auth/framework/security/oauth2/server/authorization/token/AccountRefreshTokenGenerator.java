@@ -34,7 +34,7 @@ import java.util.Base64;
  * account refresh token generator
  */
 public final class AccountRefreshTokenGenerator implements OAuth2TokenGenerator<OAuth2RefreshToken> {
-    private final StringKeyGenerator refreshTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "aft_");
+    private final StringKeyGenerator refreshTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "account_rt_");
 
     @Nullable
     @Override

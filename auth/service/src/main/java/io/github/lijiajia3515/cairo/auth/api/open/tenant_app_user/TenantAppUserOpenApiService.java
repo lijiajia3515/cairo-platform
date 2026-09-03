@@ -195,7 +195,7 @@ public class TenantAppUserOpenApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -265,7 +265,7 @@ public class TenantAppUserOpenApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 
 		log.debug("[tenant_app_user][registerTenantAppUser] result -> {} ", user);
@@ -363,7 +363,7 @@ public class TenantAppUserOpenApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}

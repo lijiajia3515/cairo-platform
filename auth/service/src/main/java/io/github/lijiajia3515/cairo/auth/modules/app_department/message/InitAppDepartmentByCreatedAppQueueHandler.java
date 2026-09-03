@@ -61,7 +61,7 @@ public class InitAppDepartmentByCreatedAppQueueHandler {
 
 			AppDepartmentMongodb rootAppDepartmentMongodb = AppDepartmentMongodb.builder()
 				.appId(createdAppMessage.getAppId())
-				.departmentId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.departmentId(CoreConstants.nextIdStr())
 				.departmentName("组织结构")
 				.parentId(null)
 				.root(true)

@@ -60,7 +60,7 @@ public class CairoAccountSnsCodeAuthenticationToken extends AbstractAuthenticati
 
 	@Override
 	public String getPrincipal() {
-		return String.format("%s-%s-%s-%s-%s", appId, clientId, snsType, snsProviderId, snsCode);
+		return String.format("account:sns_code:%s_%s_%s", snsType, snsProviderId, snsCode);
 	}
 
 

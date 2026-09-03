@@ -113,7 +113,7 @@ public class DeleteTenantEndpointByDeletedEndpointQueueHandler {
 							.eventAccountId(null)
 							.eventTime(LocalDateTime.now())
 							.build()),
-						new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+						new CorrelationData(CoreConstants.nextIdStr())
 					);
 				} catch (JsonProcessingException e) {
 					log.warn("send delete tenant app endpoint mq warn", e);

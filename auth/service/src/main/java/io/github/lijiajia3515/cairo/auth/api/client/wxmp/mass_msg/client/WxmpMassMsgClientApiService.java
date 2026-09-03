@@ -88,7 +88,7 @@ public class WxmpMassMsgClientApiService {
 	)
 	//上传永久素材（占用容量）
 	private WxMpMaterialUploadResult wxMpMaterialUpload(String url) {
-		String fileName =  TEMPORARY_PATH+"/"+ CoreConstants.SNOWFLAKE.nextIdStr() + FilesUtil.getType(url);
+		String fileName =  TEMPORARY_PATH+"/"+ CoreConstants.nextIdStr() + FilesUtil.getType(url);
 		File file = HttpUtil.downloadFileFromUrl(url, fileName);
 		//永久图片 ID
 		WxMpMaterial wxMpMaterial = new WxMpMaterial("img", file, "图片", "图片");

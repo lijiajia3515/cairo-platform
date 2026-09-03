@@ -222,7 +222,7 @@ public class TenantAppSubappApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 			endpointIds.forEach(endpointId -> {
 				try {
@@ -239,7 +239,7 @@ public class TenantAppSubappApiService {
 							.eventTime(LocalDateTime.now())
 							.build()
 						),
-						new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+						new CorrelationData(CoreConstants.nextIdStr())
 					);
 				} catch (JsonProcessingException e) {
 					log.warn("e", e);
@@ -316,7 +316,7 @@ public class TenantAppSubappApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -376,7 +376,7 @@ public class TenantAppSubappApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -438,7 +438,7 @@ public class TenantAppSubappApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 

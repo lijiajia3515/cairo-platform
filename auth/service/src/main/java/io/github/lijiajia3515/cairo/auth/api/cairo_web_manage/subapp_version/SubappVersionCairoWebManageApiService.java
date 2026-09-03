@@ -392,7 +392,7 @@ public class SubappVersionCairoWebManageApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 
 			} catch (BusinessException e) {
@@ -474,7 +474,7 @@ public class SubappVersionCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 
 	}

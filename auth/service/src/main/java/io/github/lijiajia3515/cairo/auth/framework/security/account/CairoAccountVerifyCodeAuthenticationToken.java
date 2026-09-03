@@ -32,6 +32,6 @@ public class CairoAccountVerifyCodeAuthenticationToken extends AbstractAuthentic
 
     @Override
     public String getPrincipal() {
-        return String.format("account_verify_code_%s_%s", phoneNumber, verifyCode);
+        return String.format("account:verify_code:%s", phoneNumber);
     }
 }

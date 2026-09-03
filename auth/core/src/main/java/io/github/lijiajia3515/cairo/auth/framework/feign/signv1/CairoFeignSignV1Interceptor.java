@@ -16,7 +16,7 @@ public class CairoFeignSignV1Interceptor implements RequestInterceptor {
 
 	@Override
 	public void apply(RequestTemplate requestTemplate) {
-		String nonce = CoreConstants.SNOWFLAKE.nextIdStr();
+		String nonce = CoreConstants.nextIdStr();
 /*		String raw;
 		if (Request.HttpMethod.GET.name().equals(requestTemplate.method())) {
 			raw = requestTemplate.url();

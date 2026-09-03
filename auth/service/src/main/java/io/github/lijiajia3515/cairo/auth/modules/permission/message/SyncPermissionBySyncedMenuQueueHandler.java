@@ -105,7 +105,7 @@ public class SyncPermissionBySyncedMenuQueueHandler {
 						String icon = null;
 						try {
 							if (permission.getIcon() != null && !permission.getIcon().isBlank()) {
-								String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+								String fileName = CoreConstants.nextIdStr();
 								MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(permission.getIcon(),
 									fileName.concat(FilesUtil.getType(permission.getIcon())));
 								List<String> urls = Optional.ofNullable(publicFileClientApiService.uploadFile(

@@ -38,7 +38,7 @@ import java.util.UUID;
  * @since 0.2.3
  */
 public final class TenantAppUserAccessTokenGenerator implements OAuth2TokenGenerator<OAuth2AccessToken> {
-	private final StringKeyGenerator accessTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 16, "taeuat_");
+	private final StringKeyGenerator accessTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 16, "tenant_app_user_at_");
 	private OAuth2TokenCustomizer<OAuth2TokenClaimsContext> accessTokenCustomizer;
 
 	@Nullable

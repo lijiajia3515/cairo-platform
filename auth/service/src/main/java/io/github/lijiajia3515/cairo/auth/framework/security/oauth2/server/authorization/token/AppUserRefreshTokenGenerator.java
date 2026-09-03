@@ -34,7 +34,7 @@ import java.util.Base64;
  * endpoint user refresh token generator
  */
 public final class AppUserRefreshTokenGenerator implements OAuth2TokenGenerator<OAuth2RefreshToken> {
-    private final StringKeyGenerator refreshTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "aeuft_");
+    private final StringKeyGenerator refreshTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "app_user_rt_");
 
     @Nullable
     @Override

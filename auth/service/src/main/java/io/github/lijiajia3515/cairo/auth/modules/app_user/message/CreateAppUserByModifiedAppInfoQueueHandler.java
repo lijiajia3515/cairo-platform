@@ -165,7 +165,7 @@ public class CreateAppUserByModifiedAppInfoQueueHandler {
 										.eventTime(LocalDateTime.now())
 										.build()
 								),
-								new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+								new CorrelationData(CoreConstants.nextIdStr())
 							);
 						} catch (JsonProcessingException e) {
 							log.warn("e", e);

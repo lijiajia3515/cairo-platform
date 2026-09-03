@@ -247,7 +247,7 @@ public class AppUserEndpointApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -321,7 +321,7 @@ public class AppUserEndpointApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}

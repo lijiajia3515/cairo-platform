@@ -291,9 +291,12 @@ public class AuthBadLoginLogHandler {
 		 * @param loginTime loginTime
 		 * @param token     token
 		 */
+		// 修复说明: 此前误用 token.getPrincipal()(返回 "account:password:<username>" 三段式主体串)当裸 username
+		// 做 Mongo 等值查询,永远不命中,导致失败计数/锁定在该登录路径失效、日志全落 unknown_username 分支;
+		// 现改用 token.getUsername() 取裸登录名,与上方 UsernamePasswordAuthenticationToken 重载(token.getName())对齐。
 		@Async
 		void recordAccountAuthFailureLog(String errMsg, String ip, String userAgent, LocalDateTime loginTime, CairoAccountPasswordAuthenticationToken token) {
-			String username = token.getPrincipal().toString();
+			String username = token.getUsername();
 
 			Criteria accountCriteria = new Criteria();
 			accountCriteria = accountCriteria.orOperator(
@@ -996,7 +999,7 @@ public class AuthBadLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			ClientLoginLogMongodb clientLoginLogMongodb = ClientLoginLogMongodb.builder()
-				.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.logId(CoreConstants.nextIdStr())
 				.appId(appId)
 				.clientId(clientId)
 				.loginTime(loginTime)
@@ -1034,7 +1037,7 @@ public class AuthBadLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			AccountLoginLogMongodb accountLoginLogMongodb = AccountLoginLogMongodb.builder()
-				.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.logId(CoreConstants.nextIdStr())
 				.loginTime(loginTime)
 				.accountId(accountId)
 				.accountTokenId(accountId)
@@ -1075,7 +1078,7 @@ public class AuthBadLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			AccountLoginLogMongodb accountLoginLogMongodb = AccountLoginLogMongodb.builder()
-				.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.logId(CoreConstants.nextIdStr())
 				.loginTime(loginTime)
 				.accountId(accountId)
 				.accountTokenId(null)
@@ -1118,7 +1121,7 @@ public class AuthBadLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			AppUserLoginLogMongodb appUserLoginLogMongodb = AppUserLoginLogMongodb.builder()
-				.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.logId(CoreConstants.nextIdStr())
 				.appId(appId)
 				.endpointId(endpointId)
 				.clientId(clientId)
@@ -1162,7 +1165,7 @@ public class AuthBadLoginLogHandler {
 			String region = ip2RegionService.getRegionStr(ip);
 
 			TenantAppUserLoginLogMongodb tenantAppUserLoginLogMongodb = TenantAppUserLoginLogMongodb.builder()
-				.logId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.logId(CoreConstants.nextIdStr())
 				.tenantId(tenantId)
 				.appId(appId)
 				.endpointId(endpointId)
@@ -1243,7 +1246,7 @@ public class AuthBadLoginLogHandler {
 				// 			message.getMessageProperties().setDelay((int) lockDuration.toMillis());
 				// 			return message;
 				// 		},
-				// 		new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				// 		new CorrelationData(CoreConstants.nextIdStr())
 				// 	);
 				// }
 

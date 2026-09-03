@@ -175,7 +175,7 @@ public class AppDepartmentCommonService {
 		if (root == null) {
 			root = AppDepartmentMongodb.builder()
 				.appId(appId)
-				.departmentId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.departmentId(CoreConstants.nextIdStr())
 				.departmentName("组织结构")
 				.parentId(null)
 				.root(true)

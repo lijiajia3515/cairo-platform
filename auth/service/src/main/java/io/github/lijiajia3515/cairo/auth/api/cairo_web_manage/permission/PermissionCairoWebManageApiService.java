@@ -27,7 +27,6 @@ import io.github.lijiajia3515.cairo.auth.modules.menu.MenuCommonService;
 import io.github.lijiajia3515.cairo.auth.domain.dto.menu.PathMenu;
 import io.github.lijiajia3515.cairo.auth.modules.subapp.SubappCommonService;
 import io.github.lijiajia3515.cairo.auth.modules.subapp_version.SubappVersionCommonService;
-import io.github.lijiajia3515.cairo.core.CoreConstants;
 import io.github.lijiajia3515.cairo.core.exception.BusinessException;
 import io.github.lijiajia3515.cairo.core.exception.ConflictBusinessException;
 import io.github.lijiajia3515.cairo.core.page.Page;
@@ -229,7 +228,7 @@ public class PermissionCairoWebManageApiService {
 					.type(args.getType())
 					.defaultPermission(Optional.ofNullable(args.getDefaultPermission()).orElse(false))
 					.hiddenPermission(Optional.ofNullable(args.getHiddenPermission()).orElse(false))
-					.sort(Optional.ofNullable(args.getSort()).orElse(CoreConstants.SNOWFLAKE.nextId()))
+					.sort(Optional.ofNullable(args.getSort()).orElse(System.currentTimeMillis()))
 					.metadata(AppUserMetadataMongodb.builder()
 						.createUserId(CairoSecurityContextHolder.getSubappUserId())
 						.updateUserId(CairoSecurityContextHolder.getSubappUserId())

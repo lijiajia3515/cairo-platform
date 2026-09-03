@@ -199,7 +199,7 @@ public class TenantEndpointCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 		log.debug("createTenantEndpoint: {}", insertedTenantEndpointMongodb);
 	}
@@ -304,7 +304,7 @@ public class TenantEndpointCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -369,7 +369,7 @@ public class TenantEndpointCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 

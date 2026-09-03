@@ -115,7 +115,7 @@ public class DeleteTenantSubappByDeletedTenantEndpointQueueHandler {
 							.eventTime(LocalDateTime.now())
 							.build()
 						),
-						new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+						new CorrelationData(CoreConstants.nextIdStr())
 					);
 				} catch (JsonProcessingException e) {
 					log.warn("send delete_tenant_subapp mq warn", e);

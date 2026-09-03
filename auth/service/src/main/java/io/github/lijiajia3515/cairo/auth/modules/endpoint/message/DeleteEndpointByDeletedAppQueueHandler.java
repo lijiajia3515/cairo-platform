@@ -116,7 +116,7 @@ public class DeleteEndpointByDeletedAppQueueHandler {
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_ENDPOINT, deletedEndpointMessage.getAppId()),
 							objectMapper.writeValueAsString(deletedEndpointMessage),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 					}
 				} catch (Exception e) {

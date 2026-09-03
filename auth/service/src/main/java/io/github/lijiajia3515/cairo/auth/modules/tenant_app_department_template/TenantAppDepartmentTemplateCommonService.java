@@ -142,7 +142,7 @@ public class TenantAppDepartmentTemplateCommonService {
 		TenantAppDepartmentTemplateMongodb root = readMongoTemplate.findOne(query, TenantAppDepartmentTemplateMongodb.class, MongodbConstants.Collection.TENANT_APP_DEPARTMENT_TEMPLATE);
 		if (root == null) {
 			root = TenantAppDepartmentTemplateMongodb.builder()
-				.tenantAppDepartmentTemplateId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.tenantAppDepartmentTemplateId(CoreConstants.nextIdStr())
 				.tenantAppDepartmentTemplateName("组织结构")
 				.parentId(null)
 				.root(true)

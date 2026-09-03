@@ -131,7 +131,7 @@ public class ModifyClientByModifiedEndpointInfoQueueHandler {
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.MODIFIED_CLIENT_INFO, modifiedClientInfoMessage.getAppId()),
 							objectMapper.writeValueAsString(modifiedClientInfoMessage),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 					}
 				} catch (Exception e) {

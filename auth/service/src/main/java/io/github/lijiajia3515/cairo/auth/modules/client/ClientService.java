@@ -60,7 +60,7 @@ public class ClientService {
 	 */
 	@NewSpan
 	public Optional<RegisteredClient> createClient(CairoRegisteredClient client) {
-		String id = CoreConstants.SNOWFLAKE.nextIdStr();
+		String id = CoreConstants.nextIdStr();
 		return Optional.ofNullable(client)
 			.map(ClientConverter::convert)
 			.map(x -> x.setId(id).setClientId(id).setClientSecret(id))

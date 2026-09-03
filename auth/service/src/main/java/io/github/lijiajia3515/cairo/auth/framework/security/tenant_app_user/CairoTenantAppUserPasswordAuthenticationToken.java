@@ -70,7 +70,7 @@ public class CairoTenantAppUserPasswordAuthenticationToken extends AbstractAuthe
 
 	@Override
 	public String getPrincipal() {
-		return String.format("tenant_app_user_password_%s_%s_%s_%s_%s", tenantId, appId, endpointId, clientId, username);
+		return String.format("tenant_app_user:%s:%s:%s:%s:password:%s", tenantId, appId, endpointId, clientId, username);
 	}
 
 }

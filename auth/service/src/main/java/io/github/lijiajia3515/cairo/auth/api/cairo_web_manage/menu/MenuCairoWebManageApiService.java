@@ -423,7 +423,7 @@ public class MenuCairoWebManageApiService {
 					.endpointId(endpointId)
 					.subappId(subappId)
 					.subappVersion(subappVersion)
-					.menuId(CoreConstants.SNOWFLAKE.nextIdStr())
+					.menuId(CoreConstants.nextIdStr())
 					.parentId(parentMenu.getMenuId())
 					.menuName(args.getMenuName())
 					.path(args.getPath())

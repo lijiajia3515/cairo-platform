@@ -12,6 +12,6 @@ public class SubappUserAuthKeyBuilder implements LockKeyBuilder {
 	@Override
 	public String buildKey(MethodInvocation invocation, String[] definitionKeys) {
 		Optional<CairoOAuthSubappUserPrincipal> appUser = CairoSecurityContextHolder.getSubappUser();
-		return appUser.map(x -> x.getAppId() + "_" + x.getUserId()).orElse(CoreConstants.SNOWFLAKE.nextIdStr());
+		return appUser.map(x -> x.getAppId() + "_" + x.getUserId()).orElse(CoreConstants.nextIdStr());
 	}
 }

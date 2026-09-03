@@ -338,7 +338,7 @@ public class AccountCairoWebManageApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getKey(CairoAuthRabbitmqRouteKey.CREATED_ACCOUNT),
 				objectMapper.writeValueAsString(createdAccountMessage),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -407,7 +407,7 @@ public class AccountCairoWebManageApiService {
 				.eventAccountId(CairoSecurityContextHolder.getSubappAccountId())
 				.eventTime(LocalDateTime.now())
 				.build()),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -472,7 +472,7 @@ public class AccountCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -538,7 +538,7 @@ public class AccountCairoWebManageApiService {
 					.eventTime(LocalDateTime.now())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -666,7 +666,7 @@ public class AccountCairoWebManageApiService {
 					.eventAccountId(CairoSecurityContextHolder.getSubappAccountId())
 					.eventTime(LocalDateTime.now())
 					.build()),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}

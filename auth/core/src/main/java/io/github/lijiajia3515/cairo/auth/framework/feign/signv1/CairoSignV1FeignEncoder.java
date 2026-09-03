@@ -26,7 +26,7 @@ public class CairoSignV1FeignEncoder extends PageableSpringEncoder {
 	@Override
 	public void encode(Object requestBody, Type bodyType, RequestTemplate request) throws EncodeException {
 		if (bodyType == CairoFeignSignV1.class) {
-			String nonce = CoreConstants.SNOWFLAKE.nextIdStr();
+			String nonce = CoreConstants.nextIdStr();
 			String timestamp = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(8)) + "";
 			String encodeKey = "cairo:v1:" + SecureUtil.sha256(String.format("%s_%s", timestamp, nonce));
 			request.header(TIMESTAMP_HEADER_NAME, timestamp)

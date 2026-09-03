@@ -87,7 +87,8 @@ class ServerPagesTemplateTest {
 	@Test
 	void indexShowsAccountWhenLoggedIn() {
 		CairoAuthAccount account = CairoAuthAccount.builder()
-			.id("6482f1a2e")
+			.id("account_6482f1a2e")
+			.accountId("2095181599214198784")
 			.nickname("管理员")
 			.loginname("admin")
 			.email("admin@example.com")
@@ -98,7 +99,10 @@ class ServerPagesTemplateTest {
 
 		String html = render("index", variables);
 
-		assertThat(html).contains("6482f1a2e");
+		assertThat(html).contains("账号ID");
+		assertThat(html).contains("2095181599214198784");
+		assertThat(html).contains("会话ID");
+		assertThat(html).contains("account_6482f1a2e");
 		assertThat(html).contains("管理员");
 		assertThat(html).contains("admin@example.com");
 		assertThat(html).contains("退出登录");

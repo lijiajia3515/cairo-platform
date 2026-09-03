@@ -97,7 +97,7 @@ public class SnsOpenApiService {
 		try {
 			SnsInfo snsInfo = snsService.getSnsInfo(snsType, snsProviderId, snsCode);
 			SnsTokenMongodb tokenMongodb = SnsTokenMongodb.builder()
-				.token(CoreConstants.SNOWFLAKE.nextIdStr())
+				.token(CoreConstants.nextIdStr())
 				.status(SnsTokenStatus.OK.getStatus())
 				.expiredTime(LocalDateTime.now().plusMinutes(5))
 				.partnerId(snsInfo.getPartnerId())

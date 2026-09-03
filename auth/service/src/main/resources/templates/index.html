@@ -76,7 +76,7 @@
         <div class="avatar-fallback" th:if="${account.avatarUrl == null}">C</div>
         <div>
           <div class="profile-name" th:text="${account.nickname ?: account.loginname}">用户</div>
-          <div class="profile-sub">UID:&nbsp;<span th:text="${account.id}?:'未知'">Root</span></div>
+          <div class="profile-sub">账号ID:&nbsp;<span th:text="${account.accountId} ?: '未知'">Root</span></div>
         </div>
       </div>
 
@@ -96,6 +96,10 @@
         <div class="info-row">
           <dt>手机号</dt>
           <dd th:text="${account.phoneNumber}?:'未绑定'">138****0000</dd>
+        </div>
+        <div class="info-row">
+          <dt>会话ID</dt>
+          <dd th:text="${account.id}?:'未知'">account_0</dd>
         </div>
       </dl>
 

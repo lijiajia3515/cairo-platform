@@ -136,7 +136,7 @@ public class SysDictCairoWebManageApiService {
 		DictType type = DictType.typeValueOf(args.getDictType()).orElseThrow(() -> new ParamsErrorBusinessException(String.format("参数: 类型：%s 错误", args.getDictType())));
 		SysDictMongodb sysDictMongodb = SysDictMongodb.builder()
 			.appId(appId)
-			.dictId(Optional.ofNullable(args.getDictId()).orElse(CoreConstants.SNOWFLAKE.nextIdStr()))
+			.dictId(Optional.ofNullable(args.getDictId()).orElse(CoreConstants.nextIdStr()))
 			.dictType(type.getTypeValue())
 			.dictName(args.getDictName())
 			.icon(args.getIcon())
@@ -286,7 +286,7 @@ public class SysDictCairoWebManageApiService {
 				.dictId(args.getDictId())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 		//删除图标
 		if (insert != null && insert.getIcon() != null) {
@@ -921,7 +921,7 @@ public class SysDictCairoWebManageApiService {
 				.dictId(args.getDictId())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 	}
 
@@ -1315,7 +1315,7 @@ public class SysDictCairoWebManageApiService {
 						.dictId(sd.getDictId())
 						.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 			} catch (JsonProcessingException e) {
 				log.error("e", e);
@@ -1369,7 +1369,7 @@ public class SysDictCairoWebManageApiService {
 				String icon = null;
 				try {
 					if (sdMongodb.getIcon() != null && !sdMongodb.getIcon().isBlank()) {
-						String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+						String fileName = CoreConstants.nextIdStr();
 						MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdMongodb.getIcon(),
 							fileName.concat(FilesUtil.getType(sdMongodb.getIcon())));
 						if (multipartFile != null) {
@@ -1403,7 +1403,7 @@ public class SysDictCairoWebManageApiService {
 					String sdiIcon = null;
 					try {
 						if (sdi.getIcon() != null && !sdi.getIcon().isBlank()) {
-							String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+							String fileName = CoreConstants.nextIdStr();
 							MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdi.getIcon(),
 								fileName.concat(FilesUtil.getType(sdi.getIcon())));
 							if (multipartFile != null) {

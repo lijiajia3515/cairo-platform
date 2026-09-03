@@ -184,7 +184,7 @@ public class EndpointCairoWebManageApiService {
 				appCommonService.checkAppScope(mongoTemplate, args.getAppId(), scope.getScopeValue());
 
 				EndpointMongodb newEndpointMongodb = EndpointMongodb.builder()
-					.id(CoreConstants.SNOWFLAKE.nextIdStr())
+					.id(CoreConstants.nextIdStr())
 					.appId(args.getAppId())
 					.endpointId(args.getEndpointId())
 					.endpointName(args.getEndpointName())
@@ -226,7 +226,7 @@ public class EndpointCairoWebManageApiService {
 					.eventTime(endpointMongodb.getMetadata().getCreateTime())
 					.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -343,7 +343,7 @@ public class EndpointCairoWebManageApiService {
 				.eventTime(LocalDateTime.now())
 				.build()
 			),
-			new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+			new CorrelationData(CoreConstants.nextIdStr())
 		);
 
 	}
@@ -399,7 +399,7 @@ public class EndpointCairoWebManageApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.MODIFIED_ENDPOINT_STATUS, message.getAppId()),
 				objectMapper.writeValueAsString(message),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 
@@ -464,7 +464,7 @@ public class EndpointCairoWebManageApiService {
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_ENDPOINT, deletedEndpointMessage.getAppId()),
 				objectMapper.writeValueAsString(deletedEndpointMessage),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 

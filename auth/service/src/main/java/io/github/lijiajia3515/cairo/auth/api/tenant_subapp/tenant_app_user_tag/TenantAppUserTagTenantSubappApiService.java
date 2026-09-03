@@ -263,7 +263,7 @@ public class TenantAppUserTagTenantSubappApiService {
 						.eventTime(insertedUserTag.getMetadata().getCreateTime())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 			log.debug("[tenant_app_user_tag][create_tenant_app_user_tag] result -> {} ", insertedUserTag);
 		}
@@ -326,7 +326,7 @@ public class TenantAppUserTagTenantSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -388,7 +388,7 @@ public class TenantAppUserTagTenantSubappApiService {
 						.eventTime(LocalDateTime.now())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 		}
 	}
@@ -461,7 +461,7 @@ public class TenantAppUserTagTenantSubappApiService {
 							.eventTime(LocalDateTime.now())
 							.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 			} catch (JsonProcessingException e) {
 				log.warn("deleteTenantAppUserTag", e);

@@ -98,7 +98,7 @@ public class CreateSubappByCreatedEndpointQueueHandler {
 			SubappMongodb subappMongodb = transactionTemplate.execute(status -> {
 				try {
 					SubappMongodb newSubappMongodb = SubappMongodb.builder()
-						.id(CoreConstants.SNOWFLAKE.nextIdStr())
+						.id(CoreConstants.nextIdStr())
 						.appId(createdEndpointMessage.getAppId())
 						.endpointId(createdEndpointMessage.getEndpointId())
 						.subappId(createdEndpointMessage.getEndpointId())
@@ -140,7 +140,7 @@ public class CreateSubappByCreatedEndpointQueueHandler {
 						.eventTime(LocalDateTime.now())
 						.build()
 					),
-					new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+					new CorrelationData(CoreConstants.nextIdStr())
 				);
 			}
 			// 消费成功

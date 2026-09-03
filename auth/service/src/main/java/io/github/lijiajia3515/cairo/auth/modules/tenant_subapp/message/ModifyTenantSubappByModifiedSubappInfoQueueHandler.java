@@ -98,7 +98,7 @@ public class ModifyTenantSubappByModifiedSubappInfoQueueHandler {
 							.eventTime(LocalDateTime.now())
 							.build()
 						),
-						new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+						new CorrelationData(CoreConstants.nextIdStr())
 					);
 				} catch (JsonProcessingException e) {
 					log.warn("send create_tenant_subapp mq warn", e);

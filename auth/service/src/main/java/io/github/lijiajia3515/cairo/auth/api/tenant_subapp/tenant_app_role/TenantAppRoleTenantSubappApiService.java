@@ -33,7 +33,6 @@ import io.github.lijiajia3515.cairo.auth.domain.dto.tenant_app_user.BasicTenantA
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.CairoTenantAppUserTool;
 import io.github.lijiajia3515.cairo.auth.domain.dto.tenant_app_user.TenantAppUser;
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.TenantAppUserCommonService;
-import io.github.lijiajia3515.cairo.core.CoreConstants;
 import io.github.lijiajia3515.cairo.core.exception.ConflictBusinessException;
 import io.github.lijiajia3515.cairo.core.page.Page;
 import io.github.lijiajia3515.cairo.core.tree.Tree2Converter;
@@ -298,7 +297,7 @@ public class TenantAppRoleTenantSubappApiService {
 					.roleName(args.getRoleName())
 					.remark(args.getRemark())
 					.enabled(true)
-					.sort(CoreConstants.SNOWFLAKE.nextId())
+					.sort(System.currentTimeMillis())
 					.metadata(TenantAppUserMetadataMongodb.builder()
 						.createUserId(CairoSecurityContextHolder.getTenantAppUserId())
 						.updateUserId(CairoSecurityContextHolder.getTenantAppUserId())

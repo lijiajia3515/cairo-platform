@@ -125,7 +125,7 @@ public class LogoffAccountSuccessJob {
 								.joinTime(deletedAccount.getJoinTime())
 								.eventTime(LocalDateTime.now())
 								.build()),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 					}
 				} catch (Exception e) {

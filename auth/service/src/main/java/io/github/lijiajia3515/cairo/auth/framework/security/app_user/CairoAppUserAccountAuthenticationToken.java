@@ -62,7 +62,7 @@ public class CairoAppUserAccountAuthenticationToken extends AbstractAuthenticati
 
 	@Override
 	public String getPrincipal() {
-		return String.format("app_user_account_%s_%s_%s", appId, clientId, accountId);
+		return String.format("app_user:%s:%s:%s:account:%s", appId, endpointId, clientId, accountId);
 	}
 
 }

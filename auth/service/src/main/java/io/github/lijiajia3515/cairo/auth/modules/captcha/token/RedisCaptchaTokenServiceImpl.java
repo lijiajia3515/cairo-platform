@@ -1,8 +1,8 @@
 package io.github.lijiajia3515.cairo.auth.modules.captcha.token;
 
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.authorization.token.TokenKeyGenerator;
 import io.micrometer.tracing.annotation.NewSpan;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.crypto.keygen.Base64StringKeyGenerator;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class RedisCaptchaTokenServiceImpl implements CaptchaTokenService {
 	/**
 	 * token 生成器
 	 */
-	private final StringKeyGenerator codeGenerator = new Base64StringKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32);
+	private final StringKeyGenerator codeGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "captcha_");
 
 
 	/**

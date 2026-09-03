@@ -111,7 +111,7 @@ public class SyncMenuBySyncedSubappVersionQueueHandler {
 						String icon = "";
 						try {
 							if (menu.getIcon() != null && !menu.getIcon().isBlank()) {
-								String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+								String fileName = CoreConstants.nextIdStr();
 								MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(menu.getIcon(),
 									fileName.concat(FilesUtil.getType(menu.getIcon())));
 								List<String> urls = Optional.ofNullable(publicFileClientApiService.uploadFile(
@@ -155,7 +155,7 @@ public class SyncMenuBySyncedSubappVersionQueueHandler {
 						cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 						cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.SYNCED_MENU, syncedSubappVersionMessage.getChangeAppId()),
 						objectMapper.writeValueAsString(syncedSubappVersionMessage),
-						new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+						new CorrelationData(CoreConstants.nextIdStr())
 					);
 				} catch (JsonProcessingException e) {
 					log.warn("e", e);

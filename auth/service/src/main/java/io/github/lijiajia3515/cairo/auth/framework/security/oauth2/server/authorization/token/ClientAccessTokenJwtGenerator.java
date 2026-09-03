@@ -108,7 +108,7 @@ public final class ClientAccessTokenJwtGenerator implements OAuth2TokenGenerator
 		}
 
 		claimsBuilder
-			.subject(CoreConstants.SNOWFLAKE.nextIdStr())
+			.subject(CoreConstants.nextIdStr())
 			.audience(Collections.singletonList(registeredClient.getClientId()))
 			.issuedAt(issuedAt)
 			.expiresAt(expiresAt)

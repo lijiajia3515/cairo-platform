@@ -58,7 +58,7 @@ public class AppUserCommonService {
 			return String.valueOf(serialService.next(SERIAL_NAMESPACE, SERIAL_KEY));
 		} catch (Exception e) {
 			log.warn("getNewAppUserId: ", e);
-			return CoreConstants.SNOWFLAKE.nextIdStr();
+			return CoreConstants.nextIdStr();
 		}
 	}
 

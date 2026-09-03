@@ -187,7 +187,7 @@ public class TenantAppDepartmentCommonService {
 				.appId(appId)
 				.parentId(null)
 				.root(true)
-				.departmentId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.departmentId(CoreConstants.nextIdStr())
 				.departmentName(tenantId)
 				.remark(String.format("%s的%s的组织结构", tenantId, appId))
 				.leftNo(1)

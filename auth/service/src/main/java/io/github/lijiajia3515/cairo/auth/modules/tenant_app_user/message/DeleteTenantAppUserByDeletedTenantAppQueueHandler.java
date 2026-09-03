@@ -102,7 +102,7 @@ public class DeleteTenantAppUserByDeletedTenantAppQueueHandler {
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getTenantAppKey(CairoAuthRabbitmqRouteKey.DELETED_TENANT_APP_USER, deletedTenantAppUserMessage.getTenantId(), deletedTenantAppUserMessage.getAppId()),
 							objectMapper.writeValueAsString(deletedTenantAppUserMessage),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 
 					}

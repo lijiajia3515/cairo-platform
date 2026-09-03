@@ -165,7 +165,7 @@ public class AccountSnsEndpointApiService {
 					AccountSnsMongodb accountSnsMongodb = mongoTemplate.findOne(accountQuery, AccountSnsMongodb.class, MongodbConstants.Collection.ACCOUNT_SNS);
 					if (accountSnsMongodb == null) {
 						AccountSnsMongodb insert = AccountSnsMongodb.builder()
-							.recordId(CoreConstants.SNOWFLAKE.nextIdStr())
+							.recordId(CoreConstants.nextIdStr())
 							.accountId(accountId)
 							.snsPartnerId(snsTokenObj.getPartnerId())
 							.snsPartnerOpenId(snsTokenObj.getPartnerOpenId())
@@ -231,7 +231,7 @@ public class AccountSnsEndpointApiService {
 					AccountSnsMongodb accountSnsMongodb = mongoTemplate.findOne(accountQuery, AccountSnsMongodb.class, MongodbConstants.Collection.ACCOUNT_SNS);
 					if (accountSnsMongodb == null) {
 						AccountSnsMongodb insert = AccountSnsMongodb.builder()
-							.recordId(CoreConstants.SNOWFLAKE.nextIdStr())
+							.recordId(CoreConstants.nextIdStr())
 							.accountId(accountId)
 							.snsPartnerId(snsTokenObj.getPartnerId())
 							.snsPartnerOpenId(snsTokenObj.getPartnerOpenId())

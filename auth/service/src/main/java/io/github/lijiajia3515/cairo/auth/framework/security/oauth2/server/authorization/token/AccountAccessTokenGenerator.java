@@ -35,7 +35,7 @@ import java.util.Collections;
  * @since 0.2.3
  */
 public final class AccountAccessTokenGenerator implements OAuth2TokenGenerator<OAuth2AccessToken> {
-	private final StringKeyGenerator accessTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 16, "aat_");
+	private final StringKeyGenerator accessTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 16, "account_at_");
 
 	private OAuth2TokenCustomizer<OAuth2TokenClaimsContext> accessTokenCustomizer;
 

@@ -73,7 +73,7 @@ public class SyncBizDictByCreatedTenantAppQueueHandler {
 				String icon = null;
 				try {
 					if (sdMongodb.getIcon() != null && !sdMongodb.getIcon().isBlank()) {
-						String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+						String fileName = CoreConstants.nextIdStr();
 						MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdMongodb.getIcon(),
 							fileName.concat(FilesUtil.getType(sdMongodb.getIcon())));
 						if (multipartFile != null) {
@@ -124,7 +124,7 @@ public class SyncBizDictByCreatedTenantAppQueueHandler {
 				String icon = null;
 				try {
 					if (sdi.getIcon() != null && !sdi.getIcon().isBlank()) {
-						String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+						String fileName = CoreConstants.nextIdStr();
 						MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(sdi.getIcon(),
 							fileName.concat(FilesUtil.getType(sdi.getIcon())));
 						if (multipartFile != null) {

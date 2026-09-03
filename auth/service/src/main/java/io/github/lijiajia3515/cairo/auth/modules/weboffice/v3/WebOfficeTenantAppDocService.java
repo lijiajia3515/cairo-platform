@@ -102,7 +102,7 @@ public class WebOfficeTenantAppDocService extends WebOfficeService {
 		Query query = Query.query(criteria);
 		OfficeFileMongodb fileMongodb = readMongoTemplate.findOne(query, OfficeFileMongodb.class, MongodbConstants.Collection.OFFICE_FILE);
 		if (fileMongodb == null) {
-			String fileId = CoreConstants.SNOWFLAKE.nextIdStr();
+			String fileId = CoreConstants.nextIdStr();
 			Integer fileVersion = 1;
 			String filename = FileNameUtil.getName(fileMap.get(PATH_NAME));
 			String extName = FileNameUtil.extName(filename);
@@ -134,7 +134,7 @@ public class WebOfficeTenantAppDocService extends WebOfficeService {
 
 			final OfficeFileVersionMongodb[] newFileVersionMongodb = {OfficeFileVersionMongodb.builder()
 				.metadata(NoneMetadataMongodb.builder().build())
-				.recordId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.recordId(CoreConstants.nextIdStr())
 				.fileId(fileId)
 				.fileVersion(fileVersion)
 				.name(filename)
@@ -484,7 +484,7 @@ public class WebOfficeTenantAppDocService extends WebOfficeService {
 
 			String officeFilePath = officeS3FilePath(fileId, fileVersion, body.getRequest().getName());
 			OfficeFileVersionMongodb fileVersionMongodb = OfficeFileVersionMongodb.builder()
-				.recordId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.recordId(CoreConstants.nextIdStr())
 				.fileId(fileId)
 				.name(body.getRequest().getName())
 				.size(body.getRequest().getSize())

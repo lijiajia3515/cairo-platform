@@ -1,7 +1,7 @@
 # auth 文档与运维脚本
 
 ```
-auth/docs/
+docs/auth/
 ├── menus.md           # 菜单权限树（可读版，人/大模型友好）
 ├── dict.md            # 系统字典清单（可读版）
 ├── error-codes.md     # 错误码清单（可读版，17 枚举类 74 码值）

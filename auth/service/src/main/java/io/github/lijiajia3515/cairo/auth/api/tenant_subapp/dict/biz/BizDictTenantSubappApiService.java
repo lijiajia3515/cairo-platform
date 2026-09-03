@@ -878,7 +878,7 @@ public class BizDictTenantSubappApiService {
 
 				if (args.getIcon() != null&& !args.getIcon().isBlank()) {
 					String bdiIcon = null;
-						String fileName = CoreConstants.SNOWFLAKE.nextIdStr();
+						String fileName = CoreConstants.nextIdStr();
 						MultipartFile multipartFile = FilesUtil.urlConvertCairoMultipart(args.getIcon(),
 							fileName.concat(FilesUtil.getType(args.getIcon())));
 						if (multipartFile != null) {

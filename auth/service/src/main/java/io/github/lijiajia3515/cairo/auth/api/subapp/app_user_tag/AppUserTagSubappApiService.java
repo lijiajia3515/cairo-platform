@@ -249,7 +249,7 @@ public class AppUserTagSubappApiService {
 						.eventTime(insertedUserTag.getMetadata().getCreateTime())
 						.build()
 				),
-				new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+				new CorrelationData(CoreConstants.nextIdStr())
 			);
 			log.debug("[app_user_tag][create_app_user_tag] result -> {} ", insertedUserTag);
 		}

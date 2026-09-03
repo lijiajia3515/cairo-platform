@@ -109,7 +109,7 @@ public class DeleteSubappByDeletedEndpointQueueHandler {
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_SUBAPP, deletedSubappMessage.getAppId()),
 							objectMapper.writeValueAsString(deletedSubappMessage),
-							new CorrelationData(CoreConstants.SNOWFLAKE.nextIdStr())
+							new CorrelationData(CoreConstants.nextIdStr())
 						);
 					}
 				} catch (Exception e) {

@@ -56,7 +56,7 @@ public class TenantAppUserTemplateCommonService {
 			return String.valueOf(serialService.next(SERIAL_NAMESPACE, SERIAL_KEY,1,1001));
 		} catch (Exception e) {
 			log.warn("getNewTenantAppUserTemplateId: ", e);
-			return CoreConstants.SNOWFLAKE.nextIdStr();
+			return CoreConstants.nextIdStr();
 		}
 	}
 

@@ -1,6 +1,6 @@
 # 菜单与权限点（基线快照）
 
-> 来源：auth/docs/db/data 基线。权限模型：permissionId 为前端 v-allow 匹配键（资源.动作），authorities 为服务端 @PreAuthorize 校验串（资源:动作）。
+> 来源：docs/auth/db/data 基线。权限模型：permissionId 为前端 v-allow 匹配键（资源.动作），authorities 为服务端 @PreAuthorize 校验串（资源:动作）。
 
 - **首页** `/home`
   - `home` 首页（默认）

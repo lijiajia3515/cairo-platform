@@ -65,7 +65,7 @@ public class InitTenantAppDepartmentByCreatedTenantAppQueueHandler {
 				.appId(createdTenantAppMessage.getAppId())
 				.parentId(null)
 				.root(true)
-				.departmentId(CoreConstants.SNOWFLAKE.nextIdStr())
+				.departmentId(CoreConstants.nextIdStr())
 				.departmentName(tenant.getTenantName())
 				.remark(String.format("%s的%s的组织结构", tenant.getTenantName(), createdTenantAppMessage.getAppId()))
 				.leftNo(1)
