@@ -41,7 +41,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static io.github.lijiajia3515.cairo.auth.config.MinioConfig.ADMIN;
 import static io.github.lijiajia3515.cairo.auth.modules.file.FileConstants.*;
 import static io.github.lijiajia3515.cairo.auth.modules.file.FileTools.*;
 
@@ -55,16 +54,12 @@ public class TemporaryFileClientApiService {
 
 	public final String DEFAULT_ACCESS_URL;
 
-	private final String endpoint;
 	private final MinioClient adminMinioClient;
 	private final AsyncFileService asyncFileService;
 
 
 	public TemporaryFileClientApiService(MinioClient adminMinioClient, MinioProperties properties, AsyncFileService asyncFileService) {
 		this.adminMinioClient = adminMinioClient;
-		MinioProperties.Instance instance = properties.getConfig().get(ADMIN);
-		Assert.notNull(instance, "minio admin config not null");
-		this.endpoint = instance.getEndpoint();
 		this.DEFAULT_S3_URL = properties.getDefaultS3Url();
 		this.DEFAULT_ACCESS_URL = properties.getDefaultAccessUrl();
 		this.asyncFileService = asyncFileService;

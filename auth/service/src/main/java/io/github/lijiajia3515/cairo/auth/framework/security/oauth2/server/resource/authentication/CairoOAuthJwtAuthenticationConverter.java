@@ -264,8 +264,6 @@ public class CairoOAuthJwtAuthenticationConverter implements CairoJwtAuthenticat
 		String appId = jwt.getClaimAsString(CairoOAuthParameterNames.APP_ID);
 		String endpointId = jwt.getClaimAsString(CairoOAuthParameterNames.ENDPOINT_ID);
 		String clientId = jwt.getClaimAsString(OAuth2ParameterNames.CLIENT_ID);
-		String subappId = jwt.getClaimAsString(CairoOAuthParameterNames.SUBAPP_ID);
-		String subappVersion = jwt.getClaimAsString(CairoOAuthParameterNames.SUBAPP_VERSION);
 		String userId = jwt.getClaimAsString(CairoOAuthParameterNames.USER_ID);
 		String tokenId = jwt.getSubject();
 
