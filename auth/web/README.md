@@ -43,7 +43,7 @@ src/api/
 ├── index.js    # 桶入口：re-export 全部领域文件
 ├── urls.js     # URL 前缀常量（openApi/appUserApi/subappUserApi/manageApi + 管理子应用标识）
 ├── fetch.js    # 三个传输方法（见下）
-├── axios.js / status.js   # axios 实例与错误码分发（错误码清单见 docs/auth/error-codes.md）
+├── axios.js / status.js   # axios 实例与错误码分发（错误码清单见 docs/auth/snapshots/error-codes.md）
 └── 领域文件：open / personal / account / user / app / endpoint / client /
     subapp / snsProvider / log / tenant / sysDict / message / link / area
 ```
@@ -104,7 +104,7 @@ src/api/
 
 - [auth 账号](../README.md)：后端主体模型、认证体系、错误码
 - [auth 文档中枢](../../docs/auth/README.md)：数据库基线数据与导入脚本
-- [错误码清单](../../docs/auth/error-codes.md)：`src/api/status.js` 分发的权威码表
+- [错误码清单](../../docs/auth/snapshots/error-codes.md)：`src/api/status.js` 分发的权威码表
 - [平台总览](../../README.md)：架构、快速开始、文档导航
 
 ## 参考文档

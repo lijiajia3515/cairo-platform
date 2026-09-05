@@ -3,7 +3,7 @@
 > 生成于 2026-08-30,基线对应 commit c25cbef5(P0 安全补口之后)。
 > 附录清单由 `gen-api-surface.py` 从源码提取,重生成:
 > `cd auth/service/src/main/java && python3 ../../../../docs/gen-api-surface.py /tmp/inventory.md`
-> 收敛计划(未实施)见 [api-convergence-plan.md](api-convergence-plan.md)。
+> 收敛计划(未实施)见 [api-convergence-plan.md](../plans/api-convergence-plan.md)。
 
 ## 一、总览
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # 从 auth/service 源码生成 API 面端点清单(api-surface.md 的附录部分)
-# 用法:cd auth/service/src/main/java && python3 ../../../../../docs/auth/gen-api-surface.py /tmp/inventory.md
+# 用法:cd auth/service/src/main/java && python3 ../../../../../docs/auth/scripts/gen-api-surface.py /tmp/inventory.md
 # 注:清单反映的是代码现状(含方法级防护注解),非设计意图
 import os
 import re

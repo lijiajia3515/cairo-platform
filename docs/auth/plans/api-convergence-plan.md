@@ -1,6 +1,6 @@
 # API 面收敛计划(P2 详细 / P3 待定)
 
-> 状态:**仅计划,未实施**。基线与现状分析见 [api-surface.md](api-surface.md)(2026-08-30)。
+> 状态:**仅计划,未实施**。基线与现状分析见 [api-surface.md](../api/api-surface.md)(2026-08-30)。
 > P0 安全补口已完成(commit c25cbef5);本文档覆盖其余两阶段。
 
 ## 背景数字

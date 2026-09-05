@@ -122,7 +122,7 @@ JWT（SELF_CONTAINED 格式）为标准 JWS 三段式；`sub` claim = 授权记�
 
 ## API 层
 
-Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 租户应用用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 164 控制器 / 698 端点见 [api-surface.md](../docs/auth/api-surface.md)）：
+Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 租户应用用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 166 控制器 / 701 端点见 [api-surface.md](../docs/auth/api/api-surface.md)）：
 
 | URL 前缀（主体面）         | 控制器 | 调用方                                               |
 |----------------------------|-------:|------------------------------------------------------|
@@ -212,7 +212,7 @@ MongoDB 集合 71 个，统一 `auth_` 前缀（初始化脚本见 `docs/auth/db
 
 ### 基线数据
 
-`docs/auth/db/data/` 为测试库核心集合的数据快照（endpoint / subapp / subapp_version / menu / permission / sys_dict(_item)），可读版见 `docs/auth/menus.md` 与 `docs/auth/dict.md`。菜单/权限注入走 manage API（服务端计算嵌套集左右值）。
+`docs/auth/db/data/` 为测试库核心集合的数据快照（endpoint / subapp / subapp_version / menu / permission / sys_dict(_item)），可读版见 `docs/auth/snapshots/menus.md` 与 `docs/auth/snapshots/dict.md`。菜单/权限注入走 manage API（服务端计算嵌套集左右值）。
 
 ## 消息拓扑（RabbitMQ）
 
@@ -261,7 +261,7 @@ cairo:
 ./gradlew :auth:core:publish       # 发布某个子子应用（凭证在 ~/.gradle/gradle.properties）
 ```
 
-构建约定与版本目录见仓库根 [README 的「构建架构」](../README.md#构建架构)。
+构建约定与版本目录见 [构建架构](../docs/development/build-system.md)。
 
 ## 相关文档
 
@@ -269,7 +269,7 @@ cairo:
 |--------------------------------------------------|------------------------------------------|
 | [平台总览](../README.md)                         | 架构、快速开始、技术栈、开发规范、文档导航 |
 | [文档与运维脚本](../docs/auth/README.md)                 | db/ 权威源、初始化 / 导入脚本、基线数据、迁移记录 |
-| [API 面基线](../docs/auth/api-surface.md)                | 8 主体面 + 2 特例面全量端点清单 + 防护模型 |
-| [菜单与权限快照](../docs/auth/menus.md)                  | 45 菜单 / 169 权限点可读版                |
-| [错误码清单](../docs/auth/error-codes.md)                | 17 枚举 74 码值 + 前端分发处理            |
+| [API 面基线](../docs/auth/api/api-surface.md)                | 8 主体面 + 2 特例面全量端点清单 + 防护模型 |
+| [菜单与权限快照](../docs/auth/snapshots/menus.md)            | 45 菜单 / 169 权限点可读版                |
+| [错误码清单](../docs/auth/snapshots/error-codes.md)          | 17 枚举 74 码值 + 前端分发处理            |
 | [运营平台前端](web/README.md)                     | 运营平台前端环境、命令、API 层结构      |

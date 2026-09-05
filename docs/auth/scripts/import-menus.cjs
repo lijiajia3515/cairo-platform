@@ -40,7 +40,7 @@ async function main() {
   };
 
   // 数据源：db/data/menu.json + permission.json（camelCase 基线）
-  const DATA = path.join(__dirname, "db", "data");
+  const DATA = path.join(__dirname, "..", "db", "data");
   const menuRows = JSON.parse(fs.readFileSync(path.join(DATA, "menu.json"), "utf8"));
   const permRows = JSON.parse(fs.readFileSync(path.join(DATA, "permission.json"), "utf8"));
   const byId = {};
