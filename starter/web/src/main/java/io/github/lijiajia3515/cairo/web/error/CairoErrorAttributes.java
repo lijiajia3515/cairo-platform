@@ -64,7 +64,8 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
 
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest request, ErrorAttributeOptions options) {
-        Map<String, Object> errorAttributes = getErrorAttributes(request, options.isIncluded(ErrorAttributeOptions.Include.STACK_TRACE));
+        Business business = getBusiness(request);
+        Map<String, Object> errorAttributes = getErrorAttributes(request, options.isIncluded(ErrorAttributeOptions.Include.STACK_TRACE), business);
 
         if (!options.isIncluded(ErrorAttributeOptions.Include.EXCEPTION)) {
             errorAttributes.remove(ERROR_EXCEPTION);
@@ -79,7 +80,6 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
             errorAttributes.remove(ERROR_ERRORS);
         }
 
-        Business business = getBusiness(request);
         return Collections.singletonMap(BUSINESS, businessResult(business, errorAttributes));
     }
 
@@ -105,7 +105,7 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
         request.setAttribute(ERROR_INTERNAL_ATTRIBUTE, ex);
     }
 
-    private Map<String, Object> getErrorAttributes(WebRequest request, boolean includeStackTrace) {
+    private Map<String, Object> getErrorAttributes(WebRequest request, boolean includeStackTrace, Business business) {
         Throwable error = getError(request);
         MergedAnnotation<ResponseStatus> responseStatusAnnotation = null;
         if (error != null) {
@@ -121,7 +121,7 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
         errorAttributes.put(ERROR_STATUS, errorStatus.value());
         errorAttributes.put(ERROR_ERROR, errorStatus.getReasonPhrase());
 
-        errorAttributes.put(ERROR_MESSAGE, determineMessage(request, getException(request), responseStatusAnnotation));
+        errorAttributes.put(ERROR_MESSAGE, determineMessage(request, getException(request), responseStatusAnnotation, business));
         handleException(errorAttributes, determineException(error), includeStackTrace);
 
         return errorAttributes;
@@ -203,23 +203,23 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
                 businessMessage = RequestBusiness.NOT_SUPPORTED.getMessage() + "(" + throwable.getMessage() + ")";
             } else if (throwable instanceof ServerErrorException) {
                 businessCode = ServiceBusiness.ERROR.getCode();
-                businessMessage = ServiceBusiness.ERROR.getMessage() + "(" + throwable.getMessage() + ")";
+                businessMessage = ServiceBusiness.ERROR.getMessage();
             }
         }
 
         // unknown host
         if (throwable instanceof UnknownHostException) {
             businessCode = ServiceBusiness.UNAVAILABLE.getCode();
-            businessMessage = ServiceBusiness.UNAVAILABLE.getMessage() + "(" + throwable.getMessage() + ")";
+            businessMessage = ServiceBusiness.UNAVAILABLE.getMessage();
         }
 
         // 认证服务异常
         if (throwable instanceof AuthenticationServiceException) {
             businessCode = AuthBusiness.ERROR.getCode();
-            businessMessage = AuthBusiness.ERROR.getMessage() + "(" + throwable.getMessage() + ")";
+            businessMessage = AuthBusiness.ERROR.getMessage();
         }
         String finalBusinessCode = Optional.ofNullable(businessCode).orElse(ServiceBusiness.ERROR.getCode());
-        String finalBusinessMessage = Optional.ofNullable(businessMessage).orElse(ServiceBusiness.ERROR.getMessage() + "(" + throwable.getMessage() + ")");
+        String finalBusinessMessage = Optional.ofNullable(businessMessage).orElse(ServiceBusiness.ERROR.getMessage());
         return new Business() {
             @Override
             public String code() {
@@ -233,7 +233,13 @@ public class CairoErrorAttributes implements ErrorAttributes, HandlerExceptionRe
         };
     }
 
-    private String determineMessage(WebRequest request, Throwable error, MergedAnnotation<ResponseStatus> responseStatusAnnotation) {
+    private String determineMessage(WebRequest request, Throwable error, MergedAnnotation<ResponseStatus> responseStatusAnnotation, Business business) {
+        // 5xx 类未捕获异常：原始 message 可能携带内网细节（DB 主机/集合/索引名等），一律不外透；
+        // 排障走服务端日志 + requestId，客户端只拿兜底文案
+        boolean sanitized = business != null && business.getCode() != null && business.getCode().startsWith("Service.");
+        if (sanitized) {
+            return business.getMessage();
+        }
         Object message = getAttribute(request, RequestDispatcher.ERROR_MESSAGE);
         if (!ObjectUtils.isEmpty(message)) {
             return message.toString();

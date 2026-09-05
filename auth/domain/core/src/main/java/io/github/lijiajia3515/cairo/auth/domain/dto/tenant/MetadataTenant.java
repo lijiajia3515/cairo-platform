@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 /**
- * 租户
+ * 企业
  */
 @Data
 @Accessors(chain = true)
@@ -27,7 +27,7 @@ public class MetadataTenant implements Serializable {
 	private String tenantId;
 
 	/**
-	 * 租户名称
+	 * 企业名称
 	 */
 	private String tenantName;
 

@@ -39,7 +39,7 @@ public class TenantAppUserLoginLogCairoWebManageApiController {
 
 
 	/**
-	 * 获取终端用户登录日志分页列表
+	 * 获取应用级用户登录日志分页列表
 	 *
 	 * @param principal principal
 	 * @param args      args

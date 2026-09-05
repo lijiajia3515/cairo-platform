@@ -320,7 +320,7 @@ public class ClientMongodb {
 		private Boolean reuseAccountRefreshTokens;
 
 		// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-		// App User 令牌配置（应用用户维度）
+		// App User 令牌配置（应用级用户维度）
 		// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 		/**
@@ -348,7 +348,7 @@ public class ClientMongodb {
 		private Boolean reuseAppUserRefreshTokens;
 
 		// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-		// Tenant App User 令牌配置（租户应用用户维度）
+		// Tenant App User 令牌配置（企业应用级用户维度）
 		// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 		/**

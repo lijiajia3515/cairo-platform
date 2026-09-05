@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 
 /**
-	 * 应用用户公众号链接
+	 * 应用级用户公众号链接
 	 */
 @Data
 @Accessors(chain = true)

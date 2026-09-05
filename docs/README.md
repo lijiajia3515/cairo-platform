@@ -41,7 +41,8 @@ docs/
     ├── README.md                # 运维入口：常用操作 + mongosh/node 脚本分工
     ├── db/                      # MongoDB 结构与数据（唯一权威源，71 集合 DDL + init.js）
     ├── api/                     # API 面
-    │   └── api-surface.md       #   API 面基线（8 主体面 + 2 特例面全量端点 + 防护模型）
+    │   ├── api-surface.md       #   API 面基线（8 主体面 + 2 特例面全量端点 + 防护模型）
+    │   └── usage.md             #   接口调用指南（认证/上下文头/响应结构/示例）
     ├── snapshots/               # 可读快照
     │   ├── menus.md             #   菜单权限树（45/169）
     │   ├── dict.md              #   系统字典清单
@@ -50,7 +51,9 @@ docs/
     ├── scripts/                 # 运维脚本
     │   ├── import-menus.cjs     #   菜单/权限导入（Node + manage API）
     │   └── gen-api-surface.py   #   api-surface 附录再生成
-    ├── testing/test-plan.md     # 测试计划（功能 / 权限 / 上下文约束）
+    ├── testing/                 # 测试
+    │   ├── test-plan.md         #   场景矩阵 + 审计结论（权威源）
+    │   └── test-cases.md        #   五维测试用例（安全/权限/校验/合理性/边界）
     └── plans/                   # 计划与待办（维护者工作区，非用户参考）
         ├── backlog.md           #   待办需求
         └── api-convergence-plan.md  # API 面收敛计划（未实施）

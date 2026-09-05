@@ -21,7 +21,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户密码模式 authentication converter
+ * 应用级用户密码模式 authentication converter
  */
 public final class OAuthAppUserPasswordAuthenticationConverter implements AuthenticationConverter {
 

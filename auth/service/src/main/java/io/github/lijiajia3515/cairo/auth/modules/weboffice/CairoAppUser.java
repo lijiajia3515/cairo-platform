@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * 应用用户
+ * 应用级用户
  */
 @Data
 @NoArgsConstructor

@@ -137,7 +137,7 @@ public class AppCairoWebManageApiService {
 	/**
 	 * 查找
 	 *
-	 * @return 租户查询
+	 * @return 企业查询
 	 */
 	@NewSpan
 	@BizLog(

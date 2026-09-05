@@ -59,11 +59,11 @@ public class DeleteTenantAppBizLogByDeletedClientQueueHandler {
 			query.limit(1000);
 			for (long i = 0; i < each; i++) {
 				try {
-					List<BizLogTenantAppMongodb> deletedEndpointUserBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogTenantAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_TENANT_APP);
-					if (!deletedEndpointUserBizLogMongodbList.isEmpty()) {
-						mongoTemplate.insert(deletedEndpointUserBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_TENANT_APP);
+					List<BizLogTenantAppMongodb> deletedTenantAppBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogTenantAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_TENANT_APP);
+					if (!deletedTenantAppBizLogMongodbList.isEmpty()) {
+						mongoTemplate.insert(deletedTenantAppBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_TENANT_APP);
 					}
-					log.debug("用户级业务日志删除成功: AppId: {} ClientId: {} DeletedCount: {}", deletedClientMessage.getAppId(), deletedClientMessage.getClientId(), deletedEndpointUserBizLogMongodbList.size());
+					log.debug("用户级业务日志删除成功: AppId: {} ClientId: {} DeletedCount: {}", deletedClientMessage.getAppId(), deletedClientMessage.getClientId(), deletedTenantAppBizLogMongodbList.size());
 				} catch (Exception e) {
 					log.warn("delete tenant app endpoint biz log: {}", e.getMessage());
 				}

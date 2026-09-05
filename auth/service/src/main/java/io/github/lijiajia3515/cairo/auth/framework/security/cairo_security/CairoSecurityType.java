@@ -16,22 +16,22 @@ public enum CairoSecurityType {
 	ACCOUNT,
 
 	/**
-	 * 通用终端用户
+	 * 通用应用级用户
 	 */
 	APP_USER,
 
 	/**
-	 * 通用子应用用户
+	 * 通用子应用级用户
 	 */
 	SUBAPP_USER,
 
 	/**
-	 * 通用企业终端用户
+	 * 通用企业应用级用户
 	 */
 	TENANT_APP_USER,
 
 	/**
-	 * 通用企业子应用用户
+	 * 通用企业子应用级用户
 	 */
 	TENANT_SUBAPP_USER,
 
@@ -48,7 +48,7 @@ public enum CairoSecurityType {
 	CAIRO_APP_USER,
 
 	/**
-	 * 开发平台-运营子应用用户
+	 * 开发平台-运营子应用级用户
 	 */
 	CAIRO_WEB_MANAGE_USER,
 }

@@ -14,13 +14,13 @@ public interface CairoOAuthTokenTypeConstants {
     OAuth2TokenType ACCOUNT_REFRESH_TOKEN = new OAuth2TokenType("account:refresh_token");
 
 
-	// 应用级终端用户token
+	// 应用级应用级用户token
 	OAuth2TokenType APP_USER_ACCESS_TOKEN = new OAuth2TokenType("app_user:access_token");
 
 	OAuth2TokenType APP_USER_REFRESH_TOKEN = new OAuth2TokenType("app_user:refresh_token");
 
 
-	// 企业级终端用户token
+	// 企业级应用级用户token
 	OAuth2TokenType TENANT_APP_USER_ACCESS_TOKEN = new OAuth2TokenType("tenant_app_user:access_token");
 	OAuth2TokenType TENANT_APP_USER_REFRESH_TOKEN = new OAuth2TokenType("tenant_app_user:refresh_token");
 

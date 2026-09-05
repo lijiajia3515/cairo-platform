@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * 企业用户模板
+ * 企业应用级用户模板
  */
 @Data
 @Accessors(chain = true)

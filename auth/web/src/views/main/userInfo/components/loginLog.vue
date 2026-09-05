@@ -16,7 +16,7 @@ import {
 } from '@/api';
 
 onMounted(() => {
-  getMyEndpointUserLoginLogPage()
+  getMyAppUserLoginLogPage()
 })
 
 const [active, setactive] = useState(2);
@@ -64,10 +64,10 @@ const [configs_endpoint, setConfigs_endpoint] = useState({
   onPageChange: (pageInfo) => {
     endpointPage.value = pageInfo.current;
     endpointSize.value = pageInfo.pageSize;
-    getMyEndpointUserLoginLogPage();
+    getMyAppUserLoginLogPage();
   }
 });
-const getMyEndpointUserLoginLogPage = async () => {
+const getMyAppUserLoginLogPage = async () => {
   loading.value = true;
   try {
     let params = {
@@ -95,7 +95,7 @@ const onSearchEndpoint = () => {
   endpointPage.value = 1;
   list_endpoint.value = [];
   endpointTotal.value = 0;
-  getMyEndpointUserLoginLogPage();
+  getMyAppUserLoginLogPage();
 }
 const onResetEndpoint = () => {
   endpointPage.value = 1;
@@ -108,7 +108,7 @@ const onResetEndpoint = () => {
     clientId: null,
     success: null,
   })
-  getMyEndpointUserLoginLogPage();
+  getMyAppUserLoginLogPage();
 }
 
 </script>

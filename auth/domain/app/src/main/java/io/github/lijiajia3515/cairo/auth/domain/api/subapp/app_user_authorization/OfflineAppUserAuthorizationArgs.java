@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 /**
- * 下线应用用户会话
+ * 下线应用级用户会话
  */
 @Data
 @Accessors(chain = true)

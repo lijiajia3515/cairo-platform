@@ -3,6 +3,7 @@ package io.github.lijiajia3515.cairo.gateway.controller.error;
 
 import io.github.lijiajia3515.cairo.core.business.*;
 import io.github.lijiajia3515.cairo.core.exception.BusinessException;
+import io.github.lijiajia3515.cairo.gateway.framework.CairoWebExchangeUtils;
 import io.github.lijiajia3515.cairo.gateway.framework.domain.GatewayDefaultError;
 import io.github.lijiajia3515.cairo.gateway.framework.domain.GatewayErrorBusinessResult;
 import jakarta.annotation.security.PermitAll;
@@ -112,6 +113,8 @@ public class FallbackController {
 			.body(GatewayErrorBusinessResult.<GatewayDefaultError<?>>builder()
 				.code(business.code())
 				.message(Optional.ofNullable(throwable).map(Throwable::getMessage).orElse(business.getMessage()))
+				.requestId((String) exchange.getAttribute(CairoWebExchangeUtils.REQUEST_ID_ATTRIBUTE))
+				.retryable(CairoWebExchangeUtils.isRetryableStatus(status.value()))
 				.build()
 			);
 	}

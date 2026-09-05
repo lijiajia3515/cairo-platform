@@ -223,6 +223,8 @@ public class CairoErrorAttributes extends DefaultErrorAttributes {
 		return GatewayErrorBusinessResult.<GatewayDefaultError<?>>builder()
 			.code(business.getCode())
 			.message((String) errorAttribute.get(ERROR_MESSAGE))
+			.requestId((String) errorAttribute.get(ERROR_REQUEST_ID))
+			.retryable(CairoWebExchangeUtils.isRetryableStatus((int) errorAttribute.get(ERROR_STATUS)))
 			.error(GatewayDefaultError.builder()
 				.requestId((String) errorAttribute.get(ERROR_REQUEST_ID))
 				.path((String) errorAttribute.get(ERROR_PATH))

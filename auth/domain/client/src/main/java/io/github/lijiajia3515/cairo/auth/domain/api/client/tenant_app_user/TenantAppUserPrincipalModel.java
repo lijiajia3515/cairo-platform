@@ -44,7 +44,7 @@ public class TenantAppUserPrincipalModel implements Serializable {
 	private String clientId;
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

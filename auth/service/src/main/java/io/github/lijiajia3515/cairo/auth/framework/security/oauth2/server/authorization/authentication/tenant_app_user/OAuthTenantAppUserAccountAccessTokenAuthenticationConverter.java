@@ -37,7 +37,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 企业终端用户账号授权模式 authentication converter
+ * 企业应用级用户账号授权模式 authentication converter
  */
 public final class OAuthTenantAppUserAccountAccessTokenAuthenticationConverter implements AuthenticationConverter {
 

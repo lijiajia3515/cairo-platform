@@ -5,7 +5,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.util.Assert;
 
 /**
- * cairo tenant app endpoint user password authentication token
+ * cairo tenant app user password authentication token
  */
 public class CairoTenantAppUserPasswordAuthenticationToken extends AbstractAuthenticationToken {
 

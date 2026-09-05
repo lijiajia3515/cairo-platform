@@ -19,25 +19,25 @@ public class CairoTenantAppUserPreAuthenticationChecks implements UserDetailsChe
 	@Override
 	public void check(UserDetails user) {
 		if (user instanceof CairoAuthTenantAppUser){
-			CairoAuthTenantAppUser authEndpointUser = (CairoAuthTenantAppUser) user;
+			CairoAuthTenantAppUser authTenantAppUser = (CairoAuthTenantAppUser) user;
 
-			if (!authEndpointUser.isUserEnabled()) {
-				log.debug("Failed to authenticate since user authEndpointUser is user disabled");
+			if (!authTenantAppUser.isUserEnabled()) {
+				log.debug("Failed to authenticate since user authTenantAppUser is user disabled");
 				throw new TenantAppUserDisabledException();
 			}
 
-			if (!authEndpointUser.isAccountNonLocked()) {
-				log.debug("Failed to authenticate since user authEndpointUser is locked");
+			if (!authTenantAppUser.isAccountNonLocked()) {
+				log.debug("Failed to authenticate since user authTenantAppUser is locked");
 				throw new LockedException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.locked", "账号被锁定"));
 			}
 
-			if (!authEndpointUser.isAccountEnabled()) {
-				log.debug("Failed to authenticate since user authEndpointUser is disabled");
+			if (!authTenantAppUser.isAccountEnabled()) {
+				log.debug("Failed to authenticate since user authTenantAppUser is disabled");
 				throw new DisabledException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.disabled", "账号被禁用"));
 			}
 
-			if (!authEndpointUser.isAccountNonExpired()) {
-				log.debug("Failed to authenticate since user authEndpointUser has expired");
+			if (!authTenantAppUser.isAccountNonExpired()) {
+				log.debug("Failed to authenticate since user authTenantAppUser has expired");
 				throw new AccountExpiredException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.expired", "账号已过期"));
 			}
 		}

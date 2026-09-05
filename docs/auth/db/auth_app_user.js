@@ -2,8 +2,8 @@ db.getCollection("auth_app_user").drop();
 db.createCollection("auth_app_user", {
     validator: {
         $jsonSchema: {
-            title: "应用用户",
-            description: "应用用户",
+            title: "应用级用户",
+            description: "应用级用户",
             properties: {
                 _id: {
                     bsonType: "objectId",

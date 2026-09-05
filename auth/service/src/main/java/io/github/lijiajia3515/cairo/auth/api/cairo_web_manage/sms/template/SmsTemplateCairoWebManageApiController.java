@@ -40,7 +40,7 @@ import java.util.Optional;
 @BusinessResultBody
 @RequiredArgsConstructor
 public class SmsTemplateCairoWebManageApiController {
-	private final SmsTemplateCairoWebManageApiService smsTemplateCairoEndpointUserApiService;
+	private final SmsTemplateCairoWebManageApiService smsTemplateCairoWebManageApiService;
 
 	/**
 	 * 创建短信模板 接口
@@ -55,7 +55,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<String> createSmsTemplate(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 											  @Validated @RequestBody CreateSmsTemplateArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		smsTemplateCairoEndpointUserApiService.createSmsTemplate(appId, args);
+		smsTemplateCairoWebManageApiService.createSmsTemplate(appId, args);
 		return Optional.empty();
 	}
 
@@ -72,7 +72,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<String> modifySmsTemplateInfo(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 												  @Validated @RequestBody ModifySmsTemplateInfoArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		smsTemplateCairoEndpointUserApiService.modifySmsTemplateInfo(appId, args);
+		smsTemplateCairoWebManageApiService.modifySmsTemplateInfo(appId, args);
 		return Optional.empty();
 	}
 
@@ -89,7 +89,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<String> modifySmsTemplateStatus(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 													@Validated @RequestBody ModifySmsTemplateStatusArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		smsTemplateCairoEndpointUserApiService.modifySmsTemplateStatus(appId, args);
+		smsTemplateCairoWebManageApiService.modifySmsTemplateStatus(appId, args);
 		return Optional.empty();
 	}
 
@@ -106,7 +106,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<String> deleteSmsTemplate(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 											  @Validated @RequestBody DeleteSmsTemplateArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		smsTemplateCairoEndpointUserApiService.deleteSmsTemplate(appId, args);
+		smsTemplateCairoWebManageApiService.deleteSmsTemplate(appId, args);
 		return Optional.empty();
 	}
 
@@ -123,7 +123,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public List<MetadataSmsTemplate> getSmsTemplateList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 														@Validated @RequestBody GetSmsTemplateArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		return smsTemplateCairoEndpointUserApiService.getSmsTemplateList(appId, args);
+		return smsTemplateCairoWebManageApiService.getSmsTemplateList(appId, args);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Page<MetadataSmsTemplate> getSmsTemplatePageList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 															@Validated @RequestBody GetSmsTemplateArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		return smsTemplateCairoEndpointUserApiService.getSmsTemplatePageList(appId, args);
+		return smsTemplateCairoWebManageApiService.getSmsTemplatePageList(appId, args);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<MetadataSmsTemplate> getSmsTemplateInfo(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 															@Validated @RequestBody GetSmsTemplateInfoArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		return Optional.ofNullable(smsTemplateCairoEndpointUserApiService.getSmsTemplateInfo(appId, args.getBizId()));
+		return Optional.ofNullable(smsTemplateCairoWebManageApiService.getSmsTemplateInfo(appId, args.getBizId()));
 	}
 
 	/**
@@ -171,6 +171,6 @@ public class SmsTemplateCairoWebManageApiController {
 	public Optional<MetadataSmsTemplate> getSmsTemplateDetailInfo(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																  @Validated @RequestBody GetSmsTemplateInfoArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		return Optional.ofNullable(smsTemplateCairoEndpointUserApiService.getSmsTemplateDetailInfo(appId, args.getBizId()));
+		return Optional.ofNullable(smsTemplateCairoWebManageApiService.getSmsTemplateDetailInfo(appId, args.getBizId()));
 	}
 }

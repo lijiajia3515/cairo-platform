@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 /**
- * 删除终端用户登录日志根据已删除的企业终端队列处理器
+ * 删除应用级用户登录日志根据已删除的企业终端队列处理器
  */
 @Slf4j
 @Component
@@ -59,14 +59,14 @@ public class DeleteTenantAppUserLoginLogByDeletedTenantEndpointQueueHandler {
 			query.limit(1000);
 			for (long i = 0; i < each; i++) {
 				try {
-					List<TenantAppUserLoginLogMongodb> deletedEndpointUserLoginLogList = mongoTemplate.findAllAndRemove(query, TenantAppUserLoginLogMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_LOGIN_LOG);
-					if (!deletedEndpointUserLoginLogList.isEmpty()) {
-						mongoTemplate.insert(deletedEndpointUserLoginLogList, MongodbConstants.DeletedCollection.TENANT_APP_USER_LOGIN_LOG);
+					List<TenantAppUserLoginLogMongodb> deletedTenantAppUserLoginLogList = mongoTemplate.findAllAndRemove(query, TenantAppUserLoginLogMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_LOGIN_LOG);
+					if (!deletedTenantAppUserLoginLogList.isEmpty()) {
+						mongoTemplate.insert(deletedTenantAppUserLoginLogList, MongodbConstants.DeletedCollection.TENANT_APP_USER_LOGIN_LOG);
 					}
 					log.debug("终端登录数据数据删除成功: TenantId: {} AppId: {} DeletedCount: {}",
 						deletedTenantEndpointMessage.getTenantId(),
 						deletedTenantEndpointMessage.getAppId(),
-						deletedEndpointUserLoginLogList.size()
+						deletedTenantAppUserLoginLogList.size()
 					);
 				} catch (Exception e) {
 					log.warn("delete tenant_app_user_login_log: {}", e.getMessage());

@@ -79,8 +79,8 @@ db.createCollection("auth_office_file_version", {
                         "null",
                         "string"
                     ],
-                    title: "租户ID",
-                    description: "必填（可为 null），字符串，所属租户的唯一标识"
+                    title: "企业ID",
+                    description: "必填（可为 null），字符串，所属企业的唯一标识"
                 },
                 appId: {
                     bsonType: [

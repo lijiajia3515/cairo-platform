@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
- * [client/api] tenant app endpoint user authorization feignclient
+ * [client/api] tenant app user authorization feignclient
  */
 @FeignClient(
 	contextId = "tenantAppUserAuthorizationClientApiFeignClient",
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 )
 public interface TenantAppUserAuthorizationClientApiFeignClient {
 	/**
-	 * 获取企业终端用户认证
+	 * 获取企业应用级用户认证
 	 * 需要权限 tenant_app_user_authorization:get_tenant_app_user_authorization | tenant_app_user_authorization:all
 	 *
 	 * @param args args
@@ -35,7 +35,7 @@ public interface TenantAppUserAuthorizationClientApiFeignClient {
 																												  @RequestBody GetTenantAppUserAuthorizationArgs args);
 
 	/**
-	 * 获取企业终端用户认证
+	 * 获取企业应用级用户认证
 	 * 需要权限 tenant_app_user_authorization:get_tenant_app_user_authorization | tenant_app_user_authorization:all
 	 *
 	 * @param args args

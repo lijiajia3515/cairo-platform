@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
-	 * 企业应用用户组
+	 * 企业应用级用户组
 	 */
 @Data
 @Accessors(chain = true)
@@ -32,8 +32,8 @@ public class TenantAppUserGroupMongodb implements Serializable {
 	private ObjectId _id;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;

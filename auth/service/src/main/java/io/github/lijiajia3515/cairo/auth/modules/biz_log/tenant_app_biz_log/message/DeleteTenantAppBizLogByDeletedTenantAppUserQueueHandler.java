@@ -43,7 +43,7 @@ public class DeleteTenantAppBizLogByDeletedTenantAppUserQueueHandler {
 		try {
 			log.debug("[deleted_tenant_app_biz_log_deleted_app_user] message handler start");
 			DeletedTenantAppUserMessage deletedUserMessage = objectMapper.readValue(payload, DeletedTenantAppUserMessage.class);
-			log.info("[deleted_tenant_app_biz_log_deleted_app_user] ===> 已删除的企业应用用户： TenantId: {} AppId: {} UserId: {} Nickname: {} EventUserId: {} EventTime: {} ",
+			log.info("[deleted_tenant_app_biz_log_deleted_app_user] ===> 已删除的企业应用级用户： TenantId: {} AppId: {} UserId: {} Nickname: {} EventUserId: {} EventTime: {} ",
 				deletedUserMessage.getTenantId(),
 				deletedUserMessage.getAppId(),
 				deletedUserMessage.getUserId(),
@@ -62,16 +62,16 @@ public class DeleteTenantAppBizLogByDeletedTenantAppUserQueueHandler {
 			query.limit(1000);
 			for (long i = 0; i < each; i++) {
 				try {
-					List<BizLogTenantAppMongodb> deletedEndpointUserBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogTenantAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_TENANT_APP);
-					if (!deletedEndpointUserBizLogMongodbList.isEmpty()) {
-						mongoTemplate.insert(deletedEndpointUserBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_TENANT_APP);
+					List<BizLogTenantAppMongodb> deletedTenantAppBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogTenantAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_TENANT_APP);
+					if (!deletedTenantAppBizLogMongodbList.isEmpty()) {
+						mongoTemplate.insert(deletedTenantAppBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_TENANT_APP);
 					}
-					log.debug("终端用户级业务日志删除成功:  TenantId: {} AppId: {} UserId: {} Nickname: {} DeleteCount {} ",
+					log.debug("企业应用级用户级业务日志删除成功:  TenantId: {} AppId: {} UserId: {} Nickname: {} DeleteCount {} ",
 						deletedUserMessage.getTenantId(),
 						deletedUserMessage.getAppId(),
 						deletedUserMessage.getUserId(),
 						deletedUserMessage.getNickname(),
-						deletedEndpointUserBizLogMongodbList.size()
+						deletedTenantAppBizLogMongodbList.size()
 					);
 				} catch (Exception e) {
 					log.warn("delete tenant app endpoint biz log: {}", e.getMessage());

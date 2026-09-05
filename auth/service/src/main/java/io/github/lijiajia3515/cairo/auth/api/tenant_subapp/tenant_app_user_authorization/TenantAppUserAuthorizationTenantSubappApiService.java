@@ -67,10 +67,10 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 	}
 
 	/**
-	 * 获取企业用户会话列表
+	 * 获取企业应用级用户会话列表
 	 *
 	 * @param args 参数
-	 * @return 企业用户会话列表
+	 * @return 企业应用级用户会话列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -98,10 +98,10 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 	}
 
 	/**
-	 * 获取企业用户会话分页列表
+	 * 获取企业应用级用户会话分页列表
 	 *
 	 * @param args 参数
-	 * @return 企业用户会话列表
+	 * @return 企业应用级用户会话列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -132,7 +132,7 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 	}
 
 	/**
-	 * 下线企业用户会话
+	 * 下线企业应用级用户会话
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -157,10 +157,10 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 		);
 		TenantAppUserAuthorizationMongodb authorizationMongodb = mongoTemplate.findOne(query, TenantAppUserAuthorizationMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_AUTHORIZATION);
 		if (authorizationMongodb == null) {
-			throw new ConflictBusinessException("企业用户会话不存在");
+			throw new ConflictBusinessException("企业应用级用户会话不存在");
 		}
 		if (!AccountAuthorizationStatus.OK.getStatusValue().equals(authorizationMongodb.getStatus())) {
-			throw new ConflictBusinessException("企业用户会话状态异常");
+			throw new ConflictBusinessException("企业应用级用户会话状态异常");
 		}
 
 
@@ -179,17 +179,17 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 			} catch (Exception e) {
 				log.debug("offlineTenantAppUserAuthorization", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("下线企业用户会话失败");
+				throw new ConflictBusinessException("下线企业应用级用户会话失败");
 			}
 		});
 
 		if (accountAuthorizationMongodb == null) {
-			throw new ConflictBusinessException("下线企业用户会话失败");
+			throw new ConflictBusinessException("下线企业应用级用户会话失败");
 		}
 	}
 
 	/**
-	 * 下线所有企业用户会话
+	 * 下线所有企业应用级用户会话
 	 *
 	 * @param appId appId
 	 */
@@ -228,7 +228,7 @@ public class TenantAppUserAuthorizationTenantSubappApiService {
 			} catch (Exception e) {
 				log.debug("offlineAllTenantAppUserAuthorization", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("下线企业用户会话失败");
+				throw new ConflictBusinessException("下线企业应用级用户会话失败");
 			}
 		});
 

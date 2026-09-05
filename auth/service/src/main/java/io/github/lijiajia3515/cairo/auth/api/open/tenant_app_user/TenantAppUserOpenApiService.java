@@ -241,7 +241,7 @@ public class TenantAppUserOpenApiService {
 			} catch (Exception e) {
 				log.debug("CreateTenantAppUserFail", e);
 				transactionStatus.setRollbackOnly();
-				throw new ConflictBusinessException("注册企业用户失败");
+				throw new ConflictBusinessException("注册企业应用级用户失败");
 			}
 		});
 

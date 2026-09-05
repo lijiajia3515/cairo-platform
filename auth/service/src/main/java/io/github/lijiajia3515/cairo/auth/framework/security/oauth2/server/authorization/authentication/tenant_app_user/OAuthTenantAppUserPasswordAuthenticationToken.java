@@ -12,14 +12,14 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户密码模式 authentication token
+ * 应用级用户密码模式 authentication token
  */
 @Getter
 public class OAuthTenantAppUserPasswordAuthenticationToken extends OAuth2AuthorizationGrantAuthenticationToken {
 
 
     /**
-     * 租户id
+     * 企业id
      */
     private final String tenantId;
 

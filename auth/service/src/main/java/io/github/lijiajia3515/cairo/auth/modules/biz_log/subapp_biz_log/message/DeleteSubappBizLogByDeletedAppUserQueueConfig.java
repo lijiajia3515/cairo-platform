@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.Duration;
 
 /**
- * 删除子应用业务日志 根据 已删除的应用用户 队列配置
+ * 删除子应用业务日志 根据 已删除的应用级用户 队列配置
  */
 @Configuration(proxyBeanMethods = false)
 public class DeleteSubappBizLogByDeletedAppUserQueueConfig {

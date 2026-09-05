@@ -2,8 +2,8 @@ db.getCollection("auth_biz_log_app").drop();
 db.createCollection("auth_biz_log_app", {
     validator: {
         $jsonSchema: {
-            title: "应用用户日志",
-            description: "应用用户日志",
+            title: "应用级用户日志",
+            description: "应用级用户日志",
             properties: {
                 _id: {
                     bsonType: "objectId",

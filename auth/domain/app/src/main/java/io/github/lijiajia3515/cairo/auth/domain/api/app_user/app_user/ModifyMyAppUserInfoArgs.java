@@ -1,0 +1,32 @@
+package io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+
+/**
+ * 修改应用级用户信息
+ */
+@Data
+@Accessors(chain = true)
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+public class ModifyMyAppUserInfoArgs implements Serializable {
+
+	/**
+	 * 昵称
+	 */
+	private String nickname;
+
+	/**
+	 * 联系方式
+	 */
+	private String phoneNumber;
+
+}

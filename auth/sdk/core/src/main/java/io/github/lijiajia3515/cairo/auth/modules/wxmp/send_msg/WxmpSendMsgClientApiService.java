@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface WxmpSendMsgClientApiService {
 
 	/**
-	 * 应用用户发送微信消息
+	 * 应用级用户发送微信消息
 	 *需要权限 wxmp_message:send_msg | wxmp_template_msg:all
 	 *
 	 * @param args 参数

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 
 /**
- * 应用用户登录日志
+ * 应用级用户登录日志
  */
 @Data
 @NoArgsConstructor
@@ -51,7 +51,7 @@ public class AppUserLoginLog implements Serializable {
 	private LocalDateTime loginTime;
 
 	/**
-	 * 登录应用用户
+	 * 登录应用级用户
 	 */
 	private AppUser user;
 

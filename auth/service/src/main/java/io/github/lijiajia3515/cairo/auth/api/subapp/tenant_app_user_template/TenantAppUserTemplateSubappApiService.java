@@ -150,11 +150,11 @@ public class TenantAppUserTemplateSubappApiService {
 
 
 	/**
-	 * 获取企业用户模板列表
+	 * 获取企业应用级用户模板列表
 	 *
 	 * @param appId appId
 	 * @param args  args
-	 * @return 企业用户模板分页列表
+	 * @return 企业应用级用户模板分页列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -182,7 +182,7 @@ public class TenantAppUserTemplateSubappApiService {
 	}
 
 	/**
-	 * 根据企业用户模板ID获取企业用户模板
+	 * 根据企业应用级用户模板ID获取企业应用级用户模板
 	 *
 	 * @return return tenant_app_user_template
 	 */
@@ -197,12 +197,12 @@ public class TenantAppUserTemplateSubappApiService {
 	)
 	public MetadataTenantAppUserTemplate getTenantAppUserTemplateInfo(@Valid @NotNull String appId, @Valid @NotNull String userId) {
 		return getTenantAppUserTemplateInfo(readMongoTemplate, appId, userId)
-			.orElseThrow(() -> new ConflictBusinessException("企业用户模板不存在"));
+			.orElseThrow(() -> new ConflictBusinessException("企业应用级用户模板不存在"));
 	}
 
 
 	/**
-	 * 获取企业用户模板根据企业用户模板ID
+	 * 获取企业应用级用户模板根据企业应用级用户模板ID
 	 *
 	 * @return userId
 	 */
@@ -219,7 +219,7 @@ public class TenantAppUserTemplateSubappApiService {
 	}
 
 	/**
-	 * 后台 新增企业用户模板
+	 * 后台 新增企业应用级用户模板
 	 *
 	 * @param args args
 	 */
@@ -245,7 +245,7 @@ public class TenantAppUserTemplateSubappApiService {
 			.and(TenantAppUserTemplateMongodb.FIELD.ACCOUNT_ID).is(args.getAccountId());
 		TenantAppUserTemplateMongodb existsTenantAppUserTemplateMongodb = readMongoTemplate.findOne(Query.query(criteria), TenantAppUserTemplateMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_TEMPLATE);
 		if (existsTenantAppUserTemplateMongodb != null) {
-			throw new ConflictBusinessException(String.format("该账号已绑定企业用户模板: %s(%s)", existsTenantAppUserTemplateMongodb.getNickname(), existsTenantAppUserTemplateMongodb.getTenantAppUserTemplateId()));
+			throw new ConflictBusinessException(String.format("该账号已绑定企业应用级用户模板: %s(%s)", existsTenantAppUserTemplateMongodb.getNickname(), existsTenantAppUserTemplateMongodb.getTenantAppUserTemplateId()));
 		}
 
 		Criteria appCriteria = Criteria
@@ -277,17 +277,17 @@ public class TenantAppUserTemplateSubappApiService {
 			} catch (Exception e) {
 				log.debug("createTenantAppUserTemplate", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("创建企业用户模板失败");
+				throw new ConflictBusinessException("创建企业应用级用户模板失败");
 			}
 		});
 
 		if (insertedTenantAppUserTemplate == null) {
-			throw new ConflictBusinessException("创建企业用户模板失败");
+			throw new ConflictBusinessException("创建企业应用级用户模板失败");
 		}
 	}
 
 	/**
-	 * 创建账号并且创建企业用户模板
+	 * 创建账号并且创建企业应用级用户模板
 	 *
 	 * @param appId 应用id
 	 * @param args  参数
@@ -320,12 +320,12 @@ public class TenantAppUserTemplateSubappApiService {
 		}
 
 		if (!(phoneNumber || tenant_app_user_templatename || email)) {
-			throw new ConflictBusinessException("手机号，企业用户模板名，邮箱，必须三选一");
+			throw new ConflictBusinessException("手机号，企业应用级用户模板名，邮箱，必须三选一");
 		}
 
-		// 验证企业用户模板名格式
+		// 验证企业应用级用户模板名格式
 		if (args.getUsername() != null && !args.getUsername().trim().isBlank() && !AccountCommonService.validUsername(args.getUsername())) {
-			throw new ConflictBusinessException("企业用户模板名格式错误");
+			throw new ConflictBusinessException("企业应用级用户模板名格式错误");
 		}
 
 		// 验证手机号格式
@@ -403,7 +403,7 @@ public class TenantAppUserTemplateSubappApiService {
 			}
 		}
 
-		// 创建企业用户模板
+		// 创建企业应用级用户模板
 		TenantAppUserTemplateMongodb insertedTenantAppUserTemplateMongodb = transactionTemplate.execute(status -> {
 			try {
 				Criteria criteria = Criteria
@@ -448,16 +448,16 @@ public class TenantAppUserTemplateSubappApiService {
 				status.setRollbackOnly();
 				throw e;
 			} catch (Exception e) {
-				log.debug("创建企业用户模板失败", e);
+				log.debug("创建企业应用级用户模板失败", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("创建企业用户模板失败");
+				throw new ConflictBusinessException("创建企业应用级用户模板失败");
 			}
 		});
 
 	}
 
 	/**
-	 * 修改 企业应用用户角色,岗位,部门
+	 * 修改 企业应用级用户角色,岗位,部门
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -492,12 +492,12 @@ public class TenantAppUserTemplateSubappApiService {
 			} catch (Exception e) {
 				log.debug("modifyTenantAppUserTemplate", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("企业用户模板修改失败");
+				throw new ConflictBusinessException("企业应用级用户模板修改失败");
 			}
 		});
 
 		if (userMongodb == null) {
-			throw new ConflictBusinessException("企业用户模板修改失败");
+			throw new ConflictBusinessException("企业应用级用户模板修改失败");
 		}
 	}
 
@@ -521,11 +521,11 @@ public class TenantAppUserTemplateSubappApiService {
 				);
 				TenantAppUserTemplateMongodb tenantAppUserTemplateMongodb = mongoTemplate.findOne(query, TenantAppUserTemplateMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_TEMPLATE);
 				if (tenantAppUserTemplateMongodb == null) {
-					throw new ConflictBusinessException("企业用户模板不存在");
+					throw new ConflictBusinessException("企业应用级用户模板不存在");
 				}
 
 				if (tenantAppUserTemplateMongodb.getAdmin() != null && tenantAppUserTemplateMongodb.getAdmin()) {
-					throw new ConflictBusinessException("修改企业用户模板状态失败，请联系平台管理员移除当前操作账号管理员权限后再试");
+					throw new ConflictBusinessException("修改企业应用级用户模板状态失败，请联系平台管理员移除当前操作账号管理员权限后再试");
 				}
 
 				Update update = new Update();
@@ -538,17 +538,17 @@ public class TenantAppUserTemplateSubappApiService {
 			} catch (Exception e) {
 				log.info("modifyTenantAppUserTemplateStatus", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("修改企业用户模板状态失败");
+				throw new ConflictBusinessException("修改企业应用级用户模板状态失败");
 			}
 		});
 
 		if (userMongodb == null) {
-			throw new ConflictBusinessException("修改企业用户模板状态失败");
+			throw new ConflictBusinessException("修改企业应用级用户模板状态失败");
 		}
 	}
 
 	/**
-	 * 删除企业用户模板
+	 * 删除企业应用级用户模板
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -594,7 +594,7 @@ public class TenantAppUserTemplateSubappApiService {
 			} catch (Exception e) {
 				log.debug("deleteTenantAppUserTemplate", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("删除企业用户模板失败");
+				throw new ConflictBusinessException("删除企业应用级用户模板失败");
 			}
 		});
 

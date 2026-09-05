@@ -39,7 +39,7 @@ public class AppUserTagCommonService {
 	}
 
 	/**
-	 * 判断是否存在应用用户使用tagIds
+	 * 判断是否存在应用级用户使用tagIds
 	 *
 	 * @param appId    appId
 	 * @param tagIds   tagIds
@@ -52,7 +52,7 @@ public class AppUserTagCommonService {
 
 
 	/**
-	 * 判断是否存在应用用户使用tagIds
+	 * 判断是否存在应用级用户使用tagIds
 	 *
 	 * @param appId    appId
 	 * @param tagIds   tagIds

@@ -76,7 +76,7 @@ public final class OAuth2EndpointUtils {
 	}
 
 	public static void throwError(String errorCode, String parameterName, String errorUri) throws OAuth2AuthenticationException{
-		OAuth2Error error = new OAuth2Error(errorCode, "OAuth 2.0 Parameter: " + parameterName, errorUri);
+		OAuth2Error error = new OAuth2Error(errorCode, "请求参数缺失或非法: " + parameterName, errorUri);
 		throw new OAuth2AuthenticationException(error);
 	}
 

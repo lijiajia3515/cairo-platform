@@ -141,7 +141,7 @@ public class RemoteTenantSubappUserAuthenticationTokenConverter implements Tenan
 					throw new TenantSubappDisabledException(errorMessage);
 				}
 
-				// 企业应用用户异常
+				// 企业应用级用户异常
 				else if (CairoAuthBusiness.TENANT_APP_USER_NOT_FOUND.getCode().equals(status)) {
 					throw new TenantAppUserNotFoundException(errorMessage);
 				} else if (CairoAuthBusiness.TENANT_APP_USER_DISABLED.getCode().equals(status)) {

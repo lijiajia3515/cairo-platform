@@ -19,6 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class CaptchaTokenInterceptor extends AbstractHttpMessageHandler implements HandlerInterceptor {
@@ -82,9 +83,13 @@ public class CaptchaTokenInterceptor extends AbstractHttpMessageHandler implemen
 	protected void write(HttpStatus httpStatus, Business business, HttpServletRequest request, HttpServletResponse response) throws HttpMediaTypeNotAcceptableException, IOException {
 		response.setStatus(httpStatus.value());
 
+		// 验证码闸失败：显式标记可重试（409 默认不可重试，但可重新获取验证码后重试），
+		// data 即该码族的结构化补充容器，retryHint 平铺其中，前端据此渲染重试入口
 		BusinessResult<?> returnValue = BusinessResult.builder()
 			.code(business.getCode())
 			.message(business.getMessage())
+			.retryable(true)
+			.data(Map.of("retryHint", "验证码无效或已失效，请重新获取"))
 			.build();
 		writeWithMessageConverters(returnValue, new ServletServerHttpRequest(request), new ServletServerHttpResponse(response));
 

@@ -31,7 +31,7 @@ public class GetTenantAppUserTemplateListArgs extends AbstractPage<GetTenantAppU
 	private String keyword;
 
 	/**
-	 * 企业用户模板ID 集合
+	 * 企业应用级用户模板ID 集合
 	 */
 	private Collection<String> tenantAppUserTemplateIds;
 

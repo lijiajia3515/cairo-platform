@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class GetOnlineTenantAppDocArgs implements Serializable {
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

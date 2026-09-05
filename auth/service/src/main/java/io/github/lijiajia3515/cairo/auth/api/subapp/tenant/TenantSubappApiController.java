@@ -41,10 +41,10 @@ public class TenantSubappApiController {
 	private final TenantSubappApiService tenantSubappApiService;
 
 	/**
-	 * 获取租户列表
+	 * 获取企业列表
 	 *
 	 * @param args 参数
-	 * @return 租户 列表模式
+	 * @return 企业 列表模式
 	 */
 	@PostMapping("/get_tenant_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant:all', 'tenant:read')")
@@ -54,10 +54,10 @@ public class TenantSubappApiController {
 	}
 
 	/**
-	 * 获取租户分页
+	 * 获取企业分页
 	 *
 	 * @param args 参数
-	 * @return 租户 分页模式
+	 * @return 企业 分页模式
 	 */
 	@PostMapping("/get_tenant_page_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant:all', 'tenant:read')")
@@ -67,7 +67,7 @@ public class TenantSubappApiController {
 	}
 
 	/**
-	 * 创建租户
+	 * 创建企业
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -82,7 +82,7 @@ public class TenantSubappApiController {
 	}
 
 	/**
-	 * 修改租户
+	 * 修改企业
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -97,7 +97,7 @@ public class TenantSubappApiController {
 	}
 
 	/**
-	 * 修改租户拥有着
+	 * 修改企业拥有着
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -112,11 +112,11 @@ public class TenantSubappApiController {
 	}
 
 	/**
-	 * 修改租户状态
+	 * 修改企业状态
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	@PostMapping("/modify_tenant_status")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant:all', 'tenant:modify_tenant_status')")
@@ -128,7 +128,7 @@ public class TenantSubappApiController {
 
 
 	/**
-	 * 删除租户
+	 * 删除企业
 	 *
 	 * @param principal 凭证
 	 * @param args      参数

@@ -15,9 +15,9 @@ public interface CairoRabbitmqRouteKey {
 	String getName();
 
 	/**
-	 * 获取引用租户模式 路由key
+	 * 获取引用企业模式 路由key
 	 *
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param appId    appId
 	 * @return key
 	 */
@@ -26,9 +26,9 @@ public interface CairoRabbitmqRouteKey {
 	}
 
 	/**
-	 * 获取租户模式 路由key
+	 * 获取企业模式 路由key
 	 *
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @return key
 	 */
 	default String getTenantKey(String tenantId) {

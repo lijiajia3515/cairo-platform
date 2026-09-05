@@ -13,6 +13,7 @@ import { useInterval } from "v3hooks";
 
 import useState from '@/hooks/useState';
 import useAgreementGate from '@/hooks/useAgreementGate';
+import { applyFieldErrors, isValidationFailed } from '@/utils/formErrors';
 
 import GraphicValidation from '@/components/graphicValidation';
 
@@ -80,10 +81,17 @@ const onRegister = async () => {
     password: form.value.password,
     nickname: form.value.nickname,
   }
-  const res = await registerAppUser_api(params);
-  if (res.code == 'Success') {
-    MessagePlugin.success('注册成功');
-    router.replace('/login');
+  try {
+    const res = await registerAppUser_api(params);
+    if (res.code == 'Success') {
+      MessagePlugin.success('注册成功');
+      router.replace('/login');
+    }
+  } catch (err) {
+    // 服务端字段校验失败：内联标红到对应表单项（提示文案已由 status.js 统一弹出）
+    if (isValidationFailed(err)) {
+      applyFieldErrors(formRef, err.data);
+    }
   }
 }
 

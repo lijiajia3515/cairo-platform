@@ -5,7 +5,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.util.Assert;
 
 /**
- * cairo app endpoint user account sns code authentication token
+ * cairo app user account sns code authentication token
  */
 @Getter
 public class CairoAppUserAccountSnsCodeAuthenticationToken extends AbstractAuthenticationToken {

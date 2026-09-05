@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * 企业用户注销状态
+ * 企业应用级用户注销状态
  */
 public enum TenantAppUserLogoffStatus {
 	/**

@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
  */
 public class SubappUserAuthorizationClientApiFallbackFeignClient implements SubappUserAuthorizationClientApiFeignClient {
 
-	public static final RuntimeException EX = new ErrorBusinessException("认证服务-子应用用户授权子应用故障");
+	public static final RuntimeException EX = new ErrorBusinessException("认证服务-子应用级用户授权子应用故障");
 
 	@Override
 	public ResponseEntity<BusinessResult<SubappUserAuthorizationModel>> getSubappUserAuthorization(String authorization, GetSubappUserAuthorizationArgs args) {

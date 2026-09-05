@@ -373,7 +373,7 @@ public class MenuCommonService {
 	}
 
 	/**
-	 * 获取我的应用用户web菜单
+	 * 获取我的应用级用户web菜单
 	 *
 	 * @param appId  appId
 	 * @param userId userId

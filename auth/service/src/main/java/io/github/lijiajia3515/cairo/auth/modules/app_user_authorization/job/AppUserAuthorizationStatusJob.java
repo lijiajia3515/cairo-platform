@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 更新终端用户令牌过期状态
+ * 更新应用级用户令牌过期状态
  */
 @Slf4j
 @Component
@@ -73,7 +73,7 @@ public class AppUserAuthorizationStatusJob {
 						appUserAuthorizationMongodb.getAccessToken().getTokenValue()
 					);
 				} catch (Exception e) {
-					log.info("修改终端用户会话状态失败：", e);
+					log.info("修改应用级用户会话状态失败：", e);
 				}
 			});
 		} catch (Exception e) {

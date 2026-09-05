@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * [client/api] app endpoint user authorization service
+ * [client/api] app user authorization service
  */
 @Slf4j
 @Validated

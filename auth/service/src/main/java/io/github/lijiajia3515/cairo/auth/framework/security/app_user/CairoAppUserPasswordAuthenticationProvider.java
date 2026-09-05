@@ -28,7 +28,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 /**
- * cairo app endpoint user password authentication provider
+ * cairo app user password authentication provider
  */
 @Slf4j
 @Setter
@@ -122,7 +122,7 @@ public class CairoAppUserPasswordAuthenticationProvider implements Authenticatio
 		UsernamePasswordAuthenticationToken result = UsernamePasswordAuthenticationToken.authenticated(principal,
 			authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
 		result.setDetails(authentication.getDetails());
-		log.debug("Authenticated app endpoint user");
+		log.debug("Authenticated app user");
 		return result;
 	}
 
@@ -130,7 +130,7 @@ public class CairoAppUserPasswordAuthenticationProvider implements Authenticatio
 		if (authentication.getCredentials() == null || authentication.getCredentials().isBlank()) {
 			log.debug("Failed to authenticate since no credentials provided");
 			throw new BadCredentialsException(this.messages
-				.getMessage("AbstractUserDetailsAuthenticationProvider.emptyCredentials", "密码不能未空"));
+				.getMessage("AbstractUserDetailsAuthenticationProvider.emptyCredentials", "密码不能为空"));
 		}
 		if (user.getAccountPassword() == null || user.getAccountPassword().isBlank()) {
 			log.debug("user password is empty");

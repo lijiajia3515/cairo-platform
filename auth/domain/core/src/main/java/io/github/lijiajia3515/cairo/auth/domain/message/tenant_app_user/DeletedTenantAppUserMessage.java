@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 删除企业应用用户消息
+ * 删除企业应用级用户消息
  */
 @Data
 @Accessors(chain = true)
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 public class DeletedTenantAppUserMessage implements Serializable {
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

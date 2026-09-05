@@ -15,7 +15,7 @@ import java.util.Map;
 
 
 /**
- * 创建应用用户日志 队列 处理器
+ * 创建应用级用户日志 队列 处理器
  */
 @Slf4j
 @Component
@@ -33,7 +33,7 @@ public class CreateAppUserLogQueueHandler {
 		try {
 			log.debug("[create_app_user_log] message handler start");
 			CreatedAppUserMessage createdAppUserMessage = objectMapper.readValue(payload, CreatedAppUserMessage.class);
-			log.info("[create_app_user_log] ===> 创建应用用户：AppId: {} AppUserId: {} Nickname: {} AccountId: {}",
+			log.info("[create_app_user_log] ===> 创建应用级用户：AppId: {} AppUserId: {} Nickname: {} AccountId: {}",
 				createdAppUserMessage.getAppId(),
 				createdAppUserMessage.getUserId(),
 				createdAppUserMessage.getNickname(),

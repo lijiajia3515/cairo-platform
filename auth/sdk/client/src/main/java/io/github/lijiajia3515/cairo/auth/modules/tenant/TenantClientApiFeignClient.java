@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import java.util.List;
 
 /**
- * 租户子应用-client模式feign客户端
+ * 企业子应用-client模式feign客户端
  */
 @FeignClient(
 	contextId = "tenantClientApiFeignClient",
@@ -28,21 +28,21 @@ import java.util.List;
 public interface TenantClientApiFeignClient {
 
 	/**
-	 * 查询租户列表
+	 * 查询企业列表
 	 * 需要权限: tenant:read | tenant:all
 	 *
 	 * @param args 参数
-	 * @return 租户列表
+	 * @return 企业列表
 	 */
 	@PostMapping("/get_tenant_list")
 	ResponseEntity<BusinessResult<List<Tenant>>> getTenantList(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorization, @RequestBody GetTenantArgs args);
 
 	/**
-	 * 获取单租户
+	 * 获取单企业
 	 * 需要权限: tenant:read | tenant:all
 	 *
 	 * @param args 参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	@PostMapping("/get_tenant_info")
 	ResponseEntity<BusinessResult<Tenant>> getTenantInfo(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorization,@RequestBody GetTenantInfoArgs args);

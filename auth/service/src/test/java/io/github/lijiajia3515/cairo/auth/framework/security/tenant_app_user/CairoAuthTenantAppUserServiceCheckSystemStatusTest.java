@@ -33,7 +33,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * 企业应用用户准入闸口：客户端检查 + 端闸门（无子应用级闸门，子应用检查独立在 checkSubappStatus）
+ * 企业应用级用户准入闸口：客户端检查 + 端闸门（无子应用级闸门，子应用检查独立在 checkSubappStatus）
  */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)

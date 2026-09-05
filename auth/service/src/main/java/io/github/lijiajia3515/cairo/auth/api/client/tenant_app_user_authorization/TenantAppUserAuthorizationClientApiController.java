@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * [client/api] tenant app endpoint user authorization service
+ * [client/api] tenant app user authorization service
  */
 @Slf4j
 @Validated
@@ -31,7 +31,7 @@ public class TenantAppUserAuthorizationClientApiController {
 	private final TenantAppUserAuthorizationClientApiService tenantAppUserAuthorizationClientApiService;
 
 	/**
-	 * 获取企业终端用户凭证
+	 * 获取企业应用级用户凭证
 	 *
 	 * @param principal 用户凭证才能访问
 	 * @return 账号凭证
@@ -43,7 +43,7 @@ public class TenantAppUserAuthorizationClientApiController {
 	}
 
 	/**
-	 * 获取企业终端用户凭证
+	 * 获取企业应用级用户凭证
 	 *
 	 * @param principal 用户凭证才能访问
 	 * @return 账号凭证

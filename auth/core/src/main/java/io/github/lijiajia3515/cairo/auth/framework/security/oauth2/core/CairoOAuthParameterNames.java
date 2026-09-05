@@ -58,7 +58,7 @@ public interface CairoOAuthParameterNames {
 	String ENDPOINT_ID = "endpoint_id";
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	String TENANT_ID = "tenant_id";
 

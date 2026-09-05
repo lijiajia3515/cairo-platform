@@ -55,7 +55,7 @@ public class AppUserAuthorizationClientApiService {
 	}
 
 	/**
-	 * 获取终端用户认证
+	 * 获取应用级用户认证
 	 *
 	 * @param args 参数
 	 * @return 账号认证模型

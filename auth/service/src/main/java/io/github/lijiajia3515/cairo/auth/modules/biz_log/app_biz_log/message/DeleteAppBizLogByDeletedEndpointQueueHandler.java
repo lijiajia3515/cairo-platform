@@ -23,7 +23,7 @@ import java.util.Map;
 
 
 /**
- * 删除终端用户业务日志 根据 已删除客户端 队列实现
+ * 删除应用级用户业务日志 根据 已删除客户端 队列实现
  */
 @Slf4j
 @Component
@@ -64,7 +64,7 @@ public class DeleteAppBizLogByDeletedEndpointQueueHandler {
 					if (!deletedAppBizLogMongodbList.isEmpty()) {
 						mongoTemplate.insert(deletedAppBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_APP);
 					}
-					log.debug("终端用户级业务日志删除成功: AppId: {} DeletedCount: {}", deletedEndpointMessage.getAppId(), deletedAppBizLogMongodbList.size());
+					log.debug("应用级用户级业务日志删除成功: AppId: {} DeletedCount: {}", deletedEndpointMessage.getAppId(), deletedAppBizLogMongodbList.size());
 				} catch (Exception e) {
 					log.warn("delete app endpoint biz log: {}", e.getMessage());
 				}

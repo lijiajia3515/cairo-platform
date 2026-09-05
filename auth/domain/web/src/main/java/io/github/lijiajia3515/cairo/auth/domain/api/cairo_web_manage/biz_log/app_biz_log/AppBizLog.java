@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 /**
- * 终端用户业务日志
+ * 应用级用户业务日志
  */
 @Data
 @Accessors(chain = true)
@@ -55,9 +55,9 @@ public class AppBizLog {
 	private AppUser user;
 
 	/**
-	 * 终端用户TokenId
+	 * 应用级用户TokenId
 	 */
-	private String endpointUserTokenId;
+	private String tokenId;
 
 	/**
 	 * 业务ID

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class GetTenantAppUserAuthArgs implements Serializable {
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	@NotNull
 	private String tenantId;

@@ -185,11 +185,11 @@ public class AppUserTagSubappApiService {
 		Query query = Query.query(criteria);
 		return Optional.ofNullable(readMongoTemplate.findOne(query, AppUserTagMongodb.class, MongodbConstants.Collection.APP_USER_TAG))
 			.flatMap(m -> getAppUserTagList(appId, Collections.singletonList(m)).stream().findFirst())
-			.orElseThrow(() -> new ConflictBusinessException("应用用户标签不存在"));
+			.orElseThrow(() -> new ConflictBusinessException("应用级用户标签不存在"));
 	}
 
 	/**
-	 * 创建应用用户标签
+	 * 创建应用级用户标签
 	 *
 	 * @param args args
 	 */
@@ -229,12 +229,12 @@ public class AppUserTagSubappApiService {
 				} catch (Exception e) {
 					log.debug("createAppUserTag", e);
 					status.setRollbackOnly();
-					throw new ConflictBusinessException("应用用户标签创建失败");
+					throw new ConflictBusinessException("应用级用户标签创建失败");
 				}
 			});
 
 			if (insertedUserTag == null) {
-				throw new ConflictBusinessException("应用用户标签创建失败");
+				throw new ConflictBusinessException("应用级用户标签创建失败");
 			}
 
 			rabbitTemplate.convertAndSend(
@@ -289,12 +289,12 @@ public class AppUserTagSubappApiService {
 			} catch (Exception e) {
 				log.debug("modifyAppUserTagInfo", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("修改应用用户标签失败");
+				throw new ConflictBusinessException("修改应用级用户标签失败");
 			}
 		});
 
 		if (userTagMongodb == null) {
-			throw new ConflictBusinessException("修改应用用户标签失败");
+			throw new ConflictBusinessException("修改应用级用户标签失败");
 		}
 
 		// remove cache
@@ -336,12 +336,12 @@ public class AppUserTagSubappApiService {
 			} catch (Exception e) {
 				log.info("modifyAppUserTagStatus", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("修改应用用户标签状态失败");
+				throw new ConflictBusinessException("修改应用级用户标签状态失败");
 			}
 		});
 
 		if (userTagMongodb == null) {
-			throw new ConflictBusinessException("修改应用用户标签状态失败");
+			throw new ConflictBusinessException("修改应用级用户标签状态失败");
 		}
 
 		// remove cache
@@ -370,7 +370,7 @@ public class AppUserTagSubappApiService {
 				List<BasicAppUser> existsUserList = appUserTagCommonService.existsAppUserList(appId, args.getTagIds());
 				if (!existsUserList.isEmpty()) {
 					String nicknames = existsUserList.stream().map(x -> String.format("\"%s\"", x.getNickname())).collect(Collectors.joining(","));
-					throw new ConflictBusinessException("标签已被使用应用用户[" + nicknames + "]，不允许删除");
+					throw new ConflictBusinessException("标签已被使用应用级用户[" + nicknames + "]，不允许删除");
 				}
 				Criteria criteria = Criteria
 					.where(AppUserTagMongodb.FIELD.APP_ID).is(appId)
@@ -384,7 +384,7 @@ public class AppUserTagSubappApiService {
 
 				UpdateResult updateResult = mongoTemplate.updateMulti(query, update, AppUserTagMongodb.class, MongodbConstants.Collection.APP_USER_TAG);
 				if (updateResult.getModifiedCount() < 1) {
-					throw new ConflictBusinessException("删除应用用户标签失败");
+					throw new ConflictBusinessException("删除应用级用户标签失败");
 				}
 				List<AppUserTagMongodb> deleteAppUserTagMongodbList = mongoTemplate.findAllAndRemove(query, AppUserTagMongodb.class, MongodbConstants.Collection.APP_USER_TAG);
 				if (!deleteAppUserTagMongodbList.isEmpty()) {
@@ -396,7 +396,7 @@ public class AppUserTagSubappApiService {
 			} catch (Exception e) {
 				log.debug("deleteAppUserTag", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("删除应用用户标签失败");
+				throw new ConflictBusinessException("删除应用级用户标签失败");
 			}
 		});
 

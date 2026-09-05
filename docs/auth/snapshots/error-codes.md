@@ -55,12 +55,12 @@
 | 应用 | `Auth.AppNotFound`、`Auth.AppDisabled` |
 | 终端 | `Auth.EndpointNotFound`、`Auth.EndpointDisabled` |
 | 子应用 | `Auth.SubappNotFound`、`Auth.SubappNotApply`、`Auth.SubappDisabled` |
-| 终端用户 | `Auth.AppUserNotFound`、`Auth.AppUserDisabled`（消息为「用户不存在/被禁用」） |
+| 应用级用户 | `Auth.AppUserNotFound`、`Auth.AppUserDisabled`（消息为「用户不存在/被禁用」） |
 | 企业 | `Auth.TenantNotFound`、`Auth.TenantDisabled` |
 | 企业应用 | `Auth.TenantAppNotApply`、`Auth.TenantAppDisabled` |
 | 企业终端 | `Auth.TenantEndpointNotApply`、`Auth.TenantEndpointDisabled` |
 | 企业子应用 | `Auth.TenantSubappNotApply`、`Auth.TenantSubappDisabled` |
-| 企业应用用户 | `Auth.TenantAppUserNotFound`、`Auth.TenantAppUserDisabled`（消息为「用户不存在/被禁用」） |
+| 企业应用级用户 | `Auth.TenantAppUserNotFound`、`Auth.TenantAppUserDisabled`（消息为「用户不存在/被禁用」） |
 
 消息规律：NotFound=「xx不存在」、Disabled=「xx被禁用/已禁用」、NotApply=「xx未开通」、Locked=「账号已锁定」。
 
@@ -68,7 +68,12 @@
 
 | 枚举类 | 码值 | 消息 |
 |---|---|---|
-| CairoOAuthBusiness | `Auth.OAuthError` | 认证错误（OAuth2 异常统一包装，令牌刷新链路常见） |
+| CairoOAuthBusiness | `Auth.OAuthError` | 认证错误（OAuth2 协议层兜底：server_error / temporarily_unavailable / 未识别错误码） |
+| CairoOAuthBusiness | `Auth.ClientInvalid` | 客户端无效或密钥错误（invalid_client） |
+| CairoOAuthBusiness | `Auth.GrantNotSupported` | grant_type不支持或未对该客户端开通（unsupported_grant_type / unauthorized_client） |
+| CairoOAuthBusiness | `Auth.GrantInvalid` | 授权凭证无效或已过期（invalid_grant，刷新令牌/授权码失效） |
+| CairoOAuthBusiness | `Auth.ParamsBad` | OAuth请求参数缺失或非法（invalid_request） |
+| CairoOAuthBusiness | `Auth.ScopeInsufficient` | scope权限不足（invalid_scope / insufficient_scope） |
 | AuthCodeBusiness | `AuthCode.ParamsError` | 认证码参数错误 |
 | AuthCodeBusiness | `AuthCode.CodeExpired` | 认证码失效 |
 | AuthCodeBusiness | `AuthCode.Bad` | 认证码错误 |
@@ -94,7 +99,7 @@
 | 错误码 | 前端行为 |
 |---|---|
 | `Auth.TokenExpired` | 刷新令牌成功则重放原请求；失败清登录态重载 |
-| `Auth.OAuthError` | 提示「刷新Token错误」并清登录态 |
+| `Auth.OAuthError` / `Auth.ClientInvalid` / `Auth.GrantNotSupported` / `Auth.GrantInvalid` / `Auth.ParamsBad` / `Auth.ScopeInsufficient` | 提示 message（OAuth2 协议层细分码，原因可直读）并清登录态 |
 | `Auth.Unauthorized` | 提示 + 清登录态 |
 | `Auth.TokenInvalid`、`Auth.AccountNotFound/Disabled/Locked`、`Auth.AppUserNotFound/Disabled` | 提示 + 清登录态 |
 | `Auth.Denied` | 提示 + reject（不清登录态） |
@@ -102,7 +107,7 @@
 | `Request.NotFound` | 仅提示「接口请求未找到」 |
 | 其余全部 | default 分支：提示 message + reject |
 
-**前端兼容幽灵码（后端从未定义，仅 status.js 存在）**：`Auth.Expired`（`Auth.TokenExpired` 的兼容 fallthrough，仍在生效路径）、`Auth.Bad`、`Auth.Disabled`、`Auth.Locked`、`Auth.OAuth2Error`（纯死分支，后端无对应码）。后端新增同名码前不要复用这些字符串。
+**前端兼容幽灵码（后端从未定义，仅 status.js 存在）**：`Auth.Expired`（`Auth.TokenExpired` 的兼容 fallthrough，仍在生效路径）、`Auth.Bad`、`Auth.Disabled`、`Auth.Locked`。`Auth.OAuth2Error` 死分支已随 OAuth2 协议层细分码落地删除。后端新增同名码前不要复用这些字符串。
 
 ## 维护
 

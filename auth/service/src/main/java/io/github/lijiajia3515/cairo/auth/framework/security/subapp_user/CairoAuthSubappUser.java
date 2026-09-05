@@ -53,7 +53,7 @@ public class CairoAuthSubappUser implements UserDetails, OAuth2User {
 	private String subappVersion;
 
 	/**
-	 * 应用用户ID
+	 * 应用级用户ID
 	 */
 	private String userId;
 

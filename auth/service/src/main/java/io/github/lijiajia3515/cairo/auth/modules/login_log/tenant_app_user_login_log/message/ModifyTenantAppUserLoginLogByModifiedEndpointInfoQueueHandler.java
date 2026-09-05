@@ -54,7 +54,7 @@ public class ModifyTenantAppUserLoginLogByModifiedEndpointInfoQueueHandler {
 			);
 
 			if (modifiedEndpointInfoMessage.getOldEndpointId().equals(modifiedEndpointInfoMessage.getNewEndpointId())) {
-				log.debug("未更新EndpointId, 无需更新终端用户登录日志");
+				log.debug("未更新EndpointId, 无需更新应用级用户登录日志");
 				// 消费成功
 				channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 				log.debug("[modify_tenant_app_user_login_log_by_modified_endpoint_info] message handler end");

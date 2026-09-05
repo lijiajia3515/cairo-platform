@@ -2,6 +2,7 @@
 package io.github.lijiajia3515.cairo.gateway.framework.gateway.filter.factory;
 
 import io.github.lijiajia3515.cairo.core.business.RequestBusiness;
+import io.github.lijiajia3515.cairo.gateway.framework.CairoWebExchangeUtils;
 import io.github.lijiajia3515.cairo.gateway.framework.webflux.CairoWebfluxResponseHandler;
 import io.github.lijiajia3515.cairo.gateway.framework.domain.GatewayErrorBusinessResult;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -99,6 +100,8 @@ public class CairoPrincipalRequestRateLimiterGatewayFilterFactory
 			GatewayErrorBusinessResult<Object> responseEntity = GatewayErrorBusinessResult.builder()
 				.code(RequestBusiness.LIMIT_EXCEEDED.getCode())
 				.message(RequestBusiness.LIMIT_EXCEEDED.getMessage())
+				.requestId((String) exchange.getAttribute(CairoWebExchangeUtils.REQUEST_ID_ATTRIBUTE))
+				.retryable(true)
 				.build();
 
 			String routeId = config.getRouteId();

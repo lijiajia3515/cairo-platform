@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 
 /**
-	 * 终端用户登录日志
+	 * 应用级用户登录日志
 	 */
 @Data
 @Accessors(chain = true)
@@ -70,8 +70,8 @@ public class AppUserLoginLogMongodb implements Serializable {
 	private String userId;
 
 	/**
-	 * 终端用户会话ID
-	 * 应用用户令牌唯一标识
+	 * 应用级用户会话ID
+	 * 应用级用户令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String appUserTokenId;

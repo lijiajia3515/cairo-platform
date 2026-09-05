@@ -31,7 +31,7 @@ public class TenantAppUserTemplateMongodb implements Serializable {
 	private String appId;
 
 	/**
-	 * 企业用户模板ID
+	 * 企业应用级用户模板ID
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantAppUserTemplateId;

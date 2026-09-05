@@ -12,7 +12,8 @@ docs/auth/
 │   ├── init.js               #   从零重建全部集合（mongosh 脚本）
 │   └── data/                 #   基础数据快照（camelCase，与库内一致）
 ├── api/                      # API 面
-│   └── api-surface.md        #   API 面基线（8 主体面 + 2 特例面全量端点 + 防护模型）
+│   ├── api-surface.md        #   API 面基线（8 主体面 + 2 特例面全量端点 + 防护模型）
+│   └── usage.md              #   接口调用指南（认证/上下文头/响应结构/关键流程示例）
 ├── snapshots/                # 可读快照（人/大模型友好）
 │   ├── menus.md              #   菜单权限树（45 菜单 / 169 权限点）
 │   ├── dict.md               #   系统字典清单（9 字典 / 48 项）
@@ -21,7 +22,9 @@ docs/auth/
 ├── scripts/                  # 运维脚本
 │   ├── import-menus.cjs      #   菜单/权限导入（Node，读 db/data 基线走 manage API）
 │   └── gen-api-surface.py    #   api-surface 附录再生成（从源码提取路由+防护注解）
-├── testing/test-plan.md      # 测试计划（功能 / 权限 / 上下文约束）
+├── testing/                  # 测试
+│   ├── test-plan.md          #   场景矩阵 + 审计结论（权威源）
+│   └── test-cases.md         #   五维测试用例（安全/权限/校验/合理性/边界）
 └── plans/                    # 计划与待办（维护者工作区，非用户参考）
     ├── backlog.md            #   待办需求
     └── api-convergence-plan.md # API 面收敛计划（P2 下沉分批 / P3 待定，未实施）

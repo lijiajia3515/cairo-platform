@@ -15,8 +15,8 @@ auth 服务对外暴露 **8 个主体面 + 2 个特例面**,166 Controller / 701
 | client | `/client_api` | 45 | 123 | CLIENT 凭证 | **123/123 @PreAuthorize** | auth/sdk Feign(其他微服务) |
 | cairo_web_manage | `/cairo_web_manage_api` | 36 | 181 | CAIRO_WEB_MANAGE_USER | **181/181 @PreAuthorize** | 本仓管理台 FE |
 | subapp | `/subapp_user_api` | 22 | 162 | SUBAPP_USER | 161/162(余 1 为自助类) | 管理台 FE(subappPost) |
-| endpoint | `/app_user_api` | 13 | 31 | APP_USER | 23/31(余 8 为自助类) | 管理台 FE(appUser) |
-| tenant_endpoint | `/tenant_app_user_api` | 13 | 32 | TENANT_APP_USER | 28/32(余 4 为自助类) | 仓外企业应用 |
+| app_user | `/app_user_api` | 13 | 31 | APP_USER | 23/31(余 8 为自助类) | 管理台 FE(appUser) |
+| tenant_app_user | `/tenant_app_user_api` | 13 | 32 | TENANT_APP_USER | 28/32(余 4 为自助类) | 仓外企业应用 |
 | tenant_subapp | `/tenant_subapp_user_api` | 17 | 114 | TENANT_SUBAPP_USER | 114/114 | 仓外企业子应用 |
 | account | `/account_api` | 5 | 8 | ACCOUNT | 7/8 | **仓内无消费方(待拍板)** |
 | 特例 weboffice | `/weboffice/v3/3rd` | 1 | 11 | WPS-2 签名 | 自签名体系(见审计) | WPS 云端 |
@@ -70,6 +70,7 @@ auth 服务对外暴露 **8 个主体面 + 2 个特例面**,166 Controller / 701
    → 镜像面维持现状不合并,逻辑重复靠 P2 共享 CommonService 消除。
 
 ## 附录:全量端点清单
+
 ### open 面 — `open_api` 主体类型 `匿名(SecurityConfig 整体 ignore)`
 
 Controller 13 个,端点 36 个。
@@ -156,12 +157,12 @@ Controller 45 个,端点 123 个。
 | dict/biz/BizDictClientApiController | `POST /get_path_biz_dict_item_id_map` | `hasAnyAuthority('biz_dict:all', 'biz_dict:read')` |
 | dict/biz/BizDictClientApiController | `POST /get_path_biz_dict_item_map` | `hasAnyAuthority('biz_dict:all', 'biz_dict:read')` |
 | dict/biz/BizDictClientApiController | `POST /get_biz_dict_detail_info` | `hasAnyAuthority('biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_sys_dict_item_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_sys_dict_item_id_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_path_sys_dict_item_id_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_path_sys_dict_item_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictClientApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_sys_dict_item_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_sys_dict_item_id_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_path_sys_dict_item_id_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_path_sys_dict_item_map` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictClientApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('sys_dict:all', 'sys_dict:read')` |
 | endpoint/EndpointClientApiController | `POST /get_endpoint_list` | `hasAnyAuthority('endpoint:all', 'endpoint:read')` |
 | endpoint/EndpointClientApiController | `POST /get_endpoint_page_list` | `hasAnyAuthority('endpoint:all', 'endpoint:read')` |
 | endpoint/EndpointClientApiController | `POST /get_endpoint_list_by_app` | `hasAnyAuthority('endpoint:all', 'endpoint:read')` |
@@ -207,10 +208,10 @@ Controller 45 个,端点 123 个。
 | menu/MenuClientApiController | `POST /get_menu_list` | `hasAnyAuthority('menu:all', 'menu:read')` |
 | permission/PermissionClientApiController | `POST /get_permission_list` | `hasAnyAuthority('permission:all', 'permission:read')` |
 | permission/PermissionClientApiController | `POST /get_my_permission_list` | `hasAnyAuthority('permission:all', 'permission:read')` |
-| sms/message/SmsMsgClientApiController | `POST /send_msg_by_phone_number` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_phone_number')` |
-| sms/message/SmsMsgClientApiController | `POST /send_batch_message_by_phone_number` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_phone_number')` |
-| sms/message/SmsMsgClientApiController | `POST /send_msg_by_account` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_account')` |
-| sms/message/SmsMsgClientApiController | `POST /send_batch_message_by_account` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_account')` |
+| sms/msg/SmsMsgClientApiController | `POST /send_msg_by_phone_number` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_phone_number')` |
+| sms/msg/SmsMsgClientApiController | `POST /send_batch_message_by_phone_number` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_phone_number')` |
+| sms/msg/SmsMsgClientApiController | `POST /send_msg_by_account` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_account')` |
+| sms/msg/SmsMsgClientApiController | `POST /send_batch_message_by_account` | `hasAnyAuthority('sms_msg:all', 'sms_msg:send_msg_by_account')` |
 | sns_provider/SnsProviderClientApiController | `POST /get_sns_provider_list` | `hasAnyAuthority('sns_provider:all', 'sns_provider:read')` |
 | subapp/SubappClientApiController | `POST /get_subapp_list` | `hasAnyAuthority('subapp:all', 'subapp:read')` |
 | subapp_user_authorization/SubappUserAuthorizationClientApiController | `POST /get_subapp_user_authorization` | `hasAnyAuthority('subapp_user_authorization:all', 'subapp_user_authorization:get_subapp_user_authorization')` |
@@ -298,25 +299,25 @@ Controller 36 个,端点 181 个。
 | client/ClientCairoWebManageApiController | `POST /modify_client_status` | `hasAnyAuthority('app_admin', 'client:all', 'client:modify_client_status')` |
 | client/ClientCairoWebManageApiController | `POST /modify_client_secret` | `hasAnyAuthority('app_admin', 'client:all', 'client:modify_client_secret')` |
 | client/ClientCairoWebManageApiController | `POST /delete_client` | `hasAnyAuthority('app_admin', 'client:all', 'client:delete_client')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /create_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:create_sys_dict')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /modify_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_info')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /delete_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /put_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:put_sys_dict_item')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /modify_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_info')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /modify_sys_dict_item_status` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_status')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /move_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:move_sys_dict_item')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /delete_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict_item')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_item_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /sync_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:sync_sys_dict')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /copy_sys_dict_by_app_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_by_app')` |
-| dict/system/SystemDictCairoWebManageApiController | `POST /copy_sys_dict_by_dict_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_by_dict')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /create_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:create_sys_dict')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /modify_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_info')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /delete_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /put_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:put_sys_dict_item')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /modify_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_info')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /modify_sys_dict_item_status` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_status')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /move_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:move_sys_dict_item')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /delete_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict_item')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_item_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /sync_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:sync_sys_dict')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /copy_sys_dict_by_app_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_by_app')` |
+| dict/sys/SysDictCairoWebManageApiController | `POST /copy_sys_dict_by_dict_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_by_dict')` |
 | endpoint/EndpointCairoWebManageApiController | `POST /get_endpoint_list` | `hasAnyAuthority('app_admin', 'endpoint:all', 'endpoint:read')` |
 | endpoint/EndpointCairoWebManageApiController | `POST /get_endpoint_page_list` | `hasAnyAuthority('app_admin', 'endpoint:all', 'endpoint:read')` |
 | endpoint/EndpointCairoWebManageApiController | `POST /create_endpoint` | `hasAnyAuthority('app_admin', 'endpoint:all', 'endpoint:create_endpoint')` |
@@ -327,7 +328,7 @@ Controller 36 个,端点 181 个。
 | link/LinkCairoWebManageApiController | `POST /create_link` | `hasAnyAuthority('app_admin', 'link:all', 'link:create_link')` |
 | link/LinkCairoWebManageApiController | `POST /modify_link_status` | `hasAnyAuthority('app_admin', 'link:all', 'link:modify_link_status')` |
 | link/LinkCairoWebManageApiController | `POST /delete_link` | `hasAnyAuthority('app_admin', 'link:all', 'link:delete_link')` |
-| login_log/account_login_log/AccountLoginLogCairoEndpointUserApiController | `POST /get_account_login_log_page_list` | `hasAnyAuthority('app_admin', 'account_login_log:all', 'account_login_log:read')` |
+| login_log/account_login_log/AccountLoginLogCairoWebManageApiController | `POST /get_account_login_log_page_list` | `hasAnyAuthority('app_admin', 'account_login_log:all', 'account_login_log:read')` |
 | login_log/app_user_login_log/AppUserLoginLogCairoWebManageApiController | `POST /get_app_user_login_log_page_list` | `hasAnyAuthority('app_admin', 'app_user_login_log:all', 'app_user_login_log:read')` |
 | login_log/client_login_log/ClientLoginLogCairoWebManageApiController | `POST /get_client_login_log_page_list` | `hasAnyAuthority('app_admin', 'client_login_log:all', 'client_login_log:read')` |
 | login_log/tenant_app_user_login_log/TenantAppUserLoginLogCairoWebManageApiController | `POST /get_tenant_app_user_login_log_page_list` | `hasAnyAuthority('app_admin', 'tenant_app_user_login_log:all', 'tenant_app_user_login_log:read')` |
@@ -358,8 +359,8 @@ Controller 36 个,端点 181 个。
 | permission/PermissionCairoWebManageApiController | `POST /modify_permission` | `hasAnyAuthority('app_admin', 'permission:all', 'permission:write')` |
 | permission/PermissionCairoWebManageApiController | `POST /delete_permission` | `hasAnyAuthority('app_admin', 'permission:all', 'permission:write')` |
 | permission/PermissionCairoWebManageApiController | `POST /move_permission` | `hasAnyAuthority('app_admin', 'permission:all', 'permission:move')` |
-| sms/message/SmsMsgCairoWebManageApiController | `POST /get_sms_msg_page_list` | `hasAnyAuthority('app_admin', 'sms_msg:all', 'sms_msg:read')` |
-| sms/message/SmsMsgCairoWebManageApiController | `POST /retry_sms_msg` | `hasAnyAuthority('app_admin', 'sms_msg:all', 'sms_msg:retry_sms_msg')` |
+| sms/msg/SmsMsgCairoWebManageApiController | `POST /get_sms_msg_page_list` | `hasAnyAuthority('app_admin', 'sms_msg:all', 'sms_msg:read')` |
+| sms/msg/SmsMsgCairoWebManageApiController | `POST /retry_sms_msg` | `hasAnyAuthority('app_admin', 'sms_msg:all', 'sms_msg:retry_sms_msg')` |
 | sms/template/SmsTemplateCairoWebManageApiController | `POST /create_sms_template` | `hasAnyAuthority('app_admin', 'sms_template:all', 'sms_template:create_sms_template')` |
 | sms/template/SmsTemplateCairoWebManageApiController | `POST /modify_sms_template_info` | `hasAnyAuthority('app_admin', 'sms_template:all', 'sms_template:modify_sms_template_info')` |
 | sms/template/SmsTemplateCairoWebManageApiController | `POST /modify_sms_template_status` | `hasAnyAuthority('app_admin', 'sms_template:all', 'sms_template:modify_sms_template_status')` |
@@ -488,26 +489,26 @@ Controller 22 个,端点 162 个。
 | app_user_tag/AppUserTagSubappApiController | `POST /modify_app_user_tag_status` | `hasAnyAuthority('app_admin', 'app_user_tag:all', 'app_user_tag:modify_app_user_tag_status')` |
 | app_user_tag/AppUserTagSubappApiController | `POST /delete_app_user_tag` | `hasAnyAuthority('app_admin', 'app_user_tag:all', 'app_user_tag:delete_app_user_tag')` |
 | client/ClientSubappApiController | `POST /get_current_app_client_list` | `isAuthenticated()` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_detail_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_item_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
-| dict/system/SystemDictSubappApiController | `POST /modify_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_info')` |
-| dict/system/SystemDictSubappApiController | `POST /modify_sys_dict_icon` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_icon')` |
-| dict/system/SystemDictSubappApiController | `POST /put_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:put_sys_dict_item')` |
-| dict/system/SystemDictSubappApiController | `POST /modify_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_info')` |
-| dict/system/SystemDictSubappApiController | `POST /modify_sys_dict_item_icon` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_icon')` |
-| dict/system/SystemDictSubappApiController | `POST /modify_sys_dict_item_status` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_status')` |
-| dict/system/SystemDictSubappApiController | `POST /move_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:move_sys_dict_item')` |
-| dict/system/SystemDictSubappApiController | `POST /delete_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict')` |
-| dict/system/SystemDictSubappApiController | `POST /delete_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict_item')` |
-| dict/system/SystemDictSubappApiController | `POST /sync_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:sync_sys_dict')` |
-| dict/system/SystemDictSubappApiController | `POST /copy_sys_dict_by_dict_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_sys_dict')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_detail_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_item_page_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:read')` |
+| dict/sys/SysDictSubappApiController | `POST /modify_sys_dict_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_info')` |
+| dict/sys/SysDictSubappApiController | `POST /modify_sys_dict_icon` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_dict_icon')` |
+| dict/sys/SysDictSubappApiController | `POST /put_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:put_sys_dict_item')` |
+| dict/sys/SysDictSubappApiController | `POST /modify_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_info')` |
+| dict/sys/SysDictSubappApiController | `POST /modify_sys_dict_item_icon` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_icon')` |
+| dict/sys/SysDictSubappApiController | `POST /modify_sys_dict_item_status` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:modify_sys_dict_item_status')` |
+| dict/sys/SysDictSubappApiController | `POST /move_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:move_sys_dict_item')` |
+| dict/sys/SysDictSubappApiController | `POST /delete_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict')` |
+| dict/sys/SysDictSubappApiController | `POST /delete_sys_dict_item` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:delete_sys_dict_item')` |
+| dict/sys/SysDictSubappApiController | `POST /sync_sys_dict` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:sync_sys_dict')` |
+| dict/sys/SysDictSubappApiController | `POST /copy_sys_dict_by_dict_id` | `hasAnyAuthority('app_admin', 'sys_dict:all', 'sys_dict:copy_sys_dict')` |
 | endpoint/EndpointSubappApiController | `POST /get_endpoint_list` | `isAuthenticated()` |
 | file/app_file/AppFileSubappApiController | `POST /list_file` | `hasAnyAuthority('app_admin', 'app_file:all', 'app_file:list_file')` |
 | file/app_file/AppFileSubappApiController | `POST /get_folder_list` | `hasAnyAuthority('app_admin', 'app_file:all', 'app_file:get_folder')` |
@@ -600,82 +601,82 @@ Controller 22 个,端点 162 个。
 | tenant_subapp/TenantSubappSubappApiController | `POST /modify_tenant_subapp_status` | `hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:modify_tenant_subapp_status')` |
 | tenant_subapp/TenantSubappSubappApiController | `POST /delete_tenant_subapp` | `hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:delete_tenant_subapp')` |
 
-### endpoint 面 — `app_user_api` 主体类型 `APP_USER`
+### app_user 面 — `app_user_api` 主体类型 `APP_USER`
 
 Controller 13 个,端点 31 个。
 
 | Controller | 端点 | 方法级防护 |
 |---|---|---|
-| account/AccountEndpointApiController | `POST /modify_my_account_username` | `isAuthenticated()` |
-| account/AccountEndpointApiController | `POST /modify_my_account_phone_number` | `isAuthenticated()` |
-| account/AccountEndpointApiController | `POST /get_my_account_password_status` | `isAuthenticated()` |
-| account/AccountEndpointApiController | `POST /modify_my_account_password` | `isAuthenticated()` |
-| account/AccountEndpointApiController | `POST /modify_my_account_avatar` | `isAuthenticated()` |
-| account_sns/AccountSnsEndpointApiController | `POST /get_my_account_sns_list` | (类型闸/principal 限定) |
-| account_sns/AccountSnsEndpointApiController | `POST /bind_account_sns` | (类型闸/principal 限定) |
-| account_sns/AccountSnsEndpointApiController | `POST /unbind_account_sns` | (类型闸/principal 限定) |
-| app_endpoint/EndpointEndpointApiController | `POST /get_endpoint_list` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /get_my_app_user_info` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /modify_my_app_user_info` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /get_my_app_user_logoff_status` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /get_my_app_user_pre_logoff_info` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /logoff_my_app_user` | `isAuthenticated()` |
-| app_user/AppUserEndpointApiController | `POST /unlogoff_my_app_user` | `isAuthenticated()` |
-| app_user_authorization/AppUserAuthorizationEndpointApiController | `POST /get_my_app_user_authorization_list` | `isAuthenticated()` |
-| app_user_authorization/AppUserAuthorizationEndpointApiController | `POST /get_my_app_user_authorization_page_list` | `isAuthenticated()` |
-| app_user_authorization/AppUserAuthorizationEndpointApiController | `POST /register_my_app_user_device` | `isAuthenticated()` |
-| app_user_authorization/AppUserAuthorizationEndpointApiController | `POST /offline_my_app_user_authorization` | `isAuthenticated()` |
-| app_user_authorization/AppUserAuthorizationEndpointApiController | `POST /logout_app_user_authorization` | `isAuthenticated()` |
+| account/AccountAppUserApiController | `POST /modify_my_account_username` | `isAuthenticated()` |
+| account/AccountAppUserApiController | `POST /modify_my_account_phone_number` | `isAuthenticated()` |
+| account/AccountAppUserApiController | `POST /get_my_account_password_status` | `isAuthenticated()` |
+| account/AccountAppUserApiController | `POST /modify_my_account_password` | `isAuthenticated()` |
+| account/AccountAppUserApiController | `POST /modify_my_account_avatar` | `isAuthenticated()` |
+| account_sns/AccountSnsAppUserApiController | `POST /get_my_account_sns_list` | (类型闸/principal 限定) |
+| account_sns/AccountSnsAppUserApiController | `POST /bind_account_sns` | (类型闸/principal 限定) |
+| account_sns/AccountSnsAppUserApiController | `POST /unbind_account_sns` | (类型闸/principal 限定) |
+| app_user/AppUserAppUserApiController | `POST /get_my_app_user_info` | `isAuthenticated()` |
+| app_user/AppUserAppUserApiController | `POST /modify_my_app_user_info` | `isAuthenticated()` |
+| app_user/AppUserAppUserApiController | `POST /get_my_app_user_logoff_status` | `isAuthenticated()` |
+| app_user/AppUserAppUserApiController | `POST /get_my_app_user_pre_logoff_info` | `isAuthenticated()` |
+| app_user/AppUserAppUserApiController | `POST /logoff_my_app_user` | `isAuthenticated()` |
+| app_user/AppUserAppUserApiController | `POST /unlogoff_my_app_user` | `isAuthenticated()` |
+| app_user_authorization/AppUserAuthorizationAppUserApiController | `POST /get_my_app_user_authorization_list` | `isAuthenticated()` |
+| app_user_authorization/AppUserAuthorizationAppUserApiController | `POST /get_my_app_user_authorization_page_list` | `isAuthenticated()` |
+| app_user_authorization/AppUserAuthorizationAppUserApiController | `POST /register_my_app_user_device` | `isAuthenticated()` |
+| app_user_authorization/AppUserAuthorizationAppUserApiController | `POST /offline_my_app_user_authorization` | `isAuthenticated()` |
+| app_user_authorization/AppUserAuthorizationAppUserApiController | `POST /logout_app_user_authorization` | `isAuthenticated()` |
 | biz_log/app_biz_log/AppBizLogAppApiController | `POST /get_my_app_biz_log_page_list` | `isAuthenticated()` |
 | biz_log/subapp_biz_log/SubappBizLogAppApiController | `POST /get_my_subapp_biz_log_page_list` | `isAuthenticated()` |
 | biz_log/subapp_biz_log/SubappBizLogAppApiController | `POST /get_my_subapp_biz_log_list` | `isAuthenticated()` |
-| client/ClientEndpointApiController | `POST /get_client_list` | `isAuthenticated()` |
-| login_log/app_user_login_log/AppUserLoginLogEndpointApiController | `POST /get_my_app_user_login_log_page_list` | `isAuthenticated()` |
-| subapp/SubappEndpointApiController | `POST /get_subapp_list` | `isAuthenticated()` |
-| subapp_version/SubappVersionEndpointApiController | `POST /get_subapp_version_list` | `isAuthenticated()` |
-| verify_code/VerifyCodeEndpointApiController | `POST /send_my_account_phone_number_verify_code` | 验证码 |
-| wxmp/app_user/WxmpAppUserEndpointApiController | `POST /get_my_app_user_wxmp` | (类型闸/principal 限定) |
-| wxmp/app_user/WxmpAppUserEndpointApiController | `POST /bind_app_user_wxmp` | (类型闸/principal 限定) |
-| wxmp/app_user/WxmpAppUserEndpointApiController | `POST /unbind_app_user_wxmp` | (类型闸/principal 限定) |
+| client/ClientAppUserApiController | `POST /get_client_list` | `isAuthenticated()` |
+| endpoint/EndpointAppUserApiController | `POST /get_endpoint_list` | `isAuthenticated()` |
+| login_log/app_user_login_log/AppUserLoginLogAppUserApiController | `POST /get_my_app_user_login_log_page_list` | `isAuthenticated()` |
+| subapp/SubappAppUserApiController | `POST /get_subapp_list` | `isAuthenticated()` |
+| subapp_version/SubappVersionAppUserApiController | `POST /get_subapp_version_list` | `isAuthenticated()` |
+| verify_code/VerifyCodeAppUserApiController | `POST /send_my_account_phone_number_verify_code` | 验证码 |
+| wxmp/app_user/WxmpAppUserAppUserApiController | `POST /get_my_app_user_wxmp` | (类型闸/principal 限定) |
+| wxmp/app_user/WxmpAppUserAppUserApiController | `POST /bind_app_user_wxmp` | (类型闸/principal 限定) |
+| wxmp/app_user/WxmpAppUserAppUserApiController | `POST /unbind_app_user_wxmp` | (类型闸/principal 限定) |
 
-### tenant_endpoint 面 — `tenant_app_user_api` 主体类型 `TENANT_APP_USER`
+### tenant_app_user 面 — `tenant_app_user_api` 主体类型 `TENANT_APP_USER`
 
 Controller 13 个,端点 32 个。
 
 | Controller | 端点 | 方法级防护 |
 |---|---|---|
-| account/AccountTenantEndpointApiController | `POST /get_my_account_password_status` | `isAuthenticated()` |
-| account/AccountTenantEndpointApiController | `POST /modify_my_account_password` | `isAuthenticated()` |
-| account/AccountTenantEndpointApiController | `POST /modify_my_account_avatar` | `isAuthenticated()` |
-| account/AccountTenantEndpointApiController | `POST /modify_my_account_phone_number` | `isAuthenticated()` |
-| account/AccountTenantEndpointApiController | `POST /modify_my_account_username` | `isAuthenticated()` |
-| account_sns/AccountSnsTenantEndpointApiController | `POST /get_my_account_sns_list` | `isAuthenticated()` |
-| account_sns/AccountSnsTenantEndpointApiController | `POST /bind_account_sns` | `isAuthenticated()` |
-| account_sns/AccountSnsTenantEndpointApiController | `POST /unbind_account_sns` | `isAuthenticated()` |
-| auth_code/AuthCodeTenantEndpointApiController | `POST /get_auth_code_by_verify_password` | `isAuthenticated()` |
+| account/AccountTenantAppUserApiController | `POST /get_my_account_password_status` | `isAuthenticated()` |
+| account/AccountTenantAppUserApiController | `POST /modify_my_account_password` | `isAuthenticated()` |
+| account/AccountTenantAppUserApiController | `POST /modify_my_account_avatar` | `isAuthenticated()` |
+| account/AccountTenantAppUserApiController | `POST /modify_my_account_phone_number` | `isAuthenticated()` |
+| account/AccountTenantAppUserApiController | `POST /modify_my_account_username` | `isAuthenticated()` |
+| account_sns/AccountSnsTenantAppUserApiController | `POST /get_my_account_sns_list` | `isAuthenticated()` |
+| account_sns/AccountSnsTenantAppUserApiController | `POST /bind_account_sns` | `isAuthenticated()` |
+| account_sns/AccountSnsTenantAppUserApiController | `POST /unbind_account_sns` | `isAuthenticated()` |
+| auth_code/AuthCodeTenantAppUserApiController | `POST /get_auth_code_by_verify_password` | `isAuthenticated()` |
 | biz_log/tenant_app_biz_log/TenantAppBizLogTenantAppApiController | `POST /get_my_tenant_app_biz_log_page_list` | `isAuthenticated()` |
 | biz_log/tenant_subapp_biz_log/TenantSubappBizLogTenantAppApiController | `POST /get_my_tenant_subapp_biz_log_page_list` | `isAuthenticated()` |
 | biz_log/tenant_subapp_biz_log/TenantSubappBizLogTenantAppApiController | `POST /get_my_tenant_subapp_biz_log_list` | `isAuthenticated()` |
-| client/ClientTenantEndpointApiController | `POST /get_current_app_client_list` | `isAuthenticated()` |
-| endpoint/EndpointTenantEndpointApiController | `POST /get_endpoint_list` | `isAuthenticated()` |
-| login_log/tenant_app_user_login_log/TenantAppUserLoginLogTenantEndpointApiController | `POST /get_my_tenant_app_user_login_log_page_list` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /get_my_tenant_app_user_info` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /get_my_tenant_app_user_authority` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /get_my_tenant_app_user_permission_ids` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /modify_my_tenant_app_user_info` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /get_my_tenant_app_user_logoff_status` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /get_my_tenant_app_user_pre_logoff_info` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /logoff_my_tenant_app_user` | `isAuthenticated()` |
-| tenant_app_user/TenantAppUserTenantEndpointApiController | `POST /unlogoff_my_tenant_app_user` | `isAuthenticated()` |
-| tenant_app_user_authorization/TenantAppUserAuthorizationTenantEndpointApiController | `POST /get_my_tenant_app_user_authorization_list` | `isAuthenticated()` |
-| tenant_app_user_authorization/TenantAppUserAuthorizationTenantEndpointApiController | `POST /get_my_tenant_app_user_authorization_page_list` | `isAuthenticated()` |
-| tenant_app_user_authorization/TenantAppUserAuthorizationTenantEndpointApiController | `POST /register_my_tenant_app_user_device` | `isAuthenticated()` |
-| tenant_app_user_authorization/TenantAppUserAuthorizationTenantEndpointApiController | `POST /offline_my_tenant_app_user_authorization` | `isAuthenticated()` |
-| tenant_app_user_authorization/TenantAppUserAuthorizationTenantEndpointApiController | `POST /logout_tenant_app_user_authorization` | `isAuthenticated()` |
-| tenant_endpoint/TenantEndpointTenantEndpointApiController | `POST /get_current_tenant_endpoint_list` | `isAuthenticated()` |
-| verify_code/VerifyCodeTenantEndpointApiController | `POST /send_my_account_phone_number_verify_code` | 验证码 |
-| wxmp/tenant_app_user/WxmpTenantAppUserTenantEndpointApiController | `POST /bind_tenant_app_user` | (类型闸/principal 限定) |
-| wxmp/tenant_app_user/WxmpTenantAppUserTenantEndpointApiController | `POST /unbind_tenant_app_user` | (类型闸/principal 限定) |
+| client/ClientTenantAppUserApiController | `POST /get_current_app_client_list` | `isAuthenticated()` |
+| endpoint/EndpointTenantAppUserApiController | `POST /get_endpoint_list` | `isAuthenticated()` |
+| login_log/tenant_app_user_login_log/TenantAppUserLoginLogTenantAppUserApiController | `POST /get_my_tenant_app_user_login_log_page_list` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /get_my_tenant_app_user_info` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /get_my_tenant_app_user_authority` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /get_my_tenant_app_user_permission_ids` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /modify_my_tenant_app_user_info` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /get_my_tenant_app_user_logoff_status` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /get_my_tenant_app_user_pre_logoff_info` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /logoff_my_tenant_app_user` | `isAuthenticated()` |
+| tenant_app_user/TenantAppUserTenantAppUserApiController | `POST /unlogoff_my_tenant_app_user` | `isAuthenticated()` |
+| tenant_app_user_authorization/TenantAppUserAuthorizationTenantAppUserApiController | `POST /get_my_tenant_app_user_authorization_list` | `isAuthenticated()` |
+| tenant_app_user_authorization/TenantAppUserAuthorizationTenantAppUserApiController | `POST /get_my_tenant_app_user_authorization_page_list` | `isAuthenticated()` |
+| tenant_app_user_authorization/TenantAppUserAuthorizationTenantAppUserApiController | `POST /register_my_tenant_app_user_device` | `isAuthenticated()` |
+| tenant_app_user_authorization/TenantAppUserAuthorizationTenantAppUserApiController | `POST /offline_my_tenant_app_user_authorization` | `isAuthenticated()` |
+| tenant_app_user_authorization/TenantAppUserAuthorizationTenantAppUserApiController | `POST /logout_tenant_app_user_authorization` | `isAuthenticated()` |
+| tenant_endpoint/TenantEndpointTenantAppUserApiController | `POST /get_current_tenant_endpoint_list` | `isAuthenticated()` |
+| verify_code/VerifyCodeTenantAppUserApiController | `POST /send_my_account_phone_number_verify_code` | 验证码 |
+| wxmp/tenant_app_user/WxmpTenantAppUserTenantAppUserApiController | `POST /bind_tenant_app_user` | (类型闸/principal 限定) |
+| wxmp/tenant_app_user/WxmpTenantAppUserTenantAppUserApiController | `POST /unbind_tenant_app_user` | (类型闸/principal 限定) |
 
 ### tenant_subapp 面 — `tenant_subapp_user_api` 主体类型 `TENANT_SUBAPP_USER`
 
@@ -702,14 +703,14 @@ Controller 17 个,端点 114 个。
 | dict/biz/BizDictTenantSubappApiController | `POST /modify_biz_dict_item_status` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:modify_biz_dict_item_status')` |
 | dict/biz/BizDictTenantSubappApiController | `POST /delete_biz_dict_item` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:delete_biz_dict_item')` |
 | dict/biz/BizDictTenantSubappApiController | `POST /restore_biz_dict` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:restore_biz_dict')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_detail_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
-| dict/system/SystemDictTenantSubappApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_page_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_detail_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_detail_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_item_info` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_sub_item_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
+| dict/sys/SysDictTenantSubappApiController | `POST /get_sys_dict_sub_item_tree_list` | `hasAnyAuthority('app_admin', 'biz_dict:all', 'biz_dict:read')` |
 | file/public_file/PublicFileTenantSubappApiController | `POST /access_file` | `hasAnyAuthority('app_admin', 'public_file:all', 'public_file:access_file')` |
 | file/public_file/PublicFileTenantSubappApiController | `POST /get_file_stat` | `hasAnyAuthority('app_admin', 'public_file:all', 'public_file:get_file_stat')` |
 | file/public_file/PublicFileTenantSubappApiController | `POST /upload_file` | `hasAnyAuthority('app_admin', 'public_file:all', 'public_file:upload_file')` |
@@ -743,7 +744,7 @@ Controller 17 个,端点 114 个。
 | file/tenant_file/TenantFileTenantSubappApiController | `POST /get_upload_file_sign` | `hasAnyAuthority('app_admin', 'tenant_file:all', 'tenant_file:upload_file')` |
 | file/tenant_file/TenantFileTenantSubappApiController | `POST /get_upload_file_sign_url` | `hasAnyAuthority('app_admin', 'tenant_file:all', 'tenant_file:upload_file')` |
 | file/tenant_file/TenantFileTenantSubappApiController | `POST /delete_file` | `hasAnyAuthority('app_admin', 'tenant_file:all', 'tenant_file:delete_file')` |
-| imgporxy/ImgProxyTenantSubappApiController | `POST /get_proxy_url` | `isAuthenticated()` |
+| imgproxy/ImgProxyTenantSubappApiController | `POST /get_proxy_url` | `isAuthenticated()` |
 | menu/MenuTenantSubappApiController | `POST /get_menu_tree_list` | `hasAnyAuthority('app_admin', 'menu:all', 'menu:read')` |
 | menu/MenuTenantSubappApiController | `POST /get_menu_list` | `hasAnyAuthority('app_admin', 'menu:all', 'menu:read')` |
 | menu/MenuTenantSubappApiController | `POST /get_menu_page_list` | `hasAnyAuthority('app_admin', 'menu:all', 'menu:read')` |

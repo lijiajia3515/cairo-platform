@@ -35,7 +35,7 @@
 
 
  	/**
- 	 * 应用用户发送微信消息
+ 	 * 应用级用户发送微信消息
  	 *
  	 * @param principal 凭证
  	 * @param args      参数

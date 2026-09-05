@@ -244,7 +244,7 @@ public class TenantAppFileTenantSubappApiController {
 	}
 
 	/**
-	 * 上传文件到租户/企业应用存储
+	 * 上传文件到企业/企业应用存储
 	 *
 	 * @param principal 凭证
 	 * @param args      参数

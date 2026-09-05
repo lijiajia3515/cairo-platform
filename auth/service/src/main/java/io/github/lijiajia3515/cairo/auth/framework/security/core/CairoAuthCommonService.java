@@ -297,7 +297,7 @@ public class CairoAuthCommonService {
 	}
 
 	/**
-	 * 检查应用用户自动注册
+	 * 检查应用级用户自动注册
 	 *
 	 * @param account  账号
 	 * @param appId    appId
@@ -334,7 +334,7 @@ public class CairoAuthCommonService {
 					.build();
 				// 创建用户
 				user = mongoTemplate.insert(user, MongodbConstants.Collection.APP_USER);
-				// 发送应用用户创建消息
+				// 发送应用级用户创建消息
 				rabbitTemplate.convertAndSend(
 					cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 					cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.CREATED_APP_USER, appId),

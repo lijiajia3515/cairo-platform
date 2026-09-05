@@ -11,7 +11,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户 账号SNS认证 authentication token
+ * 应用级用户 账号SNS认证 authentication token
  */
 @Getter
 public class OAuthAppUserAccountSnsCodeAuthenticationToken extends OAuth2AuthorizationGrantAuthenticationToken {

@@ -4,12 +4,12 @@ import { appUserApi, manageApi, manageSubappId, manageSubappVersion } from './ur
 
 // 获取当前应用子应用列表
 export const getCurrentSubappList_api = (params) => {
-    return fetch.endpointPost(appUserApi + '/subapp/get_subapp_list', params, {});
+    return fetch.appUserPost(appUserApi + '/subapp/get_subapp_list', params, {});
 }
 
 // 获取当前应用子应用版本列表
 export const getCurrentSubappVersionList_api = (params) => {
-    return fetch.endpointPost(appUserApi + '/subapp_version/get_subapp_version_list', params, {});
+    return fetch.appUserPost(appUserApi + '/subapp_version/get_subapp_version_list', params, {});
 }
 
 // 菜单_树结构

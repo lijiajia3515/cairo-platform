@@ -1,7 +1,7 @@
 // URL 前缀常量——统一走 authApi
 const openApi = _this.api.authApi + '/open_api';          // 开放 API:登录/注册/验证码
-const appUserApi = _this.api.authApi + '/app_user_api';   // 终端用户上下文:个人中心/当前终端
-const subappUserApi = _this.api.authApi + '/subapp_user_api'; // 子应用用户上下文
+const appUserApi = _this.api.authApi + '/app_user_api';   // 应用级用户上下文:个人中心/当前终端
+const subappUserApi = _this.api.authApi + '/subapp_user_api'; // 子应用级用户上下文
 const manageApi = _this.api.authApi + '/cairo_web_manage_api'; // 运营管理台
 
 // 子应用请求上下文(全部 subappPost 调用经此注入;ES 模块活绑定,切换子应用时

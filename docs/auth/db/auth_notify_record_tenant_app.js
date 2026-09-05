@@ -22,7 +22,7 @@ db.createCollection("auth_notify_record_tenant_app", {
                 },
                 tenantId: {
                     bsonType: "string",
-                    title: "租户ID",
+                    title: "企业ID",
                     description: "必填，字符串"
                 },
                 appId: {

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 租户 查询 参数
+ * 企业 查询 参数
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

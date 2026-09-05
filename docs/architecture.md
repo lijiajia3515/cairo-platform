@@ -46,10 +46,10 @@ flowchart LR
 |------|------|
 | `Client` | 服务身份（Client_credentials） |
 | `Account` | 平台账号（个人主体，跨应用） |
-| `AppUser` | 应用用户（App 维度） |
-| `SubappUser` | 子应用用户（Token 校验链） |
-| `TenantAppUser` | 租户应用用户（最细粒度） |
-| `TenantSubappUser` | 租户子应用用户（Token 校验链） |
+| `AppUser` | 应用级用户（App 维度） |
+| `SubappUser` | 子应用级用户（Token 校验链） |
+| `TenantAppUser` | 企业应用级用户（最细粒度） |
+| `TenantSubappUser` | 企业子应用级用户（Token 校验链） |
 
 认证授权细节（三层认证链、双层权限模型、API 主体面）见 [auth/README.md](../auth/README.md)。
 

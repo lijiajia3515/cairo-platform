@@ -83,9 +83,13 @@ public class CairoAccountVerifyCodeAuthenticationProvider implements Authenticat
 		Assert.isInstanceOf(CairoAccountVerifyCodeAuthenticationToken.class, authentication, () -> this.messages.getMessage("CairoAccountVerifyCodeAuthenticationProvider.onlySupports", "Only CairoAccountVerifyCodeAuthenticationToken is supported"));
 		CairoAccountVerifyCodeAuthenticationToken token = (CairoAccountVerifyCodeAuthenticationToken) authentication;
 
+		// 1. 先验码——失败不建号（additionalAuthenticationChecks 的 user 参数闲置，传 null 安全）
+		additionalAuthenticationChecks(null, token);
+
 		String phoneNumber = determinePhoneNumber(token);
 		CairoAuthAccount user;
 		try {
+			// 2. 再加载（可自动注册——验码已通过，建号合法）
 			user = cairoAuthAccountService.loadAccountByPhoneNumber(LoginType.VERIFY_CODE, phoneNumber);
 			if (user == null) {
 				throw new InternalAuthenticationServiceException("CairoAuthAccountService returned null, which is an interface contract violation");
@@ -99,8 +103,8 @@ public class CairoAccountVerifyCodeAuthenticationProvider implements Authenticat
 		}
 		Assert.notNull(user, "retrieveUser returned null - a violation of the interface contract");
 
+		// 3. 账号状态检查（验码已在第一步完成，此处跳过）
 		this.preAuthenticationChecks.check(user);
-		additionalAuthenticationChecks(user, token);
 		this.postAuthenticationChecks.check(user);
 
 		Object principal = user;
@@ -127,7 +131,7 @@ public class CairoAccountVerifyCodeAuthenticationProvider implements Authenticat
 	protected void additionalAuthenticationChecks(CairoAuthAccount account, CairoAccountVerifyCodeAuthenticationToken authentication) throws AuthenticationException {
 		if (authentication.getCredentials() == null) {
 			log.debug("Failed to authenticate since no credentials provided");
-			throw new BadCredentialsException(this.messages.getMessage("CairoAccountVerifyCodeAuthenticationProvider.emptyVerifyCode", "验证码不能未空"));
+			throw new BadCredentialsException(this.messages.getMessage("CairoAccountVerifyCodeAuthenticationProvider.emptyVerifyCode", "验证码不能为空"));
 		}
 		VerifyVerifyCodeArgs verifyArgs = VerifyVerifyCodeArgs.builder()
 			.bizCode(CairoAuthVerifyCodeConstants.AUTH)

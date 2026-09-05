@@ -4,7 +4,7 @@ import { appUserApi, manageApi, manageSubappId, manageSubappVersion } from './ur
 
 // 获取当前应用客户端列表
 export const getCurrentClientList_api = (params) => {
-    return fetch.endpointPost(appUserApi + '/client/get_client_list', params, {});
+    return fetch.appUserPost(appUserApi + '/client/get_client_list', params, {});
 }
 
 // 客户端-分页

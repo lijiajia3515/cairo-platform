@@ -56,7 +56,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server
 
 
 /**
- * 终端用户刷新令牌模式 authentication provider
+ * 应用级用户刷新令牌模式 authentication provider
  */
 public final class OAuthAppUserRefreshTokenAuthenticationProvider implements AuthenticationProvider {
 	private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
@@ -90,7 +90,7 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -110,19 +110,19 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"appUserRefreshToken无效",
+					"刷新令牌无效或已过期",
 					ERROR_URI)
 			);
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Retrieved authorization with endpoint user refresh token");
+			this.logger.trace("Retrieved authorization with app user refresh token");
 		}
 		if (registeredClient == null) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -132,7 +132,7 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"clientId错误",
+					"刷新令牌与客户端不匹配",
 					ERROR_URI)
 			);
 		}
@@ -156,7 +156,7 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_SCOPE,
-					"scope错误",
+					"请求scope超出客户端许可范围",
 					ERROR_URI)
 			);
 		}
@@ -165,30 +165,30 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			scopes = authorizedScopes;
 		}
 
-		OAuth2Authorization.Token<OAuthAppUserRefreshToken> endpointUserRefreshTokenToken = authorization.getToken(OAuthAppUserRefreshToken.class);
-		if (endpointUserRefreshTokenToken == null || !endpointUserRefreshTokenToken.isActive()) {
+		OAuth2Authorization.Token<OAuthAppUserRefreshToken> appUserRefreshTokenToken = authorization.getToken(OAuthAppUserRefreshToken.class);
+		if (appUserRefreshTokenToken == null || !appUserRefreshTokenToken.isActive()) {
 			// As per https://tools.ietf.org/html/rfc6749#section-5.2
 			// invalid_grant: The provided authorization grant (e.g., authorization code,
 			// resource owner credentials) or refresh token is invalid, expired, revoked [...].
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"appUserRefreshToken无效",
+					"刷新令牌无效或已过期",
 					ERROR_URI)
 			);
 		}
 
 
-		Authentication endpointUserAuthentication = authorization.getAttribute(Principal.class.getName());
-		if (endpointUserAuthentication == null || !(endpointUserAuthentication.getPrincipal() instanceof CairoAuthAppUser)) {
+		Authentication appUserAuthentication = authorization.getAttribute(Principal.class.getName());
+		if (appUserAuthentication == null || !(appUserAuthentication.getPrincipal() instanceof CairoAuthAppUser)) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
-		CairoAuthAppUser user = (CairoAuthAppUser) endpointUserAuthentication.getPrincipal();
+		CairoAuthAppUser user = (CairoAuthAppUser) appUserAuthentication.getPrincipal();
 
 		if (this.logger.isTraceEnabled()) {
 			this.logger.trace("Validated token request parameters");
@@ -201,7 +201,7 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			.authorization(authorization)
 			.authorizedScopes(scopes)
 			.authorizationGrantType(APP_USER_REFRESH_TOKEN)
-			.authorizationGrant(endpointUserAuthentication);
+			.authorizationGrant(appUserAuthentication);
 
 
 		Map<String, Object> additionalParameters = new HashMap<>();
@@ -222,13 +222,13 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the app endpoint user access token.",
+					"The token generator failed to generate the app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Generated app endpoint user access token");
+			this.logger.trace("Generated app user access token");
 		}
 
 		OAuthAppUserAccessToken accessToken = new OAuthAppUserAccessToken(
@@ -250,7 +250,7 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 		}
 
 		// ----- Refresh token -----
-		OAuthAppUserRefreshToken currentRefreshToken = endpointUserRefreshTokenToken.getToken();
+		OAuthAppUserRefreshToken currentRefreshToken = appUserRefreshTokenToken.getToken();
 		if (!(Boolean) registeredClient.getTokenSettings().getSettings().getOrDefault(CairoSettingNames.Token.REUSE_APP_USER_REFRESH_TOKENS, false)) {
 			tokenContext = tokenContextBuilder.tokenType(CairoOAuthTokenTypeConstants.APP_USER_REFRESH_TOKEN).build();
 			OAuth2Token generatedRefreshToken = this.tokenGenerator.generate(tokenContext);
@@ -258,13 +258,13 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the app endpoint user refresh token.",
+						"The token generator failed to generate the app user refresh token.",
 						ERROR_URI)
 				);
 			}
 
 			if (this.logger.isTraceEnabled()) {
-				this.logger.trace("Generated app endpoint user refresh token");
+				this.logger.trace("Generated app user refresh token");
 			}
 
 			currentRefreshToken = (OAuthAppUserRefreshToken) generatedRefreshToken;
@@ -276,11 +276,11 @@ public final class OAuthAppUserRefreshTokenAuthenticationProvider implements Aut
 		this.authorizationService.save(authorization);
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Saved app endpoint user authorization");
+			this.logger.trace("Saved app user authorization");
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Authenticated app endpoint user token request");
+			this.logger.trace("Authenticated app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, currentRefreshToken, additionalParameters);

@@ -15,7 +15,7 @@ import java.util.List;
 
 
 /**
- * 应用用户
+ * 应用级用户
  */
 @Data
 @Accessors(chain = true)

@@ -138,10 +138,10 @@ public class TenantAppFileClientApiController {
 	}
 
 	/**
-	 * 上传文件到租户/企业存储
+	 * 上传文件到企业/企业存储
 	 *
 	 * @param principal 凭证
-	 * @param tenantId  租户id
+	 * @param tenantId  企业id
 	 * @param path      上传路径
 	 * @param file      上传文件
 	 * @return 签名地址集合
@@ -192,7 +192,7 @@ public class TenantAppFileClientApiController {
 	}
 
 	/**
-	 * 上传文件到租户/企业存储
+	 * 上传文件到企业/企业存储
 	 *
 	 * @param principal 凭证
 	 * @param args      参数

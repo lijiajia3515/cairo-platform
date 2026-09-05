@@ -23,7 +23,7 @@ import java.util.Map;
 
 
 /**
- * 删除终端用户业务日志 根据 已删除客户端 队列实现
+ * 删除应用级用户业务日志 根据 已删除客户端 队列实现
  */
 @Slf4j
 @Component
@@ -60,15 +60,15 @@ public class DeleteAppBizLogByDeletedAppUserQueueHandler {
 			query.limit(1000);
 			for (long i = 0; i < each; i++) {
 				try {
-					List<BizLogAppMongodb> deletedEndpointUserBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_APP);
-					if (!deletedEndpointUserBizLogMongodbList.isEmpty()) {
-						mongoTemplate.insert(deletedEndpointUserBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_APP);
+					List<BizLogAppMongodb> deletedAppBizLogMongodbList = mongoTemplate.findAllAndRemove(query, BizLogAppMongodb.class, MongodbConstants.Collection.BIZ_LOG_APP);
+					if (!deletedAppBizLogMongodbList.isEmpty()) {
+						mongoTemplate.insert(deletedAppBizLogMongodbList, MongodbConstants.DeletedCollection.BIZ_LOG_APP);
 					}
-					log.debug("终端用户级业务日志删除成功: AppId: {} UserId: {} Nickname: {} DeleteCount {} ",
+					log.debug("应用级用户级业务日志删除成功: AppId: {} UserId: {} Nickname: {} DeleteCount {} ",
 						deletedAppUserMessage.getAppId(),
 						deletedAppUserMessage.getUserId(),
 						deletedAppUserMessage.getNickname(),
-						deletedEndpointUserBizLogMongodbList.size()
+						deletedAppBizLogMongodbList.size()
 					);
 				} catch (Exception e) {
 					log.warn("delete app endpoint biz log: {}", e.getMessage());

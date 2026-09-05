@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 /**
- * 我的应用用户日志参数
+ * 我的应用级用户日志参数
  */
 @Data
 @Accessors(chain = true)

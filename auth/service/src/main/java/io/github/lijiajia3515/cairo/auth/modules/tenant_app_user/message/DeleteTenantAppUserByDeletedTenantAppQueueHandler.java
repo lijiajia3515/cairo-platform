@@ -107,7 +107,7 @@ public class DeleteTenantAppUserByDeletedTenantAppQueueHandler {
 
 					}
 				} catch (Exception e) {
-					log.warn("企业用户删除失败: TenantId: {} AppId: {} UserId: {} Nickname: {} 异常：{}",
+					log.warn("企业应用级用户删除失败: TenantId: {} AppId: {} UserId: {} Nickname: {} 异常：{}",
 						deleteUser.getTenantId(),
 						deleteUser.getAppId(),
 						deleteUser.getUserId(),

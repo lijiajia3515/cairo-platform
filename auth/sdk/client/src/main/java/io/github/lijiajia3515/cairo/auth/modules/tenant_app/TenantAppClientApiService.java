@@ -12,19 +12,19 @@ public interface TenantAppClientApiService {
 
 
 	/**
-	 * 获取租户应用列表
+	 * 获取企业应用列表
 	 *
 	 * @param args 参数
-	 * @return 租户 列表模式
+	 * @return 企业 列表模式
 	 */
 	List<TenantApp> getTenantAppList(GetTenantAppArgs args);
 
 
 	/**
-	 * 获取租户应用分页列表
+	 * 获取企业应用分页列表
 	 *
 	 * @param args 参数
-	 * @return 租户 分页模式
+	 * @return 企业 分页模式
 	 */
 	Page<TenantApp> getTenantAppPageList(GetTenantAppArgs args);
 

@@ -71,17 +71,17 @@ public class TokenSettings {
 	private Boolean reuseAccountRefreshTokens;
 
 	/**
-	 *  app endpoint user access token 格式
+	 *  app user access token 格式
 	 */
 	private String appUserAccessTokenFormat;
 
 	/**
-	 * app endpoint user access token 有效期
+	 * app user access token 有效期
 	 */
 	private Duration appUserAccessTokenTimeToLive;
 
 	/**
-	 *  app endpoint user refresh token 有效期
+	 *  app user refresh token 有效期
 	 */
 	private Duration appUserRefreshTokenTimeToLive;
 
@@ -101,7 +101,7 @@ public class TokenSettings {
 	private Duration tenantAppUserAccessTokenTimeToLive;
 
 	/**
-	 * tenant app endpoint user refresh token 有效期
+	 * tenant app user refresh token 有效期
 	 */
 	private Duration tenantAppUserRefreshTokenTimeToLive;
 

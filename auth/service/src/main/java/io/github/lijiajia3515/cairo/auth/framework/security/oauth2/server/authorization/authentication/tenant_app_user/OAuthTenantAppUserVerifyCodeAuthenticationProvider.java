@@ -47,7 +47,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server
 
 
 /**
- * 终端用户验证码模式 authentication provider
+ * 应用级用户验证码模式 authentication provider
  */
 @Slf4j
 public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements AuthenticationProvider {
@@ -86,7 +86,7 @@ public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -108,7 +108,7 @@ public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -172,13 +172,13 @@ public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the tenant app endpoint user access token.",
+					"The token generator failed to generate the tenant app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Generated tenant app endpoint user access token");
+			log.trace("Generated tenant app user access token");
 		}
 
 		OAuthTenantAppUserAccessToken accessToken = new OAuthTenantAppUserAccessToken(
@@ -213,13 +213,13 @@ public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the tenant app endpoint user refresh token.",
+						"The token generator failed to generate the tenant app user refresh token.",
 						ERROR_URI)
 				);
 			}
 
 			if (log.isTraceEnabled()) {
-				log.trace("Generated tenant app endpoint user refresh token");
+				log.trace("Generated tenant app user refresh token");
 			}
 
 			refreshToken = (OAuthTenantAppUserRefreshToken) generatedRefreshToken;
@@ -231,11 +231,11 @@ public final class OAuthTenantAppUserVerifyCodeAuthenticationProvider implements
 		this.authorizationService.save(authorization);
 
 		if (log.isTraceEnabled()) {
-			log.trace("Saved tenant app endpoint user authorization");
+			log.trace("Saved tenant app user authorization");
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Authenticated tenant app endpoint user token request");
+			log.trace("Authenticated tenant app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, refreshToken, additionalParameters);

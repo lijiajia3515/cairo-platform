@@ -86,7 +86,7 @@ const [configs, setConfigs] = useState({
     switchColumn({
       api: modifyTenantStatus_api,
       idKeys: ['tenantId'],
-      label: '租户',
+      label: '企业',
       perm: 'tenant.modify_status',
       refresh: () => getTenantPage(),
     }),

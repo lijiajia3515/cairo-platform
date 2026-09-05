@@ -7,15 +7,15 @@ import io.github.lijiajia3515.cairo.auth.CairoAuthExtensionConstants;
 import io.github.lijiajia3515.cairo.auth.CairoAuthRabbitmqExchange;
 import io.github.lijiajia3515.cairo.auth.CairoAuthRabbitmqRouteKey;
 import io.github.lijiajia3515.cairo.auth.constants.MongodbConstants;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.CreateAccountAndAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.CreateAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.DeleteAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.GetAppUserListArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.LogoffAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.ModifyAppUserInfoArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.ModifyAppUserStatusArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.TransferAppUserToOtherAccountArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.UnlogoffAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.CreateAccountAndAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.CreateAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.DeleteAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.GetAppUserListArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.LogoffAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.ModifyAppUserInfoArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.ModifyAppUserStatusArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.TransferAppUserToOtherAccountArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.UnlogoffAppUserArgs;
 import io.github.lijiajia3515.cairo.auth.domain.dto.account.Account;
 import io.github.lijiajia3515.cairo.auth.domain.dto.app_department.PathAppDepartment;
 import io.github.lijiajia3515.cairo.auth.domain.dto.app_role.AppRole;
@@ -174,11 +174,11 @@ public class AppUserSubappApiService {
 
 
 	/**
-	 * 获取应用用户列表
+	 * 获取应用级用户列表
 	 *
 	 * @param appId appId
 	 * @param args  args
-	 * @return 应用用户分页列表
+	 * @return 应用级用户分页列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -206,7 +206,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 根据应用用户ID获取应用用户
+	 * 根据应用级用户ID获取应用级用户
 	 *
 	 * @return return app_user
 	 */
@@ -221,12 +221,12 @@ public class AppUserSubappApiService {
 	)
 	public AppUserMetadata getAppUserInfo(@Valid @NotNull String appId, @Valid @NotNull String userId) {
 		return getAppUserInfo(readMongoTemplate, appId, userId)
-			.orElseThrow(() -> new ConflictBusinessException("应用用户不存在"));
+			.orElseThrow(() -> new ConflictBusinessException("应用级用户不存在"));
 	}
 
 
 	/**
-	 * 获取应用用户根据应用用户ID
+	 * 获取应用级用户根据应用级用户ID
 	 *
 	 * @return userId
 	 */
@@ -243,7 +243,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 后台 新增应用用户
+	 * 后台 新增应用级用户
 	 *
 	 * @param args args
 	 */
@@ -269,7 +269,7 @@ public class AppUserSubappApiService {
 			.and(AppUserMongodb.FIELD.ACCOUNT_ID).is(args.getAccountId());
 		AppUserMongodb existsAppUserMongodb = readMongoTemplate.findOne(Query.query(criteria), AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 		if (existsAppUserMongodb != null) {
-			throw new ConflictBusinessException(String.format("该账号已绑定应用用户: %s(%s)", existsAppUserMongodb.getNickname(), existsAppUserMongodb.getUserId()));
+			throw new ConflictBusinessException(String.format("该账号已绑定应用级用户: %s(%s)", existsAppUserMongodb.getNickname(), existsAppUserMongodb.getUserId()));
 		}
 
 		Criteria appCriteria = Criteria
@@ -303,12 +303,12 @@ public class AppUserSubappApiService {
 			} catch (Exception e) {
 				log.debug("createAppUser", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("创建应用用户失败");
+				throw new ConflictBusinessException("创建应用级用户失败");
 			}
 		});
 
 		if (insertedAppUser == null) {
-			throw new ConflictBusinessException("创建应用用户失败");
+			throw new ConflictBusinessException("创建应用级用户失败");
 		}
 
 		rabbitTemplate.convertAndSend(
@@ -330,7 +330,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 创建账号并且创建应用用户
+	 * 创建账号并且创建应用级用户
 	 *
 	 * @param appId 应用id
 	 * @param args  参数
@@ -363,12 +363,12 @@ public class AppUserSubappApiService {
 		}
 
 		if (!(phoneNumber || app_username || email)) {
-			throw new ConflictBusinessException("手机号，应用用户名，邮箱，必须三选一");
+			throw new ConflictBusinessException("手机号，应用级用户名，邮箱，必须三选一");
 		}
 
-		// 验证应用用户名格式
+		// 验证应用级用户名格式
 		if (args.getUsername() != null && !args.getUsername().trim().isBlank() && !AccountCommonService.validUsername(args.getUsername())) {
-			throw new ConflictBusinessException("应用用户名格式错误");
+			throw new ConflictBusinessException("应用级用户名格式错误");
 		}
 
 		// 验证手机号格式
@@ -446,7 +446,7 @@ public class AppUserSubappApiService {
 			}
 		}
 
-		// 创建应用用户
+		// 创建应用级用户
 		AppUserMongodb insertedAppUserMongodb = transactionTemplate.execute(status -> {
 			try {
 				Criteria criteria = Criteria
@@ -493,14 +493,14 @@ public class AppUserSubappApiService {
 				status.setRollbackOnly();
 				throw e;
 			} catch (Exception e) {
-				log.debug("创建应用用户失败", e);
+				log.debug("创建应用级用户失败", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("创建应用用户失败");
+				throw new ConflictBusinessException("创建应用级用户失败");
 			}
 		});
 
 		if (insertedAppUserMongodb != null) {
-			// 发送创建应用用户消息
+			// 发送创建应用级用户消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.CREATED_APP_USER, appId),
@@ -557,12 +557,12 @@ public class AppUserSubappApiService {
 			} catch (Exception e) {
 				log.debug("modifyAppUser", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("应用用户修改失败");
+				throw new ConflictBusinessException("应用级用户修改失败");
 			}
 		});
 
 		if (userMongodb == null) {
-			throw new ConflictBusinessException("应用用户修改失败");
+			throw new ConflictBusinessException("应用级用户修改失败");
 		}
 
 		cairoAuthAppUserService.removeAppUserCache(appId, userMongodb.getUserId());
@@ -588,11 +588,11 @@ public class AppUserSubappApiService {
 				);
 				AppUserMongodb appUserMongodb = mongoTemplate.findOne(query, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 				if (appUserMongodb == null) {
-					throw new ConflictBusinessException("应用用户不存在");
+					throw new ConflictBusinessException("应用级用户不存在");
 				}
 
 				if (appUserMongodb.getAdmin() != null && appUserMongodb.getAdmin()) {
-					throw new ConflictBusinessException("修改应用用户状态失败，请联系平台管理员移除当前操作账号管理员权限后再试");
+					throw new ConflictBusinessException("修改应用级用户状态失败，请联系平台管理员移除当前操作账号管理员权限后再试");
 				}
 
 				Update update = new Update();
@@ -605,12 +605,12 @@ public class AppUserSubappApiService {
 			} catch (Exception e) {
 				log.info("modifyAppUserStatus", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("修改应用用户状态失败");
+				throw new ConflictBusinessException("修改应用级用户状态失败");
 			}
 		});
 
 		if (userMongodb == null) {
-			throw new ConflictBusinessException("修改应用用户状态失败");
+			throw new ConflictBusinessException("修改应用级用户状态失败");
 		}
 
 		cairoAuthAppUserService.removeAppUserCache(appId, userMongodb.getUserId());
@@ -695,7 +695,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 直接注销应用用户
+	 * 直接注销应用级用户
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -746,7 +746,7 @@ public class AppUserSubappApiService {
 
 				AppUserMongodb modifiedAppUserMongodb = mongoTemplate.findAndModify(query, update, options, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 				if (modifiedAppUserMongodb == null) {
-					throw new ConflictBusinessException("注销应用用户失败");
+					throw new ConflictBusinessException("注销应用级用户失败");
 				}
 				// 将老账号ID，返回给外部发送消息到队列中
 				modifiedAppUserMongodb.setAccountId(userMongodb.getAccountId());
@@ -757,11 +757,11 @@ public class AppUserSubappApiService {
 			} catch (Exception e) {
 				log.debug("logoffAppUser", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("注销应用用户失败");
+				throw new ConflictBusinessException("注销应用级用户失败");
 			}
 		});
 		if (logoffSuccessAppUser != null) {
-			// 发送注销应用用户成功消息
+			// 发送注销应用级用户成功消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.LOGOFF_SUCCESS_APP_USER, appId),
@@ -783,7 +783,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 取消注销应用用户
+	 * 取消注销应用级用户
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -844,7 +844,7 @@ public class AppUserSubappApiService {
 		});
 
 		if (modified != null) {
-			// 发送注销应用用户成功消息
+			// 发送注销应用级用户成功消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.UNLOGOFF_APP_USER, appId),
@@ -866,7 +866,7 @@ public class AppUserSubappApiService {
 	}
 
 	/**
-	 * 删除应用用户
+	 * 删除应用级用户
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -920,14 +920,14 @@ public class AppUserSubappApiService {
 			} catch (Exception e) {
 				log.debug("deleteAppUser", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("删除应用用户失败");
+				throw new ConflictBusinessException("删除应用级用户失败");
 			}
 		});
 
 		if (deletedAppUserMongodb != null) {
 			// remove cache
 			cairoAuthAppUserService.removeAppUserCache(appId, args.getUserId());
-			// 发送删除应用用户消息
+			// 发送删除应用级用户消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.DELETED_APP_USER, appId),
@@ -937,7 +937,7 @@ public class AppUserSubappApiService {
 						.userId(deletedAppUserMongodb.getUserId())
 						.nickname(deletedAppUserMongodb.getNickname())
 						.accountId(deletedAppUserMongodb.getAccountId())
-						.eventAppUserId("应用用户")
+						.eventAppUserId("应用级用户")
 						.eventTime(LocalDateTime.now())
 						.build()
 				),

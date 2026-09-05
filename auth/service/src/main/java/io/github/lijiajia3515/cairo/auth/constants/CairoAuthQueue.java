@@ -63,7 +63,7 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== app start =====
 	/**
-	 * 注销应用用户根据已删除的账号
+	 * 注销应用级用户根据已删除的账号
 	 */
 	UNSET_APP_ADMIN_ACCOUNT_BY_DELETED_ACCOUNT("app.unset_app_admin_account_by_deleted_account"),
 	// ===== app end =====
@@ -183,19 +183,19 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 	// ===== app user start =====
 
 	/**
-	 * 发送已创建的企业用户消息
+	 * 发送已创建的企业应用级用户消息
 	 */
 	SEND_MESSAGE_BY_CREATED_APP_USER("app_user.send_created_app_user_message"),
 	/**
-	 * 打印应用用户日志队列
+	 * 打印应用级用户日志队列
 	 */
 	CREATE_APP_USER_LOG("app_user.create_app_user_log"),
 	/**
-	 * 创建应用用户根据创建应用
+	 * 创建应用级用户根据创建应用
 	 */
 	CREATE_APP_USER_BY_CREATED_APP("app_user.create_app_user_by_created_app"),
 	/**
-	 * 创建应用用户根据修改应用
+	 * 创建应用级用户根据修改应用
 	 */
 	CREATE_APP_USER_BY_MODIFIED_APP("app_user.create_app_user_by_modified_app"),
 	/**
@@ -216,12 +216,12 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 	 */
 	SEND_MESSAGE_BY_LOGOFF_SUCCESS_APP_USER("app_user.send_logoff_success_app_user_message"),
 	/**
-	 * 注销应用用户根据已删除的账号
+	 * 注销应用级用户根据已删除的账号
 	 */
 	LOGOFF_SUCCESS_APP_USER_BY_DELETED_ACCOUNT("app_user.logoff_success_app_user_by_deleted_account"),
 
 	/**
-	 * 根据已创建的企业创建门户应用用户
+	 * 根据已创建的企业创建门户应用级用户
 	 */
 	CREATE_PORTAL_APP_USER_BY_CREATED_TENANT("app_user.create_patrol_app_user_by_created_tenant"),
 	// ===== app user end =====
@@ -258,42 +258,42 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 	// ===== app user tag start =====
 
 	/**
-	 * 删除应用用户标签根据已删除的应用
+	 * 删除应用级用户标签根据已删除的应用
 	 */
 	DELETE_APP_USER_TAG_BY_DELETED_APP("app_user_tag.deleted_user_tag_by_deleted_app"),
 	// ===== app user tag end =====
 
-	// ===== app endpoint user authorization start =====
+	// ===== app user authorization start =====
 	/**
-	 * 下线终端用户根据已删除的应用用户
+	 * 下线应用级用户根据已删除的应用级用户
 	 */
 	OFFLINE_APP_USER_AUTHORIZATION_BY_LOGOFF_SUCCESS_APP_USER("app_user_authorization.offline_app_user_authorization_by_logoff_success_app_user"),
 
 	/**
-	 * 下线终端用户根据已删除的应用用户
+	 * 下线应用级用户根据已删除的应用级用户
 	 */
 	OFFLINE_APP_USER_AUTHORIZATION_BY_DELETED_APP_USER("app_user_authorization.offline_app_user_by_deleted_app_user"),
-	// ===== app endpoint user authorization end =====
+	// ===== app user authorization end =====
 
 	// ===== app user login log start =====
 	/**
-	 * 删除应用用户登录日志根据已删除的客户端
+	 * 删除应用级用户登录日志根据已删除的客户端
 	 */
 	DELETE_APP_USER_LOGIN_LOG_BY_DELETED_CLIENT("app_user_login_log.delete_app_user_login_log_by_deleted_client"),
 
 	/**
-	 * 删除应用用户登录日志根据已删除的应用用户
+	 * 删除应用级用户登录日志根据已删除的应用级用户
 	 */
 	DELETE_APP_USER_LOGIN_LOG_BY_DELETED_APP_USER("app_user_login_log.delete_app_user_login_log_by_deleted_app_user"),
 	/**
-	 * 删除应用用户登录日志根据已删除的应用
+	 * 删除应用级用户登录日志根据已删除的应用
 	 */
 	DELETE_APP_USER_LOGIN_LOG_BY_DELETED_APP("app_user_login_log.delete_app_user_login_log_by_deleted_app"),
 	// ===== app_user_login_log end =====
 
 	// ===== app user login log (endpoint) start =====
 	/**
-	 * 修改终端用户登录日志根据已修改的终端信息
+	 * 修改应用级用户登录日志根据已修改的终端信息
 	 */
 	MODIFY_ENDPOINT_USR_LOGIN_LOG_BY_MODIFIED_ENDPOINT_INFO("app_user_login_log.modify_app_user_login_log_by_modified_endpoint_info"),
 	/**
@@ -371,52 +371,52 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== tenant app user start =====
 	/**
-	 * 打印企业用户日志队列
+	 * 打印企业应用级用户日志队列
 	 */
 	CREATE_TENANT_APP_USER_LOG("tenant_app_user.create_tenant_app_user_log"),
 
 	/**
-	 * 创建企业用户根据已创建的企业应用
+	 * 创建企业应用级用户根据已创建的企业应用
 	 */
 	CREATE_TENANT_APP_USER_BY_CREATED_TENANT_APP("tenant_app_user.create_tenant_app_user_by_created_tenant_app"),
 
 	/**
-	 * 创建企业用户根据已修改的企业应用
+	 * 创建企业应用级用户根据已修改的企业应用
 	 */
 	CREATE_TENANT_APP_USER_BY_MODIFIED_TENANT_APP("tenant_app_user.create_tenant_app_user_by_modified_tenant_app"),
 
 	/**
-	 * 删除企业用户根据已删除的企业应用
+	 * 删除企业应用级用户根据已删除的企业应用
 	 */
 	DELETE_TENANT_APP_USER_BY_DELETED_TENANT_APP("tenant_app_user.deleted_tenant_app_user_by_deleted_tenant_app"),
 
 	/**
-	 * 注销完成企业用户根据已删除的账号
+	 * 注销完成企业应用级用户根据已删除的账号
 	 */
 	LOGOFF_SUCCESS_TENANT_APP_USER_BY_DELETED_ACCOUNT("tenant_app_user.logoff_success_tenant_app_user_by_deleted_account"),
 
 	/**
-	 * 发送已创建的企业用户消息
+	 * 发送已创建的企业应用级用户消息
 	 */
 	SEND_MESSAGE_BY_CREATED_TENANT_APP_USER("tenant_app_user.send_created_tenant_app_user_message"),
 
 	/**
-	 * 给注销企业用户发送消息
+	 * 给注销企业应用级用户发送消息
 	 */
 	SEND_MESSAGE_BY_LOGOFF_TENANT_APP_USER("tenant_app_user.send_logoff_tenant_app_user_message"),
 
 	/**
-	 * 给取消注销企业用户发送消息
+	 * 给取消注销企业应用级用户发送消息
 	 */
 	SEND_MESSAGE_BY_UNLOGOFF_TENANT_APP_USER("tenant_app_user.send_unlogoff_tenant_app_user_message"),
 
 	/**
-	 * 给已注销企业用户发送消息
+	 * 给已注销企业应用级用户发送消息
 	 */
 	SEND_MESSAGE_BY_LOGOFF_SUCCESS_TENANT_APP_USER("tenant_app_user.send_logoff_success_tenant_app_user_message"),
 
 	/**
-	 * 创建企业用户根据已创建的企业用户模板
+	 * 创建企业应用级用户根据已创建的企业应用级用户模板
 	 */
 	CREATE_TENANT_APP_USER_BY_CREATED_TENANT_APP_TEMPLATE("tenant_app_user.create_tenant_app_user_by_created_tenant_app_user_template"),
 	// ===== tenant app user end =====
@@ -468,23 +468,23 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== tenant app user login log start =====
 	/**
-	 * 删除企业应用用户登录日志根据已删除的客户端
+	 * 删除企业应用级用户登录日志根据已删除的客户端
 	 */
 	DELETE_TENANT_APP_USER_LOGIN_LOG_BY_DELETED_CLIENT("tenant_app_user_login_log.delete_tenant_app_user_login_log_by_deleted_client"),
 
 	/**
-	 * 删除企业应用用户登录日志根据已删除的用户
+	 * 删除企业应用级用户登录日志根据已删除的用户
 	 */
 	DELETE_TENANT_APP_USER_LOGIN_LOG_BY_DELETED_TENANT_APP_USER("tenant_app_user_login_log.delete_tenant_app_user_login_log_by_deleted_tenant_app_user"),
 	/**
-	 * 删除企业应用用户登录日志根据已删除的应用
+	 * 删除企业应用级用户登录日志根据已删除的应用
 	 */
 	DELETE_TENANT_APP_USER_LOGIN_LOG_BY_DELETED_TENANT_APP("tenant_app_user_login_log.delete_tenant_app_user_login_log_by_deleted_tenant_app"),
 	// ===== tenant app user login log end =====
 
 	// ===== tenant app user login log (endpoint) start =====
 	/**
-	 * 修改终端用户登录日志根据已修改的终端信息
+	 * 修改应用级用户登录日志根据已修改的终端信息
 	 */
 	MODIFY_TENANT_APP_USER_LOGIN_LOG_BY_MODIFIED_ENDPOINT_INFO("tenant_app_user_login_log.modify_tenant_app_user_login_log_by_modified_endpoint_info"),
 	/**
@@ -531,23 +531,23 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== app endpoint biz log start =====
 	/**
-	 * 修改终端用户日志根据已修改的终端信息
+	 * 修改应用级用户日志根据已修改的终端信息
 	 */
 	MODIFY_APP_BIZ_LOG_BY_MODIFIED_ENDPOINT_INFO("app_biz_log.modify_app_biz_log_by_modified_endpoint_info"),
 
 	/**
-	 * 根据已删除的应用删除终端用户业务日志
+	 * 根据已删除的应用删除应用级用户业务日志
 	 */
 	DELETE_APP_BIZ_LOG_BY_DELETED_ENDPOINT("app_biz_log.delete_app_biz_log_by_deleted_endpoint"),
 
 	/**
-	 * 根据已删除的用户删除终端用户业务日志
+	 * 根据已删除的用户删除应用级用户业务日志
 	 */
 	DELETE_APP_BIZ_LOG_BY_DELETED_CLIENT("app_biz_log.delete_app_biz_log_by_deleted_client"),
 
 
 	/**
-	 * 根据已删除的用户删除终端用户业务日志
+	 * 根据已删除的用户删除应用级用户业务日志
 	 */
 	DELETE_APP_BIZ_LOG_BY_DELETED_APP_USER("app_biz_log.delete_app_biz_log_by_deleted_app_user"),
 	// ===== app endpoint biz log end =====
@@ -564,7 +564,7 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 	DELETE_SUBAPP_BIZ_LOG_BY_DELETED_SUBAPP("subapp_biz_log.delete_subapp_biz_log_by_deleted_subapp"),
 
 	/**
-	 * 根据已删除的用户删除终端用户业务日志
+	 * 根据已删除的用户删除应用级用户业务日志
 	 */
 	DELETE_SUBAPP_BIZ_LOG_BY_DELETED_APP_USER("subapp_biz_log.delete_subapp_biz_log_by_deleted_app_user"),
 	// ===== app subapp biz log end =====
@@ -576,30 +576,30 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== tenant app endpoint biz log start =====
 	/**
-	 * 修改终端用户日志根据已修改的终端信息
+	 * 修改应用级用户日志根据已修改的终端信息
 	 */
 	MODIFY_TENANT_APP_BIZ_LOG_BY_MODIFIED_ENDPOINT_INFO("tenant_app_biz_log.modify_tenant_app_biz_log_by_modified_endpoint_info"),
 
 	/**
-	 * 根据已删除的用户删除终端用户业务日志
+	 * 根据已删除的用户删除应用级用户业务日志
 	 */
 	DELETE_TENANT_APP_BIZ_LOG_BY_DELETED_TENANT_APP_USER("tenant_app_biz_log.delete_tenant_app_biz_log_by_deleted_tenant_app_user"),
 
 	/**
-	 * 根据已删除的用户删除终端用户业务日志
+	 * 根据已删除的用户删除应用级用户业务日志
 	 */
 	DELETE_TENANT_APP_BIZ_LOG_BY_DELETED_CLIENT("tenant_app_biz_log.delete_tenant_app_biz_log_by_deleted_client"),
 
 
 	/**
-	 * 根据已删除的应用删除终端用户业务日志
+	 * 根据已删除的应用删除应用级用户业务日志
 	 */
 	DELETE_TENANT_APP_BIZ_LOG_BY_DELETED_ENDPOINT("tenant_endpoint_biz_log.delete_tenant_endpoint_biz_log_by_deleted_endpoint"),
 	// ===== tenant app endpoint biz log end =====
 
 	// ===== tenant app subapp biz log start =====
 	/**
-	 * 修改终端用户日志根据已修改的终端信息
+	 * 修改应用级用户日志根据已修改的终端信息
 	 */
 	MODIFY_TENANT_SUBAPP_BIZ_LOG_BY_MODIFIED_SUBAPP_INFO("tenant_subapp_biz_log.modify_tenant_subapp_biz_log_by_modified_subapp_info"),
 
@@ -626,7 +626,7 @@ public enum CairoAuthQueue implements CairoRabbitmqQueue {
 
 	// ===== file start =====
 	/**
-	 * 创建租户存储通
+	 * 创建企业存储通
 	 */
 	CREATE_TENANT_BUCKET("file.create_tenant_bucket"),
 	// ===== file end =====

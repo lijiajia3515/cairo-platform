@@ -32,7 +32,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.util.Assert;
 
 /**
- * cairo tenant app endpoint user account authentication provider
+ * cairo tenant app user account authentication provider
  */
 @Getter
 @Setter
@@ -64,7 +64,7 @@ public class CairoTenantAppUserAccountAuthenticationProvider implements Authenti
 	}
 
 	protected void doAfterPropertiesSet() throws Exception {
-		Assert.notNull(this.cairoAuthTenantAppUserService, "A cairoAuthEndpointUserService must be set");
+		Assert.notNull(this.cairoAuthTenantAppUserService, "A cairoAuthTenantAppUserService must be set");
 		Assert.notNull(this.preAuthenticationChecks, "A preAuthenticationChecks must be set");
 		Assert.notNull(this.postAuthenticationChecks, "A postAuthenticationChecks must be set");
 	}
@@ -83,7 +83,7 @@ public class CairoTenantAppUserAccountAuthenticationProvider implements Authenti
 		try {
 			user = cairoAuthTenantAppUserService.loadTenantAppUserByAccountId(token.getLoginType(), token.getTenantId(), token.getAppId(), token.getEndpointId(), token.getClientId(), token.getAccountId());
 			if (user == null) {
-				throw new InternalAuthenticationServiceException("cairoAuthEndpointUserService returned null, which is an interface contract violation");
+				throw new InternalAuthenticationServiceException("cairoAuthTenantAppUserService returned null, which is an interface contract violation");
 			}
 		} catch (AppNotFoundException | AppDisabledException
                  | EndpointNotFoundException | EndpointDisabledException
@@ -123,7 +123,7 @@ public class CairoTenantAppUserAccountAuthenticationProvider implements Authenti
 		UsernamePasswordAuthenticationToken result = UsernamePasswordAuthenticationToken.authenticated(principal,
 			authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
 		result.setDetails(authentication.getDetails());
-		log.debug("Authenticated tenant app endpoint user");
+		log.debug("Authenticated tenant app user");
 		return result;
 	}
 

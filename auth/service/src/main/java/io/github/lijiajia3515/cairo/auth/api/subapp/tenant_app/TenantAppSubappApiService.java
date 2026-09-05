@@ -127,7 +127,7 @@ public class TenantAppSubappApiService {
 	/**
 	 * 获取企业应用分页列表
 	 *
-	 * @return 租户查询
+	 * @return 企业查询
 	 */
 	@NewSpan
 	@BizLog(

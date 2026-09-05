@@ -158,7 +158,7 @@ public class AppBizLogCairoWebManageApiService {
 				.nickname(m.getUserId())
 				.build())
 			)
-			.endpointUserTokenId(m.getTokenId())
+			.tokenId(m.getTokenId())
 			.bizId(m.getBizId())
 			.scope(m.getScope())
 			.params(m.getParams())

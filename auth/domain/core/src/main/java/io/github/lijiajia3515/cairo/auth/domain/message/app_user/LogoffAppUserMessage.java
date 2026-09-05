@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 注销的应用用户（3天保护期）
+ * 注销的应用级用户（3天保护期）
  */
 @Data
 @Accessors(chain = true)
@@ -24,7 +24,7 @@ public class LogoffAppUserMessage implements Serializable {
 	private String appId;
 
 	/**
-	 * 应用用户id
+	 * 应用级用户id
 	 */
 	private String userId;
 

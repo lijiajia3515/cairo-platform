@@ -10,10 +10,10 @@ OAuth2 授权服务器（Spring Authorization Server + JWT）与系统功能一�
 |--------------------|--------------------------------|
 | `Client`           | 服务身份（Client_credentials） |
 | `Account`          | 平台账号（个人主体，跨应用）   |
-| `AppUser`          | 应用用户（App 维度）           |
-| `SubappUser`       | 子应用用户（Token 校验链）     |
-| `TenantAppUser`    | 租户应用用户（最细粒度）       |
-| `TenantSubappUser` | 租户子应用用户（Token 校验链） |
+| `AppUser`          | 应用级用户（App 维度）           |
+| `SubappUser`       | 子应用级用户（Token 校验链）     |
+| `TenantAppUser`    | 企业应用级用户（最细粒度）       |
+| `TenantSubappUser` | 企业子应用级用户（Token 校验链） |
 
 ## 认证体系
 
@@ -86,8 +86,8 @@ grant 常量定义在 `core` 的 `framework/security/oauth2/core/OAuth*Authoriza
 
 | 凭证 | 前缀 | 说明 |
 |---|---|---|
-| 应用用户 AccessToken / RefreshToken | `app_user_at_` / `app_user_rt_` | REFERENCE 格式 |
-| 租户应用用户 AccessToken / RefreshToken | `tenant_app_user_at_` / `tenant_app_user_rt_` | REFERENCE 格式 |
+| 应用级用户 AccessToken / RefreshToken | `app_user_at_` / `app_user_rt_` | REFERENCE 格式 |
+| 企业应用级用户 AccessToken / RefreshToken | `tenant_app_user_at_` / `tenant_app_user_rt_` | REFERENCE 格式 |
 | 账号 AccessToken / RefreshToken | `account_at_` / `account_rt_` | REFERENCE 格式 |
 | 授权码 / 验证码凭证 | `auth_code_` / `captcha_` | 一次性凭证 |
 
@@ -96,7 +96,7 @@ JWT（SELF_CONTAINED 格式）为标准 JWS 三段式；`sub` claim = 授权记�
 **principal 四段式**（前置未认证 token 的 `getPrincipal()`，`认证主体:scope:认证方式:唯一标识`）：
 
 - 主体：`account`（无 scope 段）/ `app_user` / `tenant_app_user`
-- scope：应用用户带 `appId:endpointId:clientId`，租户应用用户再加 `tenantId` 前置
+- scope：应用级用户带 `appId:endpointId:clientId`，企业应用级用户再加 `tenantId` 前置
 - 方式：`password` / `verify_code` / `sns_code` / `account` / `user`
 - 标识取真唯一值：username / phoneNumber / accountId / userId；SNS 流程认证前无用户标识，用 `snsType_snsProviderId_snsCode` 复合
 
@@ -110,7 +110,7 @@ JWT（SELF_CONTAINED 格式）为标准 JWS 三段式；`sub` claim = 授权记�
 
 | 组件         | 说明                                            |
 |--------------|-------------------------------------------------|
-| `context`    | 请求上下文（主体 / 应用 / 租户信息透传）        |
+| `context`    | 请求上下文（主体 / 应用 / 企业信息透传）        |
 | `idempotent` | 接口幂等                                        |
 | `sign`       | 请求签名校验                                    |
 | `lock4j`     | 分布式锁（Redisson，key 按主体维度构建）        |
@@ -122,7 +122,7 @@ JWT（SELF_CONTAINED 格式）为标准 JWS 三段式；`sub` claim = 授权记�
 
 ## API 层
 
-Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 租户应用用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 166 控制器 / 701 端点见 [api-surface.md](../docs/auth/api/api-surface.md)）：
+Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenantAppApiController` = 企业应用级用户资源、企业应用视角），同一资源对不同视角暴露不同 Controller。URL 前缀即视角（下表为控制器数，端点全量清单 166 控制器 / 701 端点见 [api-surface.md](../docs/auth/api/api-surface.md)）：
 
 | URL 前缀（主体面）         | 控制器 | 调用方                                               |
 |----------------------------|-------:|------------------------------------------------------|
@@ -130,8 +130,8 @@ Controller 按「**资源 + 调用方视角**」命名（如 `TenantAppUserTenan
 | `/cairo_web_manage_api`    |     36 | 运营平台（web-console）                              |
 | `/subapp_user_api`         |     22 | 子应用管理端（Subapp）                               |
 | `/tenant_subapp_user_api`  |     17 | 企业子应用应用端                                     |
-| `/app_user_api`            |     13 | 应用用户端（AppUser）                                |
-| `/tenant_app_user_api`     |     13 | 企业应用用户端                                       |
+| `/app_user_api`            |     13 | 应用级用户端（AppUser）                                |
+| `/tenant_app_user_api`     |     13 | 企业应用级用户端                                       |
 | `/open_api`                |     12 | 开放接口（验证码、captcha、SNS、OAuth2 回调、区划等）|
 | `/account_api`             |      5 | 账号端                                               |
 
@@ -168,7 +168,7 @@ auth/
 | 类别      | 子应用                                                                                                                                                                                                                                                                                                                   |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 认证相关  | `auth_code`、`captcha`、`oauth2`、`sns`、`sns_provider`、`login_log`                                                                                                                                                                                                                                                   |
-| 租户/RBAC | `tenant`、`tenant_app`、`tenant_app_user`、`tenant_app_role`、`tenant_app_role_template`、`tenant_app_department`、`tenant_app_department_template`、`tenant_app_user_template`、`tenant_app_user_tag`、`tenant_app_endpoint`、`tenant_subapp`、`tenant_app_user_authorization`、`tenant_subapp_biz_log` 等 |
+| 企业/RBAC | `tenant`、`tenant_app`、`tenant_app_user`、`tenant_app_role`、`tenant_app_role_template`、`tenant_app_department`、`tenant_app_department_template`、`tenant_app_user_template`、`tenant_app_user_tag`、`tenant_app_endpoint`、`tenant_subapp`、`tenant_app_user_authorization`、`tenant_subapp_biz_log` 等 |
 | 应用/RBAC | `app`、`app_user`、`app_role`、`app_department`、`app_user_tag`、`app_endpoint`、`app_release`、`subapp`、`subapp_version`、`menu`、`permission`、`account_authorization`、`app_user_authorization` 等                                                                     |
 | 账号      | `account`、`biz_log`（多主体业务日志）、`link`                                                                                                                                                                                                                                                                         |
 | 系统服务  | `file`（MinIO）、`imgproxy`、`weboffice`、`sms`、`notify`、`wxmp`（微信公众号）、`dict`、`area`（行政区划）、`ip2region`、`utils`                                                                                                                                                                  |

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 /**
- * [cairo_web_manage/api] app endpoint user login log controller
+ * [cairo_web_manage/api] app user login log controller
  */
 @Slf4j
 @Validated
@@ -39,7 +39,7 @@ public class AppUserLoginLogCairoWebManageApiController {
 
 
 	/**
-	 * 获取终端用户登录日志分页列表
+	 * 获取应用级用户登录日志分页列表
 	 *
 	 * @param principal principal
 	 * @param args      args

@@ -5,8 +5,8 @@ import io.github.lijiajia3515.cairo.auth.framework.security.cairo_security.Cairo
 import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.authentication.CairoOAuthTenantSubappUserPrincipal;
 import io.github.lijiajia3515.cairo.auth.domain.dto.account.Account;
 import io.github.lijiajia3515.cairo.auth.domain.api.subapp.account.GetAccountInfoArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.account.GetAccountPageListArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.account.SearchAccountArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.account.GetAccountPageListArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.account.SearchAccountArgs;
 import io.github.lijiajia3515.cairo.core.page.Page;
 import io.github.lijiajia3515.cairo.web.bind.annotation.BusinessResultBody;
 import lombok.RequiredArgsConstructor;

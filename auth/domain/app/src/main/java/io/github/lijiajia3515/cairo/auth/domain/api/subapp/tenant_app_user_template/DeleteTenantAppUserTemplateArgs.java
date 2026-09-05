@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 /**
- * 删除企业用户模板参数
+ * 删除企业应用级用户模板参数
  */
 @Data
 @Accessors(chain = true)
@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class DeleteTenantAppUserTemplateArgs implements Serializable {
 
 	/**
-	 * 企业用户模板ID
+	 * 企业应用级用户模板ID
 	 */
 	@NotNull
 	private String tenantAppUserTemplateId;

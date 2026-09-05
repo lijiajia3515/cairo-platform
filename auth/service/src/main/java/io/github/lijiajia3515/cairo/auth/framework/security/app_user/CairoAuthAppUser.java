@@ -59,7 +59,7 @@ public class CairoAuthAppUser implements UserDetails, OAuth2User {
 	private String clientId;
 
 	/**
-	 * 应用用户id
+	 * 应用级用户id
 	 */
 	private String userId;
 

@@ -38,7 +38,7 @@ public class TenantAppBizLogCairoWebManageApiController {
 	private final TenantAppBizLogCairoWebManageApiService tenantAppBizLogCairoWebManageApiService;
 
 	/**
-	 * 获取终端用户业务日志 page list
+	 * 获取应用级用户业务日志 page list
 	 *
 	 * @param principal principal
 	 * @param args      args

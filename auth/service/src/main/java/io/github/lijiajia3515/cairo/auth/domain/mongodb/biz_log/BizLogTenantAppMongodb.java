@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.time.LocalDateTime;
 
 /**
-	 * 终端用户业务日志
+	 * 应用级用户业务日志
 	 */
 @Data
 @Accessors(chain = true)
@@ -41,8 +41,8 @@ public class BizLogTenantAppMongodb {
 
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;
@@ -164,7 +164,6 @@ public class BizLogTenantAppMongodb {
 		public final String CLIENT_ID = field("clientId");
 
 		public final String USER_ID = field("userId");
-		public final String ENDPOINT_USER_TOKEN_ID = field("endpointUserTokenId");
 		public final String BIZ_ID = field("bizId");
 		public final String SCOPE = field("scope");
 		public final String PARAMS = field("params");

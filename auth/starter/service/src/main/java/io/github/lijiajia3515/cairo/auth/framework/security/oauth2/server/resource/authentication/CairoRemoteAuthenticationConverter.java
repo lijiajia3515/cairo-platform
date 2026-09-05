@@ -287,7 +287,7 @@ public class CairoRemoteAuthenticationConverter implements CairoJwtAuthenticatio
 				} else if (CairoAuthBusiness.ENDPOINT_DISABLED.getCode().equals(status)) {
 					throw new EndpointDisabledException();
 				}
-				// 租户异常
+				// 企业异常
 				else if (CairoAuthBusiness.TENANT_NOT_FOUND.getCode().equals(status)) {
 					throw new TenantNotFoundException();
 				} else if (CairoAuthBusiness.TENANT_DISABLED.getCode().equals(status)) {
@@ -420,7 +420,7 @@ public class CairoRemoteAuthenticationConverter implements CairoJwtAuthenticatio
 				} else if (CairoAuthBusiness.ENDPOINT_DISABLED.getCode().equals(status)) {
 					throw new EndpointDisabledException();
 				}
-				// 应用用户异常
+				// 应用级用户异常
 				else if (CairoAuthBusiness.APP_USER_NOT_FOUND.getCode().equals(status)) {
 					throw new AppUserNotFoundException();
 				} else if (CairoAuthBusiness.APP_USER_DISABLED.getCode().equals(status)) {

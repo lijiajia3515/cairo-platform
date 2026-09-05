@@ -33,7 +33,7 @@ public class CreateTenantAppUserLogQueueHandler {
 		try {
 			log.debug("[create_tenant_app_user_log] message handler start");
 			CreatedTenantAppUserMessage createdTenantAppUserMessage = objectMapper.readValue(payload, CreatedTenantAppUserMessage.class);
-			log.info("[create_tenant_app_user_log] ===> 创建企业用户： TenantId: {} AppId: {} UserId: {} Nickname: {} AccountId: {}",
+			log.info("[create_tenant_app_user_log] ===> 创建企业应用级用户： TenantId: {} AppId: {} UserId: {} Nickname: {} AccountId: {}",
 				createdTenantAppUserMessage.getTenantId(),
 				createdTenantAppUserMessage.getAppId(),
 				createdTenantAppUserMessage.getUserId(),

@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class ModifyTenantStatusArgs implements Serializable {
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	@NotNull
 	private String tenantId;

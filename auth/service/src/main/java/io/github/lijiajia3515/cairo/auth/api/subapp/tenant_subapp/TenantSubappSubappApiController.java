@@ -35,7 +35,7 @@ import java.util.Optional;
 @BusinessResultBody
 public class TenantSubappSubappApiController {
 
-	private final TenantSubappSubappApiService tenantAppCairoEndpointUserApiService;
+	private final TenantSubappSubappApiService tenantSubappSubappApiService;
 
 	/**
 	 * 获取企业子应用列表
@@ -48,7 +48,7 @@ public class TenantSubappSubappApiController {
 	public List<MetadataTenantSubapp> getTenantSubappList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																  @Validated @RequestBody GetTenantSubappArgs args) {
 		String appId = principal.getAppId();
-		return tenantAppCairoEndpointUserApiService.getTenantSubappList(appId, args);
+		return tenantSubappSubappApiService.getTenantSubappList(appId, args);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class TenantSubappSubappApiController {
 	public Page<MetadataTenantSubapp> getTenantSubappPageList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																	  @Validated @RequestBody GetTenantSubappArgs args) {
 		String appId = principal.getAppId();
-		return tenantAppCairoEndpointUserApiService.getTenantSubappPageList(appId, args);
+		return tenantSubappSubappApiService.getTenantSubappPageList(appId, args);
 	}
 
 
@@ -78,7 +78,7 @@ public class TenantSubappSubappApiController {
 	public Optional<String> createTenantSubapp(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 												   @Validated @RequestBody CreateTenantSubappArgs args) {
 		String appId = principal.getAppId();
-		tenantAppCairoEndpointUserApiService.createTenantSubapp(appId, args);
+		tenantSubappSubappApiService.createTenantSubapp(appId, args);
 		return Optional.empty();
 	}
 
@@ -94,7 +94,7 @@ public class TenantSubappSubappApiController {
 	public Optional<String> modifyTenantSubappStatus(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 														 @Validated @RequestBody ModifyTenantSubappStatusArgs args) {
 		String appId = principal.getAppId();
-		tenantAppCairoEndpointUserApiService.modifyTenantSubappStatus(appId, args);
+		tenantSubappSubappApiService.modifyTenantSubappStatus(appId, args);
 		return Optional.empty();
 	}
 
@@ -109,7 +109,7 @@ public class TenantSubappSubappApiController {
 	public Optional<String> deleteTenantSubapp(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 												   @Validated @RequestBody DeleteTenantSubappArgs args) {
 		String appId = principal.getAppId();
-		tenantAppCairoEndpointUserApiService.deleteTenantSubapp(appId, args);
+		tenantSubappSubappApiService.deleteTenantSubapp(appId, args);
 		return Optional.empty();
 	}
 

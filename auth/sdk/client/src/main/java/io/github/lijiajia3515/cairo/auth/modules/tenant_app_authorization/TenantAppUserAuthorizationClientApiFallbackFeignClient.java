@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
  */
 public class TenantAppUserAuthorizationClientApiFallbackFeignClient implements TenantAppUserAuthorizationClientApiFeignClient {
 
-	public static final RuntimeException EX = new ErrorBusinessException("认证服务-企业应用用户授权子应用故障");
+	public static final RuntimeException EX = new ErrorBusinessException("认证服务-企业应用级用户授权子应用故障");
 
 
 	@Override

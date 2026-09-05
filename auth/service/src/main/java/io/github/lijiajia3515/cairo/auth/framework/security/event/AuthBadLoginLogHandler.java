@@ -174,27 +174,27 @@ public class AuthBadLoginLogHandler {
 			OAuthAccountSnsCodeAuthenticationToken authentication = (OAuthAccountSnsCodeAuthenticationToken) event.getAuthentication();
 			service.recordAccountAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof CairoAppUserPasswordAuthenticationToken) {
-			// cairo app_user:account_password 终端用户-账号密码模式 登录失败
+			// cairo app_user:account_password 应用级用户-账号密码模式 登录失败
 			CairoAppUserPasswordAuthenticationToken authentication = (CairoAppUserPasswordAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof OAuthAppUserPasswordAuthenticationToken) {
-			// oauth2 app_user:account_password 终端用户-账号密码模式 登录失败
+			// oauth2 app_user:account_password 应用级用户-账号密码模式 登录失败
 			OAuthAppUserPasswordAuthenticationToken authentication = (OAuthAppUserPasswordAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof CairoAppUserVerifyCodeAuthenticationToken) {
-			// cairo app_user:account_verify_code 终端用户-账号验证码模式 登录失败
+			// cairo app_user:account_verify_code 应用级用户-账号验证码模式 登录失败
 			CairoAppUserVerifyCodeAuthenticationToken authentication = (CairoAppUserVerifyCodeAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof OAuthAppUserVerifyCodeAuthenticationToken) {
-			// oauth2 app_user:account_verify_code 终端用户-账号验证码模式 登录失败
+			// oauth2 app_user:account_verify_code 应用级用户-账号验证码模式 登录失败
 			OAuthAppUserVerifyCodeAuthenticationToken authentication = (OAuthAppUserVerifyCodeAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof CairoAppUserAccountSnsCodeAuthenticationToken) {
-			// auth app_user:account_sns_code 终端用户-账号第三方认证模式登录失败
+			// auth app_user:account_sns_code 应用级用户-账号第三方认证模式登录失败
 			CairoAppUserAccountSnsCodeAuthenticationToken authentication = (CairoAppUserAccountSnsCodeAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof OAuthAppUserAccountSnsCodeAuthenticationToken) {
-			// oauth app_user:account_verify_code 终端用户-账号第三方认证模式登录失败
+			// oauth app_user:account_verify_code 应用级用户-账号第三方认证模式登录失败
 			OAuthAppUserAccountSnsCodeAuthenticationToken authentication = (OAuthAppUserAccountSnsCodeAuthenticationToken) event.getAuthentication();
 			service.recordAppUserAuthFailureLog(errMsg, clientIP, userAgent, loginTime, authentication);
 		} else if (event.getAuthentication() instanceof CairoTenantAppUserPasswordAuthenticationToken) {
@@ -464,7 +464,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于终端用户账号密码登录)
+		 * 记录用户认证失败日志(基于应用级用户账号密码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -500,11 +500,11 @@ public class AuthBadLoginLogHandler {
 				userQuery.fields().include(AppUserMongodb.FIELD.USER_ID);
 				AppUserMongodb user = readMongoTemplate.findOne(userQuery, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 
-				// 终端用户登录日志
+				// 应用级用户登录日志
 				if (user != null && user.getUserId() != null) {
-					insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+					insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 				} else {
-					insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+					insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 				}
 			} else {
 				insertAccountFailLog("unknown_username:" + username, LoginType.PASSWORD, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加OAuth账号登录失败日志
@@ -512,7 +512,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于OAuth终端用户账号密码登录)
+		 * 记录用户认证失败日志(基于OAuth应用级用户账号密码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -552,23 +552,23 @@ public class AuthBadLoginLogHandler {
 					AppUserMongodb user = readMongoTemplate.findOne(userQuery, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 
 
-					// 终端用户登录日志
+					// 应用级用户登录日志
 					if (user != null && user.getUserId() != null) {
-						insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+						insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 					} else {
-						insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+						insertAppUserFailLog(LoginType.PASSWORD, null, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 					}
 
 				} else {
 					insertAccountFailLog("unknown_username:" + username, LoginType.PASSWORD, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加OAuth账号登录失败日志
 				}
 			} else {
-				log.warn("add app endpoint user failure log unknown principal: {}", token.getPrincipal());
+				log.warn("add app user failure log unknown principal: {}", token.getPrincipal());
 			}
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -600,11 +600,11 @@ public class AuthBadLoginLogHandler {
 				AppUserMongodb user = readMongoTemplate.findOne(userQuery, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 
 
-				// 终端用户登录日志
+				// 应用级用户登录日志
 				if (user != null && user.getUserId() != null) {
-					insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+					insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 				} else {
-					insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+					insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 				}
 			} else {
 				insertAccountFailLog("unknown_phone_number:" + phoneNumber, LoginType.VERIFY_CODE, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
@@ -612,7 +612,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -632,12 +632,12 @@ public class AuthBadLoginLogHandler {
 			String userId = "unknown_sns:" + String.format("%s_%s", snsProviderId, snsCode);
 
 			insertAccountFailLog(accountId, LoginType.SNS, snsType, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
-			insertAppUserFailLog(LoginType.SNS, snsType, appId, endpointId, clientId, userId, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+			insertAppUserFailLog(LoginType.SNS, snsType, appId, endpointId, clientId, userId, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 		}
 
 
 		/**
-		 * 记录用户认证失败日志(基于OAuth终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于OAuth应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -672,22 +672,22 @@ public class AuthBadLoginLogHandler {
 					AppUserMongodb appUser = readMongoTemplate.findOne(userQuery, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 
 
-					// 终端用户登录日志
+					// 应用级用户登录日志
 					if (appUser != null && appUser.getUserId() != null) {
-						insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, appUser.getUserId(), loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+						insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, appUser.getUserId(), loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 					} else {
-						insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+						insertAppUserFailLog(LoginType.VERIFY_CODE, null, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 					}
 				} else {
 					insertAccountFailLog("unknown_phone_number:" + phoneNumber, LoginType.VERIFY_CODE, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
 				}
 			} else {
-				log.warn("add app endpoint user failure log unknown principal: {}", token.getPrincipal());
+				log.warn("add app user failure log unknown principal: {}", token.getPrincipal());
 			}
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于OAuth终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于OAuth应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -709,15 +709,15 @@ public class AuthBadLoginLogHandler {
 				String userId = "unknown_sns:" + String.format("%s_%s", snsProviderId, snsCode);
 				insertClientFailLog(token.getGrantType(), null, appId, clientId, loginTime, errMsg, ip, userAgent);
 				insertAccountFailLog(accountId, LoginType.SNS, snsType, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
-				insertAppUserFailLog(LoginType.SNS, snsType, appId, endpointId, clientId, userId, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+				insertAppUserFailLog(LoginType.SNS, snsType, appId, endpointId, clientId, userId, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 			} else {
-				log.warn("add app endpoint user failure log unknown principal: {}", token.getPrincipal());
+				log.warn("add app user failure log unknown principal: {}", token.getPrincipal());
 			}
 		}
 
 
 		/**
-		 * 记录用户认证失败日志(基于终端用户账号密码登录)
+		 * 记录用户认证失败日志(基于应用级用户账号密码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -755,11 +755,11 @@ public class AuthBadLoginLogHandler {
 				userQuery.fields().include(TenantAppUserMongodb.FIELD.USER_ID);
 				TenantAppUserMongodb user = readMongoTemplate.findOne(userQuery, TenantAppUserMongodb.class, MongodbConstants.Collection.TENANT_APP_USER);
 
-				// 终端用户登录日志
+				// 应用级用户登录日志
 				if (user != null && user.getUserId() != null) {
-					insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+					insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 				} else {
-					insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+					insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 				}
 			} else {
 				insertAccountFailLog("unknown_username:" + username, LoginType.PASSWORD, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加OAuth账号登录失败日志
@@ -767,7 +767,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于OAuth终端用户账号密码登录)
+		 * 记录用户认证失败日志(基于OAuth应用级用户账号密码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -809,11 +809,11 @@ public class AuthBadLoginLogHandler {
 					TenantAppUserMongodb user = readMongoTemplate.findOne(userQuery, TenantAppUserMongodb.class, MongodbConstants.Collection.TENANT_APP_USER);
 
 
-					// 终端用户登录日志
+					// 应用级用户登录日志
 					if (user != null && user.getUserId() != null) {
-						insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+						insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 					} else {
-						insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth终端用户登录失败日志
+						insertTenantAppUserFailLog(LoginType.PASSWORD, null, tenantId, appId, endpointId, clientId, "unknown_username:" + username, loginTime, errMsg, ip, userAgent); // 添加OAuth应用级用户登录失败日志
 					}
 
 				} else {
@@ -825,7 +825,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 记录用户认证失败日志(基于终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -859,11 +859,11 @@ public class AuthBadLoginLogHandler {
 				TenantAppUserMongodb user = readMongoTemplate.findOne(userQuery, TenantAppUserMongodb.class, MongodbConstants.Collection.TENANT_APP_USER);
 
 
-				// 终端用户登录日志
+				// 应用级用户登录日志
 				if (user != null && user.getUserId() != null) {
-					insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+					insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 				} else {
-					insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+					insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 				}
 			} else {
 				insertAccountFailLog("unknown_phone_number:" + phoneNumber, LoginType.VERIFY_CODE, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
@@ -872,7 +872,7 @@ public class AuthBadLoginLogHandler {
 
 
 		/**
-		 * 记录用户认证失败日志(基于OAuth终端用户账号手机号验证码登录)
+		 * 记录用户认证失败日志(基于OAuth应用级用户账号手机号验证码登录)
 		 *
 		 * @param errMsg    错误日志
 		 * @param ip        ip
@@ -909,11 +909,11 @@ public class AuthBadLoginLogHandler {
 					TenantAppUserMongodb user = readMongoTemplate.findOne(userQuery, TenantAppUserMongodb.class, MongodbConstants.Collection.TENANT_APP_USER);
 
 
-					// 终端用户登录日志
+					// 应用级用户登录日志
 					if (user != null && user.getUserId() != null) {
-						insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+						insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, user.getUserId(), loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 					} else {
-						insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加终端用户登录失败日志
+						insertTenantAppUserFailLog(LoginType.VERIFY_CODE, null, tenantId, appId, endpointId, clientId, "unknown_phone_number:" + phoneNumber, loginTime, errMsg, ip, userAgent); // 添加应用级用户登录失败日志
 					}
 				} else {
 					insertAccountFailLog("unknown_phone_number:" + phoneNumber, LoginType.VERIFY_CODE, null, appId, clientId, loginTime, errMsg, ip, userAgent); // 添加账号登录失败日志
@@ -1103,7 +1103,7 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 终端用户登录日志添加到数据库层
+		 * 应用级用户登录日志添加到数据库层
 		 *
 		 * @param loginType     登录方式
 		 * @param snsType       第三方认证方式
@@ -1146,11 +1146,11 @@ public class AuthBadLoginLogHandler {
 		}
 
 		/**
-		 * 终端用户登录日志添加到数据库层
+		 * 应用级用户登录日志添加到数据库层
 		 *
 		 * @param loginType     登录方式
 		 * @param snsType       第三方认证方式
-		 * @param tenantId      租户ID
+		 * @param tenantId      企业ID
 		 * @param appId         应用ID
 		 * @param endpointId 终端ID
 		 * @param clientId      客户端ID

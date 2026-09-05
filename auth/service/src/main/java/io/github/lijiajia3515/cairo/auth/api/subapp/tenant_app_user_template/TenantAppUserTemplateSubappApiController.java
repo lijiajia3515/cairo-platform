@@ -40,11 +40,11 @@ public class TenantAppUserTemplateSubappApiController {
 
 
 	/**
-	 * 获取企业用户模板列表
+	 * 获取企业应用级用户模板列表
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 企业用户模板列表
+	 * @return 企业应用级用户模板列表
 	 */
 	@PostMapping("/get_tenant_app_user_template_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_app_user_template:all', 'tenant_app_user_template:read')")
@@ -55,11 +55,11 @@ public class TenantAppUserTemplateSubappApiController {
 	}
 
 	/**
-	 * 获取企业用户模板分页列表
+	 * 获取企业应用级用户模板分页列表
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 企业用户模板分页列表
+	 * @return 企业应用级用户模板分页列表
 	 */
 	@PostMapping("/get_tenant_app_user_template_page_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_app_user_template:all', 'tenant_app_user_template:read')")
@@ -71,7 +71,7 @@ public class TenantAppUserTemplateSubappApiController {
 
 
 	/**
-	 * 企业用户模板接口，创建企业用户模板
+	 * 企业应用级用户模板接口，创建企业应用级用户模板
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -88,7 +88,7 @@ public class TenantAppUserTemplateSubappApiController {
 
 
 	/**
-	 * 创建账号并且创建企业用户模板
+	 * 创建账号并且创建企业应用级用户模板
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -105,7 +105,7 @@ public class TenantAppUserTemplateSubappApiController {
 
 
 	/**
-	 * 修改企业用户模板信息
+	 * 修改企业应用级用户模板信息
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -122,7 +122,7 @@ public class TenantAppUserTemplateSubappApiController {
 
 
 	/**
-	 * 修改企业用户模板状态
+	 * 修改企业应用级用户模板状态
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -138,7 +138,7 @@ public class TenantAppUserTemplateSubappApiController {
 	}
 
 	/**
-	 * 删除企业用户模板
+	 * 删除企业应用级用户模板
 	 *
 	 * @param principal 凭证
 	 * @param args      参数

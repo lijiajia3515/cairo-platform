@@ -130,7 +130,7 @@ public class TenantAppRoleTenantSubappApiService {
 	/**
 	 * get role page list
 	 *
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param appId    应用id
 	 * @param args     args
 	 * @return role page
@@ -367,7 +367,7 @@ public class TenantAppRoleTenantSubappApiService {
 	/**
 	 * 修改角色权限
 	 *
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param appId    appId
 	 * @param args     args
 	 */

@@ -67,10 +67,10 @@ public class TenantAppUserAuthorizationClientApiService {
 	}
 
 	/**
-	 * 获取企业终端用户授权
+	 * 获取企业应用级用户授权
 	 *
 	 * @param args 参数
-	 * @return 企业终端用户授权模型
+	 * @return 企业应用级用户授权模型
 	 */
 	@NewSpan
 	@BizLog(
@@ -213,7 +213,7 @@ public class TenantAppUserAuthorizationClientApiService {
 			builder.status(CairoAuthBusiness.TENANT_ENDPOINT_DISABLED.getCode()).errorMessage(e.getMessage());
 		}
 
-		// 企业应用用户异常
+		// 企业应用级用户异常
 		catch (TenantAppUserNotFoundException e) {
 			builder.status(CairoAuthBusiness.TENANT_APP_USER_NOT_FOUND.getCode()).errorMessage(e.getMessage());
 		} catch (TenantAppUserDisabledException e) {
@@ -230,10 +230,10 @@ public class TenantAppUserAuthorizationClientApiService {
 	}
 
 	/**
-	 * 获取企业终端用户授权
+	 * 获取企业应用级用户授权
 	 *
 	 * @param args 参数
-	 * @return 企业终端用户授权模型
+	 * @return 企业应用级用户授权模型
 	 */
 	@NewSpan
 	@BizLog(
@@ -393,7 +393,7 @@ public class TenantAppUserAuthorizationClientApiService {
 			builder.status(CairoAuthBusiness.TENANT_SUBAPP_DISABLED.getCode()).errorMessage(e.getMessage());
 		}
 
-		// 企业应用用户异常
+		// 企业应用级用户异常
 		catch (TenantAppUserNotFoundException e) {
 			builder.status(CairoAuthBusiness.TENANT_APP_USER_NOT_FOUND.getCode()).errorMessage(e.getMessage());
 		} catch (TenantAppUserDisabledException e) {

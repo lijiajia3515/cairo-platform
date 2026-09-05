@@ -47,7 +47,7 @@ public class AppUserAuthorizationMapper extends AbstractSecurityMapper implement
 		;
 
 
-		// app endpoint user
+		// app user
 		if (mongodb.getAccessToken() != null) {
 			AppUserAuthorizationMongodb.AccessToken accessToken = mongodb.getAccessToken();
 			OAuthAppUserAccessToken token = new OAuthAppUserAccessToken(

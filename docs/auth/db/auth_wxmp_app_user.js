@@ -2,8 +2,8 @@ db.getCollection("auth_wxmp_app_user").drop();
 db.createCollection("auth_wxmp_app_user", {
     validator: {
         $jsonSchema: {
-            title: "公众号应用用户三方连接",
-            description: "公众号应用用户三方连接",
+            title: "公众号应用级用户三方连接",
+            description: "公众号应用级用户三方连接",
             properties: {
                 _id: {
                     bsonType: "objectId",

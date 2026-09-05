@@ -17,7 +17,7 @@ import java.util.List;
  * [client/api] tenant app user fallback feignclient
  */
 public class TenantAppUserClientApiFallbackFeignClient implements TenantAppUserClientApiFeignClient {
-	public static final RuntimeException EX = new ErrorBusinessException("认证服务-企业应用用户-服务故障");
+	public static final RuntimeException EX = new ErrorBusinessException("认证服务-企业应用级用户-服务故障");
 
 	@Override
 	public ResponseEntity<BusinessResult<List<TenantAppUser>>> getTenantAppUserList(String authorization, GetTenantAppUserArgs args) {

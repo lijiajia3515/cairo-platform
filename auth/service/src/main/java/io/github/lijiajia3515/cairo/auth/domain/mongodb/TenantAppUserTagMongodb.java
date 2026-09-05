@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.io.Serializable;
 
 /**
-	 * 企业应用用户标签
+	 * 企业应用级用户标签
 	 */
 @Data
 @NoArgsConstructor
@@ -26,8 +26,8 @@ public class TenantAppUserTagMongodb implements Serializable {
 	private ObjectId _id;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;

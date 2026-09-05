@@ -159,24 +159,24 @@ public enum CairoAuthRabbitmqRouteKey implements CairoRabbitmqRouteKey {
 
 	// =========== app user start ===========
 	/**
-	 * 已创建的应用用户
+	 * 已创建的应用级用户
 	 */
 	CREATED_APP_USER("app_scope.$appId.user.created_app_user"),
 	/**
-	 * 注销应用用户
+	 * 注销应用级用户
 	 */
 	LOGOFF_APP_USER("app_scope.$appId.app_user.logoff_user"),
 	/**
-	 * 注销应用用户
+	 * 注销应用级用户
 	 */
 	UNLOGOFF_APP_USER("app_scope.$appId.app_user.unlogoff_user"),
 	/**
-	 * 已注销应用用户
+	 * 已注销应用级用户
 	 */
 	LOGOFF_SUCCESS_APP_USER("app_scope.$appId.app_user.logoff_success_user"),
 
 	/**
-	 * 应用用户删除完成
+	 * 应用级用户删除完成
 	 */
 	DELETED_APP_USER("app_scope.$appId.app_user.deleted_user"),
 	// =========== app user end ===========
@@ -184,7 +184,7 @@ public enum CairoAuthRabbitmqRouteKey implements CairoRabbitmqRouteKey {
 	// =========== app user tag start ===========
 
 	/**
-	 * 应用用户标签创建完成
+	 * 应用级用户标签创建完成
 	 */
 	CREATED_APP_USER_TAG("app_scope.$appId.app_user_tag.created_app_user_tag"),
 	// =========== app user tag end ===========
@@ -292,7 +292,7 @@ public enum CairoAuthRabbitmqRouteKey implements CairoRabbitmqRouteKey {
 	UNLOGOFF_TENANT_APP_USER("tenant_app_scope.$tenantId.$appId.tenant_app_user.unlogoff_tenant_app_user"),
 
 	/**
-	 * 已注销企业用户
+	 * 已注销企业应用级用户
 	 */
 	LOGOFF_SUCCESS_TENANT_APP_USER("tenant_app_scope.$tenantId.$appId.tenant_app_user.logoff_success_tenant_app_user"),
 
@@ -310,17 +310,17 @@ public enum CairoAuthRabbitmqRouteKey implements CairoRabbitmqRouteKey {
 	CREATED_TENANT_APP_USER_TAG("tenant_app_scope.$tenantId.$appId.tenant_app_user_tag.created_tenant_app_user_tag"),
 
 	/**
-	 * 企业用户标签删除完成
+	 * 企业应用级用户标签删除完成
 	 */
 	DELETED_TENANT_APP_USER_TAG("tenant_app_scope.$tenantId.$appId.tenant_app_user_tag.deleted_tenant_app_user_tag"),
 
 	/**
-	 * 企业用户标签信息修改完成
+	 * 企业应用级用户标签信息修改完成
 	 */
 	MODIFIED_TENANT_APP_USER_TAG_INFO("tenant_app_scope.$tenantId.$appId.tenant_app_user_tag.modified_tenant_app_user_tag_info"),
 
 	/**
-	 * 企业用户标签状态修改完成
+	 * 企业应用级用户标签状态修改完成
 	 */
 	MODIFIED_TENANT_APP_USER_TAG_STATUS("tenant_app_scope.$tenantId.$appId.tenant_app_user_tag.modified_tenant_app_user_tag_status"),
 	// =========== tenant app user tag end ===========

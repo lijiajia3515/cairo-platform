@@ -36,7 +36,7 @@ import java.util.Optional;
 @BusinessResultBody
 @RequiredArgsConstructor
 public class WxmpProviderCairoWebManageApiController {
-	private final WxmpProviderCairoWebManageApiService wxmsTemplateCairoEndpointUserApiService;
+	private final WxmpProviderCairoWebManageApiService wxmsTemplateCairoWebManageApiService;
 
 
 	/**
@@ -49,7 +49,7 @@ public class WxmpProviderCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'wxmp_provider:all', 'wxmp_provider:create_wxmp_provider')")
 	@CairoContext
 	public Optional<String> createWxmpProvider(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,@Validated @RequestBody CreateWxmpProviderArgs args) {
-		wxmsTemplateCairoEndpointUserApiService.createWxmpProvider(args);
+		wxmsTemplateCairoWebManageApiService.createWxmpProvider(args);
 		return Optional.empty();
 	}
 
@@ -63,7 +63,7 @@ public class WxmpProviderCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'wxmp_provider:all', 'wxmp_provider:modify_wxmp_provider')")
 	@CairoContext
 	public Optional<String> modifyWxmpProvider(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,@Validated @RequestBody ModifyWxmpProviderArgs args) {
-		wxmsTemplateCairoEndpointUserApiService.modifyWxmpProvider(args);
+		wxmsTemplateCairoWebManageApiService.modifyWxmpProvider(args);
 		return Optional.empty();
 	}
 
@@ -77,7 +77,7 @@ public class WxmpProviderCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'wxmp_provider:all', 'wxmp_provider:modify_wxmp_provider_status')")
 	@CairoContext
 	public Optional<String> modifyWxmpProviderStatus(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,@Validated @RequestBody ModifyWxmpProviderStatusArgs args) {
-		wxmsTemplateCairoEndpointUserApiService.modifyWxmpProviderStatus(args);
+		wxmsTemplateCairoWebManageApiService.modifyWxmpProviderStatus(args);
 		return Optional.empty();
 	}
 
@@ -91,7 +91,7 @@ public class WxmpProviderCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'wxmp_provider:all', 'wxmp_provider:delete_wxmp_provider')")
 	@CairoContext
 	public Optional<String> deleteWxmpProvider(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,@Validated @RequestBody DeleteWxmpProviderArgs args) {
-		wxmsTemplateCairoEndpointUserApiService.deleteWxmpProvider(args);
+		wxmsTemplateCairoWebManageApiService.deleteWxmpProvider(args);
 		return Optional.empty();
 	}
 
@@ -107,7 +107,7 @@ public class WxmpProviderCairoWebManageApiController {
 	public List<MetadataWxmpProvider> getWxmpProviderList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 														  @Validated @RequestBody GetWxmpProviderArgs args) {
 		String appId = principal.getAppId();
-		return wxmsTemplateCairoEndpointUserApiService.getWxmpProviderList(appId, args);
+		return wxmsTemplateCairoWebManageApiService.getWxmpProviderList(appId, args);
 	}
 
 	/**
@@ -122,6 +122,6 @@ public class WxmpProviderCairoWebManageApiController {
 	public Page<MetadataWxmpProvider> getWxmpProviderPageList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 															  @Validated @RequestBody GetWxmpProviderArgs args) {
 		String appId = principal.getAppId();
-		return wxmsTemplateCairoEndpointUserApiService.getWxmpProviderPageList(appId, args);
+		return wxmsTemplateCairoWebManageApiService.getWxmpProviderPageList(appId, args);
 	}
 }

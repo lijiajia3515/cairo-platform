@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 修改企业用户令牌过期状态
+ * 修改企业应用级用户令牌过期状态
  */
 @Slf4j
 @Component
@@ -57,7 +57,7 @@ public class TenantAppUserAuthorizationStatusJob {
 
 					mongoTemplate.findAndModify(authorizationQuery, update, TenantAppUserAuthorizationMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_AUTHORIZATION);
 				} catch (Exception e) {
-					log.info("修改企业用户会话状态失败：", e);
+					log.info("修改企业应用级用户会话状态失败：", e);
 				}
 			}));
 		} catch (Exception e) {

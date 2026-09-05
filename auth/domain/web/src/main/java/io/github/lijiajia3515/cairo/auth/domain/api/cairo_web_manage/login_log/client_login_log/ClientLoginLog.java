@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 
 /**
- * 终端用户登录日志
+ * 应用级用户登录日志
  */
 @Data
 @NoArgsConstructor

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 )
 public interface TenantSubappUserAuthorizationClientApiFeignClient {
 	/**
-	 * 获取企业子应用用户认证
+	 * 获取企业子应用级用户认证
 	 * 需要权限 tenant_subapp_user_authorization:get_tenant_subapp_user_authorization | tenant_subapp_user_authorization:all
 	 *
 	 * @param args args

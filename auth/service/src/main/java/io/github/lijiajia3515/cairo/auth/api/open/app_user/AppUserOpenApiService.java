@@ -100,7 +100,7 @@ public class AppUserOpenApiService {
 	}
 
 	/**
-	 * 注册应用用户
+	 * 注册应用级用户
 	 *
 	 * @param args 参数
 	 */
@@ -137,7 +137,7 @@ public class AppUserOpenApiService {
 		Criteria accountCriteria = Criteria.where(AccountMongodb.FIELD.PHONE_NUMBER).is(args.getPhoneNumber());
 		AccountMongodb accountMongodb = mongoTemplate.findOne(Query.query(accountCriteria), AccountMongodb.class, MongodbConstants.Collection.ACCOUNT);
 		if (accountMongodb != null) {
-			log.debug("手机号已注册账号，继续创建应用用户：{} is {}", args.getPhoneNumber(), accountMongodb.getAccountId());
+			log.debug("手机号已注册账号，继续创建应用级用户：{} is {}", args.getPhoneNumber(), accountMongodb.getAccountId());
 		} else {
 			accountMongodb = transactionTemplate.execute(transactionStatus -> {
 				try {
@@ -239,12 +239,12 @@ public class AppUserOpenApiService {
 			} catch (Exception e) {
 				log.debug("CreateAppUserFail", e);
 				transactionStatus.setRollbackOnly();
-				throw new ConflictBusinessException("注册应用用户失败");
+				throw new ConflictBusinessException("注册应用级用户失败");
 			}
 		});
 
 		if (user != null) {
-			// 发送创建应用用户消息
+			// 发送创建应用级用户消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.CREATED_APP_USER, args.getAppId()),
@@ -266,7 +266,7 @@ public class AppUserOpenApiService {
 	}
 
 	/**
-	 * 注册应用用户
+	 * 注册应用级用户
 	 *
 	 * @param args 参数
 	 */
@@ -342,7 +342,7 @@ public class AppUserOpenApiService {
 		});
 
 		if (logoffAppUserMongodb == null) {
-			// 发送注销应用用户消息
+			// 发送注销应用级用户消息
 			rabbitTemplate.convertAndSend(
 				cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 				cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.LOGOFF_APP_USER, logoffAppUserMongodb.getAppId()),

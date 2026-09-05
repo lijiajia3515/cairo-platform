@@ -56,7 +56,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server
 
 
 /**
- * 终端用户刷新令牌模式 authentication provider
+ * 应用级用户刷新令牌模式 authentication provider
  */
 public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implements AuthenticationProvider {
 	private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
@@ -90,7 +90,7 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -111,19 +111,19 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"tenantAppUserRefreshToken无效",
+					"刷新令牌无效或已过期",
 					ERROR_URI)
 			);
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Retrieved authorization with tenant app endpoint user refresh token");
+			this.logger.trace("Retrieved authorization with tenant app user refresh token");
 		}
 		if (registeredClient == null) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -133,7 +133,7 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"clientId错误",
+					"刷新令牌与客户端不匹配",
 					ERROR_URI)
 			);
 		}
@@ -157,7 +157,7 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_SCOPE,
-					"scope错误",
+					"请求scope超出客户端许可范围",
 					ERROR_URI)
 			);
 		}
@@ -166,30 +166,30 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			scopes = authorizedScopes;
 		}
 
-		OAuth2Authorization.Token<OAuthTenantAppUserRefreshToken> endpointUserRefreshTokenToken = authorization.getToken(OAuthTenantAppUserRefreshToken.class);
-		if (endpointUserRefreshTokenToken == null || !endpointUserRefreshTokenToken.isActive()) {
+		OAuth2Authorization.Token<OAuthTenantAppUserRefreshToken> tenantAppUserRefreshTokenToken = authorization.getToken(OAuthTenantAppUserRefreshToken.class);
+		if (tenantAppUserRefreshTokenToken == null || !tenantAppUserRefreshTokenToken.isActive()) {
 			// As per https://tools.ietf.org/html/rfc6749#section-5.2
 			// invalid_grant: The provided authorization grant (e.g., authorization code,
 			// resource owner credentials) or refresh token is invalid, expired, revoked [...].
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"tenantAppUserRefreshToken无效",
+					"刷新令牌无效或已过期",
 					ERROR_URI)
 			);
 		}
 
 
-		Authentication endpointUserAuthentication = authorization.getAttribute(Principal.class.getName());
-		if (endpointUserAuthentication == null || !(endpointUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
+		Authentication tenantAppUserAuthentication = authorization.getAttribute(Principal.class.getName());
+		if (tenantAppUserAuthentication == null || !(tenantAppUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
-		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) endpointUserAuthentication.getPrincipal();
+		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) tenantAppUserAuthentication.getPrincipal();
 
 		if (this.logger.isTraceEnabled()) {
 			this.logger.trace("Validated token request parameters");
@@ -202,7 +202,7 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			.authorization(authorization)
 			.authorizedScopes(scopes)
 			.authorizationGrantType(TENANT_APP_USER_REFRESH_TOKEN)
-			.authorizationGrant(endpointUserAuthentication);
+			.authorizationGrant(tenantAppUserAuthentication);
 
 
 		Map<String, Object> additionalParameters = new HashMap<>();
@@ -224,13 +224,13 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the tenant app endpoint user access token.",
+					"The token generator failed to generate the tenant app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Generated tenant app endpoint user access token");
+			this.logger.trace("Generated tenant app user access token");
 		}
 
 		OAuthTenantAppUserAccessToken accessToken = new OAuthTenantAppUserAccessToken(
@@ -253,7 +253,7 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 		}
 
 		// ----- Refresh token -----
-		OAuthTenantAppUserRefreshToken currentRefreshToken = endpointUserRefreshTokenToken.getToken();
+		OAuthTenantAppUserRefreshToken currentRefreshToken = tenantAppUserRefreshTokenToken.getToken();
 		if (!(Boolean) registeredClient.getTokenSettings().getSettings().getOrDefault(CairoSettingNames.Token.REUSE_TENANT_APP_USER_REFRESH_TOKENS, false)) {
 			tokenContext = tokenContextBuilder.tokenType(CairoOAuthTokenTypeConstants.TENANT_APP_USER_REFRESH_TOKEN).build();
 			OAuth2Token generatedRefreshToken = this.tokenGenerator.generate(tokenContext);
@@ -261,13 +261,13 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the tenant app endpoint user refresh token.",
+						"The token generator failed to generate the tenant app user refresh token.",
 						ERROR_URI)
 				);
 			}
 
 			if (this.logger.isTraceEnabled()) {
-				this.logger.trace("Generated tenant app endpoint user refresh token");
+				this.logger.trace("Generated tenant app user refresh token");
 			}
 
 			currentRefreshToken = (OAuthTenantAppUserRefreshToken) generatedRefreshToken;
@@ -279,11 +279,11 @@ public final class OAuthTenantAppUserRefreshTokenAuthenticationProvider implemen
 		this.authorizationService.save(authorization);
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Saved tenant app endpoint user authorization");
+			this.logger.trace("Saved tenant app user authorization");
 		}
 
 		if (this.logger.isTraceEnabled()) {
-			this.logger.trace("Authenticated tenant app endpoint user token request");
+			this.logger.trace("Authenticated tenant app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, currentRefreshToken, additionalParameters);

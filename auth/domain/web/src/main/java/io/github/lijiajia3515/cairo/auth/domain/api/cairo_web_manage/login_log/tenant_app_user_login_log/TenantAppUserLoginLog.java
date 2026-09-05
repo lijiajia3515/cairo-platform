@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 
 /**
- * 企业应用用户登录日志
+ * 企业应用级用户登录日志
  */
 @Data
 @NoArgsConstructor

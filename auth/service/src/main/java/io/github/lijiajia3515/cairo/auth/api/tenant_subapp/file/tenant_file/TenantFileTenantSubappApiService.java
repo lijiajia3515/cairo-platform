@@ -196,7 +196,7 @@ public class TenantFileTenantSubappApiService {
 	/**
 	 * 文件上传
 	 *
-	 * @param tenantId 租户ID
+	 * @param tenantId 企业ID
 	 * @param path     文件名
 	 * @param file     文件
 	 * @return file list

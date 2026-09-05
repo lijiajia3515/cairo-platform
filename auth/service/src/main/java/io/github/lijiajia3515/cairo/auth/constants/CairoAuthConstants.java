@@ -13,13 +13,13 @@ public class CairoAuthConstants {
 	public static final Duration ACCOUNT_LOGOFF_PENDING_TIME = Duration.ofDays(7);
 
 	/**
-	 * 应用用户-注销犹豫时间
+	 * 应用级用户-注销犹豫时间
 	 */
 
 	public static final Duration APP_USER_LOGOFF_PENDING_TIME = Duration.ofDays(3);
 
 	/**
-	 * 企业用户-注销犹豫时间
+	 * 企业应用级用户-注销犹豫时间
 	 */
 
 	public static final Duration TENANT_APP_USER_LOGOFF_PENDING_TIME = Duration.ofDays(3);

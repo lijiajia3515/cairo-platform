@@ -31,7 +31,7 @@ import java.util.Optional;
 
 
 /**
- * 注销应用用户（根据已删除的账号）处理器
+ * 注销应用级用户（根据已删除的账号）处理器
  */
 
 @Slf4j
@@ -105,7 +105,7 @@ public class LogoffSuccessAppUserByDeletedAccountQueueHandler {
 					}
 
 				} catch (Exception e) {
-					log.warn("注销应用用户:AppId: {} UserId: {} Nickname: {}  AccountId: {} 异常：{}",
+					log.warn("注销应用级用户:AppId: {} UserId: {} Nickname: {}  AccountId: {} 异常：{}",
 						appUser.getAppId(),
 						appUser.getUserId(),
 						appUser.getNickname(),

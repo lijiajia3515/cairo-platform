@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 创建企业应用用户消息
+ * 创建企业应用级用户消息
  */
 @Data
 @Accessors(chain = true)

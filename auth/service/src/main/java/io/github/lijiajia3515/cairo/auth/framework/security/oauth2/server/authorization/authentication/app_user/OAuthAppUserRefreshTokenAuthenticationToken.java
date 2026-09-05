@@ -14,7 +14,7 @@ import java.util.Set;
 import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.OAuthAppUserAuthorizationGrantTypes.APP_USER_REFRESH_TOKEN;
 
 /**
- * 终端用户刷新令牌模式 authentication token
+ * 应用级用户刷新令牌模式 authentication token
  */
 @Getter
 public class OAuthAppUserRefreshTokenAuthenticationToken extends OAuth2AuthorizationGrantAuthenticationToken {

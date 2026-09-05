@@ -19,7 +19,7 @@ public class SendWxmpMsgByArgs {
 
 
 	/**
-	 * 接受应用用户ids
+	 * 接受应用级用户ids
 	 */
 	@NotNull
 	@Size(min = 1)

@@ -46,7 +46,7 @@ public class TenantAppUserAccountApiService {
 	 *
 	 * @param appId     应用id
 	 * @param accountId 账号id
-	 * @return 租户列表
+	 * @return 企业列表
 	 */
 	@BizLog(
 		bizId = "tenant_app_user:get_my_tenant_app_user",

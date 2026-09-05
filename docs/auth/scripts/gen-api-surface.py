@@ -15,8 +15,8 @@ FACE_META = {
     'client': ('client_api', 'CLIENT 凭证(服务间)'),
     'cairo_web_manage': ('cairo_web_manage_api', 'CAIRO_WEB_MANAGE_USER'),
     'subapp': ('subapp_user_api', 'SUBAPP_USER'),
-    'endpoint': ('app_user_api', 'APP_USER'),
-    'tenant_endpoint': ('tenant_app_user_api', 'TENANT_APP_USER'),
+    'app_user': ('app_user_api', 'APP_USER'),
+    'tenant_app_user': ('tenant_app_user_api', 'TENANT_APP_USER'),
     'tenant_subapp': ('tenant_subapp_user_api', 'TENANT_SUBAPP_USER'),
     'account': ('account_api', 'ACCOUNT'),
 }
@@ -67,8 +67,8 @@ for root, dirs, files in os.walk('.'):
         controllers.append(dict(face=face, fam=fam, name=fn[:-5], base=base,
                                 sec=sec_m.group(1) if sec_m else None, wps=wps, eps=eps))
 
-order = ['open', 'client', 'cairo_web_manage', 'subapp', 'endpoint',
-         'tenant_endpoint', 'tenant_subapp', 'account', 'weboffice', 'misc']
+order = ['open', 'client', 'cairo_web_manage', 'subapp', 'app_user',
+         'tenant_app_user', 'tenant_subapp', 'account', 'weboffice', 'misc']
 out = []
 for face in order:
     fcs = sorted([c for c in controllers if c['face'] == face], key=lambda c: (c['fam'], c['name']))

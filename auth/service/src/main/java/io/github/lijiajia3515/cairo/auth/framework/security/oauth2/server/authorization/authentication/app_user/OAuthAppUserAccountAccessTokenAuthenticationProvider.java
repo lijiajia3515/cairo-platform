@@ -50,9 +50,9 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server
 
 
 /**
- * 应用用户账号授权模式 authentication provider
+ * 应用级用户账号授权模式 authentication provider
  * <p>
- * 使用账号级 access_token 置换应用用户 access_token
+ * 使用账号级 access_token 置换应用级用户 access_token
  */
 @Slf4j
 public final class OAuthAppUserAccountAccessTokenAuthenticationProvider implements AuthenticationProvider {
@@ -96,7 +96,7 @@ public final class OAuthAppUserAccountAccessTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -121,7 +121,7 @@ public final class OAuthAppUserAccountAccessTokenAuthenticationProvider implemen
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -164,7 +164,7 @@ public final class OAuthAppUserAccountAccessTokenAuthenticationProvider implemen
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}

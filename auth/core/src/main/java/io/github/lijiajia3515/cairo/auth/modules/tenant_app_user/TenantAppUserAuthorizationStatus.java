@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * 企业应用用户会话状态
+ * 企业应用级用户会话状态
  */
 public enum TenantAppUserAuthorizationStatus {
 	/**

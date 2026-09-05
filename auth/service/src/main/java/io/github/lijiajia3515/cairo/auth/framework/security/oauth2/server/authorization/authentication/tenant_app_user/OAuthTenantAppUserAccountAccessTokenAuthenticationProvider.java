@@ -113,7 +113,7 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -138,7 +138,7 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -176,23 +176,23 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 			accountPrincipal.getAccountId(),
 			accountPrincipal.getLoginType()
 		);
-		Authentication newEndpointUserAuthentication = authenticationManager.authenticate(userAccountAuthenticationToken);
+		Authentication newTenantAppUserAuthentication = authenticationManager.authenticate(userAccountAuthenticationToken);
 
-		if (newEndpointUserAuthentication == null || !(newEndpointUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
+		if (newTenantAppUserAuthentication == null || !(newTenantAppUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
-		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) newEndpointUserAuthentication.getPrincipal();
+		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) newTenantAppUserAuthentication.getPrincipal();
 
 
 		OAuth2Authorization.Builder builder = OAuth2Authorization.withRegisteredClient(registeredClient);
 		OAuth2Authorization newUserAuthorization = builder.authorizationGrantType(ACCOUNT_ACCESS_TOKEN)
-			.principalName(newEndpointUserAuthentication.getName())
-			.attribute(Principal.class.getName(), newEndpointUserAuthentication)
+			.principalName(newTenantAppUserAuthentication.getName())
+			.attribute(Principal.class.getName(), newTenantAppUserAuthentication)
 			.authorizedScopes(authorizedScopes)
 			.build();
 
@@ -203,7 +203,7 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 			.authorization(newUserAuthorization)
 			.authorizedScopes(authorizedScopes)
 			.authorizationGrantType(ACCOUNT_ACCESS_TOKEN)
-			.authorizationGrant(newEndpointUserAuthentication);
+			.authorizationGrant(newTenantAppUserAuthentication);
 
 		Map<String, Object> additionalParameters = new HashMap<>();
 		additionalParameters.put(CairoOAuthParameterNames.AUTH_TYPE, TENANT_APP_USER.getValue());
@@ -230,7 +230,7 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Generated tenant app endpoint user access token");
+			log.trace("Generated tenant app user access token");
 		}
 
 		OAuthTenantAppUserAccessToken accessToken = new OAuthTenantAppUserAccessToken(
@@ -268,7 +268,7 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 			}
 
 			if (log.isTraceEnabled()) {
-				log.trace("Generated tenant app endpoint user refresh token");
+				log.trace("Generated tenant app user refresh token");
 			}
 
 			refreshToken = (OAuthTenantAppUserRefreshToken) generatedRefreshToken;
@@ -280,11 +280,11 @@ public final class OAuthTenantAppUserAccountAccessTokenAuthenticationProvider im
 		this.tenantAppUserAuthorizationService.save(newUserAuthorization);
 
 		if (log.isTraceEnabled()) {
-			log.trace("Saved tenant app endpoint user authorization");
+			log.trace("Saved tenant app user authorization");
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Authenticated tenant app endpoint user token request");
+			log.trace("Authenticated tenant app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, refreshToken, additionalParameters);

@@ -23,9 +23,9 @@ import java.util.List;
 public interface TenantAppUserTemplateClientApiFeignClient {
 
 	/**
-	 * 获取企业用户模板列表
+	 * 获取企业应用级用户模板列表
 	 *
-	 * @return 企业用户模板列表
+	 * @return 企业应用级用户模板列表
 	 */
 	@PostMapping("/get_tenant_app_user_template_list")
 	ResponseEntity<BusinessResult<List<TenantAppUserTemplate>>> getTenantAppUserTemplateList(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorization, @RequestBody GetTenantAppUserTemplateListArgs args);

@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 修改企业用户模板信息
+ * 修改企业应用级用户模板信息
  */
 @Data
 @Accessors(chain = true)

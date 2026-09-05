@@ -22,7 +22,7 @@ public class AppUserAuthorizationMongodbMapper extends AbstractSecurityMapper im
 		Authentication accountAuthentication = (Authentication) oAuth2Authorization.getAttributes().get(Principal.class.getName());
 
 		if (accountAuthentication == null || !(accountAuthentication.getPrincipal() instanceof CairoAuthAppUser)) {
-			throw new RuntimeException("不合法的认证,无法转换成app endpoint user authorization");
+			throw new RuntimeException("不合法的认证,无法转换成app user authorization");
 		}
 		CairoAuthAppUser user = (CairoAuthAppUser) accountAuthentication.getPrincipal();
 

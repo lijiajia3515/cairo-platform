@@ -1,4 +1,4 @@
-// 终端用户管理——用户/标签/部门/角色/系统会话
+// 应用级用户管理——用户/标签/部门/角色/系统会话
 import fetch from './fetch';
 import { subappUserApi, manageSubappId, manageSubappVersion } from './urls';
 

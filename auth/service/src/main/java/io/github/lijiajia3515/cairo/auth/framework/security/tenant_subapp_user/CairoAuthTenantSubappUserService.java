@@ -64,7 +64,7 @@ import static io.github.lijiajia3515.cairo.auth.constants.CairoAuthConstants.ROL
 
 
 /**
- * 企业终端用户认证服务类
+ * 企业应用级用户认证服务类
  */
 
 @Slf4j
@@ -126,9 +126,9 @@ public class CairoAuthTenantSubappUserService {
 			throw new AccountNotFoundException();
 		}
 
-		CairoAuthTenantSubappUser endpointUser = getAuthTenantSubappUser(tenantId, appId, endpointId, subappId, subappVersion, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
-		return endpointUser;
+		CairoAuthTenantSubappUser tenantSubappUser = getAuthTenantSubappUser(tenantId, appId, endpointId, subappId, subappVersion, user.getUserId());
+		tenantSubappUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
+		return tenantSubappUser;
 	}
 
 	/**
@@ -272,7 +272,7 @@ public class CairoAuthTenantSubappUserService {
 	/**
 	 * 获取账号权限
 	 *
-	 * @param tenantId      租户id
+	 * @param tenantId      企业id
 	 * @param appId         应用id
 	 * @param endpointId 终端ID
 	 * @param userId        账号id
@@ -339,7 +339,7 @@ public class CairoAuthTenantSubappUserService {
 					.collect(Collectors.toSet());
 			}
 
-			// 默认权限+终端用户权限
+			// 默认权限+企业子应用级用户权限
 			List<Criteria> permissionCriteria = new ArrayList<>(2);
 			permissionCriteria.add(Criteria.where(PermissionMongodb.FIELD.DEFAULT_PERMISSION).is(true));
 			if (!permissionIds.isEmpty()) {
@@ -373,7 +373,7 @@ public class CairoAuthTenantSubappUserService {
 	 * 获取账号权限
 	 *
 	 * @param appId    应用id
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param userId   账号id
 	 * @return 权限集合
 	 */
@@ -417,7 +417,7 @@ public class CairoAuthTenantSubappUserService {
 					.collect(Collectors.toSet());
 			}
 
-			// 默认权限+终端用户权限
+			// 默认权限+企业子应用级用户权限
 			List<Criteria> permissionCriteria = new ArrayList<>(2);
 			permissionCriteria.add(Criteria.where(PermissionMongodb.FIELD.DEFAULT_PERMISSION).is(true));
 			if (!permissionIds.isEmpty()) {
@@ -430,12 +430,12 @@ public class CairoAuthTenantSubappUserService {
 				.and(PermissionMongodb.FIELD.SUBAPP_VERSION).is(subappVersion)
 				.orOperator(permissionCriteria);
 			Query permissionQuery = Query.query(finalPermissionCriteria);
-			List<String> endpointUserPermissionIds = readMongoTemplate.find(permissionQuery, PermissionMongodb.class, MongodbConstants.Collection.PERMISSION)
+			List<String> tenantSubappUserPermissionIds = readMongoTemplate.find(permissionQuery, PermissionMongodb.class, MongodbConstants.Collection.PERMISSION)
 				.stream().map(PermissionMongodb::getPermissionId)
 				.filter(Objects::nonNull)
 				.distinct()
 				.toList();
-			permissions.addAll(endpointUserPermissionIds);
+			permissions.addAll(tenantSubappUserPermissionIds);
 		}
 
 		if (permissions.isEmpty()) {

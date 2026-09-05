@@ -11,7 +11,7 @@ public class CairoTenantAppUserTenantAppUserAuthenticationToken extends Abstract
 
 
 	/**
-	 * 租户ID
+	 * 企业ID
 	 */
 	private final String tenantId;
 

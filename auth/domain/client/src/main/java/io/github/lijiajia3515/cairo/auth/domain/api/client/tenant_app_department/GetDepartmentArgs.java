@@ -29,7 +29,7 @@ import java.util.Set;
 public class GetDepartmentArgs extends AbstractPage<GetDepartmentArgs> implements Serializable {
 
 	/**
-	 * 租户ID
+	 * 企业ID
 	 */
 	@NotNull
 	private String tenantId;

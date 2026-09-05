@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 创建企业用户模板参数
+ * 创建企业应用级用户模板参数
  */
 @Data
 @NoArgsConstructor

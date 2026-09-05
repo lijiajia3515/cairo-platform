@@ -99,7 +99,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"accountRefreshToken无效",
+					"刷新令牌无效或已过期",
 					ERROR_URI)
 			);
 		}
@@ -112,7 +112,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 							OAuth2ErrorCodes.INVALID_CLIENT,
-							"client出错",
+							"客户端注册信息缺失",
 							ERROR_URI
 					)
 			);
@@ -122,7 +122,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"clientId错误",
+					"刷新令牌与客户端不匹配",
 					ERROR_URI
 				)
 			);
@@ -147,7 +147,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_SCOPE,
-					"scope 错误",
+					"请求scope超出客户端许可范围",
 					ERROR_URI
 				)
 			);
@@ -165,7 +165,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"accountRefreshToken失效",
+					"刷新令牌无效或已过期",
 					ERROR_URI
 				)
 			);
@@ -176,7 +176,7 @@ public final class OAuthAccountRefreshTokenAuthenticationProvider implements Aut
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}

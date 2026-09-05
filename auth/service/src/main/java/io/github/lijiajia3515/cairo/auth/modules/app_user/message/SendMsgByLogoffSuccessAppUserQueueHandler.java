@@ -28,7 +28,7 @@ import java.util.Optional;
 
 
 /**
- * 给应用用户发送注销成功消息 队列处理器
+ * 给应用级用户发送注销成功消息 队列处理器
  */
 @Slf4j
 @Component

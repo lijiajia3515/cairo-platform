@@ -35,7 +35,7 @@ import java.util.Optional;
 @BusinessResultBody
 @RequiredArgsConstructor
 public class WxmpTemplateMsgRecordCairoWebManageApiController {
-	private final WxmpTemplateMsgRecordCairoWebManageApiService wxmsMessageCairoEndpointUserApiService;
+	private final WxmpTemplateMsgRecordCairoWebManageApiService wxmsMessageCairoWebManageApiService;
 
 	/**
 	 * 获取微信模板消息记录分页列表
@@ -50,7 +50,7 @@ public class WxmpTemplateMsgRecordCairoWebManageApiController {
 	public Page<MetadataWxmpTemplateMsgRecord> getWxmpTemplateMsgRecordPageList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																				@Validated @RequestBody GetWxmpTemplateMsgRecordArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		return wxmsMessageCairoEndpointUserApiService.getWxmpTemplateMsgRecordPageList(appId, args);
+		return wxmsMessageCairoWebManageApiService.getWxmpTemplateMsgRecordPageList(appId, args);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class WxmpTemplateMsgRecordCairoWebManageApiController {
 	public Optional<String> retryWxmpTemplateMsgRecord(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 											@Validated @RequestBody RetryWxmpTemplateMsgRecordArgs args) {
 		String appId = CairoContextHolder.getValue(CairoContextConstants.APP_ID).orElseThrow(() -> new ParamsErrorBusinessException("appId不能为空"));
-		wxmsMessageCairoEndpointUserApiService.retryWxmpTemplateMsgRecord(appId, args);
+		wxmsMessageCairoWebManageApiService.retryWxmpTemplateMsgRecord(appId, args);
 		return Optional.empty();
 	}
 }

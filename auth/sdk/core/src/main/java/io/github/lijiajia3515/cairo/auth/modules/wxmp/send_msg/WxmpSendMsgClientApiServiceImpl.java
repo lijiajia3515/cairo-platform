@@ -27,7 +27,7 @@ public class WxmpSendMsgClientApiServiceImpl implements WxmpSendMsgClientApiServ
 			return Optional.ofNullable(businessResultResponseEntity.getBody()).map(BusinessResult::getData).orElse(null);
 		} catch (Exception e) {
 			log.info("sendMsgByAppUser：", e);
-			throw new ConflictBusinessException("应用用户发送微信消息失败");
+			throw new ConflictBusinessException("应用级用户发送微信消息失败");
 		}
 	}
 

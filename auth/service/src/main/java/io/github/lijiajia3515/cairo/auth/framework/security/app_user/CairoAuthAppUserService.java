@@ -63,7 +63,7 @@ import static io.github.lijiajia3515.cairo.auth.constants.CairoAuthConstants.ROL
 
 
 /**
- * 终端用户认证服务类
+ * 应用级用户认证服务类
  */
 
 @Slf4j
@@ -266,7 +266,7 @@ public class CairoAuthAppUserService {
 			// 自动注册逻辑
 			appUser = cairoAuthCommonService.checkAppUserAutoRegister(account, appId, clientId);
 			if (appUser == null) {
-				throw new AppUserNotFoundException("应用用户不存在");
+				throw new AppUserNotFoundException("应用级用户不存在");
 			}
 		}
 
@@ -337,7 +337,7 @@ public class CairoAuthAppUserService {
 	}
 
 	/**
-	 * 根据应用用户id获取认证用户信息
+	 * 根据应用级用户id获取认证用户信息
 	 *
 	 * @param appId    应用id
 	 * @param clientId 端id
@@ -567,7 +567,7 @@ public class CairoAuthAppUserService {
 	 * 获取账号权限
 	 *
 	 * @param appId  应用id
-	 * @param userId 应用用户id
+	 * @param userId 应用级用户id
 	 * @return 权限集合
 	 */
 	@NewSpan
@@ -608,7 +608,7 @@ public class CairoAuthAppUserService {
 					.collect(Collectors.toSet());
 			}
 
-			// 默认权限+终端用户权限
+			// 默认权限+应用级用户权限
 			List<Criteria> permissionCriteria = new ArrayList<>(2);
 			permissionCriteria.add(Criteria.where(PermissionMongodb.FIELD.DEFAULT_PERMISSION).is(true));
 			if (!permissionIds.isEmpty()) {

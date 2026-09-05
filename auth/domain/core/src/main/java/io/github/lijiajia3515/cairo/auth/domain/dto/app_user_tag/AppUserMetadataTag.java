@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 
 /**
- * 应用用户标签
+ * 应用级用户标签
  */
 @Data
 @Accessors(chain = true)

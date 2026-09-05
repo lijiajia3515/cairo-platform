@@ -44,7 +44,7 @@ public class CairoJwtContextCustomizer implements OAuth2TokenCustomizer<JwtEncod
 					customCairoAccount(context, accountToken);
 				} else if (principal instanceof CairoAuthTenantAppUser) {
 					CairoAuthTenantAppUser userToken = (CairoAuthTenantAppUser) principal;
-					customCairoEndpointUser(context, userToken);
+					customCairoTenantAppUser(context, userToken);
 				}
 			}
 		}
@@ -69,27 +69,27 @@ public class CairoJwtContextCustomizer implements OAuth2TokenCustomizer<JwtEncod
 
 
 
-	void customCairoEndpointUser(JwtEncodingContext context, CairoAuthTenantAppUser endpointUser) {
+	void customCairoTenantAppUser(JwtEncodingContext context, CairoAuthTenantAppUser tenantAppUser) {
 		context.getClaims().claim(CairoOAuthParameterNames.AUTH_TYPE, TENANT_APP_USER.getValue());
-		context.getClaims().claim(CairoOAuthParameterNames.LOGIN_TYPE, endpointUser.getLoginType().getValue());
-		context.getClaims().claim(CairoOAuthParameterNames.TENANT_ID, endpointUser.getTenantId());
-		context.getClaims().claim(CairoOAuthParameterNames.ENDPOINT_ID, endpointUser.getEndpointId());
-		context.getClaims().claim(CairoOAuthParameterNames.USER_ID, endpointUser.getUserId());
-		// context.getClaims().claim(OAuthParameterNames.ACCOUNT_ID, endpointUser.getAccountId());
-		// Optional.ofNullable(endpointUser.getLoginName()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.USERNAME, x));
-		// Optional.ofNullable(endpointUser.getName()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.NAME, x));
-		// Optional.ofNullable(endpointUser.getAvatarUrl()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.AVATAR_URL, x));
-		// Optional.ofNullable(endpointUser.getPhoneNumber()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.PHONE_NUMBER, x));
-		// Optional.ofNullable(endpointUser.getEmail()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.EMAIL, x));
+		context.getClaims().claim(CairoOAuthParameterNames.LOGIN_TYPE, tenantAppUser.getLoginType().getValue());
+		context.getClaims().claim(CairoOAuthParameterNames.TENANT_ID, tenantAppUser.getTenantId());
+		context.getClaims().claim(CairoOAuthParameterNames.ENDPOINT_ID, tenantAppUser.getEndpointId());
+		context.getClaims().claim(CairoOAuthParameterNames.USER_ID, tenantAppUser.getUserId());
+		// context.getClaims().claim(OAuthParameterNames.ACCOUNT_ID, tenantAppUser.getAccountId());
+		// Optional.ofNullable(tenantAppUser.getLoginName()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.USERNAME, x));
+		// Optional.ofNullable(tenantAppUser.getName()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.NAME, x));
+		// Optional.ofNullable(tenantAppUser.getAvatarUrl()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.AVATAR_URL, x));
+		// Optional.ofNullable(tenantAppUser.getPhoneNumber()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.PHONE_NUMBER, x));
+		// Optional.ofNullable(tenantAppUser.getEmail()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.EMAIL, x));
 
-		// Optional.ofNullable(endpointUser.getRoles()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.ROLES, x.stream().map(OAuthJwtConverter::cairoRole2String).collect(Collectors.toList())));
-		// Optional.ofNullable(endpointUser.getDepartments()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.DEPARTMENTS, x.stream().map(OAuthJwtConverter::cairoDepartment2String).collect(Collectors.toList())));
-		// Optional.ofNullable(endpointUser.getTags()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.TAGS, x.stream().map(OAuthJwtConverter::cairoTag2String).collect(Collectors.toList())));
+		// Optional.ofNullable(tenantAppUser.getRoles()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.ROLES, x.stream().map(OAuthJwtConverter::cairoRole2String).collect(Collectors.toList())));
+		// Optional.ofNullable(tenantAppUser.getDepartments()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.DEPARTMENTS, x.stream().map(OAuthJwtConverter::cairoDepartment2String).collect(Collectors.toList())));
+		// Optional.ofNullable(tenantAppUser.getTags()).ifPresent(x -> context.getClaims().claim(OAuthParameterNames.TAGS, x.stream().map(OAuthJwtConverter::cairoTag2String).collect(Collectors.toList())));
 
-		// context.getClaims().claim(OAuthParameterNames.APP_ADMIN, endpointUser.getAppAdmin());
+		// context.getClaims().claim(OAuthParameterNames.APP_ADMIN, tenantAppUser.getAppAdmin());
 
-		// context.getClaims().claim("authorities", endpointUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(" ")));
-		// context.getClaims().claim(OAuthParameterNames.AUTHORITIES, endpointUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
+		// context.getClaims().claim("authorities", tenantAppUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(" ")));
+		// context.getClaims().claim(OAuthParameterNames.AUTHORITIES, tenantAppUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
 	}
 }
 

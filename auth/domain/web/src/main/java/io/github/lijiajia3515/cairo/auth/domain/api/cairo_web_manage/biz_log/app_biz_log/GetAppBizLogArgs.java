@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 获取终端用户业务日志参数
+ * 获取应用级用户业务日志参数
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

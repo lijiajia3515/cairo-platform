@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 已创建应用用户消息
+ * 已创建应用级用户消息
  */
 @Data
 @Accessors(chain = true)
@@ -24,7 +24,7 @@ public class CreatedAppUserMessage implements Serializable {
 	private String appId;
 
 	/**
-	 * 应用用户id
+	 * 应用级用户id
 	 */
 	private String userId;
 

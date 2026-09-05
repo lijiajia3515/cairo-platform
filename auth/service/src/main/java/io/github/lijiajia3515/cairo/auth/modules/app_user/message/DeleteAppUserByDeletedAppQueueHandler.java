@@ -29,7 +29,7 @@ import java.util.Map;
 
 
 /**
- * 删除应用用户（根据已删除的应用）处理器
+ * 删除应用级用户（根据已删除的应用）处理器
  */
 @Slf4j
 @Component
@@ -78,7 +78,7 @@ public class DeleteAppUserByDeletedAppQueueHandler {
 					AppUserMongodb deletedAppUserMongodb = mongoTemplate.findAndRemove(deleteQuery, AppUserMongodb.class, MongodbConstants.Collection.APP_USER);
 					if (deletedAppUserMongodb != null) {
 						mongoTemplate.insert(deletedAppUserMongodb, MongodbConstants.DeletedCollection.APP_USER);
-						log.debug("应用用户删除成功: AppId: {} AppUserId: {} Nickname: {}",
+						log.debug("应用级用户删除成功: AppId: {} AppUserId: {} Nickname: {}",
 							deletedAppUserMongodb.getAppId(),
 							deletedAppUserMongodb.getUserId(),
 							deletedAppUserMongodb.getNickname()
@@ -101,7 +101,7 @@ public class DeleteAppUserByDeletedAppQueueHandler {
 
 					}
 				} catch (Exception e) {
-					log.warn("应用用户删除失败: AppId: {} AppUserId: {} Nickname: {} 异常：{}",
+					log.warn("应用级用户删除失败: AppId: {} AppUserId: {} Nickname: {} 异常：{}",
 						deleteAppUser.getAppId(),
 						deleteAppUser.getUserId(),
 						deleteAppUser.getNickname(),

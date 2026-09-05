@@ -38,7 +38,7 @@ import java.util.Map;
 
 
 /**
- * 创建应用用户根据创建应用 队列处理器
+ * 创建应用级用户根据创建应用 队列处理器
  */
 @Slf4j
 @Component
@@ -124,7 +124,7 @@ public class CreateAppUserByCreatedAppQueueHandler {
 				});
 				if (newUser != null) {
 					try {
-						// 发送创建应用用户消息
+						// 发送创建应用级用户消息
 						rabbitTemplate.convertAndSend(
 							cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 							cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.CREATED_APP_USER,  createdAppMessage.getAppId()),

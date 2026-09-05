@@ -102,7 +102,7 @@ public interface CairoAuthSmsConstants {
 	// ========== 应用级别模板 start ==========
 
 	/**
-	 * 注册应用用户成功通知
+	 * 注册应用级用户成功通知
 	 */
 	interface RegisterAppUserSuccess {
 
@@ -122,7 +122,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 注销应用用户通知
+	 * 注销应用级用户通知
 	 */
 	interface LogoffAppUser {
 		/**
@@ -146,7 +146,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 注销企业用户成功通知
+	 * 注销企业应用级用户成功通知
 	 */
 	interface LogoffAppUserSuccess {
 		/**
@@ -165,7 +165,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 取消注销应用用户成功通知
+	 * 取消注销应用级用户成功通知
 	 */
 	interface UnlogoffAppUser {
 		/**
@@ -230,7 +230,7 @@ public interface CairoAuthSmsConstants {
 
 
 	/**
-	 * 注册企业用户成功通知
+	 * 注册企业应用级用户成功通知
 	 */
 	interface RegisterTenantAppUserSuccess {
 
@@ -254,7 +254,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 注销企业用户通知
+	 * 注销企业应用级用户通知
 	 */
 	interface LogoffTenantAppUser {
 
@@ -285,7 +285,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 注销企业用户成功通知
+	 * 注销企业应用级用户成功通知
 	 */
 	interface LogoffTenantAppUserSuccess {
 
@@ -309,7 +309,7 @@ public interface CairoAuthSmsConstants {
 	}
 
 	/**
-	 * 取消注销企业用户成功通知
+	 * 取消注销企业应用级用户成功通知
 	 */
 	interface UnlogoffTenantAppUser {
 		/**

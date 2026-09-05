@@ -17,7 +17,7 @@ import java.util.*;
 import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.OAuthAppUserAuthorizationGrantTypes.APP_USER_REFRESH_TOKEN;
 
 /**
- * 终端用户刷新令牌模式 authentication converter
+ * 应用级用户刷新令牌模式 authentication converter
  */
 public final class OAuthAppUserRefreshTokenAuthenticationConverter implements AuthenticationConverter {
 

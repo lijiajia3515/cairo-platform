@@ -68,7 +68,7 @@ import static io.github.lijiajia3515.cairo.auth.constants.CairoAuthConstants.ROL
 
 
 /**
- * 企业终端用户认证服务类
+ * 企业应用级用户认证服务类
  */
 
 @Slf4j
@@ -96,7 +96,7 @@ public class CairoAuthTenantAppUserService {
 	 *
 	 * @param appId    应用ID
 	 * @param clientId 客户端ID
-	 * @param tenantId 租户ID
+	 * @param tenantId 企业ID
 	 * @param username 用户名
 	 * @return 认证账号信息
 	 * @throws AccountNotFoundException                                                                 账号不存在异常
@@ -156,7 +156,7 @@ public class CairoAuthTenantAppUserService {
 	/**
 	 * 根据登录名获取账号信息
 	 *
-	 * @param tenantId      租户id
+	 * @param tenantId      企业id
 	 * @param appId         应用id
 	 * @param endpointId 终端ID
 	 * @param clientId      端id
@@ -209,10 +209,10 @@ public class CairoAuthTenantAppUserService {
 			}
 		}
 
-		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
-		endpointUser.setLoginType(loginType);
-		return endpointUser;
+		CairoAuthTenantAppUser tenantAppUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
+		tenantAppUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
+		tenantAppUser.setLoginType(loginType);
+		return tenantAppUser;
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class CairoAuthTenantAppUserService {
 	 * @param loginType 登录方式
 	 * @param appId     应用id
 	 * @param clientId  终端ID
-	 * @param tenantId  租户id
+	 * @param tenantId  企业id
 	 * @param accountId 账号id
 	 * @return 认证账号信息
 	 * @throws AccountNotFoundException                                                                 账号不存在异常
@@ -268,10 +268,10 @@ public class CairoAuthTenantAppUserService {
 			}
 		}
 
-		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
-		endpointUser.setLoginType(loginType);
-		return endpointUser;
+		CairoAuthTenantAppUser tenantAppUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
+		tenantAppUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
+		tenantAppUser.setLoginType(loginType);
+		return tenantAppUser;
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class CairoAuthTenantAppUserService {
 	 *
 	 * @param appId    应用id
 	 * @param clientId 端id
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param userId   用户id
 	 * @return 认证用户信息
 	 * @throws AccountNotFoundException                                                                 账号不存在异常
@@ -310,10 +310,10 @@ public class CairoAuthTenantAppUserService {
 			throw new AccountNotFoundException();
 		}
 
-		CairoAuthTenantAppUser endpointUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
-		endpointUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
-		endpointUser.setLoginType(loginType);
-		return endpointUser;
+		CairoAuthTenantAppUser tenantAppUser = getAuthTenantAppUser(tenantId, appId, endpointId, clientId, user.getUserId());
+		tenantAppUser.setId(TOKEN_ID_PREFIX + CoreConstants.nextIdStr());
+		tenantAppUser.setLoginType(loginType);
+		return tenantAppUser;
 	}
 
 	/**
@@ -321,7 +321,7 @@ public class CairoAuthTenantAppUserService {
 	 *
 	 * @param appId    应用id
 	 * @param clientId 端id
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param userId   账号id
 	 * @return 认证用户信息
 	 * @throws AccountNotFoundException                                                                 账号不存在异常
@@ -338,7 +338,7 @@ public class CairoAuthTenantAppUserService {
 	 *
 	 * @param appId    应用id
 	 * @param clientId 端id
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param userId   账号id
 	 * @return 认证用户信息
 	 * @throws AccountNotFoundException                                                                 账号不存在异常
@@ -453,7 +453,7 @@ public class CairoAuthTenantAppUserService {
 	/**
 	 * 获取账号权限
 	 *
-	 * @param tenantId      租户id
+	 * @param tenantId      企业id
 	 * @param appId         应用id
 	 * @param endpointId 终端ID
 	 * @param userId        账号id
@@ -512,7 +512,7 @@ public class CairoAuthTenantAppUserService {
 	 * 获取账号权限
 	 *
 	 * @param appId    应用id
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param userId   账号id
 	 * @return 权限集合
 	 */

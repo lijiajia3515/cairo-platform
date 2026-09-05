@@ -117,12 +117,12 @@ public enum CairoAuthBusiness implements Business {
 
 	// ====================== app user start ======================
 	/**
-	 * 应用用户不存在
+	 * 应用级用户不存在
 	 */
 	APP_USER_NOT_FOUND("Auth.AppUserNotFound", "用户不存在"),
 
 	/**
-	 * 应用用户被禁用
+	 * 应用级用户被禁用
 	 */
 	APP_USER_DISABLED("Auth.AppUserDisabled", "用户被禁用"),
 	// ====================== app user end ======================

@@ -21,7 +21,7 @@ import java.io.Serializable;
 public class ModifyTenantAppUserTemplateStatusArgs implements Serializable {
 
 	/**
-	 * 企业用户模板ID
+	 * 企业应用级用户模板ID
 	 */
 	@NotNull
 	private String tenantAppUserTemplateId;

@@ -2,6 +2,7 @@ package io.github.lijiajia3515.cairo.gateway.framework.gateway.filter.rewrite;
 
 import io.github.lijiajia3515.cairo.core.business.DefaultBusiness;
 import io.github.lijiajia3515.cairo.core.result.BusinessResult;
+import io.github.lijiajia3515.cairo.gateway.framework.CairoWebExchangeUtils;
 import org.reactivestreams.Publisher;
 import org.springframework.cloud.gateway.filter.factory.rewrite.RewriteFunction;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class BusinessResultFunction implements RewriteFunction<Object, Object> {
 			.code(DefaultBusiness.SUCCESS.code)
 			.message(DefaultBusiness.SUCCESS.message)
 			.data(o)
+			.requestId((String) exchange.getAttribute(CairoWebExchangeUtils.REQUEST_ID_ATTRIBUTE))
 			.build());
 	}
 }

@@ -71,10 +71,10 @@ public class AppUserAuthorizationSubappApiService {
 	}
 
 	/**
-	 * 获取终端用户会话列表
+	 * 获取应用级用户会话列表
 	 *
 	 * @param args 参数
-	 * @return 终端用户会话列表
+	 * @return 应用级用户会话列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -101,10 +101,10 @@ public class AppUserAuthorizationSubappApiService {
 	}
 
 	/**
-	 * 获取终端用户会话分页列表
+	 * 获取应用级用户会话分页列表
 	 *
 	 * @param args 参数
-	 * @return 终端用户会话列表
+	 * @return 应用级用户会话列表
 	 */
 	@NewSpan
 	@BizLog(
@@ -134,7 +134,7 @@ public class AppUserAuthorizationSubappApiService {
 	}
 
 	/**
-	 * 下线终端用户会话
+	 * 下线应用级用户会话
 	 *
 	 * @param appId appId
 	 * @param args  args
@@ -157,10 +157,10 @@ public class AppUserAuthorizationSubappApiService {
 		);
 		AppUserAuthorizationMongodb authorizationMongodb = mongoTemplate.findOne(query, AppUserAuthorizationMongodb.class, MongodbConstants.Collection.APP_USER_AUTHORIZATION);
 		if (authorizationMongodb == null) {
-			throw new ConflictBusinessException("终端用户会话不存在");
+			throw new ConflictBusinessException("应用级用户会话不存在");
 		}
 		if (!AccountAuthorizationStatus.OK.getStatusValue().equals(authorizationMongodb.getStatus())) {
-			throw new ConflictBusinessException("终端用户会话状态异常");
+			throw new ConflictBusinessException("应用级用户会话状态异常");
 		}
 
 
@@ -179,7 +179,7 @@ public class AppUserAuthorizationSubappApiService {
 			} catch (Exception e) {
 				log.debug("offlineAppUserAuthorization", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("下线终端用户会话失败");
+				throw new ConflictBusinessException("下线应用级用户会话失败");
 			}
 		});
 
@@ -189,7 +189,7 @@ public class AppUserAuthorizationSubappApiService {
 	}
 
 	/**
-	 * 下线所有终端用户会话
+	 * 下线所有应用级用户会话
 	 *
 	 * @param appId appId
 	 */
@@ -227,7 +227,7 @@ public class AppUserAuthorizationSubappApiService {
 			} catch (Exception e) {
 				log.debug("offlineAllAppUserAuthorization", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("下线终端用户会话失败");
+				throw new ConflictBusinessException("下线应用级用户会话失败");
 			}
 		});
 

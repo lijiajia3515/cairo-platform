@@ -24,7 +24,7 @@ import java.util.Map;
 
 
 /**
- * 删除应用用户标签根据已删除的应用 队列 处理器
+ * 删除应用级用户标签根据已删除的应用 队列 处理器
  */
 @Slf4j
 @Component
@@ -78,20 +78,20 @@ public class DeleteAppUserTagByDeletedAppQueueHandler {
 
 							if (deletedAppUserTagMongodb != null) {
 								mongoTemplate.insert(deletedAppUserTagMongodb, MongodbConstants.DeletedCollection.APP_USER_TAG);
-								log.debug("应用用户标签删除成功: AppId: {} TagId: {} ",
+								log.debug("应用级用户标签删除成功: AppId: {} TagId: {} ",
 									userTagMongodb.getAppId(),
 									userTagMongodb.getTagId()
 								);
 							}
 							return deletedAppUserTagMongodb;
 						} catch (Exception e) {
-							log.info("删除应用用户标签失败", e);
+							log.info("删除应用级用户标签失败", e);
 							status.setRollbackOnly();
 							return null;
 						}
 					});
 				} catch (Exception e) {
-					log.debug("应用用户标签删除失败:AppId: {} TagId: {}  异常： {}",
+					log.debug("应用级用户标签删除失败:AppId: {} TagId: {}  异常： {}",
 						userTagMongodb.getAppId(),
 						userTagMongodb.getTagId(),
 						e.getMessage()

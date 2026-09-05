@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 企业终端用户级别业务日志
+ * 企业应用级用户级别业务日志
  */
 @Data
 @NoArgsConstructor

@@ -41,7 +41,7 @@ public class TenantClientApiService {
 
 
 	/**
-	 * 租户查询
+	 * 企业查询
 	 *
 	 * @param args 1
 	 * @return 1

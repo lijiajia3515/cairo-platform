@@ -54,12 +54,8 @@ export default async function(code, error, request) {
       }
       break;
     }
-    case 'Auth.OAuth2Error': // 认证错误
-      MessagePlugin.error('认证错误');
-      clearAndLogin();
-      break;
-    case 'Auth.OAuthError': // 刷新Token错误 OAuth2异常包装
-      MessagePlugin.error('刷新Token错误');
+    case 'Auth.OAuthError': // OAuth2 协议层失败（后端已细分 ClientInvalid/GrantNotSupported/GrantInvalid/ParamsBad/ScopeInsufficient）
+      MessagePlugin.error(error.response.data.message);
       clearAndLogin();
       break;
     case 'Auth.Bad': // 凭证错误
@@ -109,9 +105,13 @@ export default async function(code, error, request) {
       window.location.href = window.location.origin + '/login'
       clearAndLogin();
       break;
-    default:
-      MessagePlugin.error(error.response.data.message);
-      return Promise.reject(error.response.data)
+    default: {
+      // 排障追踪号：错误带 requestId 时拼进提示，用户报障可提供给运维查日志（对应 X-Trace-Id）
+      const errData = error.response.data || {};
+      const reqId = errData.requestId;
+      MessagePlugin.error(reqId ? `${errData.message}（${reqId}）` : errData.message);
+      return Promise.reject(errData)
+    }
   }
 }
 
@@ -146,7 +146,8 @@ const getRefreshTokenFunc = debounce(() => {
         // formData.append('scoped', _this.scoped);
 
         formData.append('grant_type', 'app_user:app_user_refresh_token');
-        formData.append('app_user_refresh_token', freshToken.value)
+        // 后端转换器按 OAuth2 标准读 refresh_token 参数（此前发 app_user_refresh_token 导致刷新必然失败）
+        formData.append('refresh_token', freshToken.value)
         const res = await getOauth2Token_api(formData, headers);
         if (res.code == 'Success') {
           MessagePlugin.success('刷新令牌成功');

@@ -17,7 +17,7 @@ import static io.github.lijiajia3515.cairo.jackson.desensitize.DesensitizeType.E
 import static io.github.lijiajia3515.cairo.jackson.desensitize.DesensitizeType.MOBILE_PHONE;
 
 /**
- * 企业终端用户信息
+ * 企业应用级用户信息
  */
 @Data
 @NoArgsConstructor
@@ -40,7 +40,7 @@ public class CairoOAuthTenantAppUserPrincipal implements Serializable {
 	private String snsType;
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

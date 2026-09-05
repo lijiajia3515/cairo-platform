@@ -22,7 +22,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户验证码模式 authentication converter
+ * 应用级用户验证码模式 authentication converter
  */
 public final class OAuthAppUserVerifyCodeAuthenticationConverter implements AuthenticationConverter {
 

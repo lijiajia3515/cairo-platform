@@ -4,7 +4,7 @@ import { appUserApi, manageApi, manageSubappId, manageSubappVersion } from './ur
 
 // 获取当前终端列表
 export const getCurrentEndpointList_api = (params) => {
-    return fetch.endpointPost(appUserApi + '/endpoint/get_endpoint_list', params, {});
+    return fetch.appUserPost(appUserApi + '/endpoint/get_endpoint_list', params, {});
 }
 
 // 终端-分页

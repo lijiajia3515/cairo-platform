@@ -31,7 +31,7 @@ import java.time.Instant;
 import java.util.Base64;
 
 /**
- * endpoint user refresh token generator
+ * app user refresh token generator
  */
 public final class TenantAppUserRefreshTokenGenerator implements OAuth2TokenGenerator<OAuth2RefreshToken> {
 	private final StringKeyGenerator refreshTokenGenerator = new TokenKeyGenerator(Base64.getUrlEncoder().withoutPadding(), 32, "tenant_app_user_rt_");

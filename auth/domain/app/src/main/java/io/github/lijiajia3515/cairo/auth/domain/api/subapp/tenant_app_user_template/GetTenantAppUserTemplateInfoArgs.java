@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * 根据企业用户模板ID获取用户信息参数
+ * 根据企业应用级用户模板ID获取用户信息参数
  */
 @Data
 @NoArgsConstructor
@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class GetTenantAppUserTemplateInfoArgs implements Serializable {
 
 	/**
-	 * 企业用户模板ID
+	 * 企业应用级用户模板ID
 	 */
 	@NotNull
 	private String tenantAppUserTemplateId;

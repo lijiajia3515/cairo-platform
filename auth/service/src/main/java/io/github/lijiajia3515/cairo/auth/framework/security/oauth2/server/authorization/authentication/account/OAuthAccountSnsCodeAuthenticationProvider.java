@@ -83,7 +83,7 @@ public final class OAuthAccountSnsCodeAuthenticationProvider implements Authenti
             throw new OAuth2AuthenticationException(
                     new OAuth2Error(
                             OAuth2ErrorCodes.INVALID_CLIENT,
-                            "client出错",
+                            "客户端注册信息缺失",
                             ERROR_URI
                     )
             );
@@ -105,7 +105,7 @@ public final class OAuthAccountSnsCodeAuthenticationProvider implements Authenti
                 throw new OAuth2AuthenticationException(
                         new OAuth2Error(
                                 OAuth2ErrorCodes.INVALID_SCOPE,
-                                "scope 权限不足",
+                                "请求scope超出客户端许可范围",
                                 ERROR_URI
                         )
                 );
@@ -126,7 +126,7 @@ public final class OAuthAccountSnsCodeAuthenticationProvider implements Authenti
             throw new OAuth2AuthenticationException(
                     new OAuth2Error(
                             OAuth2ErrorCodes.INVALID_GRANT,
-                            "认证身份错误",
+                            "认证主体类型不符",
                             ERROR_URI)
             );
         }

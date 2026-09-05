@@ -34,11 +34,11 @@ public class TenantAppUserTemplateClientApiController {
 
 
 	/**
-	 * 获取企业用户模板列表
+	 * 获取企业应用级用户模板列表
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 企业用户模板列表
+	 * @return 企业应用级用户模板列表
 	 */
 	@PostMapping("/get_tenant_app_user_template_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_app_user_template:all', 'tenant_app_user_template:read')")

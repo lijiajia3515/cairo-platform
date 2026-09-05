@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class TenantAppUser {
 	/**
-	 * 租户标识
+	 * 企业标识
 	 */
 	private String tenantId;
 

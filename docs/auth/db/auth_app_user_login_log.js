@@ -2,8 +2,8 @@ db.getCollection("auth_app_user_login_log").drop();
 db.createCollection("auth_app_user_login_log", {
     validator: {
         $jsonSchema: {
-            title: "终端用户登录日志",
-            description: "终端用户登录日志",
+            title: "应用级用户登录日志",
+            description: "应用级用户登录日志",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -40,8 +40,8 @@ db.createCollection("auth_app_user_login_log", {
                         "null",
                         "string"
                     ],
-                    title: "终端用户TokenId",
-                    description: "必填（可为 null），字符串，应用用户令牌唯一标识"
+                    title: "应用级用户TokenId",
+                    description: "必填（可为 null），字符串，应用级用户令牌唯一标识"
                 },
                 loginTime: {
                     bsonType: "date",

@@ -43,7 +43,7 @@ public class DeleteTenantSubappBizLogByDeletedTenantAppUserQueueHandler {
 		try {
 			log.debug("[deleted_tenant_subapp_biz_log_deleted_tenant_app_user] message handler start");
 			DeletedTenantAppUserMessage deletedUserMessage = objectMapper.readValue(payload, DeletedTenantAppUserMessage.class);
-			log.info("[deleted_tenant_subapp_biz_log_deleted_tenant_app_user] ===> 已删除的企业应用用户： TenantId: {} AppId: {} UserId: {} Nickname: {} EventUserId: {} EventTime: {} ",
+			log.info("[deleted_tenant_subapp_biz_log_deleted_tenant_app_user] ===> 已删除的企业应用级用户： TenantId: {} AppId: {} UserId: {} Nickname: {} EventUserId: {} EventTime: {} ",
 				deletedUserMessage.getTenantId(),
 				deletedUserMessage.getAppId(),
 				deletedUserMessage.getUserId(),

@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 注销应用用户任务
+ * 注销应用级用户任务
  */
 @Slf4j
 @Component
@@ -62,7 +62,7 @@ public class LogoffAppUserSuccessJob {
 			logoffedAppUserMongodbList.forEach(logoffUserMongodb -> {
 				AppUserMongodb logoffSuccessAppUser = transactionTemplate.execute(status -> {
 					try {
-						// 注销应用用户关联账号
+						// 注销应用级用户关联账号
 						Query logoffSuccessUserQuery = Query.query(Criteria
 							.where(AppUserMongodb.FIELD.APP_ID).is(logoffUserMongodb.getAppId())
 							.and(AppUserMongodb.FIELD.USER_ID).is(logoffUserMongodb.getUserId())
@@ -82,7 +82,7 @@ public class LogoffAppUserSuccessJob {
 						}
 						return modifiedUserMongodb;
 					} catch (Exception e) {
-						log.info("注销应用用户失败：", e);
+						log.info("注销应用级用户失败：", e);
 						return null;
 					}
 				});

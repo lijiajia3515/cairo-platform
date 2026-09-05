@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 public class ModifiedTenantAppUserTagStatusMessage implements Serializable {
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

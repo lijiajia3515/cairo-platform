@@ -48,7 +48,7 @@ public class TenantAppUserAuthorizationMapper extends AbstractSecurityMapper imp
 		;
 
 
-		// tenant app endpoint user
+		// tenant app user
 		if (mongodb.getAccessToken() != null) {
 			TenantAppUserAuthorizationMongodb.AccessToken accessToken = mongodb.getAccessToken();
 			OAuthTenantAppUserAccessToken token = new OAuthTenantAppUserAccessToken(

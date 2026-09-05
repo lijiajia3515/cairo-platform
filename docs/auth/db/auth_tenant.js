@@ -2,8 +2,8 @@ db.getCollection("auth_tenant").drop();
 db.createCollection("auth_tenant", {
     validator: {
         $jsonSchema: {
-            title: "租户",
-            description: "租户",
+            title: "企业",
+            description: "企业",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -15,8 +15,8 @@ db.createCollection("auth_tenant", {
                         "null",
                         "string"
                     ],
-                    title: "租户ID",
-                    description: "必填（可为 null），字符串，所属租户的唯一标识"
+                    title: "企业ID",
+                    description: "必填（可为 null），字符串，所属企业的唯一标识"
                 },
                 tenantName: {
                     bsonType: [
@@ -24,7 +24,7 @@ db.createCollection("auth_tenant", {
                         "string"
                     ],
                     title: "名称",
-                    description: "必填（可为 null），字符串，租户名称"
+                    description: "必填（可为 null），字符串，企业名称"
                 },
                 aliasName: {
                     bsonType: [

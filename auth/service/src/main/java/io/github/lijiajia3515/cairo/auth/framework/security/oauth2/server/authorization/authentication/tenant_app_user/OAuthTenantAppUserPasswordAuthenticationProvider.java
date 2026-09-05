@@ -47,7 +47,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户密码模式 authentication provider
+ * 应用级用户密码模式 authentication provider
  */
 @Slf4j
 public final class OAuthTenantAppUserPasswordAuthenticationProvider implements AuthenticationProvider {
@@ -84,7 +84,7 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -106,7 +106,7 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -114,7 +114,7 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 			authorizedScopes = new LinkedHashSet<>(token.getScopes());
 		}
 
-		CairoTenantAppUserPasswordAuthenticationToken endpointUserPasswordAuthenticationToken = new CairoTenantAppUserPasswordAuthenticationToken(
+		CairoTenantAppUserPasswordAuthenticationToken tenantAppUserPasswordAuthenticationToken = new CairoTenantAppUserPasswordAuthenticationToken(
 			token.getTenantId(),
 			registeredClient.getAppId(),
 			registeredClient.getEndpointId(),
@@ -123,22 +123,22 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 			token.getPassword()
 		);
 
-		Authentication endpintUserAuthentication = authenticationManager.authenticate(endpointUserPasswordAuthenticationToken);
+		Authentication tenantAppUserAuthentication = authenticationManager.authenticate(tenantAppUserPasswordAuthenticationToken);
 
-		if (!(endpintUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
+		if (!(tenantAppUserAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
-		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) endpintUserAuthentication.getPrincipal();
+		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) tenantAppUserAuthentication.getPrincipal();
 
 		OAuth2Authorization.Builder builder = OAuth2Authorization.withRegisteredClient(registeredClient);
 		OAuth2Authorization authorization = builder.authorizationGrantType(ACCOUNT_PASSWORD)
-			.principalName(endpintUserAuthentication.getName())
-			.attribute(Principal.class.getName(), endpintUserAuthentication)
+			.principalName(tenantAppUserAuthentication.getName())
+			.attribute(Principal.class.getName(), tenantAppUserAuthentication)
 			.authorizedScopes(authorizedScopes)
 			.build();
 
@@ -150,7 +150,7 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 			.authorization(authorization)
 			.authorizedScopes(authorization.getAuthorizedScopes())
 			.authorizationGrantType(ACCOUNT_PASSWORD)
-			.authorizationGrant(endpintUserAuthentication);
+			.authorizationGrant(tenantAppUserAuthentication);
 
 		Map<String, Object> additionalParameters = new HashMap<>();
 		additionalParameters.put(CairoOAuthParameterNames.AUTH_TYPE, TENANT_APP_USER.getValue());
@@ -171,13 +171,13 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the endpoint user access token.",
+					"The token generator failed to generate the app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Generated tenant app endpoint user access token");
+			log.trace("Generated tenant app user access token");
 		}
 
 		OAuthTenantAppUserAccessToken accessToken = new OAuthTenantAppUserAccessToken(
@@ -211,13 +211,13 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the tenant app endpoint user refresh token.",
+						"The token generator failed to generate the tenant app user refresh token.",
 						ERROR_URI)
 				);
 			}
 
 			if (log.isTraceEnabled()) {
-				log.trace("Generated tenant app endpoint user refresh token");
+				log.trace("Generated tenant app user refresh token");
 			}
 
 			refreshToken = (OAuthTenantAppUserRefreshToken) generatedRefreshToken;
@@ -229,11 +229,11 @@ public final class OAuthTenantAppUserPasswordAuthenticationProvider implements A
 		this.authorizationService.save(authorization);
 
 		if (log.isTraceEnabled()) {
-			log.trace("Saved tenant app endpoint user authorization");
+			log.trace("Saved tenant app user authorization");
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Authenticated tenant app endpoint user token request");
+			log.trace("Authenticated tenant app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, refreshToken, additionalParameters);

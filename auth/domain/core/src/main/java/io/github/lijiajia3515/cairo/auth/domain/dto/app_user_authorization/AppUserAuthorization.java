@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * 终端用户会话信息
+ * 应用级用户会话信息
  */
 @Data
 @Accessors(chain = true)

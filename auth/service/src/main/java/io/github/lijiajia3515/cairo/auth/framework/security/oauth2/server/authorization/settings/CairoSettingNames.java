@@ -68,7 +68,7 @@ public class CairoSettingNames {
          */
         public static final String REUSE_ACCOUNT_REFRESH_TOKENS = TOKEN_SETTINGS_NAMESPACE.concat("reuse-account-refresh-tokens");
 
-		// app endpoint user
+		// app user
 		/**
 		 * appUserAccessTokenFormat
 		 */
@@ -89,7 +89,7 @@ public class CairoSettingNames {
 		 */
 		public static final String REUSE_APP_USER_REFRESH_TOKENS = TOKEN_SETTINGS_NAMESPACE.concat("reuse-app-user-refresh-tokens");
 
-		// tenant app endpoint user
+		// tenant app user
 
         /**
          * TenantAppUserAccessTokenFormat

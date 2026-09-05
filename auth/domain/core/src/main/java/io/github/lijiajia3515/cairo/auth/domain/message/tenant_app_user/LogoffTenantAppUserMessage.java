@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 注销企业应用用户消息
+ * 注销企业应用级用户消息
  */
 @Data
 @Accessors(chain = true)

@@ -34,10 +34,10 @@ public class TenantAppClientApiController {
 	private final TenantAppClientApiService tenantAppClientApiService;
 
 	/**
-	 * 获取租户列表
+	 * 获取企业列表
 	 *
 	 * @param args 参数
-	 * @return 租户 列表模式
+	 * @return 企业 列表模式
 	 */
 	@PostMapping("/get_tenant_app_list")
 	@PreAuthorize("hasAnyAuthority('tenant_app:all', 'tenant_app:read')")
@@ -47,10 +47,10 @@ public class TenantAppClientApiController {
 	}
 
 	/**
-	 * 获取租户分页列表
+	 * 获取企业分页列表
 	 *
 	 * @param args 参数
-	 * @return 租户 分页模式
+	 * @return 企业 分页模式
 	 */
 	@PostMapping("/get_tenant_app_page_list")
 	@PreAuthorize("hasAnyAuthority('tenant_app:all', 'tenant_app:read')")

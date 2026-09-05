@@ -11,20 +11,20 @@ import java.util.List;
 public interface TenantClientApiService {
 
 	/**
-	 * 查询租户列表
+	 * 查询企业列表
 	 * 需要权限: tenant:read | tenant:all
 	 *
 	 * @param args 参数
-	 * @return 租户列表
+	 * @return 企业列表
 	 */
 	List<Tenant> getTenantList(GetTenantArgs args);
 
 	/**
-	 * 获取单租户
+	 * 获取单企业
 	 * 需要权限: tenant:read | tenant:all
 	 *
 	 * @param args 参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	Tenant getTenantInfo(GetTenantInfoArgs args);
 

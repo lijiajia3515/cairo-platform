@@ -98,7 +98,7 @@ public class TenantAppUserAuthenticationFilter extends OncePerRequestFilter {
 			authenticationRequest = this.tenantAppUserAuthenticationTokenResolver.resolve(request);
 		}
 		catch (AuthenticationException invalid) {
-			this.logger.trace("Sending to authentication entry point since failed to resolve app endpoint user authenticationRequest", invalid);
+			this.logger.trace("Sending to authentication entry point since failed to resolve app user authenticationRequest", invalid);
 			this.authenticationEntryPoint.commence(request, response, invalid);
 			return;
 		}

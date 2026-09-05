@@ -3,7 +3,7 @@ package io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 
 /**
- * 应用级终端用户授权
+ * 应用级应用级用户授权
  */
 public interface OAuthAppUserAuthorizationGrantTypes {
 	AuthorizationGrantType ACCOUNT_PASSWORD = new AuthorizationGrantType("app_user:password");

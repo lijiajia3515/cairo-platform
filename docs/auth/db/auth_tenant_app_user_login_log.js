@@ -2,8 +2,8 @@ db.getCollection("auth_tenant_app_user_login_log").drop();
 db.createCollection("auth_tenant_app_user_login_log", {
     validator: {
         $jsonSchema: {
-            title: "企业终端用户登录日志",
-            description: "企业终端用户登录日志",
+            title: "企业应用级用户登录日志",
+            description: "企业应用级用户登录日志",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -17,8 +17,8 @@ db.createCollection("auth_tenant_app_user_login_log", {
                 },
                 tenantId: {
                     bsonType: "string",
-                    title: "租户ID",
-                    description: "必填，字符串，所属租户的唯一标识"
+                    title: "企业ID",
+                    description: "必填，字符串，所属企业的唯一标识"
                 },
                 appId: {
                     bsonType: "string",
@@ -45,8 +45,8 @@ db.createCollection("auth_tenant_app_user_login_log", {
                         "null",
                         "string"
                     ],
-                    title: "企业终端用户TokenId",
-                    description: "必填（可为 null），字符串，租户应用用户令牌唯一标识"
+                    title: "企业应用级用户TokenId",
+                    description: "必填（可为 null），字符串，企业应用级用户令牌唯一标识"
                 },
                 loginTime: {
                     bsonType: "date",

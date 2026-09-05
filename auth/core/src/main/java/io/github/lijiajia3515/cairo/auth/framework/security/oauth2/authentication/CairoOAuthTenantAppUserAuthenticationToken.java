@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * oauth tenant app endpoint user authentication token
+ * oauth tenant app user authentication token
  */
 public class CairoOAuthTenantAppUserAuthenticationToken extends AbstractOAuth2TokenAuthenticationToken<OAuthTenantAppUserAccessToken> {
 

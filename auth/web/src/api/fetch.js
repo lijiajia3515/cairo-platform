@@ -11,7 +11,7 @@ const fetch = {
 
         return request.post(url, params, config);
     },
-    endpointPost(url, params, headers = {}) {
+    appUserPost(url, params, headers = {}) {
         let config = {
             headers: headers
         };

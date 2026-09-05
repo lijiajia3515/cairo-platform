@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * [tenant_subapp_user/api] tenant app endpoint user authorization service
+ * [tenant_subapp_user/api] tenant app user authorization service
  */
 @Slf4j
 @Validated
@@ -36,7 +36,7 @@ public class TenantAppUserAuthorizationTenantSubappApiController {
 	private final TenantAppUserAuthorizationTenantSubappApiService tenantAppUserAuthorizationTenantSubappApiService;
 
 	/**
-	 * 获取企业用户会话list
+	 * 获取企业应用级用户会话list
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -51,7 +51,7 @@ public class TenantAppUserAuthorizationTenantSubappApiController {
 	}
 
 	/**
-	 * 获取企业用户会话分页集合
+	 * 获取企业应用级用户会话分页集合
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -66,7 +66,7 @@ public class TenantAppUserAuthorizationTenantSubappApiController {
 	}
 
 	/**
-	 * 下线企业用户会话
+	 * 下线企业应用级用户会话
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -83,7 +83,7 @@ public class TenantAppUserAuthorizationTenantSubappApiController {
 	}
 
 	/**
-	 * 下线所有企业用户会话
+	 * 下线所有企业应用级用户会话
 	 *
 	 * @param principal 凭证
 	 * @return empty

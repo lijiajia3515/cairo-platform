@@ -75,8 +75,8 @@ import io.github.lijiajia3515.cairo.auth.modules.tenant_app_role.TenantAppRoleAp
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_role.TenantAppRoleApiClientFeignClientFallbackFactory;
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.client.TenantAppUserClientApiFeignClient;
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.client.TenantAppUserClientApiFeignClientFallbackFactory;
-import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.tenant_endpoint.TenantAppUserTenantAppUserApiRequestFeignClient;
-import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.tenant_endpoint.TenantAppUserTenantAppUserApiRequestFeignClientFallbackFactory;
+import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.tenant_app_user.TenantAppUserTenantAppUserApiRequestFeignClient;
+import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user.tenant_app_user.TenantAppUserTenantAppUserApiRequestFeignClientFallbackFactory;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

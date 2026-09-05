@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * [cairo_endpoint_user/api] app endpoint user login log service
+ * [cairo_endpoint_user/api] app user login log service
  */
 @Slf4j
 @Validated

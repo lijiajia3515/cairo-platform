@@ -1,6 +1,8 @@
 package io.github.lijiajia3515.cairo.http.converter;
 
 
+import io.github.lijiajia3515.cairo.core.result.BusinessResult;
+import io.github.lijiajia3515.cairo.web.utils.BusinessResultEnricher;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -68,6 +70,10 @@ public class AbstractHttpMessageHandler implements BeanPostProcessor {
 	@SuppressWarnings(value = {"unchecked", "rawtypes"})
 	protected void writeWithMessageConverters(@Nullable Object value, ServletServerHttpRequest inputMessage, ServletServerHttpResponse outputMessage)
 		throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
+		// 安全链 EntryPoint / AccessDeniedHandler / 拦截器的直写出口统一补 requestId / retryable
+		if (value instanceof BusinessResult<?> result) {
+			BusinessResultEnricher.enrich(result, inputMessage.getServletRequest(), outputMessage.getServletResponse());
+		}
 		Object body = value;
 		Class<?> valueType = Objects.requireNonNull(value).getClass();
 		Type targetType = valueType;

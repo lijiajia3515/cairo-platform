@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * [subapp_user/api] app endpoint user authorization service
+ * [subapp_user/api] app user authorization service
  */
 @Slf4j
 @Validated
@@ -37,7 +37,7 @@ public class AppUserAuthorizationSubappApiController {
 	private final AppUserAuthorizationSubappApiService subappUserAuthorizationSubappUserApiService;
 
 	/**
-	 * 获取终端用户会话list
+	 * 获取应用级用户会话list
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -51,7 +51,7 @@ public class AppUserAuthorizationSubappApiController {
 	}
 
 	/**
-	 * 获取终端用户会话分页集合
+	 * 获取应用级用户会话分页集合
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -65,7 +65,7 @@ public class AppUserAuthorizationSubappApiController {
 	}
 
 	/**
-	 * 下线终端用户会话
+	 * 下线应用级用户会话
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -81,7 +81,7 @@ public class AppUserAuthorizationSubappApiController {
 	}
 
 	/**
-	 * 下线所有终端用户会话
+	 * 下线所有应用级用户会话
 	 *
 	 * @param principal 凭证
 	 * @return empty

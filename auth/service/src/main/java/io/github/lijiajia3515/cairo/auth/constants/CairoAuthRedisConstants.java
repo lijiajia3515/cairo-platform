@@ -30,18 +30,18 @@ public class CairoAuthRedisConstants {
 
 
         /**
-         * 认证企业用户缓存key
+         * 认证企业应用级用户缓存key
          */
         String AUTH_TENANT_APP_USER = "auth:tenant_app_user";
 
 		/**
-		 * 认证应用用户缓存key
+		 * 认证应用级用户缓存key
 		 */
 		String AUTH_APP_USER = "auth:app_user";
 
 
         /**
-         * 租户缓存key
+         * 企业缓存key
          */
         String TENANT = "tenant";
 

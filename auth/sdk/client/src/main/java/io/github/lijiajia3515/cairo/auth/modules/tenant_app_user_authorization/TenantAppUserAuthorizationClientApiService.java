@@ -9,7 +9,7 @@ public interface TenantAppUserAuthorizationClientApiService {
 
 
 	/**
-	 * 获取企业终端用户认证
+	 * 获取企业应用级用户认证
 	 * 需要权限 tenant_app_user_authorization:get_tenant_app_user_authorization | tenant_app_user_authorization:all
 	 *
 	 * @param args args
@@ -18,7 +18,7 @@ public interface TenantAppUserAuthorizationClientApiService {
 	TenantAppUserAuthorizationModel getTenantAppUserAuthorization(GetTenantAppUserAuthorizationArgs args);
 
 	/**
-	 * 获取企业终端用户认证
+	 * 获取企业应用级用户认证
 	 * 需要权限 tenant_app_user_authorization:get_tenant_app_user_authorization | tenant_app_user_authorization:all
 	 *
 	 * @param args args

@@ -47,7 +47,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 终端用户密码模式 authentication provider
+ * 应用级用户密码模式 authentication provider
  */
 @Slf4j
 public final class OAuthAppUserPasswordAuthenticationProvider implements AuthenticationProvider {
@@ -84,7 +84,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -106,7 +106,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -114,7 +114,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 			authorizedScopes = new LinkedHashSet<>(token.getScopes());
 		}
 
-		CairoAppUserPasswordAuthenticationToken endpointUserPasswordAuthenticationToken = new CairoAppUserPasswordAuthenticationToken(
+		CairoAppUserPasswordAuthenticationToken appUserPasswordAuthenticationToken = new CairoAppUserPasswordAuthenticationToken(
 			registeredClient.getAppId(),
 			registeredClient.getEndpointId(),
 			registeredClient.getClientId(),
@@ -122,22 +122,22 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 			token.getPassword()
 		);
 
-		Authentication endpointUserAuthentication = authenticationManager.authenticate(endpointUserPasswordAuthenticationToken);
+		Authentication appUserAuthentication = authenticationManager.authenticate(appUserPasswordAuthenticationToken);
 
-		if (!(endpointUserAuthentication.getPrincipal() instanceof CairoAuthAppUser)) {
+		if (!(appUserAuthentication.getPrincipal() instanceof CairoAuthAppUser)) {
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
-		CairoAuthAppUser user = (CairoAuthAppUser) endpointUserAuthentication.getPrincipal();
+		CairoAuthAppUser user = (CairoAuthAppUser) appUserAuthentication.getPrincipal();
 
 		OAuth2Authorization.Builder builder = OAuth2Authorization.withRegisteredClient(registeredClient);
 		OAuth2Authorization authorization = builder.authorizationGrantType(ACCOUNT_PASSWORD)
-			.principalName(endpointUserAuthentication.getName())
-			.attribute(Principal.class.getName(), endpointUserAuthentication)
+			.principalName(appUserAuthentication.getName())
+			.attribute(Principal.class.getName(), appUserAuthentication)
 			.authorizedScopes(authorizedScopes)
 			.build();
 
@@ -149,7 +149,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 			.authorization(authorization)
 			.authorizedScopes(authorization.getAuthorizedScopes())
 			.authorizationGrantType(ACCOUNT_PASSWORD)
-			.authorizationGrant(endpointUserAuthentication);
+			.authorizationGrant(appUserAuthentication);
 
 		Map<String, Object> additionalParameters = new HashMap<>();
 		additionalParameters.put(CairoOAuthParameterNames.AUTH_TYPE, APP_USER.getValue());
@@ -169,13 +169,13 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the app endpoint user access token.",
+					"The token generator failed to generate the app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Generated app endpoint user access token");
+			log.trace("Generated app user access token");
 		}
 
 		OAuthAppUserAccessToken accessToken = new OAuthAppUserAccessToken(
@@ -208,7 +208,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the app endpoint user refresh token.",
+						"The token generator failed to generate the app user refresh token.",
 						ERROR_URI)
 				);
 			}
@@ -226,7 +226,7 @@ public final class OAuthAppUserPasswordAuthenticationProvider implements Authent
 		this.authorizationService.save(authorization);
 
 		if (log.isTraceEnabled()) {
-			log.trace("Saved app endpoint user authorization");
+			log.trace("Saved app user authorization");
 		}
 
 		if (log.isTraceEnabled()) {

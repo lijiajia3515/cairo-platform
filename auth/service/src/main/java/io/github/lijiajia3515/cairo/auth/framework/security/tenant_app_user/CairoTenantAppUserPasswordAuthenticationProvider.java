@@ -31,7 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 /**
- * cairo tenant app endpoint user password authentication provider
+ * cairo tenant app user password authentication provider
  */
 @Slf4j
 @Setter
@@ -64,7 +64,7 @@ public class CairoTenantAppUserPasswordAuthenticationProvider implements Authent
 	}
 
 	protected void doAfterPropertiesSet() throws Exception {
-		Assert.notNull(this.cairoAuthTenantAppUserService, "A cairoAuthEndpointUserService must be set");
+		Assert.notNull(this.cairoAuthTenantAppUserService, "A cairoAuthTenantAppUserService must be set");
 		Assert.notNull(this.passwordEncoder, "A passwordEncoder source must be set");
 		Assert.notNull(this.preAuthenticationChecks, "A preAuthenticationChecks must be set");
 		Assert.notNull(this.postAuthenticationChecks, "A postAuthenticationChecks must be set");
@@ -87,7 +87,7 @@ public class CairoTenantAppUserPasswordAuthenticationProvider implements Authent
 		try {
 			user = cairoAuthTenantAppUserService.loadTenantAppUserByUsername(LoginType.PASSWORD, token.getTenantId(), token.getAppId(), token.getEndpointId(), token.getClientId(), token.getUsername());
 			if (user == null) {
-				throw new InternalAuthenticationServiceException("cairoAuthEndpointUserService returned null, which is an interface contract violation");
+				throw new InternalAuthenticationServiceException("cairoAuthTenantAppUserService returned null, which is an interface contract violation");
 			}
 		} catch (TenantNotFoundException | TenantDisabledException | AppNotFoundException | TenantAppNotApplyException |
                  AppDisabledException | AccountNotFoundException | TenantAppUserNotFoundException e) {
@@ -125,7 +125,7 @@ public class CairoTenantAppUserPasswordAuthenticationProvider implements Authent
 		UsernamePasswordAuthenticationToken result = UsernamePasswordAuthenticationToken.authenticated(principal,
 			authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
 		result.setDetails(authentication.getDetails());
-		log.debug("Authenticated tenant app endpoint user");
+		log.debug("Authenticated tenant app user");
 		return result;
 	}
 
@@ -133,7 +133,7 @@ public class CairoTenantAppUserPasswordAuthenticationProvider implements Authent
 		if (authentication.getCredentials() == null || authentication.getCredentials().isBlank()) {
 			log.debug("Failed to authenticate since no credentials provided");
 			throw new BadCredentialsException(this.messages
-				.getMessage("AbstractUserDetailsAuthenticationProvider.emptyCredentials", "密码不能未空"));
+				.getMessage("AbstractUserDetailsAuthenticationProvider.emptyCredentials", "密码不能为空"));
 		}
 		if (user.getAccountPassword() == null || user.getAccountPassword().isBlank()) {
 			log.debug("user password is empty");

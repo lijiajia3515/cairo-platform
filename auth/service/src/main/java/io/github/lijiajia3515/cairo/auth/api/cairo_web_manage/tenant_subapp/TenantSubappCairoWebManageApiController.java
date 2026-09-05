@@ -35,7 +35,7 @@ import java.util.Optional;
 @BusinessResultBody
 public class TenantSubappCairoWebManageApiController {
 
-	private final TenantSubappCairoWebManageApiService tenantAppCairoEndpointUserApiService;
+	private final TenantSubappCairoWebManageApiService tenantSubappCairoWebManageApiService;
 
 	/**
 	 * 获取企业子应用列表
@@ -47,7 +47,7 @@ public class TenantSubappCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:read')")
 	public List<MetadataTenantSubapp> getTenantSubappList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																  @Validated @RequestBody GetTenantSubappArgs args) {
-		return tenantAppCairoEndpointUserApiService.getTenantSubappList(args);
+		return tenantSubappCairoWebManageApiService.getTenantSubappList(args);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class TenantSubappCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:read')")
 	public Page<MetadataTenantSubapp> getTenantSubappPageList(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 																	  @Validated @RequestBody GetTenantSubappArgs args) {
-		return tenantAppCairoEndpointUserApiService.getTenantSubappPageList(args);
+		return tenantSubappCairoWebManageApiService.getTenantSubappPageList(args);
 	}
 
 
@@ -75,7 +75,7 @@ public class TenantSubappCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:create_tenant_subapp')")
 	public Optional<String> createTenantSubapp(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 												   @Validated @RequestBody CreateTenantSubappArgs args) {
-		tenantAppCairoEndpointUserApiService.createTenantSubapp(args);
+		tenantSubappCairoWebManageApiService.createTenantSubapp(args);
 		return Optional.empty();
 	}
 
@@ -90,7 +90,7 @@ public class TenantSubappCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:modify_tenant_subapp_status')")
 	public Optional<String> modifyTenantSubappStatus(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 														 @Validated @RequestBody ModifyTenantSubappStatusArgs args) {
-		tenantAppCairoEndpointUserApiService.modifyTenantSubappStatus(args);
+		tenantSubappCairoWebManageApiService.modifyTenantSubappStatus(args);
 		return Optional.empty();
 	}
 
@@ -104,7 +104,7 @@ public class TenantSubappCairoWebManageApiController {
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_subapp:all', 'tenant_subapp:delete_tenant_subapp')")
 	public Optional<String> deleteTenantSubapp(@AuthenticationPrincipal CairoOAuthSubappUserPrincipal principal,
 												   @Validated @RequestBody DeleteTenantSubappArgs args) {
-		tenantAppCairoEndpointUserApiService.deleteTenantSubapp(args);
+		tenantSubappCairoWebManageApiService.deleteTenantSubapp(args);
 		return Optional.empty();
 	}
 

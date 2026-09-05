@@ -22,7 +22,7 @@ public class TenantAppUserAuthorizationMongodbMapper extends AbstractSecurityMap
 		Authentication accountAuthentication = (Authentication) oAuth2Authorization.getAttributes().get(Principal.class.getName());
 
 		if (accountAuthentication == null || !(accountAuthentication.getPrincipal() instanceof CairoAuthTenantAppUser)) {
-			throw new RuntimeException("不合法的认证,无法转换成tenant app endpoint user authorization");
+			throw new RuntimeException("不合法的认证,无法转换成tenant app user authorization");
 		}
 		CairoAuthTenantAppUser user = (CairoAuthTenantAppUser) accountAuthentication.getPrincipal();
 

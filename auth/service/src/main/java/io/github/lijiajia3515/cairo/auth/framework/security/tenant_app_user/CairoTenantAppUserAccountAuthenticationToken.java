@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 @Getter
 public class CairoTenantAppUserAccountAuthenticationToken extends AbstractAuthenticationToken {
 	/**
-	 * 租户ID
+	 * 企业ID
 	 */
 	private final String tenantId;
 

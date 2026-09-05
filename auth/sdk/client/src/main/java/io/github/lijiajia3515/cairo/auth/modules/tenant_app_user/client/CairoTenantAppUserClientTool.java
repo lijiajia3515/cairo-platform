@@ -33,7 +33,7 @@ public class CairoTenantAppUserClientTool {
 	/**
 	 * 获取基础用户map，根据user metadata mongodb
 	 *
-	 * @param tenantId 租户ID
+	 * @param tenantId 企业ID
 	 * @param appId    应用ID
 	 * @param userIds  用户ID
 	 * @return map类型用户对象
@@ -60,7 +60,7 @@ public class CairoTenantAppUserClientTool {
 	/**
 	 * 获取基础用户map，根据user metadata mongodb
 	 *
-	 * @param tenantId 租户ID
+	 * @param tenantId 企业ID
 	 * @param appId    应用ID
 	 * @param metadata metadata
 	 * @return map类型用户对象
@@ -89,7 +89,7 @@ public class CairoTenantAppUserClientTool {
 	/**
 	 * 获取用户map，根据user metadata mongodb
 	 *
-	 * @param tenantId     租户ID
+	 * @param tenantId     企业ID
 	 * @param appId        应用ID
 	 * @param metadata     metadata
 	 * @param extensionMap ext插件

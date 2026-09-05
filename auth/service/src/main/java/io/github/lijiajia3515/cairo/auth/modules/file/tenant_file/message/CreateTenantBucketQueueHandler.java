@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 /**
- * 创建租户存储桶队列处理
+ * 创建企业存储桶队列处理
  */
 @Slf4j
 @Component

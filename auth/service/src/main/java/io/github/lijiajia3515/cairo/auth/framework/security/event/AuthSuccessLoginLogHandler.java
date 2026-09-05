@@ -120,11 +120,11 @@ public class AuthSuccessLoginLogHandler {
 			// oauth account access token 认证成功
 			service.updateCairoOAuthAccount(clientIP, userAgent, loginTime, (CairoOAuthAccountAuthenticationToken) event.getAuthentication());
 		} else if (event.getAuthentication() instanceof CairoOAuthAppUserAuthenticationToken) {
-			// oauth app endpoint user access token 认证成功
+			// oauth app user access token 认证成功
 			service.updateCairoOAuthAppUser(clientIP, userAgent, loginTime, (CairoOAuthAppUserAuthenticationToken) event.getAuthentication());
 		} else if (event.getAuthentication() instanceof CairoOAuthTenantAppUserAuthenticationToken) {
 			// oauth endpoint user access token 认证成功
-			service.updateCairoOAuthEndpointUser(clientIP, userAgent, loginTime, (CairoOAuthTenantAppUserAuthenticationToken) event.getAuthentication());
+			service.updateCairoOAuthTenantAppUser(clientIP, userAgent, loginTime, (CairoOAuthTenantAppUserAuthenticationToken) event.getAuthentication());
 		} else {
 			log.warn("login warn unsupported: type: {} principal: {} timestamp: {}", event.getAuthentication().getClass().getName(), event.getAuthentication().getName(), event.getTimestamp());
 		}
@@ -171,8 +171,8 @@ public class AuthSuccessLoginLogHandler {
 				CairoAuthAppUser authAppUser = (CairoAuthAppUser) token.getPrincipal();
 				updateAppUser(logId, authAppUser.getAppId(), authAppUser.getEndpointId(), authAppUser.getClientId(), authAppUser.getUserId(), loginTime, ip, userAgent, authAppUser.getLoginType(), authAppUser.getSnsType(), authAppUser.getId());
 			} else if (token.getPrincipal() instanceof CairoAuthTenantAppUser) {
-				CairoAuthTenantAppUser endpointUser = (CairoAuthTenantAppUser) token.getPrincipal();
-				updateTenantAppUser(logId, endpointUser.getTenantId(), endpointUser.getAppId(), endpointUser.getEndpointId(), endpointUser.getClientId(), endpointUser.getUserId(), loginTime, ip, userAgent, endpointUser.getLoginType(), endpointUser.getSnsType(), endpointUser.getId());
+				CairoAuthTenantAppUser tenantAppUser = (CairoAuthTenantAppUser) token.getPrincipal();
+				updateTenantAppUser(logId, tenantAppUser.getTenantId(), tenantAppUser.getAppId(), tenantAppUser.getEndpointId(), tenantAppUser.getClientId(), tenantAppUser.getUserId(), loginTime, ip, userAgent, tenantAppUser.getLoginType(), tenantAppUser.getSnsType(), tenantAppUser.getId());
 			} else {
 				log.warn("ignore token type: type: {} principal: {} timestamp: {}", token.getClass().getName(), token.getName(), loginTime);
 			}
@@ -232,22 +232,22 @@ public class AuthSuccessLoginLogHandler {
 					}
 					return;
 				}
-				// 终端用户认证
+				// 应用级用户认证
 				if (APP_USER.getValue().equals(authType)) {
-					CairoOAuthAppUserAuthenticationToken endpointUserAuthenticationToken = simpleAppUserAuthenticationConverter.convert(jwtToken);
-					if (endpointUserAuthenticationToken != null) {
-						CairoOAuthAppUserPrincipal endpointUserPrincipal = endpointUserAuthenticationToken.getPrincipal();
-						updateAppUser(logId, endpointUserPrincipal.getAppId(), endpointUserPrincipal.getEndpointId(), endpointUserPrincipal.getClientId(), endpointUserPrincipal.getUserId(), loginTime, ip, userAgent, endpointUserPrincipal.getLoginType(), endpointUserPrincipal.getSnsType(), endpointUserPrincipal.getId());
+					CairoOAuthAppUserAuthenticationToken appUserAuthenticationToken = simpleAppUserAuthenticationConverter.convert(jwtToken);
+					if (appUserAuthenticationToken != null) {
+						CairoOAuthAppUserPrincipal appUserPrincipal = appUserAuthenticationToken.getPrincipal();
+						updateAppUser(logId, appUserPrincipal.getAppId(), appUserPrincipal.getEndpointId(), appUserPrincipal.getClientId(), appUserPrincipal.getUserId(), loginTime, ip, userAgent, appUserPrincipal.getLoginType(), appUserPrincipal.getSnsType(), appUserPrincipal.getId());
 					}
 					return;
 				}
 
-				// 企业终端用户认证
+				// 企业应用级用户认证
 				if (TENANT_APP_USER.getValue().equals(authType)) {
-					CairoOAuthTenantAppUserAuthenticationToken endpointUserAuthenticationToken = simpleTenantAppUserAuthenticationConverter.convert(jwtToken);
-					if (endpointUserAuthenticationToken != null) {
-						CairoOAuthTenantAppUserPrincipal endpointUserPrincipal = endpointUserAuthenticationToken.getPrincipal();
-						updateTenantAppUser(logId, endpointUserPrincipal.getTenantId(), endpointUserPrincipal.getAppId(), endpointUserPrincipal.getEndpointId(), endpointUserPrincipal.getClientId(), endpointUserPrincipal.getUserId(), loginTime, ip, userAgent, endpointUserPrincipal.getLoginType(), endpointUserPrincipal.getSnsType(), endpointUserPrincipal.getId());
+					CairoOAuthTenantAppUserAuthenticationToken tenantAppUserAuthenticationToken = simpleTenantAppUserAuthenticationConverter.convert(jwtToken);
+					if (tenantAppUserAuthenticationToken != null) {
+						CairoOAuthTenantAppUserPrincipal tenantAppUserPrincipal = tenantAppUserAuthenticationToken.getPrincipal();
+						updateTenantAppUser(logId, tenantAppUserPrincipal.getTenantId(), tenantAppUserPrincipal.getAppId(), tenantAppUserPrincipal.getEndpointId(), tenantAppUserPrincipal.getClientId(), tenantAppUserPrincipal.getUserId(), loginTime, ip, userAgent, tenantAppUserPrincipal.getLoginType(), tenantAppUserPrincipal.getSnsType(), tenantAppUserPrincipal.getId());
 					}
 					return;
 				}
@@ -283,7 +283,7 @@ public class AuthSuccessLoginLogHandler {
 					return;
 				}
 
-				// 终端用户认证
+				// 应用级用户认证
 				if (accessToken instanceof OAuthAppUserAccessToken) {
 					Authentication authentication = appUserAuthenticationTokenConverter.convert(new AppUserAuthenticationTokenRequest(
 							((OAuthAppUserAccessToken) accessToken).getAppId(),
@@ -292,13 +292,13 @@ public class AuthSuccessLoginLogHandler {
 						)
 					);
 					if (authentication instanceof CairoOAuthAppUserAuthenticationToken) {
-						CairoOAuthAppUserPrincipal endpointUserPrincipal = (CairoOAuthAppUserPrincipal) authentication.getPrincipal();
-						updateAppUser(logId, endpointUserPrincipal.getAppId(), endpointUserPrincipal.getEndpointId(), endpointUserPrincipal.getClientId(), endpointUserPrincipal.getUserId(), loginTime, ip, userAgent, endpointUserPrincipal.getLoginType(), endpointUserPrincipal.getSnsType(), endpointUserPrincipal.getId());
+						CairoOAuthAppUserPrincipal appUserPrincipal = (CairoOAuthAppUserPrincipal) authentication.getPrincipal();
+						updateAppUser(logId, appUserPrincipal.getAppId(), appUserPrincipal.getEndpointId(), appUserPrincipal.getClientId(), appUserPrincipal.getUserId(), loginTime, ip, userAgent, appUserPrincipal.getLoginType(), appUserPrincipal.getSnsType(), appUserPrincipal.getId());
 					}
 					return;
 				}
 
-				// 企业终端用户认证
+				// 企业应用级用户认证
 				if (accessToken instanceof OAuthTenantAppUserAccessToken) {
 					Authentication authentication = tenantAppUserAuthenticationTokenConverter.convert(new TenantAppUserAuthenticationTokenRequest(
 							((OAuthTenantAppUserAccessToken) accessToken).getTenantId(),
@@ -308,8 +308,8 @@ public class AuthSuccessLoginLogHandler {
 						)
 					);
 					if (authentication instanceof CairoOAuthTenantAppUserAuthenticationToken) {
-						CairoOAuthTenantAppUserPrincipal endpointUserPrincipal = (CairoOAuthTenantAppUserPrincipal) authentication.getPrincipal();
-						updateTenantAppUser(logId, endpointUserPrincipal.getTenantId(), endpointUserPrincipal.getAppId(), endpointUserPrincipal.getEndpointId(), endpointUserPrincipal.getClientId(), endpointUserPrincipal.getUserId(), loginTime, ip, userAgent, endpointUserPrincipal.getLoginType(), endpointUserPrincipal.getSnsType(), endpointUserPrincipal.getId());
+						CairoOAuthTenantAppUserPrincipal tenantAppUserPrincipal = (CairoOAuthTenantAppUserPrincipal) authentication.getPrincipal();
+						updateTenantAppUser(logId, tenantAppUserPrincipal.getTenantId(), tenantAppUserPrincipal.getAppId(), tenantAppUserPrincipal.getEndpointId(), tenantAppUserPrincipal.getClientId(), tenantAppUserPrincipal.getUserId(), loginTime, ip, userAgent, tenantAppUserPrincipal.getLoginType(), tenantAppUserPrincipal.getSnsType(), tenantAppUserPrincipal.getId());
 					}
 					return;
 				}
@@ -337,7 +337,7 @@ public class AuthSuccessLoginLogHandler {
 		}
 
 		@Async
-		void updateCairoOAuthEndpointUser(String ip, String userAgent, LocalDateTime loginTime, CairoOAuthTenantAppUserAuthenticationToken token) {
+		void updateCairoOAuthTenantAppUser(String ip, String userAgent, LocalDateTime loginTime, CairoOAuthTenantAppUserAuthenticationToken token) {
 			log.debug("login log ignore: type: {} principal: {} timestamp: {}", token.getClass().getName(), token.getName(), loginTime);
 		}
 

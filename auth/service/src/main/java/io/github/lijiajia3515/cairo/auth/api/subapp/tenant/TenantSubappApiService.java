@@ -86,7 +86,7 @@ public class TenantSubappApiService {
 
 
 	/**
-	 * 租户查询
+	 * 企业查询
 	 *
 	 * @param args 1
 	 * @return 1
@@ -112,7 +112,7 @@ public class TenantSubappApiService {
 	/**
 	 * 查找
 	 *
-	 * @return 租户查询
+	 * @return 企业查询
 	 */
 	@NewSpan
 	@BizLog(
@@ -143,7 +143,7 @@ public class TenantSubappApiService {
 	}
 
 	/**
-	 * 租户 - 保存
+	 * 企业 - 保存
 	 */
 	@NewSpan
 	@SneakyThrows

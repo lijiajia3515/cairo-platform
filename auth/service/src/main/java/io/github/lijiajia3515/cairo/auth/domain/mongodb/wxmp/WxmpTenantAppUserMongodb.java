@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.time.LocalDateTime;
 
 /**
-	 * 企业用户公众号链接
+	 * 企业应用级用户公众号链接
 	 */
 @Data
 @Accessors(chain = true)
@@ -31,8 +31,8 @@ public class WxmpTenantAppUserMongodb {
 	private ObjectId _id;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;

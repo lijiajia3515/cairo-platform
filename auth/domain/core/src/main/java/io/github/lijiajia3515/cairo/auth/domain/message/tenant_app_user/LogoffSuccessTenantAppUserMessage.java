@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 注销成功企业应用用户消息
+ * 注销成功企业应用级用户消息
  */
 @Data
 @Accessors(chain = true)
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 public class LogoffSuccessTenantAppUserMessage implements Serializable {
 	/**
-	 * 租户ID
+	 * 企业ID
 	 */
 	private String tenantId;
 

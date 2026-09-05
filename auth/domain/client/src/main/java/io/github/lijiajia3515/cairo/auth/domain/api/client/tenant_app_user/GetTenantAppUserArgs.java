@@ -26,7 +26,7 @@ import java.util.Map;
 public class GetTenantAppUserArgs extends AbstractPage<GetTenantAppUserArgs> implements Serializable {
 
 	/**
-	 * 租户ID
+	 * 企业ID
 	 */
 	private String tenantId;
 

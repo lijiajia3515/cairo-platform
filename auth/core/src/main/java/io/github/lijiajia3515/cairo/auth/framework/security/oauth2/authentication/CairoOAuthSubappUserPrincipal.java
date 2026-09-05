@@ -16,7 +16,7 @@ import static io.github.lijiajia3515.cairo.jackson.desensitize.DesensitizeType.E
 import static io.github.lijiajia3515.cairo.jackson.desensitize.DesensitizeType.MOBILE_PHONE;
 
 /**
- * 子应用用户
+ * 子应用级用户
  */
 @Data
 @NoArgsConstructor

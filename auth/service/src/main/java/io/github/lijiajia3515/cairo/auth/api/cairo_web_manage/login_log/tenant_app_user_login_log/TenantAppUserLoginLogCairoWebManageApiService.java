@@ -173,13 +173,13 @@ public class TenantAppUserLoginLogCairoWebManageApiService {
 		}
 
 		List<TenantAppUserLoginLog> contents = mongodbList.stream()
-			.map(x -> endpointUserLoginLog(x, tenantMap, appMap, endpointMap, clientMap, userMap))
+			.map(x -> tenantAppUserLoginLog(x, tenantMap, appMap, endpointMap, clientMap, userMap))
 			.collect(Collectors.toList());
 
 		return new Page<>(args, contents, total);
 	}
 
-	public TenantAppUserLoginLog endpointUserLoginLog(TenantAppUserLoginLogMongodb source, Map<String, Tenant> tenantMap, Map<String, App> appMap, Map<String, Endpoint> endpointMap, Map<String, BasicClient> clientMap, Map<String, TenantAppUser> userMap) {
+	public TenantAppUserLoginLog tenantAppUserLoginLog(TenantAppUserLoginLogMongodb source, Map<String, Tenant> tenantMap, Map<String, App> appMap, Map<String, Endpoint> endpointMap, Map<String, BasicClient> clientMap, Map<String, TenantAppUser> userMap) {
 		return TenantAppUserLoginLog.builder()
 			.logId(source.getLogId())
 			.loginTime(source.getLoginTime())

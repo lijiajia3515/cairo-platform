@@ -26,10 +26,10 @@ public class CairoRabbitmqRouteKeyHelper {
 	}
 
 	/**
-	 * 获取应用租户模式的路由key
+	 * 获取应用企业模式的路由key
 	 *
 	 * @param routeKey 路由key
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param appId    应用id
 	 * @return 路由key
 	 */
@@ -38,10 +38,10 @@ public class CairoRabbitmqRouteKeyHelper {
 	}
 
 	/**
-	 * 获取应用租户模式的路由key
+	 * 获取应用企业模式的路由key
 	 *
 	 * @param routeKey 路由key
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @return 路由key
 	 */
 	public String getTenantKey(CairoRabbitmqRouteKey routeKey, String tenantId) {
@@ -49,7 +49,7 @@ public class CairoRabbitmqRouteKeyHelper {
 	}
 
 	/**
-	 * 获取应用租户模式的路由key
+	 * 获取应用企业模式的路由key
 	 *
 	 * @param routeKey 路由key
 	 * @param appId appId

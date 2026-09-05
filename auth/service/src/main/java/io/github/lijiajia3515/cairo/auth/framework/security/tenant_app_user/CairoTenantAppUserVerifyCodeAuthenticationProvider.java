@@ -35,7 +35,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.util.Assert;
 
 /**
- * cairo tenant app endpoint user verify code authentication provider
+ * cairo tenant app user verify code authentication provider
  */
 @Slf4j
 @Getter
@@ -77,7 +77,7 @@ public class CairoTenantAppUserVerifyCodeAuthenticationProvider implements Authe
 	}
 
 	protected void doAfterPropertiesSet() throws Exception {
-		Assert.notNull(this.cairoAuthTenantAppUserService, "a cairoAuthEndpointUserService must be set");
+		Assert.notNull(this.cairoAuthTenantAppUserService, "a cairoAuthTenantAppUserService must be set");
 		Assert.notNull(this.verifyCodeService, "a verifyCodeService must be set");
 	}
 
@@ -92,9 +92,12 @@ public class CairoTenantAppUserVerifyCodeAuthenticationProvider implements Authe
 			() -> this.messages.getMessage("CairoTenantAppUserVerifyCodeAuthenticationProvider.onlySupports", "Only CairoTenantAppUserVerifyCodeAuthenticationToken is supported"));
 		CairoTenantAppUserVerifyCodeAuthenticationToken token = (CairoTenantAppUserVerifyCodeAuthenticationToken) authentication;
 
+		// 1. 先验码——失败不建号（additionalAuthenticationChecks 的 user 参数闲置，传 null 安全）
+		additionalAuthenticationChecks(null, token);
 
 		CairoAuthTenantAppUser user = null;
 		try {
+			// 2. 再加载（可自动注册——验码已通过，建号合法）
 			user = cairoAuthTenantAppUserService.loadTenantAppUserByPhoneNumber(LoginType.VERIFY_CODE, token.getTenantId(), token.getAppId(), token.getEndpointId(), token.getClientId(), token.getPhoneNumber());
 			if (user == null) {
 				throw new InternalAuthenticationServiceException("CairoTenantAppUserVerifyCodeAuthenticationToken returned null, which is an interface contract violation");
@@ -110,8 +113,8 @@ public class CairoTenantAppUserVerifyCodeAuthenticationProvider implements Authe
 			throw new VerifyCodeBadCredentialsException(this.messages.getMessage("CairoTenantAppUserVerifyCodeAuthenticationProvider.badVerifyCode", "验证码错误"));
 		}
 
+		// 3. 账号状态检查（验码已在第一步完成，此处跳过）
 		this.preAuthenticationChecks.check(user);
-		additionalAuthenticationChecks(user, token);
 		this.postAuthenticationChecks.check(user);
 
 		Object principal = user;
@@ -135,14 +138,14 @@ public class CairoTenantAppUserVerifyCodeAuthenticationProvider implements Authe
 		// authentication events after cache expiry contain the details
 		UsernamePasswordAuthenticationToken result = UsernamePasswordAuthenticationToken.authenticated(principal, authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
 		result.setDetails(authentication.getDetails());
-		log.debug("Authenticated tenant app endpoint user");
+		log.debug("Authenticated tenant app user");
 		return result;
 	}
 
 	protected void additionalAuthenticationChecks(CairoAuthTenantAppUser user, CairoTenantAppUserVerifyCodeAuthenticationToken authentication) throws AuthenticationException {
 		if (authentication.getCredentials() == null) {
 			log.debug("Failed to authenticate since no credentials provided");
-			throw new VerifyCodeBadCredentialsException(this.messages.getMessage("CairoTenantAppUserVerifyCodeAuthenticationProvider.emptyVerifyCode", "验证码不能未空"));
+			throw new VerifyCodeBadCredentialsException(this.messages.getMessage("CairoTenantAppUserVerifyCodeAuthenticationProvider.emptyVerifyCode", "验证码不能为空"));
 		}
 
 		VerifyVerifyCodeArgs verifyArgs = VerifyVerifyCodeArgs.builder()

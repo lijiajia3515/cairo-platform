@@ -247,7 +247,7 @@ public class TenantAppUserTagTenantSubappApiService {
 			});
 
 			if (insertedUserTag == null) {
-				throw new ConflictBusinessException("创建企业用户标签失败");
+				throw new ConflictBusinessException("创建企业应用级用户标签失败");
 			}
 
 			rabbitTemplate.convertAndSend(
@@ -308,7 +308,7 @@ public class TenantAppUserTagTenantSubappApiService {
 			} catch (Exception e) {
 				log.debug("modifyTenantAppUserTagInfo", e);
 				status.setRollbackOnly();
-				throw new ConflictBusinessException("修改企业用户标签失败");
+				throw new ConflictBusinessException("修改企业应用级用户标签失败");
 			}
 		});
 

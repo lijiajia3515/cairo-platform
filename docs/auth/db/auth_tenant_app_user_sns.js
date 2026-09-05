@@ -2,8 +2,8 @@ db.getCollection("auth_tenant_app_user_sns").drop();
 db.createCollection("auth_tenant_app_user_sns", {
     validator: {
         $jsonSchema: {
-            title: "企业应用用户-社交登录",
-            description: "企业应用用户社交登录绑定",
+            title: "企业应用级用户-社交登录",
+            description: "企业应用级用户社交登录绑定",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -17,8 +17,8 @@ db.createCollection("auth_tenant_app_user_sns", {
                 },
                 tenantId: {
                     bsonType: "string",
-                    title: "租户ID",
-                    description: "必填，字符串，所属租户的唯一标识"
+                    title: "企业ID",
+                    description: "必填，字符串，所属企业的唯一标识"
                 },
                 appId: {
                     bsonType: "string",

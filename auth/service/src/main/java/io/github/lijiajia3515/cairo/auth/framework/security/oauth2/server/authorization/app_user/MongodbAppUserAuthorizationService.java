@@ -156,7 +156,7 @@ public class MongodbAppUserAuthorizationService implements AppUserAuthorizationS
 			);
 			criteria.and(AppUserAuthorizationMongodb.FIELD.STATUS).is(AppUserAuthorizationStatus.OK.getStatusValue());
 		}
-		// app endpoint user
+		// app user
 		else if (CairoOAuthTokenTypeConstants.APP_USER_ACCESS_TOKEN.equals(tokenType)) {
 			criteria = Criteria
 				.where(AppUserAuthorizationMongodb.FIELD.ACCESS_TOKEN.TOKEN_VALUE).is(token)

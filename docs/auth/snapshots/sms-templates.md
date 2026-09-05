@@ -23,10 +23,10 @@
 
 | bizId | 触发场景 | 代码传参 | 建议模板内容 |
 |---|---|---|---|
-| `RegisterAppUserSuccess` | 注册应用用户成功 | `Account` `User` | 账号${Account}已开通应用用户${User}。 |
-| `LogoffAppUser` | 注销应用用户通知 | `Account` `User` `Day`（固定"3天"） | 账号${Account}的应用用户${User}已申请注销，${Day}后删除。 |
-| `LogoffAppUserSuccess` | 注销应用用户成功 | `Account` `User` | 账号${Account}的应用用户${User}已注销完成。 |
-| `UnlogoffAppUser` | 取消注销应用用户 | `Account` `User` | 账号${Account}的应用用户${User}已恢复。 |
+| `RegisterAppUserSuccess` | 注册应用级用户成功 | `Account` `User` | 账号${Account}已开通应用级用户${User}。 |
+| `LogoffAppUser` | 注销应用级用户通知 | `Account` `User` `Day`（固定"3天"） | 账号${Account}的应用级用户${User}已申请注销，${Day}后删除。 |
+| `LogoffAppUserSuccess` | 注销应用级用户成功 | `Account` `User` | 账号${Account}的应用级用户${User}已注销完成。 |
+| `UnlogoffAppUser` | 取消注销应用级用户 | `Account` `User` | 账号${Account}的应用级用户${User}已恢复。 |
 
 ## 4. 企业级 + 企业应用级（通知短信）
 
@@ -34,10 +34,10 @@
 |---|---|---|---|
 | `RegisterTenantSuccess` | 注册企业成功 | `Account` `Tenant` | 账号${Account}的企业${Tenant}注册成功。 |
 | `ApplyNewTenantAppSuccess` | 申请企业应用成功 | `Account` `Tenant` | 账号${Account}的企业${Tenant}应用开通成功。 |
-| `RegisterTenantAppUserSuccess` | 注册企业用户成功 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}开通用户${User}成功。 |
-| `LogoffTenantAppUser` | 注销企业用户通知 | `Account` `Tenant` `User` `Day` | 账号${Account}在企业${Tenant}的用户${User}申请注销，${Day}后删除。 |
-| `LogoffTenantAppUserSuccess` | 注销企业用户成功 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}的用户${User}已注销完成。 |
-| `UnlogoffTenantAppUser` | 取消注销企业用户 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}的用户${User}已恢复。 |
+| `RegisterTenantAppUserSuccess` | 注册企业应用级用户成功 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}开通用户${User}成功。 |
+| `LogoffTenantAppUser` | 注销企业应用级用户通知 | `Account` `Tenant` `User` `Day` | 账号${Account}在企业${Tenant}的用户${User}申请注销，${Day}后删除。 |
+| `LogoffTenantAppUserSuccess` | 注销企业应用级用户成功 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}的用户${User}已注销完成。 |
+| `UnlogoffTenantAppUser` | 取消注销企业应用级用户 | `Account` `Tenant` `User` | 账号${Account}在企业${Tenant}的用户${User}已恢复。 |
 
 ## 初始化步骤
 

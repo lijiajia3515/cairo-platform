@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 
 /**
-	 * 企业应用用户-社交登录
+	 * 企业应用级用户-社交登录
 	 */
 @Data
 @Accessors(chain = true)
@@ -38,8 +38,8 @@ public class TenantAppUserSnsMongodb implements Serializable {
 	private String recordId;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;

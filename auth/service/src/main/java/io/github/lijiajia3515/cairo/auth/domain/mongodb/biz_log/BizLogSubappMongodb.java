@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.time.LocalDateTime;
 
 /**
-	 * 终端用户业务日志
+	 * 应用级用户业务日志
 	 */
 @Data
 @Accessors(chain = true)

@@ -43,7 +43,7 @@ public class CairoMongodbUpdate {
 	}
 
 	/**
-	 * 租户 metadata 更新
+	 * 企业 metadata 更新
 	 *
 	 * @param mongodbField mongodbField
 	 * @param updateUserId updateUserId

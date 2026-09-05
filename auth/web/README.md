@@ -53,7 +53,7 @@ src/api/
 | fetch 方法 | 请求头注入 | 适用 |
 | --- | --- | --- |
 | `fetch.post` | 无 | 开放接口（登录/注册/验证码） |
-| `fetch.endpointPost` | `app_user` + appId/endpointId/token | 终端用户上下文（个人中心） |
+| `fetch.appUserPost` | `app_user` + appId/endpointId/token | 应用级用户上下文（个人中心） |
 | `fetch.subappPost` | `subapp_user` + 全套子应用标识 | 管理台及其余全部管理操作 |
 
 函数命名约定：动词前置且与 URL 语义一致——`getXxxPage/List`（查询）、`create/modify/delete/move/sync/copy/offline/put/retry Xxx`（写操作），禁止 `get` 前缀包写操作。前后端路由对齐用 `node scripts/check-api-align.cjs` 校验（240 调用 vs 后端 @RequestMapping，唯一豁免 `/oauth2/token` 框架端点）。

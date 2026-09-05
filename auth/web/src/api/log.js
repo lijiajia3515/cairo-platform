@@ -13,12 +13,12 @@ export const getClientLoginLogPage_api = (params, headers) => {
     return fetch.subappPost(manageSubappId, manageSubappVersion, manageApi + '/client_login_log/get_client_login_log_page_list', params, headers)
 }
 
-// 获取终端用户(app_user,UI 显示为"应用")登录日志分页列表
+// 获取应用级用户(app_user,UI 显示为"应用")登录日志分页列表
 export const getAppUserLoginLogPage_api = (params, headers) => {
     return fetch.subappPost(manageSubappId, manageSubappVersion, manageApi + '/app_user_login_log/get_app_user_login_log_page_list', params, headers)
 }
 
-// 获取企业终端用户(tenant_app_user,UI 显示为"企业应用")登录日志分页列表
+// 获取企业应用级用户(tenant_app_user,UI 显示为"企业应用")登录日志分页列表
 export const getTenantAppUserLoginLogPage_api = (params, headers) => {
     return fetch.subappPost(manageSubappId, manageSubappVersion, manageApi + '/tenant_app_user_login_log/get_tenant_app_user_login_log_page_list', params, headers)
 }

@@ -34,10 +34,10 @@ public class TenantClientApiController {
 	private final TenantClientApiService tenantClientApiService;
 
 	/**
-	 * 获取租户列表
+	 * 获取企业列表
 	 *
 	 * @param args 参数
-	 * @return 租户 列表模式
+	 * @return 企业 列表模式
 	 */
 	@PostMapping("/get_tenant_list")
 	@PreAuthorize("hasAnyAuthority('tenant:all', 'tenant:read')")
@@ -46,10 +46,10 @@ public class TenantClientApiController {
 	}
 
 	/**
-	 * 获取单租户
+	 * 获取单企业
 	 *
 	 * @param args 参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	@PostMapping("/get_tenant_info")
 	@PreAuthorize("hasAnyAuthority('tenant:all', 'tenant:read')")

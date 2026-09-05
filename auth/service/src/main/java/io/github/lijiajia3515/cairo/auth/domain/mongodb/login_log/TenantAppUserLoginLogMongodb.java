@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 
 /**
-	 * 企业终端用户登录日志
+	 * 企业应用级用户登录日志
 	 */
 @Data
 @Accessors(chain = true)
@@ -41,8 +41,8 @@ public class TenantAppUserLoginLogMongodb implements Serializable {
 	private String logId;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;
@@ -77,8 +77,8 @@ public class TenantAppUserLoginLogMongodb implements Serializable {
 	private String userId;
 
 	/**
-	 * 企业终端用户会话ID
-	 * 租户应用用户令牌唯一标识
+	 * 企业应用级用户会话ID
+	 * 企业应用级用户令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantAppUserTokenId;

@@ -91,7 +91,7 @@ public class CreateTenantAppUserByModifiedTenantAppInfoQueueHandler {
 				modifiedTenantAppInfoMessage.getEventTime()
 			);
 
-			// 移除旧账号的企业应用用户管理员权限
+			// 移除旧账号的企业应用级用户管理员权限
 			List<String> removeAdminAccountIds = modifiedTenantAppInfoMessage.getRemoveAdminAccountIds();
 			if (removeAdminAccountIds != null && !removeAdminAccountIds.isEmpty()) {
 				Criteria criteria = Criteria

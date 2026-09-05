@@ -43,7 +43,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * 企业子应用用户准入闸口矩阵：应用/终端/子应用/企业四级状态检查 + 端/子应用两级 AccessScope 闸门
+ * 企业子应用级用户准入闸口矩阵：应用/终端/子应用/企业四级状态检查 + 端/子应用两级 AccessScope 闸门
  */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)

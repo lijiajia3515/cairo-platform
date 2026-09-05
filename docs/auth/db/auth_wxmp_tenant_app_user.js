@@ -2,8 +2,8 @@ db.getCollection("auth_wxmp_tenant_app_user").drop();
 db.createCollection("auth_wxmp_tenant_app_user", {
     validator: {
         $jsonSchema: {
-            title: "企业用户公众号链接",
-            description: "企业用户公众号链接",
+            title: "企业应用级用户公众号链接",
+            description: "企业应用级用户公众号链接",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -12,7 +12,7 @@ db.createCollection("auth_wxmp_tenant_app_user", {
                 },
                 tenantId: {
                     bsonType: "string",
-                    title: "租户ID",
+                    title: "企业ID",
                     description: "必填，字符串"
                 },
                 userId: {

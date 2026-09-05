@@ -83,11 +83,11 @@ public class UnLogoffAccountHandler {
 							accountId = accountPrincipal.getAccountId();
 						}
 					} else if (TENANT_APP_USER.getValue().equals(authType)) {
-						// 终端用户认证
-						CairoOAuthTenantAppUserAuthenticationToken endpointUserAuthenticationToken = simpleTenantAppUserAuthenticationConverter.convert(jwtToken);
-						if (endpointUserAuthenticationToken != null) {
-							CairoOAuthTenantAppUserPrincipal endpointUserPrincipal = endpointUserAuthenticationToken.getPrincipal();
-							accountId = tenantAppUserCommonService.getAccountIdByUserId(endpointUserPrincipal.getTenantId(), endpointUserPrincipal.getAppId(), endpointUserPrincipal.getUserId())
+						// 应用级用户认证
+						CairoOAuthTenantAppUserAuthenticationToken tenantAppUserAuthenticationToken = simpleTenantAppUserAuthenticationConverter.convert(jwtToken);
+						if (tenantAppUserAuthenticationToken != null) {
+							CairoOAuthTenantAppUserPrincipal tenantAppUserPrincipal = tenantAppUserAuthenticationToken.getPrincipal();
+							accountId = tenantAppUserCommonService.getAccountIdByUserId(tenantAppUserPrincipal.getTenantId(), tenantAppUserPrincipal.getAppId(), tenantAppUserPrincipal.getUserId())
 								.orElse(null);
 						}
 					}

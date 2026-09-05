@@ -28,9 +28,9 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.util.Assert;
 
 /**
- * 应用用户账号授权模式 authentication provider
+ * 应用级用户账号授权模式 authentication provider
  * <p>
- * 使用账号级 access_token 置换应用用户 token 时，根据账号ID加载应用用户
+ * 使用账号级 access_token 置换应用级用户 token 时，根据账号ID加载应用级用户
  */
 @Slf4j
 @Getter

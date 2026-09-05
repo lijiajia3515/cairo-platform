@@ -83,7 +83,7 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_CLIENT,
-					"client出错",
+					"客户端注册信息缺失",
 					ERROR_URI
 				)
 			);
@@ -105,7 +105,7 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.INVALID_SCOPE,
-						"scope 权限不足",
+						"请求scope超出客户端许可范围",
 						ERROR_URI
 					)
 				);
@@ -127,7 +127,7 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.INVALID_GRANT,
-					"认证身份错误",
+					"认证主体类型不符",
 					ERROR_URI)
 			);
 		}
@@ -168,13 +168,13 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 			throw new OAuth2AuthenticationException(
 				new OAuth2Error(
 					OAuth2ErrorCodes.SERVER_ERROR,
-					"The token generator failed to generate the app endpoint user access token.",
+					"The token generator failed to generate the app user access token.",
 					ERROR_URI)
 			);
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Generated app endpoint user access token");
+			log.trace("Generated app user access token");
 		}
 		OAuthAppUserAccessToken accessToken = new OAuthAppUserAccessToken(
 			OAuth2AccessToken.TokenType.BEARER,
@@ -207,13 +207,13 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 				throw new OAuth2AuthenticationException(
 					new OAuth2Error(
 						OAuth2ErrorCodes.SERVER_ERROR,
-						"The token generator failed to generate the app endpoint user refresh token.",
+						"The token generator failed to generate the app user refresh token.",
 						ERROR_URI)
 				);
 			}
 
 			if (log.isTraceEnabled()) {
-				log.trace("Generated app endpoint user refresh token");
+				log.trace("Generated app user refresh token");
 			}
 
 			refreshToken = (OAuthAppUserRefreshToken) generatedRefreshToken;
@@ -225,11 +225,11 @@ public final class OAuthAppUserAccountSnsCodeAuthenticationProvider implements A
 		this.authorizationService.save(authorization);
 
 		if (log.isTraceEnabled()) {
-			log.trace("Saved app endpoint user authorization");
+			log.trace("Saved app user authorization");
 		}
 
 		if (log.isTraceEnabled()) {
-			log.trace("Authenticated app endpoint user token request");
+			log.trace("Authenticated app user token request");
 		}
 
 		return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, refreshToken, additionalParameters);

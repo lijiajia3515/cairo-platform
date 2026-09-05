@@ -412,14 +412,14 @@ public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
 				new OAuthAccountSnsCodeAuthenticationConverter(),
 				new OAuthAccountRefreshTokenAuthenticationConverter(),
 
-				// 终端用户
+				// 应用级用户
 				new OAuthAppUserPasswordAuthenticationConverter(),
 				new OAuthAppUserVerifyCodeAuthenticationConverter(),
 				new OAuthAppUserAccountSnsCodeAuthenticationConverter(),
 				new OAuthAppUserAccountAccessTokenAuthenticationConverter(),
 				new OAuthAppUserRefreshTokenAuthenticationConverter(),
 
-				// 企业终端用户
+				// 企业应用级用户
 				new OAuthTenantAppUserPasswordAuthenticationConverter(),
 				new OAuthTenantAppUserVerifyCodeAuthenticationConverter(),
 				new OAuthTenantAppUserAccountAccessTokenAuthenticationConverter(),
@@ -492,7 +492,7 @@ public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
 		OAuthAccountRefreshTokenAuthenticationProvider oAuthAccountRefreshTokenAuthenticationProvider = new OAuthAccountRefreshTokenAuthenticationProvider(accountAuthorizationService, tokenGenerator);
 		authenticationProviders.add(oAuthAccountRefreshTokenAuthenticationProvider);
 
-		// app endpoint user
+		// app user
 		OAuthAppUserPasswordAuthenticationProvider oAuthAppUserPasswordAuthenticationProvider = new OAuthAppUserPasswordAuthenticationProvider(providerManager, appUserAuthorizationService, tokenGenerator);
 		authenticationProviders.add(oAuthAppUserPasswordAuthenticationProvider);
 
@@ -508,7 +508,7 @@ public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
 		OAuthAppUserRefreshTokenAuthenticationProvider oAuthAppUserRefreshTokenAuthenticationProvider = new OAuthAppUserRefreshTokenAuthenticationProvider(appUserAuthorizationService, tokenGenerator);
 		authenticationProviders.add(oAuthAppUserRefreshTokenAuthenticationProvider);
 
-		// tenant app endpoint user
+		// tenant app user
 		OAuthTenantAppUserPasswordAuthenticationProvider oAuthTenantAppUserPasswordAuthenticationProvider = new OAuthTenantAppUserPasswordAuthenticationProvider(providerManager, tenantAppUserAuthorizationService, tokenGenerator);
 		authenticationProviders.add(oAuthTenantAppUserPasswordAuthenticationProvider);
 

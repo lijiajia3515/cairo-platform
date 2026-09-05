@@ -2,8 +2,8 @@ db.getCollection("auth_tenant_app_user_template").drop();
 db.createCollection("auth_tenant_app_user_template", {
     validator: {
         $jsonSchema: {
-            title: "企业用户模板",
-            description: "企业用户模板",
+            title: "企业应用级用户模板",
+            description: "企业应用级用户模板",
             properties: {
                 _id: {
                     bsonType: "objectId",
@@ -17,7 +17,7 @@ db.createCollection("auth_tenant_app_user_template", {
                 },
                 tenantAppUserTemplateId: {
                     bsonType: "string",
-                    title: "企业用户模板ID",
+                    title: "企业应用级用户模板ID",
                     description: "必填，字符串"
                 },
                 nickname: {

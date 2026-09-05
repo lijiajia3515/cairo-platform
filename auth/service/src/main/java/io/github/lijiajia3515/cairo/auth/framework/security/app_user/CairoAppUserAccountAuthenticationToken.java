@@ -6,7 +6,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.util.Assert;
 
 /**
- * 应用用户账号授权模式 authentication token
+ * 应用级用户账号授权模式 authentication token
  */
 @Getter
 public class CairoAppUserAccountAuthenticationToken extends AbstractAuthenticationToken {

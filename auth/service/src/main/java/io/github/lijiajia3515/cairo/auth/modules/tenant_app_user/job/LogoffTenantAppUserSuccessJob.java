@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 自动注销企业用户任务
+ * 自动注销企业应用级用户任务
  */
 @Slf4j
 @Component

@@ -80,7 +80,7 @@ public class RemoteTenantAppUserJwtAuthenticationConverter implements CairoJwtAu
 		String clientId = jwt.getClaimAsString(OAuth2ParameterNames.CLIENT_ID);
 		String tenantId = jwt.getClaimAsString(CairoOAuthParameterNames.TENANT_ID);
 		String userId = jwt.getClaimAsString(CairoOAuthParameterNames.USER_ID);
-		String endpointUserTokenId = jwt.getSubject();
+		String tenantAppUserTokenId = jwt.getSubject();
 
 		OAuthTenantAppUserAccessToken token = new OAuthTenantAppUserAccessToken(
 			OAuth2AccessToken.TokenType.BEARER,
@@ -88,7 +88,7 @@ public class RemoteTenantAppUserJwtAuthenticationConverter implements CairoJwtAu
 			appId,
 			endpointId,
 			userId,
-			endpointUserTokenId,
+			tenantAppUserTokenId,
 			jwt.getTokenValue(),
 			jwt.getIssuedAt(),
 			jwt.getExpiresAt(),
@@ -129,7 +129,7 @@ public class RemoteTenantAppUserJwtAuthenticationConverter implements CairoJwtAu
 				} else if (CairoAuthBusiness.ENDPOINT_DISABLED.getCode().equals(status)) {
 					throw new EndpointDisabledException();
 				}
-				// 租户异常
+				// 企业异常
 				else if (CairoAuthBusiness.TENANT_NOT_FOUND.getCode().equals(status)) {
 					throw new TenantNotFoundException();
 				} else if (CairoAuthBusiness.TENANT_DISABLED.getCode().equals(status)) {
@@ -165,7 +165,7 @@ public class RemoteTenantAppUserJwtAuthenticationConverter implements CairoJwtAu
 
 			TenantAppUserPrincipalModel tenantAppUserPrincipalModel = tenantAppUserAuthModel.getPrincipal();
 			principal = CairoOAuthTenantAppUserPrincipal.builder()
-				.id(endpointUserTokenId)
+				.id(tenantAppUserTokenId)
 				.loginType(loginType)
 				.tenantId(tenantId)
 				.appId(appId)

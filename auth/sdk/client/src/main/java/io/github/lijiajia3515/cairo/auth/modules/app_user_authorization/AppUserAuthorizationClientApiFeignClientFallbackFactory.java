@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 /**
- * client-api app endpoint user feignclient fallback factory
+ * client-api app user feignclient fallback factory
  */
 @Slf4j
 public class AppUserAuthorizationClientApiFeignClientFallbackFactory implements FallbackFactory<AppUserAuthorizationClientApiFeignClient> {

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 /**
-	 * 租户 mongodb模型
+	 * 企业 mongodb模型
 	 */
 @Data
 @NoArgsConstructor
@@ -24,15 +24,15 @@ public class TenantMongodb {
 	private ObjectId _id;
 
 	/**
-	 * 租户ID
-	 * 所属租户的唯一标识
+	 * 企业ID
+	 * 所属企业的唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantId;
 
 	/**
 	 * 名称
-	 * 租户名称
+	 * 企业名称
 	 */
 	@Field(write = Field.Write.ALWAYS)
 	private String tenantName;

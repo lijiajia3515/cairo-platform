@@ -91,13 +91,13 @@ public class CairoOAuth2ResponseErrorHandler implements ResponseErrorHandler {
 			} else if (CairoAuthBusiness.CLIENT_DISABLED.code().equals(cairoOAuth2Error.getCode())) {
 				throw new ClientNotFoundException();
 			}
-			// 应用用户异常
+			// 应用级用户异常
 			else if (CairoAuthBusiness.APP_USER_NOT_FOUND.code().equals(cairoOAuth2Error.getCode())) {
 				throw new AppUserNotFoundException();
 			} else if (CairoAuthBusiness.APP_USER_DISABLED.code().equals(cairoOAuth2Error.getCode())) {
 				throw new AppUserDisabledException();
 			}
-			// 租户异常
+			// 企业异常
 			else if (CairoAuthBusiness.TENANT_NOT_FOUND.code().equals(cairoOAuth2Error.getCode())) {
 				throw new TenantNotFoundException();
 			} else if (CairoAuthBusiness.TENANT_DISABLED.code().equals(cairoOAuth2Error.getCode())) {
@@ -111,7 +111,7 @@ public class CairoOAuth2ResponseErrorHandler implements ResponseErrorHandler {
 			} else if (CairoAuthBusiness.TENANT_ENDPOINT_DISABLED.code().equals(cairoOAuth2Error.getCode())) {
 				throw new TenantAppDisabledException();
 			}
-			// 企业用户异常
+			// 企业应用级用户异常
 			else if (CairoAuthBusiness.TENANT_APP_USER_NOT_FOUND.code().equals(cairoOAuth2Error.getCode())) {
 				throw new TenantAppUserNotFoundException();
 			} else if (CairoAuthBusiness.TENANT_APP_USER_DISABLED.code().equals(cairoOAuth2Error.getCode())) {

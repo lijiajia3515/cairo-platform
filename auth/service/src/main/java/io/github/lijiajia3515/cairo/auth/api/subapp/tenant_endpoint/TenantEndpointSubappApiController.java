@@ -39,10 +39,10 @@ public class TenantEndpointSubappApiController {
 	private final TenantEndpointSubappApiService tenantEndpointSubappApiService;
 
 	/**
-	 * 获取租户列表
+	 * 获取企业列表
 	 *
 	 * @param args 参数
-	 * @return 租户 列表模式
+	 * @return 企业 列表模式
 	 */
 	@PostMapping("/get_tenant_endpoint_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_endpoint:all', 'tenant_endpoint:read')")
@@ -53,10 +53,10 @@ public class TenantEndpointSubappApiController {
 	}
 
 	/**
-	 * 获取租户分页列表
+	 * 获取企业分页列表
 	 *
 	 * @param args 参数
-	 * @return 租户 分页模式
+	 * @return 企业 分页模式
 	 */
 	@PostMapping("/get_tenant_endpoint_page_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_endpoint:all', 'tenant_endpoint:read')")
@@ -72,7 +72,7 @@ public class TenantEndpointSubappApiController {
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	@PostMapping("/create_tenant_endpoint")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_endpoint:all', 'tenant_endpoint:create_tenant_endpoint')")
@@ -88,7 +88,7 @@ public class TenantEndpointSubappApiController {
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 租户
+	 * @return 企业
 	 */
 	@PostMapping("/modify_tenant_endpoint_info")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'tenant_endpoint:all', 'tenant_endpoint:modify_tenant_endpoint_info')")

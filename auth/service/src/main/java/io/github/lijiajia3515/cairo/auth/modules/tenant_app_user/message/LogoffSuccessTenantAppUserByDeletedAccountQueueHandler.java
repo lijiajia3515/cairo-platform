@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * 删除企业用户（根据已删除的企业应用）处理器
+ * 删除企业应用级用户（根据已删除的企业应用）处理器
  */
 
 @Slf4j
@@ -122,7 +122,7 @@ public class LogoffSuccessTenantAppUserByDeletedAccountQueueHandler {
 
 
 				} catch (Exception e) {
-					log.warn("注销企业用户: TenantId: {} AppId: {} UserId: {} Nickname: {}  AccountId: {} 异常：{}",
+					log.warn("注销企业应用级用户: TenantId: {} AppId: {} UserId: {} Nickname: {}  AccountId: {} 异常：{}",
 						user.getTenantId(),
 						user.getAppId(),
 						user.getUserId(),

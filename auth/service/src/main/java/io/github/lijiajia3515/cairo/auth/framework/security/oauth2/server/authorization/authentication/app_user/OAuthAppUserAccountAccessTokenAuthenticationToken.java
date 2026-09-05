@@ -11,7 +11,7 @@ import static io.github.lijiajia3515.cairo.auth.framework.security.oauth2.core.O
 
 
 /**
- * 应用用户账号授权模式 authentication token
+ * 应用级用户账号授权模式 authentication token
  */
 @Getter
 public class OAuthAppUserAccountAccessTokenAuthenticationToken extends OAuth2AuthorizationGrantAuthenticationToken {

@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.util.Assert;
 
 /**
- * cairo app endpoint user account sns code authentication provider
+ * cairo app user account sns code authentication provider
  */
 @Slf4j
 @Setter
@@ -74,7 +74,7 @@ public class CairoAppUserAccountSnsCodeAuthenticationProvider implements Authent
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
 		Assert.isInstanceOf(CairoAppUserAccountSnsCodeAuthenticationToken.class, authentication,
-			() -> this.messages.getMessage("CairoAppUserAccountSnsCodeAuthenticationToken.onlySupports",
+			() -> this.messages.getMessage("CairoAppUserAccountSnsCodeAuthenticationProvider.onlySupports",
 				"Only CairoAppUserAccountSnsCodeAuthenticationToken is supported"));
 		CairoAppUserAccountSnsCodeAuthenticationToken token = (CairoAppUserAccountSnsCodeAuthenticationToken) authentication;
 
@@ -120,7 +120,7 @@ public class CairoAppUserAccountSnsCodeAuthenticationProvider implements Authent
 		UsernamePasswordAuthenticationToken result = UsernamePasswordAuthenticationToken.authenticated(principal,
 			authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
 		result.setDetails(authentication.getDetails());
-		log.debug("Authenticated app endpoint user");
+		log.debug("Authenticated app user");
 		return result;
 	}
 

@@ -2,6 +2,7 @@ package io.github.lijiajia3515.cairo.gateway.config;
 
 import io.github.lijiajia3515.cairo.core.business.ParamsBusiness;
 import io.github.lijiajia3515.cairo.core.exception.BusinessException;
+import io.github.lijiajia3515.cairo.gateway.framework.CairoWebExchangeUtils;
 import io.github.lijiajia3515.cairo.gateway.framework.domain.GatewayErrorBusinessResult;
 import io.github.lijiajia3515.cairo.gateway.framework.error.CairoErrorAttributes;
 import io.github.lijiajia3515.cairo.gateway.framework.error.CairoErrorWebExceptionHandler;
@@ -73,6 +74,8 @@ public class ErrorConfig {
 			GatewayErrorBusinessResult<?> body = GatewayErrorBusinessResult.builder()
 				.code(e.getBusiness().code())
 				.message(e.getMessage())
+				.requestId((String) exchange.getAttribute(CairoWebExchangeUtils.REQUEST_ID_ATTRIBUTE))
+				.retryable(CairoWebExchangeUtils.isRetryableStatus(httpStatus.value()))
 				.build();
 
 			return ResponseEntity.status(httpStatus)
@@ -107,6 +110,8 @@ public class ErrorConfig {
 					.code(ParamsBusiness.ERROR.getCode())
 					.message(e.getMessage())
 					.error(errors)
+					.requestId((String) exchange.getAttribute(CairoWebExchangeUtils.REQUEST_ID_ATTRIBUTE))
+					.retryable(CairoWebExchangeUtils.isRetryableStatus(HttpStatus.BAD_REQUEST.value()))
 					.build()
 				);
 		}

@@ -386,13 +386,13 @@ public class ClientCairoWebManageApiService {
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.ACCOUNT_REFRESH_TOKEN_TIME_TO_LIVE, args.getTokenSettings().getAccountRefreshTokenTimeToLive());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.REUSE_ACCOUNT_REFRESH_TOKENS, args.getTokenSettings().getReuseAccountRefreshTokens());
 
-					// app endpoint user
+					// app user
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.APP_USER_ACCESS_TOKEN_FORMAT, args.getTokenSettings().getAppUserAccessTokenFormat());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.APP_USER_ACCESS_TOKEN_TIME_TO_LIVE, args.getTokenSettings().getAppUserAccessTokenTimeToLive());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.APP_USER_REFRESH_TOKEN_TIME_TO_LIVE, args.getTokenSettings().getAppUserRefreshTokenTimeToLive());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.REUSE_APP_USER_REFRESH_TOKENS, args.getTokenSettings().getReuseAppUserRefreshTokens());
 
-					// tenant app endpoint user
+					// tenant app user
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.TENANT_APP_USER_ACCESS_TOKEN_FORMAT, args.getTokenSettings().getTenantAppUserAccessTokenFormat());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.TENANT_APP_USER_ACCESS_TOKEN_TIME_TO_LIVE, args.getTokenSettings().getTenantAppUserAccessTokenTimeToLive());
 					update.set(ClientMongodb.FIELD.TOKEN_SETTINGS.TENANT_APP_USER_REFRESH_TOKEN_TIME_TO_LIVE, args.getTokenSettings().getTenantAppUserRefreshTokenTimeToLive());

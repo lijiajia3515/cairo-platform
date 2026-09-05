@@ -103,7 +103,7 @@ public class CreateTenantAppUserByCreatedTenantAppQueueHandler {
 			// 账号列表
 			List<Account> newAdminAccountList = accountCommonService.getAccountListByAccountIds(createdTenantAppMessage.getAdminAccountIds());
 
-			// 企业用户模板列表
+			// 企业应用级用户模板列表
 			Criteria userTemplateCriteria = Criteria.where(TenantAppUserTemplateMongodb.FIELD.APP_ID).is(createdTenantAppMessage.getAppId())
 				.and(TenantAppUserTemplateMongodb.FIELD.ENABLED).is(true);
 			List<TenantAppUserTemplateMongodb> tenantAppUserTemplateMongodbs = mongoTemplate.find(Query.query(userTemplateCriteria), TenantAppUserTemplateMongodb.class, MongodbConstants.Collection.TENANT_APP_USER_TEMPLATE);

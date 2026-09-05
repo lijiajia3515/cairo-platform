@@ -24,7 +24,7 @@ import java.util.Map;
 
 
 /**
- * 下线会话根据已删除的应用用户 队列处理器
+ * 下线会话根据已删除的应用级用户 队列处理器
  */
 @Slf4j
 @Component

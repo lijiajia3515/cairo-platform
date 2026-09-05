@@ -4,6 +4,9 @@ import io.github.lijiajia3515.cairo.auth.framework.security.account.CairoAuthAcc
 import io.github.lijiajia3515.cairo.auth.framework.security.app_user.CairoAuthAppUserService;
 import io.github.lijiajia3515.cairo.auth.framework.security.tenant_app_user.CairoAuthTenantAppUserService;
 import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.CairoOAuth2Properties;
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.authorization.account.AccountAuthorizationService;
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.authorization.app_user.AppUserAuthorizationService;
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.authorization.tenant_app_user.TenantAppUserAuthorizationService;
 import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.server.resource.authentication.CairoOAuthJwtAuthenticationConverter;
 import io.github.lijiajia3515.cairo.auth.framework.security.web.CairoBearerTokenAccessDeniedHandler;
 import io.github.lijiajia3515.cairo.auth.framework.security.web.CairoBearerTokenAuthenticationEntryPoint;
@@ -83,8 +86,12 @@ public class OAuth2ClientServerConfig {
 	@Primary
 	CairoOAuthJwtAuthenticationConverter cairoOAuthJwtAuthenticationConverter(CairoAuthAccountService cairoAuthAccountService,
                                                                               CairoAuthTenantAppUserService cairoAuthTenantAppUserService,
-                                                                              CairoAuthAppUserService cairoAuthAppUserService) {
-		return new CairoOAuthJwtAuthenticationConverter(cairoAuthAccountService, cairoAuthTenantAppUserService, cairoAuthAppUserService);
+                                                                              CairoAuthAppUserService cairoAuthAppUserService,
+                                                                              AccountAuthorizationService accountAuthorizationService,
+                                                                              AppUserAuthorizationService appUserAuthorizationService,
+                                                                              TenantAppUserAuthorizationService tenantAppUserAuthorizationService) {
+		return new CairoOAuthJwtAuthenticationConverter(cairoAuthAccountService, cairoAuthTenantAppUserService, cairoAuthAppUserService,
+			accountAuthorizationService, appUserAuthorizationService, tenantAppUserAuthorizationService);
 	}
 
 	@Bean

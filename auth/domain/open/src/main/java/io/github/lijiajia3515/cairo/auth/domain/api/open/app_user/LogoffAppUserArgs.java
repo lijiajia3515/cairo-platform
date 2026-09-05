@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 /**
- * 注销应用用户参数
+ * 注销应用级用户参数
  */
 @Data
 @NoArgsConstructor

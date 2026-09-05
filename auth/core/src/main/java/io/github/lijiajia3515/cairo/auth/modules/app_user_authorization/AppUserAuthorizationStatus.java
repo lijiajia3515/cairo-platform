@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * 终端用户会话状态
+ * 应用级用户会话状态
  */
 public enum AppUserAuthorizationStatus {
 	/**

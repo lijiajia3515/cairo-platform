@@ -1,15 +1,15 @@
 package io.github.lijiajia3515.cairo.auth.api.subapp.app_user;
 
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.CreateAccountAndAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.CreateAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.DeleteAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.GetAppUserInfoArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.GetAppUserListArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.LogoffAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.ModifyAppUserInfoArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.ModifyAppUserStatusArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.TransferAppUserToOtherAccountArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.endpoint.app_user.UnlogoffAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.CreateAccountAndAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.CreateAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.DeleteAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.GetAppUserInfoArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.GetAppUserListArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.LogoffAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.ModifyAppUserInfoArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.ModifyAppUserStatusArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.TransferAppUserToOtherAccountArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.app_user.app_user.UnlogoffAppUserArgs;
 import io.github.lijiajia3515.cairo.auth.domain.dto.app_user.AppUserMetadata;
 import io.github.lijiajia3515.cairo.auth.domain.dto.menu.MenuNode;
 import io.github.lijiajia3515.cairo.auth.framework.security.subapp_user.CairoAuthSubappUserService;
@@ -51,7 +51,7 @@ public class AppUserSubappApiController {
 
 
 	/**
-	 * 获取当前应用用户权限集合
+	 * 获取当前应用级用户权限集合
 	 *
 	 * @param principal 凭证
 	 * @return 权限字符串
@@ -64,7 +64,7 @@ public class AppUserSubappApiController {
 
 
 	/**
-	 * 获取当前应用用户功能集合
+	 * 获取当前应用级用户功能集合
 	 *
 	 * @param principal 凭证
 	 * @return 功能权限ID集合
@@ -99,11 +99,11 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 获取应用用户列表
+	 * 获取应用级用户列表
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 应用用户列表
+	 * @return 应用级用户列表
 	 */
 	@PostMapping("/get_app_user_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'app_user:all', 'app_user:read')")
@@ -114,11 +114,11 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 获取应用用户分页列表
+	 * 获取应用级用户分页列表
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 应用用户分页列表
+	 * @return 应用级用户分页列表
 	 */
 	@PostMapping("/get_app_user_page_list")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'app_user:all', 'app_user:read')")
@@ -129,11 +129,11 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 应用用户接口，根据应用用户标识获取应用用户信息
+	 * 应用级用户接口，根据应用级用户标识获取应用级用户信息
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
-	 * @return 应用用户信息
+	 * @return 应用级用户信息
 	 */
 	@PostMapping("/get_app_user_info")
 	@PreAuthorize("hasAnyAuthority('app_admin', 'app_user:all', 'app_user:read')")
@@ -144,7 +144,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 应用用户接口，创建应用用户
+	 * 应用级用户接口，创建应用级用户
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -160,7 +160,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 创建账号并且创建应用用户
+	 * 创建账号并且创建应用级用户
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -176,7 +176,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 修改应用用户信息
+	 * 修改应用级用户信息
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -193,7 +193,7 @@ public class AppUserSubappApiController {
 
 
 	/**
-	 * 修改应用用户状态
+	 * 修改应用级用户状态
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -225,7 +225,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 注销应用用户
+	 * 注销应用级用户
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -242,7 +242,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 取消注销应用用户
+	 * 取消注销应用级用户
 	 *
 	 * @param principal 凭证
 	 * @param args      参数
@@ -259,7 +259,7 @@ public class AppUserSubappApiController {
 	}
 
 	/**
-	 * 删除应用用户
+	 * 删除应用级用户
 	 *
 	 * @param principal 凭证
 	 * @param args      参数

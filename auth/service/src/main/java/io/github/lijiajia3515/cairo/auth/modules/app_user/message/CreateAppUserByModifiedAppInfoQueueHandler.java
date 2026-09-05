@@ -40,7 +40,7 @@ import java.util.Map;
 
 
 /**
- * 创建应用用户根据修改应用 队列处理器
+ * 创建应用级用户根据修改应用 队列处理器
  */
 @Slf4j
 @Component
@@ -88,7 +88,7 @@ public class CreateAppUserByModifiedAppInfoQueueHandler {
 				modifiedAppInfoMessage.getEventTime()
 			);
 
-			// 移除旧账号的应用用户管理员权限
+			// 移除旧账号的应用级用户管理员权限
 			List<String> removeAdminAccountIds = modifiedAppInfoMessage.getRemoveAdminAccountIds();
 			if (removeAdminAccountIds != null && !removeAdminAccountIds.isEmpty()) {
 				Criteria criteria = Criteria
@@ -104,7 +104,7 @@ public class CreateAppUserByModifiedAppInfoQueueHandler {
 
 			List<String> newAdminAccountIds = modifiedAppInfoMessage.getNewAdminAccountIds();
 			if (newAdminAccountIds != null && !newAdminAccountIds.isEmpty()) {
-				// 创建新管理员应用用户
+				// 创建新管理员应用级用户
 				List<Account> newAdminAccountList = accountCommonService.getAccountListByAccountIds(newAdminAccountIds);
 				newAdminAccountList.forEach(account -> {
 					AppUserMongodb newUser = transactionTemplate.execute(transactionStatus -> {
@@ -150,7 +150,7 @@ public class CreateAppUserByModifiedAppInfoQueueHandler {
 
 					if (newUser != null) {
 						try {
-							// 发送创建应用用户消息
+							// 发送创建应用级用户消息
 							rabbitTemplate.convertAndSend(
 								cairoRabbitmqTool.getExchange().getName(CairoAuthRabbitmqExchange.AUTH),
 								cairoRabbitmqTool.getRouteKey().getAppKey(CairoAuthRabbitmqRouteKey.CREATED_APP_USER, modifiedAppInfoMessage.getAppId()),

@@ -113,7 +113,7 @@ public final class TenantAppUserAccessTokenGenerator implements OAuth2TokenGener
 
 		OAuth2TokenClaimsSet accessTokenClaimsSet = claimsBuilder.build();
 
-		OAuthTenantAppUserAccessToken endpointUserAccessToken = new OAuthTenantAppUserAccessToken(
+		OAuthTenantAppUserAccessToken tenantAppUserAccessToken = new OAuthTenantAppUserAccessToken(
 			OAuth2AccessToken.TokenType.BEARER,
 			tenantId,
 			appId,
@@ -127,7 +127,7 @@ public final class TenantAppUserAccessTokenGenerator implements OAuth2TokenGener
 			accessTokenClaimsSet.getClaims()
 		);
 
-		return endpointUserAccessToken;
+		return tenantAppUserAccessToken;
 	}
 
 }

@@ -76,7 +76,7 @@ public class CairoAccountSnsCodeAuthenticationProvider implements Authentication
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
 		Assert.isInstanceOf(CairoAccountSnsCodeAuthenticationToken.class, authentication,
-			() -> this.messages.getMessage("CairoAccountSnsCodeAuthenticationToken.onlySupports",
+			() -> this.messages.getMessage("CairoAccountSnsCodeAuthenticationProvider.onlySupports",
 				"Only CairoAccountSnsCodeAuthenticationToken is supported"));
 		CairoAccountSnsCodeAuthenticationToken token = (CairoAccountSnsCodeAuthenticationToken) authentication;
 

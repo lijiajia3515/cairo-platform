@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 /**
- * 租户
+ * 企业
  */
 @Data
 @Accessors(chain = true)

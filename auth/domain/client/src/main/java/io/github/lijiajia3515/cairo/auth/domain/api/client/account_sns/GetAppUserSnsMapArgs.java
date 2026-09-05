@@ -32,7 +32,7 @@ public class GetAppUserSnsMapArgs implements Serializable {
 	private String snsProviderId;
 
 	/**
-	 * 应用用户ID数组
+	 * 应用级用户ID数组
 	 */
 	@NotNull
 	@Size(min = 1)

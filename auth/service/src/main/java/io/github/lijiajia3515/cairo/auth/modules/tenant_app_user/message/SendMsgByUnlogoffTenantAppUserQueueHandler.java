@@ -31,7 +31,7 @@ import java.util.Optional;
 
 
 /**
- *  取消注销企业用户 发送消息处理器
+ *  取消注销企业应用级用户 发送消息处理器
  */
 @Slf4j
 @Component

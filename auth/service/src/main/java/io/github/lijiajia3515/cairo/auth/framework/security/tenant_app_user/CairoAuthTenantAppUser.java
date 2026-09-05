@@ -59,7 +59,7 @@ public class CairoAuthTenantAppUser implements UserDetails, OAuth2User {
 	private String clientId;
 
 	/**
-	 * 租户id
+	 * 企业id
 	 */
 	private String tenantId;
 

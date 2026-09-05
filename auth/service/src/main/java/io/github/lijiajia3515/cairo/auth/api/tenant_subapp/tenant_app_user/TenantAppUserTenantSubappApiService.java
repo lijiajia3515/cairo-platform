@@ -37,15 +37,15 @@ import io.github.lijiajia3515.cairo.auth.domain.message.tenant_app_user.CreatedT
 import io.github.lijiajia3515.cairo.auth.domain.message.tenant_app_user.DeletedTenantAppUserMessage;
 import io.github.lijiajia3515.cairo.auth.domain.message.tenant_app_user.LogoffSuccessTenantAppUserMessage;
 import io.github.lijiajia3515.cairo.auth.domain.message.tenant_app_user.UnlogoffTenantAppUserMessage;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.CreateAccountAndTenantAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.CreateTenantAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.DeleteTenantAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.GetTenantAppUserListArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.LogoffTenantAppUserArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.ModifyTenantAppUserInfoArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.ModifyTenantAppUserStatusArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.TransferTenantAppUserToOtherAccountArgs;
-import io.github.lijiajia3515.cairo.auth.domain.api.tenant_endpoint.tenant_app_user.UnlogoffTenantAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.CreateAccountAndTenantAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.CreateTenantAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.DeleteTenantAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.GetTenantAppUserListArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.LogoffTenantAppUserArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.ModifyTenantAppUserInfoArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.ModifyTenantAppUserStatusArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.TransferTenantAppUserToOtherAccountArgs;
+import io.github.lijiajia3515.cairo.auth.domain.api.tenant_app_user.tenant_app_user.UnlogoffTenantAppUserArgs;
 import io.github.lijiajia3515.cairo.auth.domain.dto.tenant_app_user_tag.TenantAppUserTag;
 import io.github.lijiajia3515.cairo.auth.modules.tenant_app_user_tag.TenantAppUserTagCommonService;
 import io.github.lijiajia3515.cairo.core.CoreConstants;
@@ -327,7 +327,7 @@ public class TenantAppUserTenantSubappApiService {
 	/**
 	 * 创建账号并且创建用户
 	 *
-	 * @param tenantId 租户id
+	 * @param tenantId 企业id
 	 * @param appId    应用id
 	 * @param args     参数
 	 */
@@ -798,7 +798,7 @@ public class TenantAppUserTenantSubappApiService {
 	}
 
 	/**
-	 * 取消注销应用用户
+	 * 取消注销应用级用户
 	 *
 	 * @param appId appId
 	 * @param args  args
