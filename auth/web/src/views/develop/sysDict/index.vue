@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-sys_dict' })
+
 import { ref, onMounted, watch } from 'vue';
 import { MessagePlugin, DialogPlugin, LoadingPlugin } from 'tdesign-vue-next';
 

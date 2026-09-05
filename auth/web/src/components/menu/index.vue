@@ -1,10 +1,11 @@
 <script setup>
 import { ref, reactive, watch, onMounted, onUnmounted, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { useWindowSize } from '@vueuse/core';
 
 import useState from '@/hooks/useState';
+import useCollapsed from '@/hooks/useCollapsed';
 import { useUserStore } from '@/store/user';
+import { useThemeConfigStore } from '@/store/themeConfig';
 
 const router = useRouter();
 const route = useRoute();
@@ -17,13 +18,11 @@ const menuList = computed(() => userStore.menuListGetter);
 
 
 onMounted(() => {
-  console.log(menuList, 'menuList====');
   // getMenuList();
 
 });
 const getParentPath = () => {
-  let parentPath = '';
-  console.log(route, 'route====');
+  let parentPath = []; // t-menu expanded 要求数组,无匹配(如 /home/平台页)时返回空集而非空串
   let currentPathArr = route.path.split('/');
   const path = currentPathArr.length == 4 ? '/' + currentPathArr[1] + '/' + currentPathArr[2] : route.path;
   menuList.value.forEach(item => {
@@ -58,31 +57,24 @@ const getParentPath = () => {
       }
     }
   });
-  console.log(parentPath, 'parentPath====');
   return parentPath;
 }
 
 
 let [expanded, setExpanded] = useState(getParentPath()); // 子菜单展开的导航集
 
-let [collapsed, setCollapsed] = useState(false);
-let [active_menu, setActiveMemu] = useState(route.path.split('/').length == 4 ? '/' + route.path.split('/')[1] + '/' + route.path.split('/')[2] : route.path); // 激活菜单项
-const { width, height } = useWindowSize(); // 监听窗口大小
-watch(width, () => {
-  if (width.value < 1200) {
-    setCollapsed(true);
-  } else {
-    setCollapsed(false);
-  }
-}, {
-  immediate: true
-});
+// 折叠:与侧栏宽度共享同一状态(窄屏强制折叠,宽屏随个性化配置)
+const collapsed = useCollapsed();
+const themeStore = useThemeConfigStore();
+const isAccordion = computed(() => themeStore.config.isAccordion);
+
+let [active_menu, setActiveMemu] = useState(route.path); // 激活菜单项=叶子路由完整路径(菜单项 value 即完整路径,取父段是旧路径方案残留,深层地址会全部失焦)
 
 
 
 watch(() => route.path, () => {
-  document.title = route.name || 'Cairo运营平台';
-  setActiveMemu(route.path.split('/').length == 4 ? '/' + route.path.split('/')[1] + '/' + route.path.split('/')[2] : route.path);
+  document.title = route.name || 'CAIRO';
+  setActiveMemu(route.path);
   setExpanded(getParentPath())
   // console.log(expanded.value, 'expanded');
 }, {
@@ -103,7 +95,7 @@ onUnmounted(() => {
 <template>
   <div class="menu__wrapper">
 
-    <t-menu v-model="active_menu" :collapsed="collapsed" v-model:expanded="expanded" expand-mutex
+    <t-menu v-model="active_menu" :collapsed="collapsed" v-model:expanded="expanded" :expand-mutex="isAccordion"
       @change="changeHandler">
       <div v-for="(item, index) in menuList" :key="index">
         <template v-if="item.hiddenMenu == false">
@@ -282,6 +274,33 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .menu__wrapper {
+  // TDesign .t-default-menu 写死 232px——覆盖为跟随侧栏宽(自适应),否则
+  // 侧栏拖窄时菜单内容溢出出现横向拖动、子菜单箭头钉死在 232 右缘
+  :deep(.t-default-menu) {
+    width: 100% !important;
+  }
+
+  // 分组行文字居左、展开箭头贴右缘(控制台惯例),消除箭头后大片空白
+  :deep(.t-submenu .t-submenu__title) {
+    .t-submenu__item-header {
+      width: 100%;
+
+      .t-menu__content {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+
+    .t-submenu__item-arrow {
+      margin-left: auto;
+    }
+  }
+
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+
   .iconfont {
     font-size: 16px;
     margin-right: 5px;

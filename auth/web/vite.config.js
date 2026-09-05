@@ -32,7 +32,7 @@ export default defineConfig({
       },
 
       // MANIFEST PWA https://vite-pwa-org.netlify.app/guide/pwa-minimal-requirements.html
-      includeAssets: ['logo.svg', 'apple-touch-icon.png', 'mask-icon.svg', 'favicon.png'], // 应该是下面 manifest 中可能用到的文件名字吧
+      includeAssets: ['logo.svg', 'apple-touch-icon.png', 'favicon.png', 'logo/logo-192.png', 'logo/logo-512.png'],
       manifest: {
         name: "Cairo运营平台",
         short_name: "Cairo运营平台",
@@ -41,18 +41,11 @@ export default defineConfig({
         display: "standalone",
         background_color: "#373737",
         icons: [
-          {
-            src: "logo.svg",
-            sizes: "512x512",
-            type: "image/svg+xml",
-            purpose: "any",
-          },
-          {
-            src: "appicon-apple.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any",
-          }
+            { src: "logo.svg", sizes: "any", type: "image/svg+xml" },
+            { src: "favicon.png", sizes: "32x32", type: "image/png" },
+            { src: "logo/logo-192.png", sizes: "192x192", type: "image/png" },
+            { src: "logo/logo-512.png", sizes: "512x512", type: "image/png" },
+            { src: "apple-touch-icon.png", sizes: "180x180", type: "image/png", purpose: "maskable" },
         ],
       },
     })

@@ -31,10 +31,10 @@ onMounted(() => {
 // 登录类型
 const [loginTypeList, setLoginTypeList] = useState([])
 const getLoginTypeList = async () => {
-  let params = { dictId: 'loginType' }
+  let params = { dictId: 'LoginType' }
   let res = await getSubappUserSysDictDetailInfo_api(params)
   if (res.code === 'Success') {
-    setLoginTypeList(res.data.items || [])
+    setLoginTypeList(res.data?.items || [])
   }
 }
 
@@ -45,7 +45,7 @@ const getAuthTypeList = async () => {
   let params = { dictId: 'AccountAuthType' }
   let res = await getSubappUserSysDictDetailInfo_api(params)
   if (res.code === 'Success') {
-    setAuthTypeList(res.data.items || [])
+    setAuthTypeList(res.data?.items || [])
   }
 }
 

@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-system-session' })
+
 import {
   ref,
   onMounted,
@@ -39,7 +41,7 @@ let loading = ref(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('tokenId', 'tokenId', {width: 190}),
+    copyColumn('tokenId', '会话ID', {width: 190}),
     { colKey: 'endpointName', title: '终端' },
     { colKey: 'clientName', title: '客户端' },
     userColumn({ colKey: 'userName', title: '用户', nameKey: 'userName', avatarKey: 'accountAvatarUrl', idKey: 'userName', width: 140 }),

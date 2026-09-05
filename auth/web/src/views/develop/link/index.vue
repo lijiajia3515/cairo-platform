@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-link' })
+
 import { ref, reactive, onMounted } from 'vue';
 import useState from '@/hooks/useState';
 import {

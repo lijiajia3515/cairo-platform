@@ -157,7 +157,7 @@ pnpm dev                               # 开发服务器（5173）
 | 菜单与权限   | [docs/auth/menus.md](docs/auth/menus.md)                             | 菜单权限树可读快照（45 菜单 / 169 权限点）                                               |
 | 系统字典     | [docs/auth/dict.md](docs/auth/dict.md)                               | 系统字典清单快照（9 字典 / 48 项）                                                       |
 | 错误码       | [docs/auth/error-codes.md](docs/auth/error-codes.md)                 | 17 枚举类 74 码值 + 前端分发处理                                                         |
-| 运营平台      | [auth/web/README.md](auth/web/README.md)                             | 环境要求、常用命令、运行时配置、API 层结构                                               |
+| 运营平台      | [auth/web/README.md](auth/web/README.md)                             | 环境要求、常用命令、运行时配置、API 层结构、列表页规范                                       |
 | 网关         | [gateway/README.md](gateway/README.md)                               | 网关能力与运行配置                                                                       |
 | 监控中心     | [sba/README.md](sba/README.md)                                       | Spring Boot Admin 接入说明                                                               |
 

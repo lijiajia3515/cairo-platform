@@ -210,7 +210,8 @@ public class PermissionCairoWebManageApiService {
 				);
 				MenuMongodb menu = mongoTemplate.findOne(menuQuery, MenuMongodb.class, MongodbConstants.Collection.MENU);
 				if (menu == null && menuId.equals(ROOT_ID)) {
-					menu = menuCommonService.createDefaultMenu(appId, endpointId, subappId, subappVersion);
+					// 无根时确保根存在(已有无根菜单则包裹修复,而非盲插默认根撞唯一索引)
+					menu = menuCommonService.ensureRootMenu(appId, endpointId, subappId, subappVersion);
 				}
 				if (menu == null) {
 					throw new ConflictBusinessException("MenuId 错误");

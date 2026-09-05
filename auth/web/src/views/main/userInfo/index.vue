@@ -56,6 +56,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'profile' })
+
 import { ref, onMounted, computed, nextTick, onBeforeUnmount } from 'vue';
 import {
   DialogPlugin,
@@ -170,14 +172,14 @@ const getAvatarData = async (data) => {
 
       // overflow-y: auto;
       .menuBox {
-        border: 1px solid #ededed;
+        border: 1px solid var(--td-component-stroke);
         box-sizing: border-box;
         height: calc(100vh - 100px);
       }
 
       .logoBox {
         width: 100%;
-        border-bottom: 1px solid #ededed;
+        border-bottom: 1px solid var(--td-component-stroke);
         padding: 5px 20px 20px 20px;
         box-sizing: border-box;
         display: flex;
@@ -189,7 +191,7 @@ const getAvatarData = async (data) => {
       width: calc(100vh - 220px);
       overflow-y: auto;
       height: calc(100vh - 100px);
-      background: #fff;
+      background: var(--td-bg-color-container);
     }
   }
 }

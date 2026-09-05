@@ -69,4 +69,10 @@ public class CairoContextInterceptor  implements HandlerInterceptor {
         }
         return true;
     }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        // 线程池复用线程:请求结束必须清,防止残留上下文串到后续请求
+        CairoContextHolder.clear();
+    }
 }

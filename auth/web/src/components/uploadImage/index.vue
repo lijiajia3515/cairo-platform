@@ -13,6 +13,22 @@ import {
   accessPublicFile_api,
   accessAppFile_api
 } from '@/api';
+
+// 各 picType 的上传规范:展示位决定推荐尺寸/格式(图标位都是 16px 引用列/侧栏,
+// 矢量优先,位图留 4~8 倍余量防高分屏发糊);accept 收紧 + tips 提示 + 大小硬校验
+const PIC_SPECS = {
+  'app-icon':        { accept: 'image/png,image/svg+xml',           tip: '建议正方形 ≥128×128,PNG 透明底或 SVG,≤1MB' },
+  'endpoint-icon':   { accept: 'image/png,image/svg+xml',           tip: '建议正方形 ≥128×128,PNG 透明底或 SVG,≤1MB' },
+  'tenant-icon':     { accept: 'image/png,image/svg+xml',           tip: '建议正方形 ≥128×128,PNG 透明底或 SVG,≤1MB' },
+  'menu':            { accept: 'image/svg+xml,image/png',           tip: '建议正方形 64~128,SVG 优先(矢量不糊),≤512KB' },
+  'permission-icon': { accept: 'image/svg+xml,image/png',           tip: '建议 SVG 矢量(与动词图标库同族),≤512KB' },
+  'avatar':          { accept: 'image/jpeg,image/png,image/webp',   tip: '建议正方形 ≥128×128,JPG/PNG,≤2MB' },
+  default:           { accept: 'image/*',                           tip: '建议正方形图标 PNG/SVG,≤1MB' },
+};
+const picSpec = computed(() => PIC_SPECS[props.picType] || PIC_SPECS.default);
+const maxBytes = computed(() => (props.picType === 'avatar' ? 2 : 1) * 1024 * 1024);
+const uploadAccept = computed(() => props.accept || picSpec.value.accept);
+const uploadTips = computed(() => props.tips || picSpec.value.tip);
 // https://thoughts.aliyun.com/workspaces/65016de75cd066001b40bdb4/docs/652613064c6050000199c726#3ef51e80-67e4-11ee-a5da-4d82aa7e382b-104737
 const props = defineProps({
   disabled: {
@@ -25,6 +41,9 @@ const props = defineProps({
   limit: {
     type: Number,
     default: 1
+  },
+  accept: { // 覆盖默认 accept 时传入;否则按 picType 规范表取
+    type: String,
   },
   fileList: { // 编辑 {name url}
     type: Array,
@@ -211,13 +230,23 @@ const getUrl = (bucket, key, version, type) => {
 }
 
 
-const onValidate = (params) => {
-  console.log(params)
-  switch (params.type) {
-    case 'FILES_OVER_LENGTH_LIMIT':
-      MessagePlugin.error('只能上传' + props.limit + '张图片');
-      break;
+const onValidate = ({ file, type }) => {
+  if (type === 'FILES_OVER_LENGTH_LIMIT') {
+    MessagePlugin.error('只能上传' + props.limit + '张图片');
+    return false;
   }
+  if (type === 'FILE_EXCEED_SIZE_LIMIT' || (file && file.raw && file.raw.size > maxBytes.value)) {
+    MessagePlugin.error(`图片超过大小限制(${maxBytes.value / 1024 / 1024}MB)`);
+    return false;
+  }
+  if (file && file.raw && uploadAccept.value !== 'image/*') {
+    const ok = file.raw.type && uploadAccept.value.split(',').includes(file.raw.type);
+    if (!ok) {
+      MessagePlugin.error('格式不支持,请上传 ' + picSpec.value.tip);
+      return false;
+    }
+  }
+  return true;
 }
 
 
@@ -242,7 +271,8 @@ defineExpose({
 
 
 <template>
-  <t-upload ref="uploadRef" v-model="files" theme="image" tips="" accept="image/*" :abridge-name="[6, 6]"
+  <t-upload ref="uploadRef" v-model="files" theme="image" :tips="uploadTips" :accept="uploadAccept"
+    :sizeLimit="{ size: maxBytes / 1024 / 1024, unit: 'MB' }" :abridge-name="[6, 6]"
     :disabled="disabled" :auto-upload="autoUpload" :upload-all-files-in-one-request="uploadAllFilesInOneRequest"
     multiple :max="limit" @fail="handleFail" @validate="onValidate" :requestMethod="requestMethod"></t-upload>
 </template>

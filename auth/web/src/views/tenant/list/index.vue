@@ -1,5 +1,7 @@
 <!-- 企业 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-tenant' })
+
 import { ref, onMounted } from 'vue';
 import { debounce } from 'lodash';
 import { useWindowSize } from '@vueuse/core';
@@ -57,7 +59,7 @@ const [configs, setConfigs] = useState({
     { colKey: 'aliasName', title: '企业别名' },
     {
       // 头像+昵称可点击查看账号详情,点击行为无法由列工厂表达,保留自定义 cell
-      colKey: '', title: '拥有人', width: 200, cell: (h, { row }) => {
+      colKey: 'ownerAccount', title: '拥有人', width: 200, cell: (h, { row }) => {
         let show = ref(false);
         const onMouseEnter = (event) => {
           show.value = true;
@@ -75,7 +77,7 @@ const [configs, setConfigs] = useState({
 
             <div onClick={() => onWatchAccountInfo(row?.ownerAccount || {})} style={{ height: '100%', display: 'flex', alignItems: 'center' }} class="pick">{row?.ownerAccount?.nickname || null}</div>
             {
-              show.value == true ? <i onClick={() => useCopy(row['ownerAccount']?.accountId)} className={'iconfont icon-fuzhi pick copyIcon'}></i> : <i style={{ opacity: 0 }} className={'iconfont icon-fuzhi copyIcon'}></i>
+              show.value == true ? <t-icon name="copy" size="12px" class="copyIcon pick" onClick={() => useCopy(row['ownerAccount']?.accountId)}></t-icon> : <t-icon name="copy" size="12px" class="copyIcon" style={{ opacity: 0 }}></t-icon>
             }
           </t-space>
         )

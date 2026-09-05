@@ -1,5 +1,7 @@
 <!-- 功能权限 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-permission' })
+
 import {
   ref, onMounted,
   watch,
@@ -20,7 +22,7 @@ import Dialog from '@/components/dialog';
 import UserInfo from '@/components/userInfo';
 import UploadImage from '@/components/uploadImage';
 import FilterItem from '@/components/filterBar/item.vue';
-import {timeColumn, avatarCopyColumn, statusTagColumn} from '@/utils/tableColumns';
+import {timeColumn, avatarCopyColumn, switchColumn} from '@/utils/tableColumns';
 import {hasPermission} from '@/plugins/permission';
 
 import {
@@ -56,7 +58,7 @@ const [configs, setConfigs] = useState({
     { colKey: 'permissionId', title: '权限ID' },
     avatarCopyColumn({colKey: 'permissionName', title: '权限名称', iconKey: 'icon', copyKey: 'permissionId'}),
     {
-      colKey: 'authorities', title: '权限集合', width: 300, cell: (h, { row }) => {
+      colKey: 'authorities', title: '权限集合', minWidth: 200, cell: (h, { row }) => {
         let list = row['authorities'];
         let dom = null;
         let str = '';
@@ -66,7 +68,8 @@ const [configs, setConfigs] = useState({
             return <p>{item}</p>
           })
         }
-        return <t-tooltip content={dom}>
+        // content 只收 String|Function,数组需包成 TNode 函数
+        return <t-tooltip content={() => dom}>
           {str}
         </t-tooltip>;
       }
@@ -96,8 +99,33 @@ const [configs, setConfigs] = useState({
         return row['type'] == 'read' ? '读' : row['type'] == 'write' ? '写' : (row['type'] == 'operator' ? '操作' : '')
       }
     },
-    ...statusTagColumn('defaultPermission', '是否默认权限', { type: 'yesno', width: 110 }),
-    ...statusTagColumn('hiddenPermission', '是否隐藏权限', { type: 'yesno', width: 110 }),
+    // 默认权限:开=授权时默认勾选;可见性:开=隐藏(列表/授权页不显示)
+    switchColumn({
+      colKey: 'defaultPermission', title: '默认权限', width: 96,
+      pairs: { true: { label: '默认', theme: 'primary' }, false: { label: '按需', theme: 'default' } },
+      confirmOf: (value) => (value ? '设为默认' : '取消默认'),
+      api: (params) => modifyPermission_api(params, {
+        'app-id': headerParams.value.appId,
+        'endpoint-id': headerParams.value.endpointId,
+        'subapp-id': headerParams.value.subappId,
+        'subapp-version': headerParams.value.subappVersion,
+      }),
+      idKeys: ['permissionId'], valueKey: 'defaultPermission',
+      label: '权限', perm: 'permission.write', refresh: () => getPermissionPage(), // 延迟引用:columns 求值时函数尚未声明(TDZ)
+    }),
+    switchColumn({
+      colKey: 'hiddenPermission', title: '可见性', width: 96,
+      pairs: { true: { label: '隐藏', theme: 'danger' }, false: { label: '显示', theme: 'success' } },
+      confirmOf: (value) => (value ? '隐藏' : '显示'),
+      api: (params) => modifyPermission_api(params, {
+        'app-id': headerParams.value.appId,
+        'endpoint-id': headerParams.value.endpointId,
+        'subapp-id': headerParams.value.subappId,
+        'subapp-version': headerParams.value.subappVersion,
+      }),
+      idKeys: ['permissionId'], valueKey: 'hiddenPermission',
+      label: '权限', perm: 'permission.write', refresh: () => getPermissionPage(), // 延迟引用:columns 求值时函数尚未声明(TDZ)
+    }),
     {
       colKey: 'metadata.updateUser.nickname', title: '更新人', cell: (h, { row }) => {
         return (
@@ -114,7 +142,7 @@ const [configs, setConfigs] = useState({
     },
     timeColumn('metadata.updateTime', '更新时间'),
     {
-      colKey: 'operation', title: '操作', width: 200, fixed: 'right', cell: (h, { row, rowIndex }) => {
+      colKey: 'operation', title: '操作', width: 160, fixed: 'right', cell: (h, { row, rowIndex }) => {
         if (!hasPermission('permission.write')) return null;
         return (
           <t-space>
@@ -458,7 +486,7 @@ const onEdit = (row) => {
 const onDelete = (row) => {
   const confirmDia = DialogPlugin({
     header: '删除',
-    body: '是否继续操作?',
+    body: `是否删除权限「${row.permissionName}」?`,
     confirmBtn: '确定',
     cancelBtn: '取消',
     onConfirm: async ({ e }) => {
@@ -657,13 +685,13 @@ const getSubappVersionList = async () => {
         </FilterItem>
         <FilterItem label="子应用">
           <t-select v-model="headerParams.subappId">
-            <t-option :style="{ background: item.enabled == true ? 'initial' : '#ededed' }" :label="item.subappName"
+            <t-option :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }" :label="item.subappName"
               :value="item.subappId" v-for="(item, index) in subappList" :key="index"></t-option>
           </t-select>
         </FilterItem>
         <FilterItem label="子应用版本">
           <t-select v-model="headerParams.subappVersion">
-            <t-option :style="{ background: item.enabled == true ? 'initial' : '#ededed' }"
+            <t-option :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }"
               :label="item.subappVersion" :value="item.subappVersion" v-for="(item, index) in subappVersionList"
               :key="index"></t-option>
           </t-select>
@@ -733,19 +761,19 @@ const getSubappVersionList = async () => {
         </t-col>
         <div class="empty"></div>
         <t-col :span="12">
-          <t-form-item label="是否默认权限">
+          <t-form-item label="默认权限" help="开启后,角色授权时默认勾选该权限">
             <t-radio-group v-model="form.defaultPermission">
-              <t-radio :value="true">是</t-radio>
-              <t-radio :value="false">否</t-radio>
+              <t-radio :value="true">默认勾选</t-radio>
+              <t-radio :value="false">按需勾选</t-radio>
             </t-radio-group>
           </t-form-item>
         </t-col>
         <div class="empty"></div>
         <t-col :span="12">
-          <t-form-item label="是否隐藏">
+          <t-form-item label="权限可见性" help="开启后,权限列表与授权页不显示该权限(仍可被已授权角色持有)">
             <t-radio-group v-model="form.hiddenPermission">
-              <t-radio :value="true">是</t-radio>
-              <t-radio :value="false">否</t-radio>
+              <t-radio :value="false">显示</t-radio>
+              <t-radio :value="true">隐藏</t-radio>
             </t-radio-group>
           </t-form-item>
         </t-col>

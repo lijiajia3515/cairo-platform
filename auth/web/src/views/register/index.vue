@@ -44,15 +44,15 @@ const goRoute = (path) => {
     display: flex;
 
     .leftBox {
-      background-color: #fff;
+      background-color: var(--td-bg-color-container);
       width: 50%;
-      border-right: 1px solid #ededed;
+      border-right: 1px solid var(--td-component-stroke);
       box-sizing: border-box;
       opacity: 0;
     }
 
     .rightBox {
-      background-color: #fff;
+      background-color: var(--td-bg-color-container);
       width: 50%;
       min-width: 415px;
       border-radius: 0;

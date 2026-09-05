@@ -1,5 +1,7 @@
 <!-- 短信模板 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-notify-template' })
+
 import { ref, onMounted, watch, } from 'vue';
 import { MessagePlugin, LoadingPlugin, DialogPlugin } from 'tdesign-vue-next';
 

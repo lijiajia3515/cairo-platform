@@ -1,5 +1,7 @@
 <!-- 客户端 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-client' })
+
 import Vue3Jsoneditor from 'v3-jsoneditor/src/Vue3Jsoneditor.vue'
 import { ref, reactive, onMounted, nextTick, watch } from 'vue';
 import { useRouter } from 'vue-router';

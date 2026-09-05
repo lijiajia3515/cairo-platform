@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-wxmp-template_msg_record' })
+
 import {ref, onMounted, watch} from 'vue';
 import {DialogPlugin, MessagePlugin, LoadingPlugin} from 'tdesign-vue-next';
 
@@ -44,7 +46,7 @@ const [configs, setConfigs] = useState({
     //     return (
     //       <t-space size="small">
     //         {
-    //           row?.appIcon ? <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.appName?.slice(0, 2)} size="medium" image={row?.appIcon} /> : null
+    //           row?.appIcon ? <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.appName?.slice(0, 2)} size="16px" image={row?.appIcon} /> : null
     //         }
     //         <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>{row?.appName || null}</div>
     //         <i onClick={() => useCopy(row['appId'])} className={'iconfont icon-fuzhi pick copyIcon'}></i>
@@ -55,7 +57,7 @@ const [configs, setConfigs] = useState({
     ellipsisColumn('openId', 'openId', {width: 200}),
     ellipsisColumn('text', '内容', {width: 240}),
     {
-      colKey: '', title: '结果', width: 140, cell: (h, {row}) => {
+      colKey: 'sendResult', title: '结果', width: 140, cell: (h, {row}) => {
         return (
             <span
                 style={{color: row['success'] ? '#2ba471' : '#d54941'}}>{row['success'] ? '发送成功' : row['reason']}</span>

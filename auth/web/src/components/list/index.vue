@@ -47,15 +47,14 @@ const guessMinWidth = (col) => {
   return 120;
 };
 
-// 列后处理:无自定义 cell 的列统一补 minWidth + ellipsis;有 cell/width 的不动
+// 列后处理:全列补 minWidth 硬下限——布局为原生 auto(design.scss),width 只是建议值、
+// 小屏会被压缩成竖排;minWidth 下限到位后窄屏走横向滚动。未设宽的列按语义猜一个
 const mergedColumns = computed(() => {
   const columns = getValues('columns') || [];
   return columns.map((col) => {
-    if (col.cell) return col;
-    const next = { ...col, ellipsis: col.ellipsis ?? true };
-    if (!next.width && !next.minWidth) {
-      next.minWidth = guessMinWidth(col);
-    }
+    const next = { ...col };
+    if (!col.cell) next.ellipsis = col.ellipsis ?? true;
+    next.minWidth = col.minWidth ?? col.width ?? guessMinWidth(col);
     return next;
   });
 });

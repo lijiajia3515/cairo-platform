@@ -7,3 +7,5 @@ allowBuilds:
   core-js: false
   es5-ext: false
   vue-demi: false
+patchedDependencies:
+  v3-jsoneditor: patches/v3-jsoneditor.patch

@@ -1,4 +1,6 @@
 <script setup>
+defineOptions({ name: 'manage-develop-biz_log' })
+
 import {hasPermission} from '@/plugins/permission';
 
 import useState from '@/hooks/useState';

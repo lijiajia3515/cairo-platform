@@ -4,9 +4,6 @@ import {
 import { debounce } from 'lodash';
 
 
-import { useUserStore } from '@/store/user';
-
-import router from '@/router';
 import {
   getOauth2Token_api
 } from '@/api';
@@ -15,17 +12,13 @@ import {
   setRefreshToken, getRefreshToken,
   setTokenType, getTokenType,
 } from '@/utils';
+import { clearLoginTraces } from '@/utils/clearLoginTraces';
 
 const clearAndLogin = () => {
   let timer = setTimeout(() => {
-    let token = setToken();
-    let refresh_token = setRefreshToken();
-    let token_type = setTokenType();
-    token.value = null;
-    refresh_token.value = null;
-    token_type.value = null;
-    // Pinia 需在应用挂载后才可用，故在调用时才取 store
-    useUserStore().savePermissionList([]);
+    // 凭证过期被踢出:凭证/标签/子应用上下文等登录痕迹一并清除,
+    // 避免换账号后恢复上一用户的标签页与子应用定位
+    clearLoginTraces();
     window.location.reload();
     clearTimeout(timer)
   }, 800)

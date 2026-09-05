@@ -14,7 +14,7 @@
       "1"
     ],
     "autoRegister": true,
-    "icon": "/icons/app-icon/cairo.png",
+    "icon": "/logo/logo.svg",
     "scopes": [
       "app"
     ]

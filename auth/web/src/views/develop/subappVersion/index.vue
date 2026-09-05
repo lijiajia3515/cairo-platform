@@ -1,5 +1,7 @@
 <!-- 子应用版本 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-subapp-version' })
+
 import { ref, watch, onMounted, nextTick } from 'vue';
 import {
   MessagePlugin,
@@ -14,7 +16,7 @@ import Dialog from '@/components/dialog';
 import FilterBar from '@/components/filterBar';
 import FilterItem from '@/components/filterBar/item.vue';
 import UserInfo from '@/components/userInfo';
-import { timeColumn, opColumn, switchColumn } from '@/utils/tableColumns';
+import { timeColumn, opColumn, switchColumn, copyColumn } from '@/utils/tableColumns';
 import { hasPermission } from '@/plugins/permission';
 
 import {
@@ -163,12 +165,8 @@ const [loading, setLoading] = useState(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    {
-      colKey: 'subappId', title: '子应用ID',
-    },
-    {
-      colKey: 'subappName', title: '子应用名称',
-    },
+    // 引用实体(子应用)不设独立 ID 列:名称单元格悬停即复制子应用 ID
+    copyColumn('subappName', '子应用名称', { copyKey: 'subappId' }),
     {
       colKey: 'subappVersion', title: '子应用版本号',
     },

@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-account' })
+
 import { ref, onMounted } from 'vue';
 import {
   MessagePlugin,
@@ -52,9 +54,9 @@ const [loading, setLoading] = useState(true);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('accountId', '账号ID', {width: 150}),
+    copyColumn('accountId', '账号ID', {width: 110}),
     {
-      colKey: '', title: '昵称', width: 120, cell: (h, { row }) => {
+      colKey: 'nickname', title: '昵称', width: 120, cell: (h, { row }) => {
         return (
           <t-space size="small" >
             {
@@ -68,7 +70,7 @@ const [configs, setConfigs] = useState({
       }
     },
     { colKey: 'username', title: '用户名', width: 90, },
-    { colKey: 'phoneNumber', title: '手机号', width: 90, },
+    { colKey: 'phoneNumber', title: '手机号', width: 130, },
     switchColumn({
       api: modifyAccountStatus_api,
       idKeys: ['accountId'],
@@ -90,12 +92,12 @@ const [configs, setConfigs] = useState({
     timeColumn('joinTime', '加入时间'),
     timeColumn('loginTime', '登录时间'),
     {
-      colKey: 'logoffStatus', title: '注销状态', width: 80, cell: (h, { row }) => {
+      colKey: 'logoffStatus', title: '注销状态', width: 100, cell: (h, { row }) => {
         return row['logoffStatus'] == 'No' ? '未注销' : (row['logoffStatus'] == 'Pending' ? '注销中' : '注销成功');
       }
     },
-    timeColumn('logoffPendingTime', '注销时间'),
-    timeColumn('logoffSuccessTime', '注销成功时间'),
+    // 注销列并一列:注销中显示申请时间,注销成功显示完成时间(未注销两值皆空)
+    timeColumn('logoffSuccessTime', '注销时间', { or: 'logoffPendingTime' }),
     {
       colKey: 'metadata.updateUser.nickname', title: '更新账号', width: 140, cell: (h, { row }) => {
         return (

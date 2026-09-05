@@ -77,7 +77,7 @@ public class TenantAppUserLoginLogMongodb implements Serializable {
 	private String userId;
 
 	/**
-	 * 企业终端用户TokenId
+	 * 企业终端用户会话ID
 	 * 租户应用用户令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)

@@ -68,7 +68,7 @@ public class ClientLoginLogMongodb implements Serializable {
 	private String clientId;
 
 	/**
-	 * 客户端TokenId
+	 * 客户端会话ID
 	 * 客户端令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)

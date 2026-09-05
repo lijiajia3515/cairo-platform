@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-tenant-app' })
+
 import {
   ref, onMounted,
   nextTick,
@@ -18,7 +20,7 @@ import useState from '@/hooks/useState';
 import List from '@/components/list';
 import FilterBar from '@/components/filterBar';
 import FilterItem from '@/components/filterBar/item.vue';
-import { timeColumn, avatarCopyColumn, opColumn, switchColumn } from '@/utils/tableColumns';
+import { timeColumn, avatarCopyColumn, opColumn, switchColumn, entityColumn } from '@/utils/tableColumns';
 import { hasPermission } from '@/plugins/permission';
 
 import Dialog from '@/components/dialog';
@@ -61,8 +63,9 @@ const [search, setSearch] = useState({
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    avatarCopyColumn({ colKey: 'tenantName', title: '企业', iconKey: 'tenantIcon', copyKey: 'tenantId' }),
-    avatarCopyColumn({ colKey: 'appName', title: '应用', iconKey: 'appIcon', copyKey: 'appId' }),
+    // 引用实体不设独立 ID 列:名称单元格悬停即复制实体 ID,查全量 ID 去对应实体的管理页
+    entityColumn({ colKey: 'tenantName', title: '企业', iconKey: 'tenantIcon' }),
+    entityColumn({ colKey: 'appName', title: '应用', iconKey: 'appIcon' }),
     switchColumn({
       api: modifyTenantAppStatus_api,
       idKeys: ['tenantId', 'appId'],
@@ -628,7 +631,7 @@ const getCheck = () => {
         <t-col :span="11">
           <t-form-item name="appId" label="应用">
             <t-select :scroll="{ type: 'virtual' }" clearable filterable v-model="form.appId">
-              <t-option :style="{ background: item.enabled == true ? 'initial' : '#ededed' }" :disabled="type == 'edit'"
+              <t-option :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }" :disabled="type == 'edit'"
                 :label="item.appName" :value="item.appId" v-for="(item, index) in appList" :key="index">
                 <div style="display: flex;align-items: center;width: 100%;">
                   <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
@@ -763,17 +766,17 @@ const getCheck = () => {
   max-height: 58vh;
   overflow-y: auto;
   box-sizing: border-box;
-  border-top: 1px solid #ededed;
-  border-left: 1px solid #ededed;
-  border-right: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
+  border-top: 1px solid var(--td-component-stroke);
+  border-left: 1px solid var(--td-component-stroke);
+  border-right: 1px solid var(--td-component-stroke);
+  border-bottom: 1px solid var(--td-component-stroke);
 
   .row {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid var(--td-component-stroke);
 
     &:last-child {
       border-bottom: 0;
@@ -794,7 +797,7 @@ const getCheck = () => {
       display: flex;
       flex-wrap: wrap;
       box-sizing: border-box;
-      border-bottom: 1px solid #ededed;
+      border-bottom: 1px solid var(--td-component-stroke);
 
       &:last-child {
         border-bottom: 0;
@@ -806,7 +809,7 @@ const getCheck = () => {
       float: left;
       box-sizing: border-box;
       padding: 5px 10px;
-      border-left: 1px solid #ededed;
+      border-left: 1px solid var(--td-component-stroke);
     }
   }
 }

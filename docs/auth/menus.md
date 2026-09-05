@@ -1,217 +1,211 @@
 # 菜单与权限点（基线快照）
 
-> 来源：docs/auth/db/data 基线。权限模型：permissionId 为前端 v-allow 匹配键（资源.动作），authorities 为服务端 @PreAuthorize 校验串（资源:动作）。
+> 来源：docs/auth/db/data 基线（menu.json 树 + permission.json），改基线后重新生成本文档。权限模型：permissionId 为前端 v-allow 匹配键（资源.动作），authorities 为服务端 @PreAuthorize 校验串（资源:动作）。
 
-- **首页** `/home`
-  - `home` 首页（默认）
-- **账号中心** `/test1`
-  - **账号** `/account_center/account`
-    - `account.find` 查询 → `account:read` `sys_dict:read`
-    - `account.create` 创建账号 → `account:create_account`
-    - `account.modify` 修改账号信息 → `account:modify_account_info`
-    - `account.modify_status` 启用/禁用账号 → `account:modify_account_status`
-    - `account.delete` 删除账号 → `account:delete_account`
-    - `account.logoff_account` 注销账号 → `account:logoff_account`
-    - `account.reset_account_password` 重置密码 → `account:reset_account_password`
-    - `account.modify_lock_status` 解锁/锁定账号 → `account:modify_account_lock_status`
-    - `account.unlogoff_account` 取消注销账号 → `account:unlogoff_account`
-  - **账号会话** `/account_center/account_session`
-    - `account_authorization.read` 查询 → `account_authorization:read` `app:read` `client:read` `account:read`
-    - `account_authorization.offline` 下线 → `account_authorization:offline`
-- **企业中心** `/test2`
-  - **企业** `/tenant_center/tenant`
-    - `tenant.find` 查询 → `endpoint:read` `tenant:read` `app:read`
-    - `tenant.create` 添加 → `account:read` `tenant:create_tenant` `tenant:read`
-    - `tenant.modify` 编辑信息 → `account:read` `tenant:modify_tenant_info` `tenant:read`
-    - `tenant.modify_status` 启用/禁用 → `tenant:read` `tenant:modify_tenant_status`
-    - `tenant.delete` 删除企业 → `tenant:delete_tenant` `tenant:read`
-    - `tenant.modify_tenant_owner` 转移企业 → `account:read` `tenant:modify_tenant_owner`
-  - **企业应用** `/tenant_center/tenant_app`
-    - `tenant_app.create` 添加 → `account:read` `endpoint:read` `tenant:read` `app:read` `tenant_app:create_tenant_app`
-    - `tenant_app.modify_tenant_app_info` 编辑信息 → `account:read` `endpoint:read` `tenant_app:modify_tenant_app_info` `tenant:read` `app:read`
-    - `tenant_app.modify_tenant_status` 启用/禁用 → `tenant_app:modify_tenant_app_status`
-    - `tenant_app.delete_tenant_app` 删除 → `tenant_app:delete_tenant_app`
-    - `tenant_app.read` 查询 → `tenant:read` `app:read` `tenant_app:read`
-  - **企业终端** `/tenant_center/tenant_endpoint`
-    - `tenant_endpoint.read` 查询 → `endpoint:read` `tenant_endpoint:read` `tenant:read` `app:read` `tenant_app:read`
-    - `tenant_endpoint.create` 添加 → `endpoint:read` `tenant_endpoint:read` `tenant:read` `tenant_endpoint:create_tenant_endpoint` `tenant_app:read`
-    - `tenant_endpoint.modify_tenant_endpoint_status` 启用/禁用 → `tenant_endpoint:modify_tenant_endpoint_status` `tenant_endpoint:read`
-    - `tenant_endpoint.delete_tenant_endpoint` 删除 → `tenant_endpoint:delete_tenant_endpoint` `tenant_endpoint:read`
-  - **企业子应用** `/tenant_center/tenant_subapp`
-    - `tenant_subapp.read` 查询 → `tenant_subapp:read` `tenant:read` `subapp:read`
-    - `tenant_subapp.create` 创建 → `tenant_subapp:read` `tenant_subapp:create_tenant_subapp`
-    - `tenant_subapp.modify_tenant_subapp_status` 启用/禁用 → `tenant_subapp:modify_tenant_subapp_status`
-    - `tenant_subapp.delete_tenant_subapp` 删除 → `tenant_subapp:delete_tenant_subapp`
-- **开发中心** `/test3`
-  - **第三方账号** `/develop/sns_provider`
-    - `sns_provider.create` 创建 → `sns_provider:create_sns_provider`
-    - `sns_provider.modify` 编辑信息 → `sns_provider:modify_sns_provider`
-    - `sns_provider.delete` 删除 → `sns_provider:delete_sns_provider`
-    - `sns_provider.modify_status` 启用/禁用 → `sns_provider:modify_sns_provider_status`
-    - `sns_provider.find` 查询 → `sns_provider:read` `sys_dict:read`
-  - **应用** `/develop/app`
-    - `app.find` 查询 → `sys_dict:read` `app:read`
-    - `app.create` 创建 → `account:read` `app:create_app` `app:read`
-    - `app.modify` 编辑信息 → `account:read` `app:modify_app_info` `app:read`
-    - `app.delete` 删除 → `app:delete_app` `app:read`
-    - `app.modify_status` 启用/禁用 → `app:modify_app_status` `app:read`
-  - **终端** `/develop/endpoint`
-    - `endpoint.find` 查询 → `endpoint:read` `sys_dict:read` `app:read`
-    - `endpoint.create` 创建 → `endpoint:read` `endpoint:create_endpoint`
-    - `endpoint.modify` 编辑信息 → `endpoint:read` `endpoint:modify_endpoint_info`
-    - `endpoint.modify_status` 启用/禁用 → `endpoint:modify_endpoint_status`
-    - `endpoint.delete` 删除 → `endpoint:delete_endpoint`
-  - **客户端** `/develop/client`
-    - `client.find` 查询 → `endpoint:read` `client:read` `app:read`
-    - `client.create` 创建 → `client:create_client` `client:read`
-    - `client.modify` 编辑信息 → `client:modify_client_info` `client:read`
-    - `client.modify_status` 启用/禁用 → `client:modify_client_status`
-    - `client.delete` 删除 → `client:delete_client`
-    - `client.modify_client_secret` 修改密钥 → `client:modify_client_secret`
-    - `client.sync_client` 同步 → `endpoint:read` `client:sync_client` `app:read` `client:read`
-  - **菜单** `/develop/menu`
-    - `menu.read` 读 → `endpoint:read` `menu:read` `permission:read` `app:read` `client:read`
-    - `menu.write` 写 → `menu:write`
-  - **功能权限** `/develop/permission`
-    - `permission.read` 读 → `endpoint:read` `menu:read` `permission:read` `app:read` `client:read`
-    - `permission.write` 写 → `permission:move` `permission:write`
-  - **应用发行** `/develop/app_version`
-    - `app_release.modify` 编辑信息 → `endpoint:read` `app_release:modify_app_release_info` `app_release:read` `app:read`
-    - `app_release.set_latest_version` 设置成最新版本 → `app_release:set_app_relase_latest_version`
-    - `app_release.delete` 删除 → `app_release:delete_app_release`
-    - `app_release.read` 查询 → `endpoint:read` `app_release:read` `app:read`
-    - `app_release.create` 创建 → `endpoint:read` `app_release:create_app_release` `app_release:read` `app:read`
-  - **行政区划** `/develop/area`
-    - `area.read` 查询 → `area:read`
-    - `area.create_area` 创建 → `area:create_area`
-    - `area.modify_area_info` 修改信息 → `area:modify_area_info`
-    - `area.modify_area_hot` 是否热门 → `area:modify_area_hot`
-    - `area.modify_area_status` 启用/禁用 → `area:modify_area_status`
-    - `area.move_area` 移动 → `area:move_area`
-    - `area.delete_area` 删除 → `area:delete_area`
-    - `area.area_detail` 详情 → `area:read`
-  - **短链** `/develop/link`
-    - `link.read` 查询 → `link:read`
-    - `link.create_link` 创建 → `link:create_link`
-    - `link.modify_link_status` 启用/禁用 → `link:modify_link_status`
-    - `link.delete_link` 删除 → `link:delete_link`
-  - **系统级字典** `/develop/sys_dict`
-    - `sys_dict.create` 创建 → `sys_dict:create_sys_dict` `sys_dict:put_sys_dict_item` `sys_dict:read` `app:read`
-    - `sys_dict.modify` 编辑 → `sys_dict:modify_dict_info` `sys_dict:modify_sys_dict_item_info` `sys_dict:move_sys_dict_item` `sys_dict:read`
-    - `sys_dict.delete` 删除 → `sys_dict:delete_sys_dict_item` `sys_dict:delete_sys_dict` `sys_dict:read`
-    - `sys_dict.sync` 同步 → `sys_dict:sync_sys_dict` `sys_dict:read`
-    - `sys_dict.modify_status` 启用/禁用 → `sys_dict:modify_sys_dict_item_status` `sys_dict:read`
-    - `sys_dict.find` 查询 → `sys_dict:read` `app:read`
-    - `sys_dict.move_sys_dict_item` 移动字典项 → `sys_dict:move_sys_dict_item`
-    - `sys_dict.copy_by_app` 从应用导入 → `sys_dict:copy_by_app`
-    - `sys_dict.copy_by_dict` 拷贝 → `sys_dict:copy_by_dict`
-  - **业务级字典**（隐藏） `/develop/biz_dict`
-    - `biz_dict.find` 查询 → `biz_dict:read`
-    - `biz_dict_item.create` 添加字典项 → `biz_dict:put_biz_dict_item` `biz_dict:read`
-    - `biz_dict_item.modify` 编辑字典项 → `biz_dict:modify_biz_dict_item_info` `biz_dict:read`
-    - `biz_dict_item.delete` 删除字典项 → `biz_dict:delete_biz_dict_item` `biz_dict:read`
-    - `biz_dict.modify_status` 启用/禁用 → `biz_dict:read` `biz_dict:modify_biz_dict_item_status`
-    - `biz_dict.restore` 恢复 → `biz_dict:restore_biz_dict` `biz_dict:read`
-  - **登录日志** `/develop/login_log`
-    - `login_log.account_login_log` 账号 → `account:read` `account_login_log:read` `sys_dict:read` `app:read` `client:read`
-    - `login_log.client_login_log` 客户端 → `endpoint:read` `sys_dict:read` `client_login_log:read` `app:read` `client:read`
-    - `login_log.app_user_login_log` 应用 → `endpoint:read` `app_user_login_log:read` `sys_dict:read` `app:read` `client:read`
-    - `login_log.tenant_app_user_login_log` 企业应用 → `tenant_app_user_login_log:read` `tenant:read` `sys_dict:read` `app:read` `client:read`
-  - **业务日志** `/develop/service_log`
-    - `biz_log.open_biz_log` 开放级 → `open_biz_log:read` `sys_dict:read` `app:read`
-    - `biz_log.account_biz_log` 账号级 → `account:read` `account_biz_log:read` `sys_dict:read` `app:read` `client:read`
-    - `biz_log.client_biz_log` 客户端级 → `client_biz_log:read` `sys_dict:read` `app:read` `client:read`
-    - `biz_log.app_biz_log` 应用 → `endpoint:read` `app_biz_log:read` `sys_dict:read` `app:read` `client:read`
-    - `biz_log.subapp_biz_log` 子应用 → `endpoint:read` `sys_dict:read` `subapp_biz_log:read` `app:read` `client:read`
-    - `biz_log.tenant_app_biz_log` 企业应用 → `endpoint:read` `tenant_app_biz_log:read` `tenant:read` `sys_dict:read` `client:read` `app:read`
-    - `biz_log.tenant_subapp_biz_log` 企业子应用 → `endpoint:read` `tenant_subapp_biz_log:read` `tenant:read` `sys_dict:read` `app:read`
-  - **子应用** `/develop/subapp`
-    - `subapp.read` 查询 → `subapp:read` `app:read` `sys_dict:read`
-    - `subapp.create` 创建 → `subapp:read` `subapp:create_subapp`
-    - `subapp.modify_subapp_info` 编辑信息 → `subapp:read` `subapp:modify_subapp_info`
-    - `subapp.modify_subapp_status` 启用/禁用 → `subapp:modify_subapp_status`
-    - `subapp.move_subapp` 移动 → `subapp:read` `subapp:move_subapp`
-    - `subapp.delete_subapp` 删除 → `subapp:delete_subapp`
-  - **子应用版本** `/develop/subappVersion`
-    - `subapp_version.read` 查询 → `subapp_version:read` `subapp:read`
-    - `subapp_version.create` 创建 → `subapp_version:read` `subapp_version:create_subapp_version`
-    - `subapp_version.modify_subapp_version_info` 编辑信息 → `subapp_version:read` `subapp_version:modify_subapp_version_info`
-    - `subapp_version.modify_subapp_version_status` 启用/禁用 → `subapp_version:modify_subapp_version_status`
-    - `subapp_version.sync_subapp_version` 同步 → `subapp_version:read` `subapp_version:sync_subapp_version`
-    - `subapp_version.delete_subapp_version` 删除 → `subapp_version:delete_subapp_version`
-- **短信服务** `/test4`
-  - **短信模板** `/sms/template`
-    - `sms_template.read` 查询 → `sms_template:read` `app:read`
-    - `sms_template.create` 添加 → `sms_template:create_sms_template` `sms_template:read` `app:read`
-    - `sms_template.modify` 修改 → `sms_template:modify_sms_template_info` `sms_template:read` `app:read`
-    - `sms_template.modify_status` 启用/禁用 → `sms_template:read` `sms_template:modify_sms_template_status` `app:read`
-    - `sms_template.delete` 删除 → `sms_template:read` `sms_template:delete_sms_template` `app:read`
-  - **短信消息** `/sms/news`
-    - `sms_msg.read` 查询 → `sms_template:read` `sms_msg:read` `app:read`
-    - `sms_msg.retry_sms_msg` 重试 → `sms_msg:retry_sms_msg`
-- **微信服务** `/test7`
-  - **公众号管理** `/wxService/wxmpManage`
-    - `wxmp_provider.find` 查询 → `sns_provider:read` `wxmp_provider:read`
-    - `wxmp_provider.create` 添加 → `wxmp_provider:create_wxmp_provider`
-    - `wxmp_provider.modify` 修改 → `wxmp_provider:modify_wxmp_provider`
-    - `wxmp_provider.modify_status` 启用/禁用 → `wxmp_provider:modify_wxmp_provider_status`
-    - `wxmp_provider.delete` 删除 → `wxmp_provider:delete_wxmp_provider`
-  - **公众号模板消息** `/wxService/wxmpMessage`
-    - `wxmp_template_msg.find` 查询 → `wxmp_template_msg:read` `wxmp_provider:read` `app:read`
-    - `wxmp_template_msg.create` 添加 → `wxmp_template_msg:create_wxmp_template_msg`
-    - `wxmp_template_msg.modify` 修改 → `wxmp_template_msg:modify_wxmp_template_msg_info`
-    - `wxmp_template_msg.modify_status` 启用/禁用 → `wxmp_template_msg:modify_wxmp_template_msg_status`
-    - `wxmp_template_msg.delete` 删除 → `wxmp_template_msg:delete_wxmp_template_msg`
-  - **公众号模板消息记录** `/wxService/wxmpManageRecord`
-    - `wxmp_template_msg_record.find` 查询 → `wxmp_template_msg:read` `wxmp_template_msg_record:read` `app:read`
-    - `wxmp_template_msg_record.retry` 重试 → `wxmp_template_msg_record:retry_wxmp_template_msg_record`
-- **通知服务** `/test8`
-  - **通知消息分类** `/mobile/notify_category`
-    - `notify_category.read` 查询 → `notify_category:read` `app:read`
-    - `notify_category.create` 创建 → `notify_category:create`
-    - `notify_category.modify_info` 编辑信息 → `notify_category:modify_info`
-    - `notify_category.modify_status` 启用/禁用 → `notify_category:modify_status`
-    - `notify_category.delete` 删除 → `notify_category:delete`
-  - **通知消息模板** `/mobile/notify_template`
-    - `notify_template.read` 查询 → `notify_template:read` `app:read` `notify_category:read`
-    - `notify_template.create` 创建 → `notify_template:create_notify_template`
-    - `notify_template.modify_info` 编辑信息 → `notify_template:read` `notify_template:modify_notify_template_info`
-    - `notify_template.modify_status` 启用/禁用 → `notify_template:modify_notify_template_status`
-    - `notify_template.delete` 删除 → `notify_template:delete_notify_template`
-- **通讯录** `/test6`
-  - **用户** `/system/user`
-    - `user.create` 添加 → `account:read` `app_user_tag:read` `app_user:create_app_user` `app_role:read` `app_department:read` `sys_dict:read`
-    - `user.modify_info` 编辑信息 → `app_user_tag:read` `app_role:read` `app_user:read` `department:read` `app_user:modify_app_user_info` `app_department:read` `sys_dict:read`
-    - `user.modify_status` 启用/禁用 → `app_user:read` `app_user:modify_app_user_status`
-    - `user.delete` 删除用户 → `app_user:delete_app_user`
-    - `user.find` 查询 → `app_user_tag:read` `app_role:read` `app_user:read` `department:read` `app_department:read` `sys_dict:read`
-    - `user.logoff_user` 注销用户 → `app_user:logoff_app_user`
-    - `user.transfer_user_to_other_account` 转至其他账号 → `account:read` `app_user:transfer_app_user_to_other_account`
-    - `user.unlogoff_user` 取消注销用户 → `app_user:unlogoff_user`
-  - **部门** `/system/department`
-    - `department.find` 查询 → `app_department:read`
-    - `department.create` 添加 → `app_department:create_app_department`
-    - `department.modify` 编辑 → `app_department:modify_app_department_info`
-    - `department.delete` 删除 → `app_department:delete_app_department`
-  - **用户标签** `/system/user_tag`
-    - `user_tag.read` 查询 → `app_user_tag:read`
-    - `user_tag.create_user_tag` 创建 → `app_user_tag:create_app_user_tag`
-    - `user_tag.modify_user_tag_info` 编辑 → `app_user_tag:modify_app_user_tag_info`
-    - `user_tag.modify_user_tag_status` 启用/禁用 → `app_user_tag:modify_app_user_tag_status`
-    - `user_tag.delete_user_tag` 删除 → `app_user_tag:delete_app_user_tag`
-  - **用户组** `/system/user_group`
-- **系统设置** `/test5`
-  - **角色权限** `/system/role`
-    - `role.create` 创建 → `app_role:read` `app_role:create_app_role`
-    - `role.modify_info` 编辑 → `app_role:modify_app_role_info` `app_role:read`
-    - `role.modify_permission` 修改权限 → `app_role:read` `app_role:modify_app_role_permission`
-    - `role.delete` 删除角色 → `app_role:delete_app_role`
-    - `role.modify_status` 启用/禁用 → `app_role:read` `app_role:modify_app_role_status`
-    - `role.read` 查询 → `app_role:read`
-    - `role.delete_permission` 删除 → `app_role:delete_app_role_permission`
-  - **登录会话** `/system/session`
-    - `app_user_authorization.read` 查询 → `app_user_authorization:get_app_user_authorization` `app:read` `endpoint:read` `client:read` `app_user:read`
-    - `app_user_authorization.offline` 下线 → `app_user_authorization:offline` `app_user_authorization:offline_all`
-- **默认设置**（隐藏） `-`
-  - `app_file.readwrite` 应用文件组件（默认/隐藏） → `app_file:upload_file` `app_file:access_file` `app_file:get_file_stat`
-  - `public_file.readwrite` 公共文件组件（默认/隐藏） → `public_file:access_file` `public_file:get_file_stat` `public_file:upload_file`
+- **web（manage 子应用）**
+  - **首页** `/manage/home`
+    - `home` 首页（默认）
+  - **账号中心** `/center/account`
+    - **账号** `/manage/account`
+      - `account.find` 查询 → `account:read` `sys_dict:read`
+      - `account.create` 创建账号 → `account:create_account`
+      - `account.modify` 修改账号信息 → `account:modify_account_info`
+      - `account.modify_status` 启用/禁用账号 → `account:modify_account_status`
+      - `account.delete` 删除账号 → `account:delete_account`
+      - `account.logoff_account` 注销账号 → `account:logoff_account`
+      - `account.reset_account_password` 重置密码 → `account:reset_account_password`
+      - `account.modify_lock_status` 解锁/锁定账号 → `account:modify_account_lock_status`
+      - `account.unlogoff_account` 取消注销账号 → `account:unlogoff_account`
+    - **账号会话** `/manage/account/session`
+      - `account_authorization.read` 查询 → `account:read` `account_authorization:read` `app:read` `client:read`
+      - `account_authorization.offline` 下线 → `account_authorization:offline`
+  - **企业中心** `/center/tenant`
+    - **企业** `/manage/tenant`
+      - `tenant.find` 查询 → `endpoint:read` `tenant:read` `app:read`
+      - `tenant.create` 添加 → `account:read` `tenant:create_tenant` `tenant:read`
+      - `tenant.modify` 编辑信息 → `account:read` `tenant:modify_tenant_info` `tenant:read`
+      - `tenant.modify_status` 启用/禁用 → `tenant:read` `tenant:modify_tenant_status`
+      - `tenant.delete` 删除企业 → `tenant:delete_tenant` `tenant:read`
+      - `tenant.modify_tenant_owner` 转移企业 → `account:read` `tenant:modify_tenant_owner`
+    - **企业应用** `/manage/tenant/app`
+      - `tenant_app.create` 添加 → `account:read` `endpoint:read` `tenant:read` `app:read` `tenant_app:create_tenant_app`
+      - `tenant_app.modify_tenant_app_info` 编辑信息 → `account:read` `endpoint:read` `tenant_app:modify_tenant_app_info` `tenant:read` `app:read`
+      - `tenant_app.modify_tenant_status` 启用/禁用 → `tenant_app:modify_tenant_app_status`
+      - `tenant_app.delete_tenant_app` 删除 → `tenant_app:delete_tenant_app`
+      - `tenant_app.read` 查询 → `tenant:read` `app:read` `tenant_app:read`
+    - **企业终端** `/manage/tenant/endpoint`
+      - `tenant_endpoint.read` 查询 → `endpoint:read` `tenant_endpoint:read` `tenant:read` `app:read` `tenant_app:read`
+      - `tenant_endpoint.create` 添加 → `endpoint:read` `tenant_endpoint:read` `tenant:read` `tenant_endpoint:create_tenant_endpoint` `tenant_app:read`
+      - `tenant_endpoint.modify_tenant_endpoint_status` 启用/禁用 → `tenant_endpoint:modify_tenant_endpoint_status` `tenant_endpoint:read`
+      - `tenant_endpoint.delete_tenant_endpoint` 删除 → `tenant_endpoint:delete_tenant_endpoint` `tenant_endpoint:read`
+    - **企业子应用** `/manage/tenant/subapp`
+      - `tenant_subapp.read` 查询 → `tenant_subapp:read` `tenant:read` `subapp:read`
+      - `tenant_subapp.create` 创建 → `tenant_subapp:read` `tenant_subapp:create_tenant_subapp`
+      - `tenant_subapp.modify_tenant_subapp_status` 启用/禁用 → `tenant_subapp:modify_tenant_subapp_status`
+      - `tenant_subapp.delete_tenant_subapp` 删除 → `tenant_subapp:delete_tenant_subapp`
+  - **开发中心** `/center/develop`
+    - **应用** `/manage/develop/app`
+      - `app.find` 查询 → `sys_dict:read` `app:read`
+      - `app.create` 创建 → `account:read` `app:create_app` `app:read`
+      - `app.modify` 编辑信息 → `account:read` `app:modify_app_info` `app:read`
+      - `app.delete` 删除 → `app:delete_app` `app:read`
+      - `app.modify_status` 启用/禁用 → `app:modify_app_status` `app:read`
+    - **终端** `/manage/develop/endpoint`
+      - `endpoint.find` 查询 → `endpoint:read` `sys_dict:read` `app:read`
+      - `endpoint.create` 创建 → `endpoint:read` `endpoint:create_endpoint`
+      - `endpoint.modify` 编辑信息 → `endpoint:read` `endpoint:modify_endpoint_info`
+      - `endpoint.modify_status` 启用/禁用 → `endpoint:modify_endpoint_status`
+      - `endpoint.delete` 删除 → `endpoint:delete_endpoint`
+    - **子应用** `/manage/develop/subapp`
+      - `subapp.read` 查询 → `sys_dict:read` `app:read` `subapp:read`
+      - `subapp.create` 创建 → `subapp:create_subapp` `subapp:read`
+      - `subapp.modify_subapp_info` 编辑信息 → `subapp:modify_subapp_info` `subapp:read`
+      - `subapp.modify_subapp_status` 启用/禁用 → `subapp:modify_subapp_status`
+      - `subapp.move_subapp` 移动 → `subapp:move_subapp` `subapp:read`
+      - `subapp.delete_subapp` 删除 → `subapp:delete_subapp`
+    - **子应用版本** `/manage/develop/subapp/version`
+      - `subapp_version.read` 查询 → `subapp_version:read` `subapp:read`
+      - `subapp_version.create` 创建 → `subapp_version:create_subapp_version` `subapp_version:read`
+      - `subapp_version.modify_subapp_version_info` 编辑信息 → `subapp_version:read` `subapp_version:modify_subapp_version_info`
+      - `subapp_version.modify_subapp_version_status` 启用/禁用 → `subapp_version:modify_subapp_version_status`
+      - `subapp_version.sync_subapp_version` 同步 → `subapp_version:read` `subapp_version:sync_subapp_version`
+      - `subapp_version.delete_subapp_version` 删除 → `subapp_version:delete_subapp_version`
+    - **菜单** `/manage/develop/menu`
+      - `menu.read` 读 → `endpoint:read` `menu:read` `permission:read` `app:read` `client:read`
+      - `menu.write` 写 → `menu:write`
+    - **客户端** `/manage/develop/client`
+      - `client.find` 查询 → `endpoint:read` `client:read` `app:read`
+      - `client.create` 创建 → `client:create_client` `client:read`
+      - `client.modify` 编辑信息 → `client:modify_client_info` `client:read`
+      - `client.modify_status` 启用/禁用 → `client:modify_client_status`
+      - `client.delete` 删除 → `client:delete_client`
+      - `client.modify_client_secret` 修改密钥 → `client:modify_client_secret`
+      - `client.sync_client` 同步 → `endpoint:read` `client:sync_client` `app:read` `client:read`
+    - **功能权限** `/manage/develop/permission`
+      - `permission.read` 读 → `endpoint:read` `menu:read` `permission:read` `app:read` `client:read`
+      - `permission.write` 写 → `permission:move` `permission:write`
+    - **第三方账号** `/manage/develop/sns_provider`
+      - `sns_provider.create` 创建 → `sns_provider:create_sns_provider`
+      - `sns_provider.modify` 编辑信息 → `sns_provider:modify_sns_provider`
+      - `sns_provider.delete` 删除 → `sns_provider:delete_sns_provider`
+      - `sns_provider.modify_status` 启用/禁用 → `sns_provider:modify_sns_provider_status`
+      - `sns_provider.find` 查询 → `sns_provider:read` `sys_dict:read`
+    - **应用发行** `/manage/develop/app_release`
+      - `app_release.modify` 编辑信息 → `endpoint:read` `app_release:modify_app_release_info` `app_release:read` `app:read`
+      - `app_release.set_latest_version` 设置成最新版本 → `app_release:set_app_relase_latest_version`
+      - `app_release.delete` 删除 → `app_release:delete_app_release`
+      - `app_release.read` 查询 → `endpoint:read` `app_release:read` `app:read`
+      - `app_release.create` 创建 → `endpoint:read` `app_release:create_app_release` `app_release:read` `app:read`
+    - **行政区划** `/manage/develop/area`
+      - `area.read` 查询 → `area:read`
+      - `area.create_area` 创建 → `area:create_area`
+      - `area.modify_area_info` 修改信息 → `area:modify_area_info`
+      - `area.modify_area_hot` 是否热门 → `area:modify_area_hot`
+      - `area.modify_area_status` 启用/禁用 → `area:modify_area_status`
+      - `area.move_area` 移动 → `area:move_area`
+      - `area.delete_area` 删除 → `area:delete_area`
+      - `area.area_detail` 详情 → `area:read`
+    - **短链** `/manage/develop/link`
+      - `link.read` 查询 → `link:read`
+      - `link.create_link` 创建 → `link:create_link`
+      - `link.modify_link_status` 启用/禁用 → `link:modify_link_status`
+      - `link.delete_link` 删除 → `link:delete_link`
+    - **系统级字典** `/manage/develop/sys_dict`
+      - `sys_dict.create` 创建 → `sys_dict:create_sys_dict` `sys_dict:put_sys_dict_item` `sys_dict:read` `app:read`
+      - `sys_dict.modify` 编辑 → `sys_dict:modify_dict_info` `sys_dict:modify_sys_dict_item_info` `sys_dict:move_sys_dict_item` `sys_dict:read`
+      - `sys_dict.delete` 删除 → `sys_dict:delete_sys_dict_item` `sys_dict:delete_sys_dict` `sys_dict:read`
+      - `sys_dict.sync` 同步 → `sys_dict:sync_sys_dict` `sys_dict:read`
+      - `sys_dict.modify_status` 启用/禁用 → `sys_dict:modify_sys_dict_item_status` `sys_dict:read`
+      - `sys_dict.find` 查询 → `sys_dict:read` `app:read`
+      - `sys_dict.move_sys_dict_item` 移动字典项 → `sys_dict:move_sys_dict_item`
+      - `sys_dict.copy_by_app` 从应用导入 → `sys_dict:copy_by_app`
+      - `sys_dict.copy_by_dict` 拷贝 → `sys_dict:copy_by_dict`
+    - **登录日志** `/manage/develop/login_log`
+      - `login_log.account_login_log` 账号 → `account:read` `account_login_log:read` `sys_dict:read` `app:read` `client:read`
+      - `login_log.client_login_log` 客户端 → `endpoint:read` `sys_dict:read` `client_login_log:read` `app:read` `client:read`
+      - `login_log.app_user_login_log` 应用 → `endpoint:read` `app_user_login_log:read` `sys_dict:read` `app:read` `client:read`
+      - `login_log.tenant_app_user_login_log` 企业应用 → `tenant_app_user_login_log:read` `tenant:read` `sys_dict:read` `app:read` `client:read`
+    - **业务日志** `/manage/develop/biz_log`
+      - `biz_log.open_biz_log` 开放级 → `open_biz_log:read` `sys_dict:read` `app:read`
+      - `biz_log.account_biz_log` 账号级 → `account:read` `account_biz_log:read` `sys_dict:read` `app:read` `client:read`
+      - `biz_log.client_biz_log` 客户端级 → `client_biz_log:read` `sys_dict:read` `app:read` `client:read`
+      - `biz_log.app_biz_log` 应用 → `endpoint:read` `app_biz_log:read` `sys_dict:read` `app:read` `client:read`
+      - `biz_log.subapp_biz_log` 子应用 → `endpoint:read` `sys_dict:read` `subapp_biz_log:read` `app:read` `client:read`
+      - `biz_log.tenant_app_biz_log` 企业应用 → `endpoint:read` `tenant_app_biz_log:read` `tenant:read` `sys_dict:read` `client:read` `app:read`
+      - `biz_log.tenant_subapp_biz_log` 企业子应用 → `endpoint:read` `tenant_subapp_biz_log:read` `tenant:read` `sys_dict:read` `app:read`
+  - **短信服务** `/service/sms`
+    - **短信模板** `/manage/sms/template`
+      - `sms_template.read` 查询 → `sms_template:read` `app:read`
+      - `sms_template.create` 添加 → `sms_template:create_sms_template` `sms_template:read` `app:read`
+      - `sms_template.modify` 修改 → `sms_template:modify_sms_template_info` `sms_template:read` `app:read`
+      - `sms_template.modify_status` 启用/禁用 → `sms_template:read` `sms_template:modify_sms_template_status` `app:read`
+      - `sms_template.delete` 删除 → `sms_template:read` `sms_template:delete_sms_template` `app:read`
+    - **短信消息** `/manage/sms/msg`
+      - `sms_msg.read` 查询 → `sms_template:read` `sms_msg:read` `app:read`
+      - `sms_msg.retry_sms_msg` 重试 → `sms_msg:retry_sms_msg`
+  - **微信服务** `/service/wxmp`
+    - **公众号管理** `/manage/wxmp/provider`
+      - `wxmp_provider.find` 查询 → `sns_provider:read` `wxmp_provider:read`
+      - `wxmp_provider.create` 添加 → `wxmp_provider:create_wxmp_provider`
+      - `wxmp_provider.modify` 修改 → `wxmp_provider:modify_wxmp_provider`
+      - `wxmp_provider.modify_status` 启用/禁用 → `wxmp_provider:modify_wxmp_provider_status`
+      - `wxmp_provider.delete` 删除 → `wxmp_provider:delete_wxmp_provider`
+    - **公众号模板消息** `/manage/wxmp/template_msg`
+      - `wxmp_template_msg.find` 查询 → `wxmp_template_msg:read` `wxmp_provider:read` `app:read`
+      - `wxmp_template_msg.create` 添加 → `wxmp_template_msg:create_wxmp_template_msg`
+      - `wxmp_template_msg.modify` 修改 → `wxmp_template_msg:modify_wxmp_template_msg_info`
+      - `wxmp_template_msg.modify_status` 启用/禁用 → `wxmp_template_msg:modify_wxmp_template_msg_status`
+      - `wxmp_template_msg.delete` 删除 → `wxmp_template_msg:delete_wxmp_template_msg`
+    - **公众号模板消息记录** `/manage/wxmp/template_msg_record`
+      - `wxmp_template_msg_record.find` 查询 → `wxmp_template_msg:read` `wxmp_template_msg_record:read` `app:read`
+      - `wxmp_template_msg_record.retry` 重试 → `wxmp_template_msg_record:retry_wxmp_template_msg_record`
+  - **通知服务** `/service/notify`
+    - **通知消息分类** `/manage/notify/category`
+      - `notify_category.read` 查询 → `notify_category:read` `app:read`
+      - `notify_category.create` 创建 → `notify_category:create`
+      - `notify_category.modify_info` 编辑信息 → `notify_category:modify_info`
+      - `notify_category.modify_status` 启用/禁用 → `notify_category:modify_status`
+      - `notify_category.delete` 删除 → `notify_category:delete`
+    - **通知消息模板** `/manage/notify/template`
+      - `notify_template.read` 查询 → `notify_template:read` `notify_category:read` `app:read`
+      - `notify_template.create` 创建 → `notify_template:create_notify_template`
+      - `notify_template.modify_info` 编辑信息 → `notify_template:read` `notify_template:modify_notify_template_info`
+      - `notify_template.modify_status` 启用/禁用 → `notify_template:modify_notify_template_status`
+      - `notify_template.delete` 删除 → `notify_template:delete_notify_template`
+  - **通讯录** `/manage/contact`
+    - **用户** `/manage/contact/user`
+      - `user.create` 添加 → `account:read` `app_user_tag:read` `app_user:create_app_user` `app_role:read` `app_department:read` `sys_dict:read`
+      - `user.modify_info` 编辑信息 → `app_user_tag:read` `app_role:read` `app_user:read` `department:read` `app_user:modify_app_user_info` `app_department:read` `sys_dict:read`
+      - `user.modify_status` 启用/禁用 → `app_user:read` `app_user:modify_app_user_status`
+      - `user.delete` 删除用户 → `app_user:delete_app_user`
+      - `user.find` 查询 → `app_user_tag:read` `app_role:read` `app_user:read` `department:read` `app_department:read` `sys_dict:read`
+      - `user.logoff_user` 注销用户 → `app_user:logoff_app_user`
+      - `user.transfer_user_to_other_account` 转至其他账号 → `account:read` `app_user:transfer_app_user_to_other_account`
+      - `user.unlogoff_user` 取消注销用户 → `app_user:unlogoff_user`
+    - **部门** `/manage/contact/department`
+      - `department.find` 查询 → `app_department:read`
+      - `department.create` 添加 → `app_department:create_app_department`
+      - `department.modify` 编辑 → `app_department:modify_app_department_info`
+      - `department.delete` 删除 → `app_department:delete_app_department`
+    - **用户标签** `/manage/contact/user_tag`
+      - `user_tag.read` 查询 → `app_user_tag:read`
+      - `user_tag.create_user_tag` 创建 → `app_user_tag:create_app_user_tag`
+      - `user_tag.modify_user_tag_info` 编辑 → `app_user_tag:modify_app_user_tag_info`
+      - `user_tag.modify_user_tag_status` 启用/禁用 → `app_user_tag:modify_app_user_tag_status`
+      - `user_tag.delete_user_tag` 删除 → `app_user_tag:delete_app_user_tag`
+    - **用户组** `/manage/contact/user_group`
+  - **系统设置** `/manage/system`
+    - **角色权限** `/manage/system/role`
+      - `role.create` 创建 → `app_role:read` `app_role:create_app_role`
+      - `role.modify_info` 编辑 → `app_role:modify_app_role_info` `app_role:read`
+      - `role.modify_permission` 修改权限 → `app_role:read` `app_role:modify_app_role_permission`
+      - `role.delete` 删除角色 → `app_role:delete_app_role`
+      - `role.modify_status` 启用/禁用 → `app_role:read` `app_role:modify_app_role_status`
+      - `role.read` 查询 → `app_role:read`
+      - `role.delete_permission` 删除 → `app_role:delete_app_role_permission`
+    - **登录会话** `/manage/system/session`
+      - `app_user_authorization.read` 查询 → `endpoint:read` `app_user:read` `app_user_authorization:get_app_user_authorization` `app:read` `client:read`
+      - `app_user_authorization.offline` 下线 → `app_user_authorization:offline` `app_user_authorization:offline_all`
+  - **默认设置（隐藏）**
+    - `app_file.readwrite` 应用文件组件（默认）（隐藏） → `app_file:upload_file` `app_file:access_file` `app_file:get_file_stat`
+    - `public_file.readwrite` 公共文件组件（默认）（隐藏） → `public_file:access_file` `public_file:get_file_stat` `public_file:upload_file`

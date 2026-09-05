@@ -15,6 +15,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'manage-develop-app_release' })
+
 import { ref } from 'vue';
 
 import WebApp from './components/webApp.vue';

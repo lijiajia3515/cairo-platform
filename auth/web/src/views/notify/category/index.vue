@@ -57,6 +57,8 @@
 </template>
 
 <script setup lang="jsx">
+defineOptions({ name: 'manage-notify-category' })
+
 import { ref, onMounted, watch } from 'vue';
 import UploadImage from '@/components/uploadImage';
 import FilterBar from '@/components/filterBar';

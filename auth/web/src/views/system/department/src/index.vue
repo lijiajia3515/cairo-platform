@@ -1,5 +1,7 @@
 <!-- 部门 -->
 <script setup>
+defineOptions({ name: 'manage-contact-department' })
+
 import {
   onMounted
 } from 'vue';

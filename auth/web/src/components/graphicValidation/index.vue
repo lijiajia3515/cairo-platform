@@ -130,7 +130,7 @@ const onSubmit = async () => {
   .right {
     width: 161px;
     height: 40px;
-    border: 1px solid #ededed;
+    border: 1px solid var(--td-component-stroke);
   }
 }
 </style>

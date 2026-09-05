@@ -4,7 +4,7 @@ import {
   CallIcon,
   LogoGithubIcon,
 } from 'tdesign-icons-vue-next'
-import { computed, nextTick, ref, onMounted, watch } from "vue";
+import { nextTick, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import {
   useCookie
@@ -13,7 +13,6 @@ import {
   Base64
 } from "js-base64";
 import { setToken, setRefreshToken, setTokenType, setAuthType, setAppId, setEndpointId } from "@/utils";
-import { usePageStore } from "@/store/page";
 import useState from "@/hooks/useState";
 import useAgreementGate from "@/hooks/useAgreementGate";
 
@@ -26,8 +25,6 @@ import {
   unlogoffMyAppUser_api
 } from "@/api";
 
-const pageStore = usePageStore();
-const lastPath = computed(() => pageStore.lastPathGetter);
 const router = useRouter();
 
 const userAgreement = _this.userAgreement; // 用户协议
@@ -174,8 +171,6 @@ const doLogin = async () => {
           getAccountStatus()
         })
         // router.replace("/");
-        // router.push(lastPath.value ? lastPath.value : '/home')
-        // router.replace(lastPath.value ? lastPath.value : '/home');
       }
     } finally {
     // 收尾占位

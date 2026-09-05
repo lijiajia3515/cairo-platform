@@ -5,7 +5,7 @@ import {
   MessagePlugin
 } from 'tdesign-vue-next';
 
-import UploadImage from '@/components/uploadImage';
+import IconPicker from '@/components/iconPicker/index.vue';
 
 import {
   modifyMenu_api
@@ -57,7 +57,6 @@ onMounted(() => {
   form.menuId = props.menuId;
   if (props.icon) {
     form.icon = props.icon;
-    editFileList.value = [{ name: props.icon, url: props.icon }]
   }
   form.menuName = props.menuName;
   form.component = props.component;
@@ -82,12 +81,8 @@ let form = reactive({
 });
 
 
-let fileList = ref([]);
-let editFileList = ref([]);
-const onChangeFiles = (files) => {
-  fileList.value = files;
-}
-
+let iconPickerVisible = ref(false);
+const clearIcon = () => { form.icon = ''; };
 // 提交 编辑 父菜单
 const onSubmit = async () => {
   let params = {
@@ -104,11 +99,8 @@ const onSubmit = async () => {
       'subapp-id': props.subappId,
       'subapp-version': props.subappVersion,
     }
-    if (fileList.value && fileList.value.length) {
-      params['icon'] = fileList.value[0].url;
-    } else {
-      params['icon'] = '';
-    }
+    // 图标统一走 iconPicker 三合一(库选/URL/上传),值就是 URL 字符串
+    params['icon'] = form.icon || '';
     let res = await modifyMenu_api(params, headers);
     if (res.code == 'Success') {
       MessagePlugin.success('编辑成功');
@@ -125,8 +117,6 @@ const close = () => {
   form.path = null;
   form.tags = [];
   form.hiddenMenu = null;
-  fileList.value = [];
-  editFileList.value = [];
   emit('close');
 }
 
@@ -171,7 +161,7 @@ defineExpose({
         </t-col>
         <div class="empty"></div>
         <t-col :span="12">
-          <t-form-item label="是否显示">
+          <t-form-item label="菜单可见性">
             <t-radio-group v-model="form.hiddenMenu">
               <t-radio :value="false">显示</t-radio>
               <t-radio :value="true">隐藏</t-radio>
@@ -181,12 +171,18 @@ defineExpose({
         <div class="empty"></div>
         <t-col :span="12">
           <t-form-item label="菜单图标">
-            <UploadImage :appId="appId" type="public" picType="menu" @change="onChangeFiles" :limit="1"
-              :fileList="editFileList"></UploadImage>
+            <div class="icon-field">
+              <img v-if="form.icon" class="icon-preview" :src="form.icon" alt="" @click="iconPickerVisible = true">
+              <t-button variant="outline" size="small" @click="iconPickerVisible = true">
+                {{ form.icon ? '更换' : '从图标库选择' }}
+              </t-button>
+              <t-button v-if="form.icon" variant="text" size="small" theme="danger" @click="clearIcon">清除</t-button>
+            </div>
           </t-form-item>
         </t-col>
 
       </t-row>
     </t-form>
+    <IconPicker v-model:visible="iconPickerVisible" v-model:value="form.icon" :appId="appId" picType="menu" />
   </t-dialog>
 </template>

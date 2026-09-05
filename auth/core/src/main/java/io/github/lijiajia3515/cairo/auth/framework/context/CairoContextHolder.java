@@ -20,6 +20,14 @@ public class CairoContextHolder {
 	}
 
 	/**
+	 * 请求结束清理上下文。
+	 * 线程池复用线程,不清理会让下一个(非 @CairoContext)请求读到上一个请求的残留上下文。
+	 */
+	public static void clear() {
+		HOLDER.remove();
+	}
+
+	/**
 	 * 获取值
 	 *
 	 * @param key key

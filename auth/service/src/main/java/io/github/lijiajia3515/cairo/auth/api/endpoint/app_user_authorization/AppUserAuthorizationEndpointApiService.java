@@ -249,7 +249,7 @@ public class AppUserAuthorizationEndpointApiService {
 	 * 下线应用用户会话
 	 *
 	 * @param appId   appId
-	 * @param tokenId tokenId
+	 * @param tokenId 会话ID
 	 */
 	@NewSpan
 	@Lock4j(name = "logout_app_user_authorization", keys = {"#tokenId"})

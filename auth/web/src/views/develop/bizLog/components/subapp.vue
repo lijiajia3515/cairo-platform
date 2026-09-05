@@ -45,7 +45,7 @@ const [configs] = useState({
         return (
           <t-space size="small">
             {
-              row?.subappIcon ? <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.subappName?.slice(0, 2)} size="medium" image={row?.subappIcon} /> : null
+              row?.subappIcon ? <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.subappName?.slice(0, 2)} size="16px" image={row?.subappIcon} /> : null
             }
             <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>{row?.subappName || "unknown"}/{row?.subappVersion || "unknown"}</div>
           </t-space>

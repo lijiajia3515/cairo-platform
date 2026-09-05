@@ -1,92 +1,50 @@
+<!-- 壳内 404 卡片:已登录但地址不存在时,壳(菜单/标签/子应用切换)常驻,
+     内容区渲染本卡片——不丢导航上下文,可直接点菜单离开(阿里云式)。
+     未登录场景由路由守卫先行重定向 /login,不进本页 -->
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
-import useState from '@/hooks/useState';
-
-import {
-  setToken,
-  setRefreshToken,
-  setTokenType,
-  setAuthType,
-  setAppId,
-  setEndpointId
-} from '@/utils';
-
-onMounted(() => {
-
-});
 
 const router = useRouter();
-
-
-const goRouteHome = () => {
-  router.replace('/home');
-}
-
-const goRouteLast = () => {
-  router.go(-1);
-}
-
-const goLoginOut = () => {
-  let token = setToken();
-  let refresh_token = setRefreshToken();
-  let token_type = setTokenType();
-  let auth_type = setAuthType();
-  let appId = setAppId();
-  let endpointId = setEndpointId();
-  token.value = null;
-  refresh_token.value = null;
-  token_type.value = null;
-  auth_type.value = null;
-  appId.value = null;
-  endpointId.value = null;
-  router.replace('/login');
-}
-
-onUnmounted(() => {
-
-})
+const goHome = () => router.replace('/home');
 </script>
 
-
 <template>
-  <div class="notfound__wrapper">
-    <div class="main">
-      <h6 class="title">404 Not Found</h6>
-      <p>页面找不到</p>
-      <div class="empty"></div>
-      <div>
-        <t-space>
-          <t-button @click="goRouteHome" variant="outline" theme="default">返回首页</t-button>
-          <t-button @click="goRouteLast" variant="outline" theme="default">返回上一级</t-button>
-          <t-button @click="goLoginOut" variant="outline" theme="default">退出登录</t-button>
-        </t-space>
-      </div>
-    </div>
+  <div class="nf-card">
+    <div class="nf-emoji">404</div>
+    <div class="nf-title">页面不存在</div>
+    <div class="nf-desc">地址可能已变更或从未存在，检查链接或从菜单导航</div>
+    <t-button theme="primary" variant="base" @click="goHome">返回首页</t-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.notfound__wrapper {
-  width: 100%;
-  padding-top: 20px;
-  box-sizing: border-box;
+.nf-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 20px;
 
-  .main {
-    width: 200px;
-    height: 100px;
-    margin: auto;
+  .nf-emoji {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--td-text-color-placeholder);
+    letter-spacing: 2px;
+  }
 
-    .title {
-      font-size: 26px;
-      line-height: 80px;
-      font-weight: bold;
-    }
+  .nf-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--td-text-color-primary);
+  }
 
-    p {
-      font-weight: 700;
-      font-size: 18px;
-    }
+  .nf-desc {
+    font-size: 12px;
+    color: var(--td-text-color-secondary);
+    margin-bottom: 8px;
   }
 }
 </style>

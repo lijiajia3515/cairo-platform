@@ -1,5 +1,7 @@
 <!-- 登录日志 -->
 <script setup>
+defineOptions({ name: 'manage-develop-login_log' })
+
 import { onMounted, onUnmounted } from 'vue';
 
 import { hasPermission } from '@/plugins/permission';

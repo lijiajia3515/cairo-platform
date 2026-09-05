@@ -16,7 +16,6 @@ globalThis._this = {
     },
 
     storage: { // 存储本地字段重命名
-        lastPath: 'cairo_lastPath',
         systemAppId: 'cairo_systemAppId', // 系统级字典
     },
     cookie: {

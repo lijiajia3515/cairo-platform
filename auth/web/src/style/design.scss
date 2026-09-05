@@ -27,3 +27,78 @@
 .t-button .t-icon+.t-button__text:not(:empty) {
   margin-left: 0!important;
 }
+// ===== 表格密度(阿里云/腾讯云式紧凑) =====
+// 全站列表页统一:字号 12、单元格纵向 padding 收紧,行高随内容(约 32-36px);
+// 一屏正常可见 10+ 行,不再为看一行数据横向拖拽
+.t-table {
+  font-size: 12px;
+
+  th,
+  td {
+    font-size: 12px;
+  }
+
+  // TDesign 单元格内容容器(真正的 padding 承载者)
+  .t-table__cell {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  // 表头略紧但保持层级
+  th .t-table__cell {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+}
+
+// TDesign 会给 tbody tr 写死高度令牌(实测 61px>内容 23px),放开通行高随内容走
+.t-table tbody tr {
+  height: auto;
+}
+
+.t-table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.t-table tbody tr {
+  height: auto !important;
+}
+
+// 可编辑单元格容器默认写死 height:44px,把整行撑到 60+;放开随内容
+// (tdesign css 在 design.scss 之后引入,平级必输,故 important)
+.t-table .t-table__cell--editable {
+  display: flex !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+// TDesign 给 td 写死指定高度(实测 61px>内容 23px);放开通,行高=内容+padding
+.t-table td {
+  height: auto !important;
+}
+
+// 实体引用单元格(工厂 entityCell):16px 图标 + 12px 名称同行垂直居中——视觉等重
+.entity-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+
+  .entity-icon {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    object-fit: contain;
+    border-radius: 3px;
+  }
+}
+
+// 表格布局改原生 auto:fixed 会把富余宽度摊给所有列(均一虚胖)或灌给弹性列
+// (名称列独吞 700+);auto 按内容分配,width/minWidth 作为建议值——长短列各得其所
+.t-table table {
+  table-layout: auto !important;
+}

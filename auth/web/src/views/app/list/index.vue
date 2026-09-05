@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-app' })
+
 import { ref, reactive, onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { useWindowSize } from '@vueuse/core';
@@ -448,25 +450,29 @@ const onDelete = (row) => {
         </t-col>
       </t-row>
       <div class="empty"></div>
-      <t-col :span="11">
-        <t-form-item label="管理员账号">
-          <Transfer v-model="form.adminAccountIds" :list="accountList" :actives="form.adminAccountIds"
-            v-if="accountList.length"></Transfer>
-          <!-- <t-select :scroll="{ type: 'virtual' }" multiple v-model="form.adminAccountIds">
-            <t-option :label="item.nickname" :value="item.accountId" v-for="(item, index) in accountList"
-              :key="index"></t-option>
-          </t-select> -->
-        </t-form-item>
-      </t-col>
+      <t-row>
+        <t-col :span="11">
+          <t-form-item label="管理员账号">
+            <Transfer v-model="form.adminAccountIds" :list="accountList" :actives="form.adminAccountIds"
+              v-if="accountList.length"></Transfer>
+            <!-- <t-select :scroll="{ type: 'virtual' }" multiple v-model="form.adminAccountIds">
+              <t-option :label="item.nickname" :value="item.accountId" v-for="(item, index) in accountList"
+                :key="index"></t-option>
+            </t-select> -->
+          </t-form-item>
+        </t-col>
+      </t-row>
       <div class="empty"></div>
-      <t-col :span="11">
-        <t-form-item label="开启自动注册">
-          <t-radio-group v-model="form.autoRegister">
-            <t-radio :value="true">是</t-radio>
-            <t-radio :value="false">否</t-radio>
-          </t-radio-group>
-        </t-form-item>
-      </t-col>
+      <t-row>
+        <t-col :span="11">
+          <t-form-item label="开启自动注册">
+            <t-radio-group v-model="form.autoRegister">
+              <t-radio :value="true">是</t-radio>
+              <t-radio :value="false">否</t-radio>
+            </t-radio-group>
+          </t-form-item>
+        </t-col>
+      </t-row>
       <div class="empty"></div>
       <t-row>
         <t-col :span="12">

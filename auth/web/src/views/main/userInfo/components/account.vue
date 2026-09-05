@@ -39,7 +39,7 @@
           <p>使用以下任一方式都可以登录到您的Cairo账号，避免由于某个帐号失效导致无法登录</p>
         </div>
         <div>
-          <t-table row-key="index" size="small" :data="snsProviderList" :columns="columns" bordered>
+          <t-table table-layout="auto" row-key="index" size="small" :data="snsProviderList" :columns="columns" bordered>
             <template #operation="{ row }">
 
               <t-button variant="outline" theme="warning" ghost @click='handleClick(row)'>解除绑定</t-button>
@@ -218,7 +218,7 @@ const columns = ref([
       return (
         <t-space size="small">
           {
-            row?.avatarUrl ? <t-avatar imageProps={{ lazy: true }} hideOnLoadFailed={true} alt={row?.nickname?.slice(0, 2)} size="medium" image={row?.avatarUrl} /> : null
+            row?.avatarUrl ? <t-avatar imageProps={{ lazy: true }} hideOnLoadFailed={true} alt={row?.nickname?.slice(0, 2)} size="16px" image={row?.avatarUrl} /> : null
           }
           <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>{row?.nickname || null}</div>
         </t-space>
@@ -629,7 +629,7 @@ const handleBind = (val) => {
 
   .my-content {
     width: 60%;
-    border: 1px solid #ededed;
+    border: 1px solid var(--td-component-stroke);
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;

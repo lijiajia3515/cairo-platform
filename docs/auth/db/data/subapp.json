@@ -32,5 +32,22 @@
       "updateTime": "2026-08-29T10:11:25.693Z"
     },
     "scope": "tenant"
+  },
+  {
+    "appId": "cairo",
+    "enabled": true,
+    "endpointId": "web",
+    "id": "dashboard",
+    "metadata": {
+      "createTime": "2026-09-04T00:00:00.000Z",
+      "createUserId": null,
+      "updateTime": "2026-09-04T00:00:00.000Z",
+      "updateUserId": null
+    },
+    "scope": "app",
+    "sort": 3,
+    "subappIcon": "",
+    "subappId": "dashboard",
+    "subappName": "看板"
   }
 ]

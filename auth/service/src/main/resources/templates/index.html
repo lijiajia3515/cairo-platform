@@ -72,7 +72,7 @@
     <div th:if="${account}">
       <div class="profile">
         <img class="avatar" th:if="${account.avatarUrl}" th:src="${account.avatarUrl}"
-             src="/static/favicon.ico" alt="头像"/>
+             src="/static/logo.svg" alt="头像"/>
         <div class="avatar-fallback" th:if="${account.avatarUrl == null}">C</div>
         <div>
           <div class="profile-name" th:text="${account.nickname ?: account.loginname}">用户</div>

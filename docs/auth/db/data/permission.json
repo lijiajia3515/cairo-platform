@@ -11,7 +11,7 @@
     "type": null,
     "defaultPermission": true,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/home.svg",
+    "icon": "/icons/permission/home.svg",
     "sort": {
       "high": 398424691,
       "low": -2098139136,
@@ -39,7 +39,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 16,
@@ -66,7 +66,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 17,
@@ -93,7 +93,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 18,
@@ -120,7 +120,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 19,
@@ -147,7 +147,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 420613840,
       "low": -1277624320,
@@ -174,7 +174,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/people-delete.svg",
+    "icon": "/icons/permission/people-delete.svg",
     "sort": {
       "high": 399120542,
       "low": 574140416,
@@ -201,7 +201,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/key.svg",
+    "icon": "/icons/permission/key.svg",
     "sort": {
       "high": 0,
       "low": 21,
@@ -228,7 +228,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/lock.svg",
+    "icon": "/icons/permission/lock.svg",
     "sort": {
       "high": 0,
       "low": 20,
@@ -255,7 +255,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 401976454,
       "low": -924241920,
@@ -285,7 +285,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487472248,
       "low": -16527360,
@@ -312,7 +312,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/logout.svg",
+    "icon": "/icons/permission/logout.svg",
     "sort": {
       "high": 487472249,
       "low": -1228681216,
@@ -341,7 +341,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 22,
@@ -370,7 +370,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 23,
@@ -399,7 +399,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 24,
@@ -427,7 +427,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 25,
@@ -455,7 +455,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 399196501,
       "low": 1903226880,
@@ -483,7 +483,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "icon": "/icons/permission/move-one.svg",
     "sort": {
       "high": 0,
       "low": 26,
@@ -514,7 +514,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 55,
@@ -545,7 +545,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 56,
@@ -572,7 +572,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 57,
@@ -599,7 +599,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 0,
       "low": 58,
@@ -628,7 +628,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 54,
@@ -659,7 +659,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401986181,
       "low": -1965490176,
@@ -690,7 +690,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 401986285,
       "low": -291962880,
@@ -718,7 +718,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 401986368,
       "low": 1138294784,
@@ -746,7 +746,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 401986450,
       "low": 211353600,
@@ -775,7 +775,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487463379,
       "low": 1984155648,
@@ -803,7 +803,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 487463380,
       "low": 826527744,
@@ -830,7 +830,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 487463380,
       "low": -704393216,
@@ -857,7 +857,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487463381,
       "low": 1958989824,
@@ -885,7 +885,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 27,
@@ -914,7 +914,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 28,
@@ -943,7 +943,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 29,
@@ -971,7 +971,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 0,
       "low": 31,
@@ -999,7 +999,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 30,
@@ -1028,7 +1028,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 32,
@@ -1056,7 +1056,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 33,
@@ -1084,7 +1084,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 34,
@@ -1111,7 +1111,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 35,
@@ -1138,7 +1138,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 0,
       "low": 36,
@@ -1167,7 +1167,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487463364,
       "low": 214159360,
@@ -1195,7 +1195,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 487463364,
       "low": -809250816,
@@ -1223,7 +1223,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 487463365,
       "low": 1984155648,
@@ -1250,7 +1250,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 487463366,
       "low": 453234688,
@@ -1278,7 +1278,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "icon": "/icons/permission/move-one.svg",
     "sort": {
       "high": 487463366,
       "low": -633090048,
@@ -1305,7 +1305,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487463367,
       "low": -2143039488,
@@ -1333,7 +1333,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487463370,
       "low": -1253847040,
@@ -1361,7 +1361,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 487463371,
       "low": 1887686656,
@@ -1389,7 +1389,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 487463372,
       "low": 344182784,
@@ -1416,7 +1416,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 487463372,
       "low": -1174155264,
@@ -1444,7 +1444,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 487463373,
       "low": -1719414784,
@@ -1471,7 +1471,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487463374,
       "low": -1899769856,
@@ -1502,7 +1502,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401986856,
       "low": 253296640,
@@ -1529,7 +1529,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 401986885,
       "low": 1679360000,
@@ -1558,7 +1558,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 37,
@@ -1586,7 +1586,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 38,
@@ -1614,7 +1614,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 39,
@@ -1641,7 +1641,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 40,
@@ -1668,7 +1668,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 402049328,
       "low": -1780940800,
@@ -1695,7 +1695,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/key.svg",
+    "icon": "/icons/permission/key.svg",
     "sort": {
       "high": 0,
       "low": 41,
@@ -1725,7 +1725,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 399199136,
       "low": 1114697728,
@@ -1756,7 +1756,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401987190,
       "low": -1772552192,
@@ -1784,7 +1784,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 401987276,
       "low": 1725497344,
@@ -1811,7 +1811,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 420945472,
       "low": 42586112,
@@ -1838,7 +1838,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 420945509,
       "low": -607531008,
@@ -1865,7 +1865,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 420945558,
       "low": -708194304,
@@ -1892,7 +1892,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 420945588,
       "low": 868864000,
@@ -1920,7 +1920,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 420945345,
       "low": 638177280,
@@ -1950,7 +1950,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 52,
@@ -1977,7 +1977,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 0,
       "low": 53,
@@ -2004,7 +2004,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 398526484,
       "low": 1311830016,
@@ -2033,7 +2033,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 50,
@@ -2063,7 +2063,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 51,
@@ -2090,7 +2090,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 427638572,
       "low": 1879052288,
@@ -2117,7 +2117,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 427638647,
       "low": 1010831360,
@@ -2144,7 +2144,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 427638702,
       "low": 1379930112,
@@ -2171,7 +2171,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/star.svg",
+    "icon": "/icons/permission/star.svg",
     "sort": {
       "high": 427638736,
       "low": -251654144,
@@ -2198,7 +2198,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 427638763,
       "low": 1933578240,
@@ -2225,7 +2225,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "icon": "/icons/permission/move-one.svg",
     "sort": {
       "high": 427638783,
       "low": -192933888,
@@ -2252,7 +2252,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 427639380,
       "low": -884994048,
@@ -2279,7 +2279,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 427638607,
       "low": 356519936,
@@ -2306,7 +2306,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 427638850,
       "low": -968880128,
@@ -2333,7 +2333,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 427638878,
       "low": -1707077632,
@@ -2360,7 +2360,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 427638921,
       "low": 1002442752,
@@ -2387,7 +2387,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 427638955,
       "low": -385871872,
@@ -2417,7 +2417,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 399708238,
       "low": 376500224,
@@ -2447,7 +2447,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 399708342,
       "low": -1393496064,
@@ -2476,7 +2476,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 399709103,
       "low": -1225723904,
@@ -2504,7 +2504,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 399708606,
       "low": 1001451520,
@@ -2532,7 +2532,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 399708493,
       "low": 657518592,
@@ -2560,7 +2560,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 399707982,
       "low": 942731264,
@@ -2587,7 +2587,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "icon": "/icons/permission/move-one.svg",
     "sort": {
       "high": 417603946,
       "low": -1488334848,
@@ -2614,7 +2614,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 420887863,
       "low": 10027008,
@@ -2641,7 +2641,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 420887908,
       "low": 127467520,
@@ -2668,7 +2668,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 399709140,
       "low": 2133913600,
@@ -2696,7 +2696,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 399709623,
       "low": 1710288896,
@@ -2724,7 +2724,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 399709695,
       "low": -2035224576,
@@ -2752,7 +2752,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 399709893,
       "low": 1353773056,
@@ -2780,7 +2780,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 399710089,
       "low": -747573248,
@@ -2808,7 +2808,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 399710145,
       "low": -1674514432,
@@ -2839,7 +2839,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401123771,
       "low": -1026453504,
@@ -2870,7 +2870,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407959312,
       "low": 1659449344,
@@ -2901,7 +2901,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401124014,
       "low": -1332637696,
@@ -2932,7 +2932,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407959164,
       "low": -1104596992,
@@ -2961,7 +2961,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401124545,
       "low": -15626240,
@@ -2992,7 +2992,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401124614,
       "low": 1297190912,
@@ -3022,7 +3022,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401124792,
       "low": -208564224,
@@ -3053,7 +3053,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407974028,
       "low": 1992298512,
@@ -3084,7 +3084,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407974028,
       "low": 1992298512,
@@ -3116,7 +3116,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407974118,
       "low": -2038427624,
@@ -3147,7 +3147,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 407974118,
       "low": -2038427624,
@@ -3175,7 +3175,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401125076,
       "low": 1708232704,
@@ -3204,7 +3204,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 401125134,
       "low": 1154584576,
@@ -3233,7 +3233,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 401125236,
       "low": -661549056,
@@ -3262,7 +3262,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 401125297,
       "low": -65957888,
@@ -3291,7 +3291,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 401125356,
       "low": 944869376,
@@ -3320,7 +3320,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 401126022,
       "low": 160534528,
@@ -3347,7 +3347,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 402812567,
       "low": 1324920832,
@@ -3375,7 +3375,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 420963383,
       "low": 1783222272,
@@ -3402,7 +3402,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 420963424,
       "low": -515256320,
@@ -3429,7 +3429,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 420963472,
       "low": 470405120,
@@ -3456,7 +3456,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 420963510,
       "low": -1261842432,
@@ -3483,7 +3483,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 420963541,
       "low": 533319680,
@@ -3512,7 +3512,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 420949360,
       "low": -1685467136,
@@ -3539,7 +3539,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 420949434,
       "low": -460730368,
@@ -3566,7 +3566,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 420949545,
       "low": -1559638016,
@@ -3593,7 +3593,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 420949616,
       "low": 1523175424,
@@ -3620,7 +3620,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 420949715,
       "low": -1807101952,
@@ -3649,7 +3649,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 420949764,
       "low": 1166659584,
@@ -3676,7 +3676,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 420949803,
       "low": -1760964608,
@@ -3704,7 +3704,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487472255,
       "low": -1501310976,
@@ -3731,7 +3731,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 487472256,
       "low": 1690554368,
@@ -3758,7 +3758,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 487472257,
       "low": 885248000,
@@ -3785,7 +3785,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 487472257,
       "low": -284962816,
@@ -3812,7 +3812,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487472258,
       "low": -1664888832,
@@ -3841,7 +3841,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487472260,
       "low": -733753344,
@@ -3868,7 +3868,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 487472261,
       "low": -977022976,
@@ -3896,7 +3896,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 487472262,
       "low": -1962684416,
@@ -3923,7 +3923,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 487472263,
       "low": 956551168,
@@ -3950,7 +3950,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487472264,
       "low": 453234688,
@@ -3982,7 +3982,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 3,
@@ -4015,7 +4015,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 4,
@@ -4043,7 +4043,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 5,
@@ -4070,7 +4070,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 420614069,
       "low": -1600585728,
@@ -4102,7 +4102,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 2,
@@ -4129,7 +4129,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/people-delete.svg",
+    "icon": "/icons/permission/people-delete.svg",
     "sort": {
       "high": 399197256,
       "low": -2135887872,
@@ -4157,7 +4157,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/move-one.svg",
+    "icon": "/icons/permission/move-one.svg",
     "sort": {
       "high": 0,
       "low": 10,
@@ -4184,7 +4184,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/refresh.svg",
+    "icon": "/icons/permission/refresh.svg",
     "sort": {
       "high": 403586365,
       "low": -1440141312,
@@ -4211,7 +4211,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 12,
@@ -4238,7 +4238,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 13,
@@ -4265,7 +4265,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 14,
@@ -4292,7 +4292,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 0,
       "low": 15,
@@ -4319,7 +4319,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 59,
@@ -4346,7 +4346,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 60,
@@ -4373,7 +4373,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 61,
@@ -4400,7 +4400,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 0,
       "low": 62,
@@ -4427,7 +4427,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 0,
       "low": 63,
@@ -4455,7 +4455,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/add-one.svg",
+    "icon": "/icons/permission/add-one.svg",
     "sort": {
       "high": 0,
       "low": 7,
@@ -4483,7 +4483,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 8,
@@ -4511,7 +4511,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/editor.svg",
+    "icon": "/icons/permission/editor.svg",
     "sort": {
       "high": 0,
       "low": 9,
@@ -4538,7 +4538,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 399195500,
       "low": -1615286272,
@@ -4566,7 +4566,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/power.svg",
+    "icon": "/icons/permission/power.svg",
     "sort": {
       "high": 398529636,
       "low": -919539712,
@@ -4593,7 +4593,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 0,
       "low": 6,
@@ -4620,7 +4620,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/delete.svg",
+    "icon": "/icons/permission/delete.svg",
     "sort": {
       "high": 487472253,
       "low": 1526976512,
@@ -4651,7 +4651,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/search.svg",
+    "icon": "/icons/permission/search.svg",
     "sort": {
       "high": 487472251,
       "low": -175910912,
@@ -4679,7 +4679,7 @@
     "type": null,
     "defaultPermission": false,
     "hiddenPermission": false,
-    "icon": "/icons/cairo/permission-icon/logout.svg",
+    "icon": "/icons/permission/logout.svg",
     "sort": {
       "high": 487472252,
       "low": -1551642624,
@@ -4708,7 +4708,7 @@
     "type": null,
     "defaultPermission": true,
     "hiddenPermission": true,
-    "icon": "/icons/cairo/permission-icon/application-menu.svg",
+    "icon": "/icons/permission/application-menu.svg",
     "sort": {
       "high": 420867780,
       "low": 1201209344,
@@ -4737,7 +4737,7 @@
     "type": null,
     "defaultPermission": true,
     "hiddenPermission": true,
-    "icon": "/icons/cairo/permission-icon/application-menu.svg",
+    "icon": "/icons/permission/application-menu.svg",
     "sort": {
       "high": 422651121,
       "low": -1281818624,

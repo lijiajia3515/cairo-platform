@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-tenant-subapp' })
+
 import { ref, onMounted, watch, nextTick } from 'vue';
 import { MessagePlugin, DialogPlugin } from 'tdesign-vue-next';
 

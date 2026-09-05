@@ -1,5 +1,7 @@
 <!-- 企业终端 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-tenant-endpoint' })
+
 import { ref, onMounted, watch, nextTick } from 'vue';
 import { MessagePlugin, DialogPlugin } from 'tdesign-vue-next';
 

@@ -1,5 +1,7 @@
 <!-- 第三方账号 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-sns_provider' })
+
 import { ref, onMounted } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 import {
@@ -80,10 +82,9 @@ const [loading, setLoading] = useState(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
+    { colKey: 'snsProviderId', title: '第三方账号认证ID' },
+    // 引用实体(应用)不设独立 ID 列:名称单元格悬停即复制实体 ID
     avatarCopyColumn({ colKey: 'appName', title: '应用', iconKey: 'appIcon', copyKey: 'appId' }),
-    {
-      colKey: 'snsProviderId', title: '第三方账号认证ID'
-    },
     { colKey: 'snsProviderName', title: '名称' },
     avatarCopyColumn({ colKey: 'snsProviderPartnerName', title: '厂商', iconKey: 'snsProviderPartnerIcon' }),
     {

@@ -28,7 +28,7 @@ let loading = ref(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('tokenId', 'tokenId', {width: 190}),
+    copyColumn('tokenId', '会话ID', {width: 190}),
     { colKey: 'endpointName', title: '终端' },
     { colKey: 'clientName', title: '客户端' },
     { colKey: 'loginType', title: '登录方式' },

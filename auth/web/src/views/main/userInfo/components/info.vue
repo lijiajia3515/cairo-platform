@@ -180,7 +180,7 @@ const goLoginOut = () => {
 
   .my-content {
     width: 100%;
-    border: 1px solid #ededed;
+    border: 1px solid var(--td-component-stroke);
     padding: 10px;
     box-sizing: border-box;
   }

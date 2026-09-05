@@ -63,7 +63,7 @@ public class BizLogAccountMongodb {
 	private String accountId;
 
 	/**
-	 * 账号TokenId
+	 * 账号会话ID
 	 * 账号令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)

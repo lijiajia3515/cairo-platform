@@ -70,7 +70,7 @@ public class AppUserLoginLogMongodb implements Serializable {
 	private String userId;
 
 	/**
-	 * 终端用户TokenId
+	 * 终端用户会话ID
 	 * 应用用户令牌唯一标识
 	 */
 	@Field(write = Field.Write.ALWAYS)

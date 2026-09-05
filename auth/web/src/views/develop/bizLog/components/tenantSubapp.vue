@@ -49,7 +49,7 @@ const [configs] = useState({
             <t-space size="small">
               {
                 row?.subappIcon ?
-                    <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.subappName?.slice(0, 2)} size="medium"
+                    <t-avatar shape="round" hideOnLoadFailed={true} alt={row?.subappName?.slice(0, 2)} size="16px"
                               image={row?.subappIcon}/> : null
               }
               <div style={{

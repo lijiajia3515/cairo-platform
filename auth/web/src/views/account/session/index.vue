@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-account-session' })
+
 import {
   ref,
   onMounted,
@@ -39,7 +41,7 @@ let loading = ref(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('tokenId', 'tokenId', {width: 190}),
+    copyColumn('tokenId', '会话ID', {width: 190}),
     { colKey: 'clientName', title: '客户端' },
     userColumn({ colKey: 'accountName', title: '账号', nameKey: 'accountName', avatarKey: 'avatarUrl', idKey: 'accountName', width: 140 }),
     { colKey: 'loginType', title: '登录方式' },

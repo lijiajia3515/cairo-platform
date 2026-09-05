@@ -16,7 +16,7 @@
     },
     "endpointId": "web",
     "endpointName": "网页端",
-    "icon": "/icons/cairo/endpoint-icon/web.png",
+    "icon": "",
     "websiteUrl": "https://cairo.example.com"
   },
   {

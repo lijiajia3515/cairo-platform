@@ -33,8 +33,6 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
 
 const version = Package.version
 const versionStorage = localStorage.getItem('version')
-console.log('最新版本', 'v' + version)
-console.log('缓存版本', 'v' + versionStorage)
 
 if (version != versionStorage) {
   localStorage.clear()

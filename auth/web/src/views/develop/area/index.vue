@@ -126,6 +126,8 @@
 </template>
 
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-area' })
+
 import Child from './components/child.vue';
 import { ref, reactive, onMounted } from 'vue';
 import useState from '@/hooks/useState';

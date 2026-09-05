@@ -1,5 +1,7 @@
 <!-- 子应用 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-subapp' })
+
 import { ref, onMounted, watch, } from 'vue';
 
 import {
@@ -54,11 +56,10 @@ const [loading, setLoading] = useState(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('appId', '应用ID'),
+    copyColumn('subappId', '子应用ID', { width: 110 }),
+    // 引用实体(应用/终端)不设独立 ID 列:名称单元格悬停即复制实体 ID
     avatarCopyColumn({ colKey: 'appName', title: '应用名称', iconKey: 'appIcon' }),
-    copyColumn('endpointId', '终端ID'),
     avatarCopyColumn({ colKey: 'endpointName', title: '终端名称', iconKey: 'endpointIcon' }),
-    copyColumn('subappId', '子应用ID'),
     avatarCopyColumn({ colKey: 'subappName', title: '子应用名称', iconKey: 'subappIcon' }),
     {
       colKey: 'scope', title: '准入范围', width: 90, cell: (h, { row }) => {
@@ -83,7 +84,7 @@ const [configs, setConfigs] = useState({
       refresh: () => getSubappPage(),
     }),
     {
-      colKey: 'metadata.updateUser.nickname', title: '更新人', width: 160, cell: (h, { row }) => {
+      colKey: 'metadata.updateUser.nickname', title: '更新人', width: 110, cell: (h, { row }) => {
         return (
           <t-space size="small">
             {
@@ -111,7 +112,7 @@ const [configs, setConfigs] = useState({
       { content: '上移', onClick: (row, rowIndex) => onMoveUp(row, rowIndex), visible: () => hasPermission('subapp.move_subapp') },
       { content: '下移', onClick: (row, rowIndex) => onMoveDown(row, rowIndex), visible: () => hasPermission('subapp.move_subapp') },
       { content: '删除', theme: 'danger', onClick: (row) => onDelete(row), visible: () => hasPermission('subapp.delete_subapp') },
-    ], { width: 200 }),
+    ], { width: 160 }),
   ],
   rowKey: 'id',
   loading: loading,

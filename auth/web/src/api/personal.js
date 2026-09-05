@@ -1,6 +1,6 @@
 // 个人中心——我的账号/用户信息/登录会话/我的日志(app_user_api)
 import fetch from './fetch';
-import { appUserApi, subappUserApi, manageSubappId, manageSubappVersion } from './urls';
+import { appUserApi, subappUserApi } from './urls';
 
 // 发送当前账号手机号验证码( (用户级别)
 export const sendMyAccountPhoneNumberVerifyCode_api = (params, headers) => {
@@ -97,14 +97,14 @@ export const getMyAppUserLoginLogPage_api = (params) => {
     return fetch.endpointPost(appUserApi + '/app_user_login_log/get_my_app_user_login_log_page_list', params, {});
 }
 
-// 获取当前子应用菜单
-export const getMySubappUserMenu_api = (params) => {
-    return fetch.subappPost(manageSubappId, manageSubappVersion, subappUserApi + '/app_user/get_my_subapp_user_menu', params, {},);
+// 按显式子应用上下文拉菜单(子应用切换器预取各子应用菜单用)
+export const getSubappUserMenuByContext_api = (subappId, subappVersion, params) => {
+    return fetch.subappPost(subappId, subappVersion, subappUserApi + '/app_user/get_my_subapp_user_menu', params, {},);
 }
 
-// 获取子应用功能集合
-export const getMySubappUserPermissionIds_api = (params) => {
-    return fetch.subappPost(manageSubappId, manageSubappVersion, subappUserApi + '/app_user/get_my_subapp_user_permission_ids', params, {});
+// 按显式子应用上下文拉功能权限(与菜单同源预取,切换子应用零请求)
+export const getSubappUserPermissionIdsByContext_api = (subappId, subappVersion, params) => {
+    return fetch.subappPost(subappId, subappVersion, subappUserApi + '/app_user/get_my_subapp_user_permission_ids', params, {});
 }
 
 // 获取我的应用业务日志分页列表

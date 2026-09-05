@@ -547,7 +547,7 @@ const onCloseDetailRemark = () => {
           <t-form-item name="appId" label="应用">
             <t-select :disabled="type == 'edit'" clearable v-model="form.appId" @change="onChangeApp">
               <t-option :label="item.appName" :value="item.appId" v-for="(item, index) in appList" :key="index"
-                :style="{ background: item.enabled == true ? 'initial' : '#ededed' }">
+                :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }">
                 <div style="display: flex;align-items: center;width: 100%;">
                   <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
                   <span style="display: inline-block;marginLeft:10px;">{{ item.appName }}</span>
@@ -574,7 +574,7 @@ const onCloseDetailRemark = () => {
             <t-select :disabled="type == 'edit'" clearable v-model="form.endpointId">
               <t-option :label="item.endpointName" :value="item.endpointId"
                 v-for="(item, index) in endpointList" :key="index"
-                :style="{ background: item.enabled == true ? 'initial' : '#ededed' }">
+                :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }">
                 <div style="display: flex;align-items: center;width: 100%;">
                   <t-avatar :imageProps="{ lazy: true }" size="20px" :image="item.icon" shape="round"></t-avatar>
                   <span style="display: inline-block;marginLeft:10px;">{{ item.endpointName }}</span>

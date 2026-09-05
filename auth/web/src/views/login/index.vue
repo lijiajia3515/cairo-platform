@@ -5,6 +5,7 @@ import {
 import { useRouter, useRoute } from 'vue-router';
 
 import { useUserStore } from '@/store/user';
+import { useTagsViewStore } from '@/store/tagsView';
 import { randomString } from '@/utils/tips';
 import { setToken, setRefreshToken, setTokenType, setAuthType, setAppId, setEndpointId } from "@/utils";
 import LoginByPassword from './loginByPassword.vue';
@@ -129,7 +130,7 @@ const getAccountStatus = async () => {
           auth_type.value = null;
           appId.value = null;
           endpointId.value = null;
-          sessionStorage.removeItem('zhgd_manager_lastPath')
+          useTagsViewStore().resetTags() // 清空多标签(会话级缓存)
           window.location.href = window.location.origin + '/login'
         },
       });
@@ -192,11 +193,10 @@ const goRoute = (path) => {
   <div class="login_page">
     <div class="logoItem">
       <div class="item">
-        <img style="width: 40px;height: 40px;z-index: 999;"
-          src="/images/icon-40x40.png" />
+        <img style="width: 36px;height: 36px;display: block;" src="/logo.svg" alt="CAIRO" />
       </div>
       <div class="item">
-        <div class="title">Cairo运营平台</div>
+        <div class="title">CAIRO</div>
       </div>
     </div>
     <div class="loginContainer">
@@ -248,8 +248,10 @@ const goRoute = (path) => {
     margin-right: 10px;
 
     .title {
-      font-weight: 700;
-      font-size: 22px;
+      font-family: Inter, var(--td-font-family);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 0.08em;
     }
   }
 }

@@ -1,0 +1,13 @@
+diff --git a/src/Vue3Jsoneditor.vue b/src/Vue3Jsoneditor.vue
+index 744f2da7619ccd60810650b93df218d74bfea15d..7984e26c10ae66348e5f13d79cc9439da6a84cd1 100644
+--- a/src/Vue3Jsoneditor.vue
++++ b/src/Vue3Jsoneditor.vue
+@@ -162,7 +162,7 @@ export default {
+   },
+   computed: {
+     getHeight() {
+-      if (this.height && !this.max) {
++      if (this.height) {
+         return {
+           height: this.height,
+         };

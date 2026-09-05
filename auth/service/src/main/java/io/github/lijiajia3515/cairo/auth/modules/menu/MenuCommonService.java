@@ -23,6 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.validation.annotation.Validated;
@@ -595,5 +596,80 @@ public class MenuCommonService {
 				.build();
 			return mongoTemplate.insert(defaultMenu, MongodbConstants.Collection.MENU);
 		});
+	}
+
+	/**
+	 * 确保子应用菜单树的虚拟根（菜单ID TREE_ROOT）存在
+	 * <p>
+	 * 空树时退化为 {@link #createDefaultMenu}；已存在"无根"菜单（导入/手工造树的
+	 * 历史数据）时，不再盲插固定编号的根——那会撞 leftNo 唯一索引——而是把既有
+	 * 整棵森林右移 2、深度 +1，原顶层节点（parentId=-1）重挂到根下，由新根
+	 * （leftNo=1，rightNo=maxRightNo+3）完整包裹，恢复嵌套集不变量。
+	 * 调用方需自带事务与同子应用锁（create_menu/move_menu 的 Lock4j）。
+	 *
+	 * @param appId          appId
+	 * @param endpointId  endpointId
+	 * @param subappId      subappId
+	 * @param subappVersion subappVersion
+	 * @return 虚拟根菜单
+	 */
+	public MenuMongodb ensureRootMenu(String appId, String endpointId, String subappId, String subappVersion) {
+		Criteria scope = Criteria.where(MenuMongodb.FIELD.APP_ID).is(appId)
+			.and(MenuMongodb.FIELD.ENDPOINT_ID).is(endpointId)
+			.and(MenuMongodb.FIELD.SUBAPP_ID).is(subappId)
+			.and(MenuMongodb.FIELD.SUBAPP_VERSION).is(subappVersion);
+
+		MenuMongodb root = mongoTemplate.findOne(
+			Query.query(new Criteria().andOperator(scope, Criteria.where(MenuMongodb.FIELD.MENU_ID).is(TREE_ROOT))),
+			MenuMongodb.class, MongodbConstants.Collection.MENU);
+		if (root != null) {
+			return root;
+		}
+
+		// 倒序取：配合逐条 +2 更新，避免 leftNo 唯一索引在中途撞上未移动的节点
+		Query allQuery = Query.query(scope);
+		allQuery.with(Sort.by(Sort.Order.desc(MenuMongodb.FIELD.LEFT_NO)));
+		List<MenuMongodb> existing = mongoTemplate.find(allQuery, MenuMongodb.class, MongodbConstants.Collection.MENU);
+		if (existing.isEmpty()) {
+			return createDefaultMenu(appId, endpointId, subappId, subappVersion);
+		}
+
+		int maxRightNo = 0;
+		for (MenuMongodb menu : existing) {
+			Update update = new Update()
+				.inc(MenuMongodb.FIELD.LEFT_NO, 2)
+				.inc(MenuMongodb.FIELD.RIGHT_NO, 2)
+				.inc(MenuMongodb.FIELD.DEPTH, 1)
+				.currentDate(MenuMongodb.FIELD.METADATA.UPDATE_TIME);
+			mongoTemplate.updateFirst(
+				Query.query(new Criteria().andOperator(scope, Criteria.where(MenuMongodb.FIELD.MENU_ID).is(menu.getMenuId()))),
+				update, MenuMongodb.class, MongodbConstants.Collection.MENU);
+			maxRightNo = Math.max(maxRightNo, menu.getRightNo());
+		}
+
+		// 原顶层重挂到根下（此时根尚未插入，parentId=-1 的即森林顶层，无需排除自身）
+		mongoTemplate.updateMulti(
+			Query.query(new Criteria().andOperator(scope, Criteria.where(MenuMongodb.FIELD.PARENT_ID).is(ROOT_PARENT_ID))),
+			new Update().set(MenuMongodb.FIELD.PARENT_ID, TREE_ROOT),
+			MenuMongodb.class, MongodbConstants.Collection.MENU);
+
+		// 包裹全部既有树：根占 (1, maxRightNo+3)
+		MenuMongodb rootMenu = MenuMongodb.builder()
+			.appId(appId)
+			.endpointId(endpointId)
+			.subappId(subappId)
+			.subappVersion(subappVersion)
+			.menuId(TREE_ROOT)
+			.menuName(endpointId)
+			.parentId(ROOT_PARENT_ID)
+			.leftNo(1)
+			.rightNo(maxRightNo + 3)
+			.depth(0)
+			.metadata(AppUserMetadataMongodb.builder()
+				.createUserId(CairoSecurityContextHolder.getSubappUserId())
+				.updateUserId(CairoSecurityContextHolder.getSubappUserId())
+				.build())
+			.build();
+		return mongoTemplate.insert(rootMenu, MongodbConstants.Collection.MENU);
 	}
 }

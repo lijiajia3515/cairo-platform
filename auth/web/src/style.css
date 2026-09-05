@@ -1,5 +1,7 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 全局字体基线:拉丁走 Inter,中文回退系统字体;TDesign 组件经 --td-font-family 与页面统一到同一栈 */
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+  --td-font-family: Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -108,12 +110,16 @@ body {
 .copy-cell .copyIcon {
   flex: none;
   margin-top: 0;
-  font-size: 14px;
+  color: var(--td-text-color-placeholder);
   opacity: 0;
   transition: opacity 0.15s;
 }
 .copy-cell:hover .copyIcon {
   opacity: 1;
+  color: var(--td-text-color-secondary);
+}
+.copy-cell .copyIcon:hover {
+  color: var(--td-brand-color);
 }
 .avatar-copy-cell {
   display: inline-flex;

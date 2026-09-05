@@ -1,15 +1,21 @@
 <template>
   <div v-allow="'menu.read'" class="menu__wrapper">
-    <t-breadcrumb>
-      <template #default>
-        <t-breadcrumbItem>{{ name }}</t-breadcrumbItem>
-        <template v-if="childIds.length">
-          <t-breadcrumbItem v-for="(item, index) in childIds" :key="index">{{ item.name }}</t-breadcrumbItem>
+    <!-- 子级导航:显式返回按钮(带文字) + 面包屑层级链 -->
+    <div class="child-nav">
+      <t-button variant="text" theme="default" size="small" class="back-btn" @click="goBack">
+        <template #icon><t-icon name="chevron-left" /></template>
+        返回上一级
+      </t-button>
+      <t-breadcrumb>
+        <template #default>
+          <t-breadcrumbItem>{{ name }}</t-breadcrumbItem>
+          <template v-if="childIds.length">
+            <t-breadcrumbItem v-for="(item, index) in childIds" :key="index">{{ item.name }}</t-breadcrumbItem>
+          </template>
         </template>
-        <i @click="goBack" class="iconfont icon-fanhui backIcon"></i>
-      </template>
-      <template #separator> | </template>
-    </t-breadcrumb>
+        <template #separator>/</template>
+      </t-breadcrumb>
+    </div>
     <div class="empty"></div>
     <header class="filter-header">
       <div class="filter-header__actions">
@@ -17,8 +23,8 @@
       </div>
     </header>
     <div class="empty"></div>
-    <t-table drag-sort="row-handler" @drag-sort="onDragSortChild" size="small" row-key="menuId"
-      :data="state.childMenu.list" :columns="childColumns" table-layout="fixed">
+    <t-table table-layout="auto" drag-sort="row-handler" @drag-sort="onDragSortChild" size="small" row-key="menuId"
+      :data="state.childMenu.list" :columns="childColumns">
     </t-table>
     <div class="empty"></div>
     <div class="list-card-pagination">
@@ -74,7 +80,7 @@
         权限列表
       </template>
       <div class="empty"></div>
-      <t-table size="small" row-key="id" :data="state.adminData.list" :columns="adminColumns" table-layout="fixed">
+      <t-table table-layout="auto" size="small" row-key="id" :data="state.adminData.list" :columns="adminColumns">
       </t-table>
       <div class="empty"></div>
       <!-- 分页 -->
@@ -551,7 +557,7 @@ let getPermissionMenu = async () => {
 let onDeleteChildMenu = async (row) => {
   const confirmDia = DialogPlugin({
     header: '菜单删除',
-    body: '你确定删除吗?',
+    body: `是否删除菜单「${row.menuName}」?`,
     confirmBtn: '确定',
     cancelBtn: '取消',
     onConfirm: async ({ e }) => {
@@ -780,5 +786,15 @@ const onClosePermissionDialog = () => {
 
 :global(.t-input--auto-width) {
   min-width: 106px;
+}
+.child-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .back-btn {
+    flex: none;
+    padding: 0 8px;
+  }
 }
 </style>

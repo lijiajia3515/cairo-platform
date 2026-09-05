@@ -32,8 +32,8 @@ docs/auth/
 | `app.json` | 应用（cairo 运营平台、demo 演示应用） | 2 |
 | `client.json` | OAuth2 客户端（服务端/网页端） | 2 |
 | `endpoint.json` | 终端（web，现挂 demo 应用） | 2 |
-| `subapp.json` + `subapp_version.json` | 子应用（manage、demo） | 2+2 |
-| `menu.json` | 菜单（含根容器 web） | 45 |
+| `subapp.json` + `subapp_version.json` | 子应用（manage、demo、dashboard 看板） | 3+2 |
+| `menu.json` | 菜单（含根容器 web，树形快照见 [menus.md](menus.md)） | 45 |
 | `permission.json` | 功能权限点 | 169 |
 | `sys_dict.json` + `sys_dict_item.json` | 系统字典（含 AccessScope 准入范围） | 9+48 |
 

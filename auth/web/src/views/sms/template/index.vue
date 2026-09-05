@@ -1,5 +1,7 @@
 <!-- 短信模板 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-sms-template' })
+
 import { ref, onMounted, watch, } from 'vue';
 import { MessagePlugin, LoadingPlugin, DialogPlugin } from 'tdesign-vue-next';
 
@@ -35,7 +37,7 @@ const [loading, setLoading] = useState(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    { colKey: 'appId', title: '应用ID' },
+    // 不设应用 ID 列:列表本身按应用过滤,应用信息去应用管理页查
     { colKey: 'bizId', title: '业务ID' },
     { colKey: 'templateCode', title: '模板编码' },
     { colKey: 'templateName', title: '模板名称' },

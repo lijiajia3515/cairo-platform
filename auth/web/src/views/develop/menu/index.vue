@@ -46,13 +46,13 @@
           </FilterItem>
           <FilterItem label="子应用">
             <t-select v-model="headerParams.subappId">
-              <t-option :style="{ background: item.enabled == true ? 'initial' : '#ededed' }" :label="item.subappName"
+              <t-option :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }" :label="item.subappName"
                 :value="item.subappId" v-for="(item, index) in subappList" :key="index"></t-option>
             </t-select>
           </FilterItem>
           <FilterItem label="版本">
             <t-select v-model="headerParams.subappVersion">
-              <t-option :style="{ background: item.enabled == true ? 'initial' : '#ededed' }"
+              <t-option :style="{ background: item.enabled == true ? 'initial' : 'var(--td-bg-color-component-disabled)' }"
                 :label="item.subappVersion" :value="item.subappVersion" v-for="(item, index) in subappVersionList"
                 :key="index"></t-option>
             </t-select>
@@ -65,8 +65,8 @@
         </div>
       </header>
       <div class="empty"></div>
-      <t-table drag-sort="row-handler" @drag-sort="onDragSort" size="small" row-key="menuId" :data="state.list"
-        :columns="columns" table-layout="fixed">
+      <t-table table-layout="auto" drag-sort="row-handler" @drag-sort="onDragSort" size="small" row-key="menuId" :data="state.list"
+        :columns="columns">
       </t-table>
       <div class="empty"></div>
       <!-- 分页 -->
@@ -127,7 +127,7 @@
       权限列表
     </template>
     <div class="empty"></div>
-    <t-table size="small" row-key="id" :data="state.adminData.list" :columns="adminColumns" table-layout="fixed">
+    <t-table table-layout="auto" size="small" row-key="id" :data="state.adminData.list" :columns="adminColumns">
     </t-table>
     <div class="empty"></div>
     <!-- 分页 -->
@@ -157,15 +157,17 @@
     :accountAvatarUrl="userDetail.accountAvatarUrl" :joinTime="userDetail.joinTime" ref="userInfoRef"></UserInfo>
 </template>
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-menu' })
+
 import { ref, shallowRef, watch, reactive, onMounted } from 'vue';
 import { debounce } from 'lodash';
 
-import { Input, Select, MessagePlugin, DialogPlugin } from 'tdesign-vue-next';
+import { Input, MessagePlugin, DialogPlugin } from 'tdesign-vue-next';
 import { MoveIcon } from 'tdesign-icons-vue-next';
 
 import useState from '@/hooks/useState';
 import FilterItem from '@/components/filterBar/item.vue';
-import { opColumn } from '@/utils/tableColumns';
+import { opColumn, switchColumn, timeColumn } from '@/utils/tableColumns';
 import { hasPermission } from '@/plugins/permission';
 
 import EditParent from './components/editParent.vue';
@@ -184,7 +186,7 @@ import {
 const pageType = ref('parent');
 
 const [, setId] = useState(null); // 父级
-const [, setName] = useState(null); // 父级
+const [name, setName] = useState(null); // 父级菜单名(子级视图面包屑用;此前只解构 setter 致 :name 恒空)
 const [appId, setAppId] = useState(null);
 const [endpointId, setEndpointId] = useState(null);
 const [subappId, setSubappId] = useState(null);
@@ -268,7 +270,7 @@ let columns = shallowRef([
     }
   },
   {
-    colKey: 'component', title: '组件地址', ellipsis: true, minWidth: 180, edit: {
+    colKey: 'component', title: '组件地址', ellipsis: true, width: 170, edit: {
       props: {
         autofocus: true,
       },
@@ -281,7 +283,7 @@ let columns = shallowRef([
     }
   },
   {
-    colKey: 'path', title: '外部地址', ellipsis: true, minWidth: 180, edit: {
+    colKey: 'path', title: '外部地址', ellipsis: true, width: 120, edit: {
       props: {
         autofocus: true,
       },
@@ -294,7 +296,7 @@ let columns = shallowRef([
     }
   },
   {
-    colKey: 'tags', title: 'tags', cell: (h, { row }) => {
+    colKey: 'tags', title: 'tags', width: 90, cell: (h, { row }) => {
       return (
         <t-space size="small">
           {
@@ -312,37 +314,35 @@ let columns = shallowRef([
         </t-space>
       )
     },
-    minWidth: 140,
+    minWidth: 130,
   },
+  // 可见性行内开关:开=隐藏(红)/关=显示(绿),确认后直改 modify_menu
+  switchColumn({
+    colKey: 'hiddenMenu', title: '可见性', width: 96,
+    pairs: { true: { label: '隐藏', theme: 'danger' }, false: { label: '显示', theme: 'success' } },
+    confirmOf: (value) => (value ? '隐藏' : '显示'),
+    api: (params) => modifyMenu_api(params, {
+        'app-id': headerParams.value.appId,
+        'endpoint-id': headerParams.value.endpointId,
+        'subapp-id': headerParams.value.subappId,
+        'subapp-version': headerParams.value.subappVersion,
+      }),
+    idKeys: ['menuId'],
+    label: '菜单',
+    perm: 'menu.write',
+    refresh: () => getMenuList(), // 延迟引用:columns 求值时 getMenuList 尚未声明(TDZ)
+  }),
   {
-    colKey: 'hiddenMenu', title: '是否隐藏', minWidth: 100,
-    cell: (h, { col, row }) => <div>{row[col.colKey] == false ? '显示' : '隐藏'}</div>,
-    edit: {
-      props: ({ col, row, rowIndex, colIndex, editedRow }) => {
-        return {
-          options: [
-            { label: '隐藏', value: true },
-            { label: '显示', value: false },
-          ]
-        }
-      },
-      component: Select,
-      onEdited: (context) => {
-        onRadioChange(context.newRowData.hiddenMenu, context.newRowData.menuId)
-      }
-    }
-  },
-  {
-    colKey: 'metadata.updateUser.nickname', title: '更新人', minWidth: 140, cell: (h, { row }) => {
+    colKey: 'metadata.updateUser.nickname', title: '更新人', width: 110, cell: (h, { row }) => {
       return (
         <t-space size="small">
           {
             row?.metadata?.updateUser?.accountAvatarUrl ?
               <t-avatar class="pick" onClick={() => onWatchUserInfo(row)} hideOnLoadFailed={true}
-                alt={row?.metadata?.updateUser?.nickname?.slice(0, 2)} size="medium"
+                alt={row?.metadata?.updateUser?.nickname?.slice(0, 2)} size="small"
                 image={row?.metadata?.updateUser?.accountAvatarUrl} /> : (
                 row?.metadata?.updateUser?.nickname ? <t-avatar class="pick" onClick={() => onWatchUserInfo(row)}
-                  size="medium">{row?.metadata?.updateUser?.nickname?.slice(0, 2)}</t-avatar> : null
+                  size="small">{row?.metadata?.updateUser?.nickname?.slice(0, 2)}</t-avatar> : null
               )
           }
           <div class="pick" onClick={() => onWatchUserInfo(row)} style={{
@@ -354,7 +354,7 @@ let columns = shallowRef([
       )
     }
   },
-  { colKey: 'metadata.updateTime', title: '更新时间', ellipsis: true, minWidth: 170 },
+  timeColumn('metadata.updateTime', '更新时间'),
   opColumn([
     { content: '子菜单', onClick: (row) => onPreviewChildMenu(row), visible: () => hasPermission('menu.read') },
     { content: '编辑', onClick: (row) => onEditdMenu(row), visible: () => hasPermission('menu.write') },
@@ -693,7 +693,7 @@ let getPermissionMenu = async () => {
 let onDeleteMenu = (row) => {
   const confirmDia = DialogPlugin({
     header: '菜单删除',
-    body: '你确定删除吗?',
+    body: `是否删除菜单「${row.menuName}」?`,
     confirmBtn: '确定',
     cancelBtn: '取消',
     onConfirm: async ({ e }) => {

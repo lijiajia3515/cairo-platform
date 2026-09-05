@@ -334,7 +334,8 @@ public class MenuCairoWebManageApiService {
 				);
 				MenuMongodb parentMenu = mongoTemplate.findOne(parentQuery, MenuMongodb.class, MongodbConstants.Collection.MENU);
 				if (parentMenu == null && ROOT_ID.equals(parentId)) {
-					parentMenu = menuCommonService.createDefaultMenu(appId, endpointId, subappId, subappVersion);
+					// 无根时确保根存在(已有无根菜单则包裹修复,而非盲插默认根撞唯一索引)
+					parentMenu = menuCommonService.ensureRootMenu(appId, endpointId, subappId, subappVersion);
 				}
 
 				if (parentMenu == null) {

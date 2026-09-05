@@ -1,5 +1,7 @@
 <!-- 终端 -->
 <script setup lang="jsx">
+defineOptions({ name: 'manage-develop-endpoint' })
+
 import {ref, reactive, onMounted, nextTick} from 'vue';
 import {useRouter} from 'vue-router';
 import {useWindowSize} from '@vueuse/core';
@@ -62,9 +64,9 @@ const [loading, setLoading] = useState(false);
 const [configs, setConfigs] = useState({
   data: list,
   columns: [
-    copyColumn('appId', '应用ID'),
-    avatarCopyColumn({colKey: 'appName', title: '应用名称', iconKey: 'appIcon'}),
     copyColumn('endpointId', '终端ID'),
+    // 引用实体(应用)不设独立 ID 列:名称单元格悬停即复制实体 ID
+    avatarCopyColumn({colKey: 'appName', title: '应用名称', iconKey: 'appIcon'}),
     avatarCopyColumn({colKey: 'endpointName', title: '终端名称', iconKey: 'icon'}),
     {
       colKey: 'type', title: '类型', width: 100, cell: (h, {row}) => {

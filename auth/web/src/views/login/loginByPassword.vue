@@ -1,6 +1,6 @@
 <script setup>
 import {
-  ref, onMounted, computed, watch,
+  ref, onMounted, watch,
   nextTick
 } from "vue";
 import {
@@ -20,10 +20,6 @@ import {
 import {
   Base64
 } from "js-base64";
-
-import {
-  usePageStore
-} from "@/store/page";
 
 import {
   setToken,
@@ -48,10 +44,7 @@ import {
 } from "@/api";
 
 
-const pageStore = usePageStore();
 const router = useRouter();
-
-const lastPath = computed(() => pageStore.lastPathGetter);
 
 const userAgreement = _this.userAgreement; // 用户协议
 const privacyPolicy = _this.privacyPolicy; // 隐私政策

@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  v3-jsoneditor: 6f72228715618959d74eee1ff24105d070fd959d87aea8a59f3f21438c2238ba
+
 importers:
 
   .:
@@ -40,7 +43,7 @@ importers:
         version: 1.20.6(vue@3.5.42)
       v3-jsoneditor:
         specifier: ^0.0.6
-        version: 0.0.6
+        version: 0.0.6(patch_hash=6f72228715618959d74eee1ff24105d070fd959d87aea8a59f3f21438c2238ba)
       v3hooks:
         specifier: ^1.5.0
         version: 1.5.0
@@ -6064,7 +6067,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  v3-jsoneditor@0.0.6:
+  v3-jsoneditor@0.0.6(patch_hash=6f72228715618959d74eee1ff24105d070fd959d87aea8a59f3f21438c2238ba):
     dependencies:
       jsoneditor: 9.10.5
 

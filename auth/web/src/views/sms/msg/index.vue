@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-sms-msg' })
+
 import { ref, onMounted, watch } from 'vue';
 import { DialogPlugin, MessagePlugin, LoadingPlugin } from 'tdesign-vue-next';
 
@@ -43,7 +45,7 @@ const [configs, setConfigs] = useState({
     { colKey: 'phoneNumber', title: '手机号' },
     ellipsisColumn('text', '内容', { width: 240 }),
     {
-      colKey: '', title: '结果', width: 140, cell: (h, { row }) => {
+      colKey: 'sendResult', title: '结果', width: 140, cell: (h, { row }) => {
         return (
           <span style={{ color: row['success'] ? '#2ba471' : '#d54941' }}>{row['success'] ? '发送成功' : row['reason']}</span>
         )

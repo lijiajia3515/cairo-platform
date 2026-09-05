@@ -38,7 +38,7 @@ let params = { dictId: 'AuthorizationGrantType' }
 const getGrantTypeList = async () => {
   let res = await getSubappUserSysDictDetailInfo_api(params)
   if (res.code === "Success") {
-    setGrantTypeList(res.data.items || [])
+    setGrantTypeList(res.data?.items || [])
   }
 
 }

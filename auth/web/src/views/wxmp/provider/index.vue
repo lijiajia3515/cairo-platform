@@ -1,4 +1,6 @@
 <script setup lang="jsx">
+defineOptions({ name: 'manage-wxmp-provider' })
+
 import { ref, onMounted } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 import {

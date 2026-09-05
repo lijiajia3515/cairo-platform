@@ -30,12 +30,12 @@ const setPermisePlugin = {
           if (key == true) {
             return;
           }
+          // 权限表尚未加载(空)时不删——等它就绪前删除视图根节点会把整页变成注释节点,
+          // 卡死 transition(out-in);正常判定只在权限表就绪后做
           if (permissions && permissions.length > 0) { // 有权限列表
             if (permissions.indexOf(key) == -1) {
               el.parentNode.removeChild(el);
             }
-          } else {
-            el.parentNode.removeChild(el);
           }
         } catch (err) {
           console.log(err)
