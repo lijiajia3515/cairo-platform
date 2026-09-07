@@ -62,27 +62,27 @@ public class MongodbOAuth2AuthorizationService implements OAuth2AuthorizationSer
 		if (tokenType == null) {
 			criteria = new Criteria().andOperator(
 				// state
-				Criteria.where("State").is(token),
+				Criteria.where("state").is(token),
 				// authorization code
-				Criteria.where("AuthorizationCode.TokenValue").is(token),
+				Criteria.where("authorizationCode.tokenValue").is(token),
 				// default
-				Criteria.where("AccessToken.TokenValue").is(token),
-				Criteria.where("RefreshToken.TokenValue").is(token)
+				Criteria.where("accessToken.tokenValue").is(token),
+				Criteria.where("refreshToken.tokenValue").is(token)
 			);
 		}
 		// state
 		else if (OAuth2ParameterNames.STATE.equals(tokenType.getValue())) {
-			criteria = Criteria.where("State").is(token);
+			criteria = Criteria.where("state").is(token);
 		}
 		// authorization code
 		else if (OAuth2ParameterNames.CODE.equals(tokenType.getValue())) {
-			criteria = Criteria.where("AuthorizationCode.TokenValue").is(token);
+			criteria = Criteria.where("authorizationCode.tokenValue").is(token);
 		}
 		// default
 		else if (OAuth2TokenType.ACCESS_TOKEN.equals(tokenType)) {
-			criteria = Criteria.where("AccessToken.TokenValue").is(token);
+			criteria = Criteria.where("accessToken.tokenValue").is(token);
 		} else if (OAuth2TokenType.REFRESH_TOKEN.equals(tokenType)) {
-			criteria = Criteria.where("RefreshToken.TokenValue").is(token);
+			criteria = Criteria.where("refreshToken.tokenValue").is(token);
 		}
 
 		return Optional.ofNullable(criteria)

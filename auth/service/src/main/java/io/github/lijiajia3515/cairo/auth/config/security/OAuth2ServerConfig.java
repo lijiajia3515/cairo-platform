@@ -117,8 +117,11 @@ import org.springframework.security.oauth2.server.authorization.web.authenticati
 import org.springframework.security.oauth2.server.authorization.web.authentication.OAuth2ClientCredentialsAuthenticationConverter;
 import org.springframework.security.oauth2.server.authorization.web.authentication.OAuth2RefreshTokenAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationConverter;
+import org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.DelegatingAuthenticationConverter;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
@@ -133,6 +136,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -140,6 +144,20 @@ import java.util.stream.Collectors;
 
 @Configuration(proxyBeanMethods = false)
 public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
+
+	/**
+	 * 授权端点：OAuth2 协议端点中唯一消费「用户会话」的端点（授权码流程入口）。
+	 * SAS 未公开单端点 matcher（仅 getEndpointsMatcher()），路径在此常量化，
+	 * 供鉴权规则与未登录入口点共用（覆盖判断本身由 endpointsMatcher 承担）。
+	 */
+	private static final String AUTHORIZATION_ENDPOINT = "/oauth2/authorize";
+
+	/** 登出端点：消费浏览器会话（POST 由 LogoutFilter 处理，GET 为确认页视图），非 SAS 协议端点 */
+	private static final String LOGOUT_ENDPOINT = "/logout";
+
+	private static PathPatternRequestMatcher matcher(String pattern) {
+		return PathPatternRequestMatcher.withDefaults().matcher(pattern);
+	}
 
 
 	@Bean
@@ -174,20 +192,26 @@ public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
 
 		OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
 		RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
+		// 协议端点（含 /oauth2/authorize）由 endpointsMatcher 覆盖；其余为本链专属路径与预留路径
 		OrRequestMatcher requestMatcher = new OrRequestMatcher(endpointsMatcher,
-			PathPatternRequestMatcher.withDefaults().matcher("/"),
-			PathPatternRequestMatcher.withDefaults().matcher("/logout"),
-			PathPatternRequestMatcher.withDefaults().matcher("/login"),
-			PathPatternRequestMatcher.withDefaults().matcher("/login/**"),
-			PathPatternRequestMatcher.withDefaults().matcher("/api/**"),
-			PathPatternRequestMatcher.withDefaults().matcher("/view/**"),
-			PathPatternRequestMatcher.withDefaults().matcher("/userinfo")
+			matcher("/"),
+			matcher(LOGOUT_ENDPOINT),
+			matcher("/login"),
+			matcher("/login/**"),
+			// 预留路径：/api/** 内部接口、/view/** template 单体页面、/userinfo 不透明 accessToken
+			// 用户信息端点（自定义实现，非 OIDC /userinfo）。现下未实现也必须留在本链——
+			// 若缺位会落到 web 链，未来实现后被资源服务器链以 Bearer 语义接管
+			matcher("/api/**"),
+			matcher("/view/**"),
+			matcher("/userinfo")
 		);
 
 		http
 			.securityMatcher(requestMatcher)
-			.authorizeHttpRequests(config ->
-				config.anyRequest().permitAll()
+			.authorizeHttpRequests(config -> config
+				.requestMatchers(matcher(AUTHORIZATION_ENDPOINT)).authenticated()
+				.requestMatchers(matcher(LOGOUT_ENDPOINT)).authenticated()
+				.anyRequest().permitAll()
 			)
 			.cors(AbstractHttpConfigurer::disable)
 			.csrf(AbstractHttpConfigurer::disable)
@@ -227,7 +251,18 @@ public class OAuth2ServerConfig extends OAuth2AuthorizationServerConfiguration {
 				config.userDetailsService(cairoAuthAccountService))
 
 			.exceptionHandling(config -> {
-				config.authenticationEntryPoint(entryPoint)
+				// 会话消费型端点（授权/登出）未登录 → 302 登录页，其余 → Bearer 401。
+				// 不用 defaultAuthenticationEntryPointFor：显式 authenticationEntryPoint 存在时它会被
+				// 整体忽略（ExceptionHandlingConfigurer.getAuthenticationEntryPoint 只在未显式设置时
+				// 才按路径映射），故手工组装 DelegatingAuthenticationEntryPoint 一次到位。
+				// 登录后由 SavedRequestAware 回到原请求
+				LinkedHashMap<RequestMatcher, AuthenticationEntryPoint> entryPoints = new LinkedHashMap<>();
+				LoginUrlAuthenticationEntryPoint loginPage = new LoginUrlAuthenticationEntryPoint("/login");
+				entryPoints.put(matcher(AUTHORIZATION_ENDPOINT), loginPage);
+				entryPoints.put(matcher(LOGOUT_ENDPOINT), loginPage);
+				DelegatingAuthenticationEntryPoint delegating = new DelegatingAuthenticationEntryPoint(entryPoints);
+				delegating.setDefaultEntryPoint(entryPoint);
+				config.authenticationEntryPoint(delegating)
 					.accessDeniedHandler(accessDeniedHandler);
 			});
 

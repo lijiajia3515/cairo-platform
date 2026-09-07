@@ -22,6 +22,8 @@ Content-Type: application/x-www-form-urlencoded
 | `username` / `password` | 密码类 grant 的用户名/密码 |
 | `code` / `token` 等 | 验证码 / SNS 授权码 / 账号 token 等（按 grant 类型） |
 
+> **双端点契约**：`/open_api/oauth2/token`（本节所述，open 面）返回 `BusinessResult` 信封——FE 与业务调用方判 `code` 分发；`/oauth2/token`（Spring 标准端点）返回**纯 RFC 6749** 响应（成功=token JSON，失败=`{"error","error_description","error_uri"}` + 语义化状态）——供标准 OAuth2 客户端/协议库使用。协议层失败（grant 不支持、client 无效等）输出纯 RFC；Cairo 认证链业务失败（密码错等 BusinessException）不经 token 失败处理器、直接以业务信封返回——open 面对前者转换补齐信封、对后者原样透传。
+
 `grant_type` 取值（`主体:方式` 格式，定义见 `auth/core` 的 `framework/security/oauth2/core/OAuth*AuthorizationGrantTypes.java`）：
 
 | grant_type | 主体 | 说明 |

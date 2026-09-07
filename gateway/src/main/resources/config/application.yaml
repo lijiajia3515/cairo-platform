@@ -226,10 +226,12 @@ server:
   netty:
     max-initial-line-length: 1MB
   error:
-    include-exception: true
+    # exception/stacktrace 对外无合法场景，开关常关（CairoErrorAttributes 另有 5xx 代码层兜底）；
+    # message 保持 always——4xx 业务消息靠它放行，5xx 收敛在代码层按维度处理
+    include-exception: false
     include-message: always
     include-binding-errors: always
-    include-stacktrace: always
+    include-stacktrace: never
 
 management:
   info:

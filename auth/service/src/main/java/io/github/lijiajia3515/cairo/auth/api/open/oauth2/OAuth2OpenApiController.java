@@ -1,6 +1,8 @@
 package io.github.lijiajia3515.cairo.auth.api.open.oauth2;
 
+import io.github.lijiajia3515.cairo.auth.framework.security.oauth2.CairoOAuthErrorMapper;
 import io.github.lijiajia3515.cairo.auth.modules.oauth2.OAuth2TokenOpenApiResponseErrorHandler;
+import io.github.lijiajia3515.cairo.core.business.Business;
 import io.github.lijiajia3515.cairo.core.business.DefaultBusiness;
 import io.github.lijiajia3515.cairo.core.result.BusinessResult;
 import lombok.extern.slf4j.Slf4j;
@@ -59,9 +61,35 @@ public class OAuth2OpenApiController {
 					.build()
 				);
 		} else {
+			Map<?, ?> raw = exchange.getBody();
+			// 双形态识别：Cairo 认证链 BusinessException（密码错等）不经 token 失败处理器，
+			// 在标准端点直接走全局异常处理器，返回的已是业务信封（含 code 键）——原样透传保真
+			if (raw.containsKey("code")) {
+				return ResponseEntity
+					.status(exchange.getStatusCode())
+					.body(raw);
+			}
+			// 标准端点失败响应为纯 RFC 6749（或 Auth.* 扩展码），业务信封在本代理层补齐——协议纯净与业务语义各归其位
+			String errorCode = String.valueOf(Optional.ofNullable(raw.get("error")).orElse("invalid_request"));
+			Business business = CairoOAuthErrorMapper.resolve(errorCode);
+			Map<String, Object> data = new LinkedHashMap<>();
+			data.put("errorCode", errorCode);
+			Object description = raw.get("error_description");
+			if (description != null) {
+				data.put("description", description);
+			}
+			Object errorUri = raw.get("error_uri");
+			if (errorUri != null) {
+				data.put("uri", errorUri);
+			}
 			return ResponseEntity
 				.status(exchange.getStatusCode())
-				.body(exchange.getBody());
+				.body(BusinessResult
+					.builder()
+					.business(business)
+					.data(data)
+					.build()
+				);
 		}
 	}
 
