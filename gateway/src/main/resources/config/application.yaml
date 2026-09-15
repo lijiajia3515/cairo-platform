@@ -116,96 +116,98 @@ spring:
         query-passing: true
         prefer-ip-address: true
     gateway:
-      # 降低爆炸半径
-      fail-on-route-definition-error: false
-      metrics:
-        enabled: true
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        cors-configurations:
-          '[/**]':
-            allowed-origin-patterns:
-              - '*'
-              #- http://*
-              #- https://*
-              #- chrome-extension://*
-            allowed-methods:
-              - '*'
-            exposed-headers:
-              - '*'
-            allowed-headers:
-              - '*'
-            allow-credentials: true
-            max-age: 1800
-      discovery:
-        locator:
-          enabled: false
-      httpclient:
-        compression: true
-        max-header-size: 1GB
-        connect-timeout: 3000
-        response-timeout: 2m
-        wiretap: true
-        pool:
-          metrics: true
-        ssl:
-          use-insecure-trust-manager: true
-      default-filters:
-        - name: CairoRequestRateLimiter
-          args:
-            key-resolver: "#{@urlKeyResolver}"
-            rate-limiter: "#{@redisRateLimiter1}"
-            redis-rate-limiter1.replenish-rate: 10
-            redis-rate-limiter1.burst-capacity: 50
-            redis-rate-limiter1.requestd-tokens: 1
-        - name: CairoPrincipalRequestRateLimiter
-          args:
-            key-resolver: "#{@principalKeyResolver}"
-            rate-limiter: "#{@redisRateLimiter2}"
-            redis-rate-limiter2.replenish-rate: 5
-            redis-rate-limiter2.burst-capacity: 50
-            redis-rate-limiter2.requestd-tokens: 1
-        - name: DedupeResponseHeader
-          args:
-            strategy: RETAIN_LAST
-            name: Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Expose-Headers Access-Control-Allow-Headers Access-Control-Allow-Credentials Access-Control-Max-Age X-Trace-Id
-        - name: CircuitBreaker
-          args:
-            status-codes:
-              - 502
-              - 503
-              - 504
-            fallback-uri: forward:/fallback
-            resume-without-error: false
-        - name: Retry
-          args:
-            retries: 3
-            series:
-              - SERVER_ERROR
-            statuses:
-              - REQUEST_TIMEOUT
-              - TOO_MANY_REQUESTS
-              - INTERNAL_SERVER_ERROR
-              - BAD_GATEWAY
-              - SERVICE_UNAVAILABLE
-              - GATEWAY_TIMEOUT
-              - BANDWIDTH_LIMIT_EXCEEDED
-            methods:
-              - GET
-              - POST
-              - PUT
-              - PATCH
-              - DELETE
-            exceptions:
-              - java.net.ConnectException
-              - java.io.IOException
-              - java.util.concurrent.TimeoutException
-              - org.springframework.cloud.gateway.support.NotFoundException
-            backoff:
-              first-backoff: 100ms
-              max-backoff: 10s
-              factor: 2
-      routes: ~
+      server:
+        webflux:
+          # 降低爆炸半径
+          fail-on-route-definition-error: false
+          metrics:
+            enabled: true
+          globalcors:
+            add-to-simple-url-handler-mapping: true
+            cors-configurations:
+              '[/**]':
+                allowed-origin-patterns:
+                  - '*'
+                  #- http://*
+                  #- https://*
+                  #- chrome-extension://*
+                allowed-methods:
+                  - '*'
+                exposed-headers:
+                  - '*'
+                allowed-headers:
+                  - '*'
+                allow-credentials: true
+                max-age: 1800
+          discovery:
+            locator:
+              enabled: false
+          httpclient:
+            compression: true
+            max-header-size: 1GB
+            connect-timeout: 3000
+            response-timeout: 2m
+            wiretap: true
+            pool:
+              metrics: true
+            ssl:
+              use-insecure-trust-manager: true
+          default-filters:
+            - name: CairoRequestRateLimiter
+              args:
+                key-resolver: "#{@urlKeyResolver}"
+                rate-limiter: "#{@redisRateLimiter1}"
+                redis-rate-limiter1.replenish-rate: 10
+                redis-rate-limiter1.burst-capacity: 50
+                redis-rate-limiter1.requestd-tokens: 1
+            - name: CairoPrincipalRequestRateLimiter
+              args:
+                key-resolver: "#{@principalKeyResolver}"
+                rate-limiter: "#{@redisRateLimiter2}"
+                redis-rate-limiter2.replenish-rate: 5
+                redis-rate-limiter2.burst-capacity: 50
+                redis-rate-limiter2.requestd-tokens: 1
+            - name: DedupeResponseHeader
+              args:
+                strategy: RETAIN_LAST
+                name: Access-Control-Allow-Origin Access-Control-Allow-Methods Access-Control-Expose-Headers Access-Control-Allow-Headers Access-Control-Allow-Credentials Access-Control-Max-Age X-Trace-Id
+            - name: CircuitBreaker
+              args:
+                status-codes:
+                  - 502
+                  - 503
+                  - 504
+                fallback-uri: forward:/fallback
+                resume-without-error: false
+            - name: Retry
+              args:
+                retries: 3
+                series:
+                  - SERVER_ERROR
+                statuses:
+                  - REQUEST_TIMEOUT
+                  - TOO_MANY_REQUESTS
+                  - INTERNAL_SERVER_ERROR
+                  - BAD_GATEWAY
+                  - SERVICE_UNAVAILABLE
+                  - GATEWAY_TIMEOUT
+                  - BANDWIDTH_LIMIT_EXCEEDED
+                methods:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                exceptions:
+                  - java.net.ConnectException
+                  - java.io.IOException
+                  - java.util.concurrent.TimeoutException
+                  - org.springframework.cloud.gateway.support.NotFoundException
+                backoff:
+                  first-backoff: 100ms
+                  max-backoff: 10s
+                  factor: 2
+          routes: ~
 
 server:
   shutdown: graceful

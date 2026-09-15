@@ -81,15 +81,6 @@ public class CairoErrorAttributes extends DefaultErrorAttributes {
 
 		errorAttributes.put(ERROR_MESSAGE, determineMessage(error, responseStatusAnnotation));
 		handleException(errorAttributes, determineException(error), includeStackTrace);
-		// 5xx 兜底（代码层 floor）：server.error.include-message=always 是全局开关——4xx 业务消息与
-		// 5xx 异常原文无法按维度区分，异常原文可能含下游服务主机名/地址等内网细节，故 5xx 消息一律
-		// 收敛为业务码兜底文案（对齐 auth 侧）。exception/trace 已由配置常关（include-exception: false /
-		// include-stacktrace: never），此处 remove 是误开时的防御性兜底
-		if (errorStatus.is5xxServerError()) {
-			errorAttributes.put(ERROR_MESSAGE, determineBusiness(error).getMessage());
-			errorAttributes.remove(ERROR_EXCEPTION);
-			errorAttributes.remove(ERROR_TRACE);
-		}
 
 		return errorAttributes;
 	}

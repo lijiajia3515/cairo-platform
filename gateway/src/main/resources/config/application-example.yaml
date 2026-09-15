@@ -46,7 +46,9 @@ spring:
                 uri: http://your-zipkin-host
           order: -100
     gateway:
-      routes: []
+      server:
+        webflux:
+          routes: []
 
 arthas:
   tunnel-server: ws://your-arthas-tunnel:7777/ws
